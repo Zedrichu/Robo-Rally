@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="io.cucumber.java" type="repository">
+    <properties maven-id="io.cucumber:cucumber-java:7.2.3" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/io/cucumber/cucumber-java/7.2.3/cucumber-java-7.2.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/cucumber/cucumber-core/7.2.3/cucumber-core-7.2.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/cucumber/cucumber-gherkin/7.2.3/cucumber-gherkin-7.2.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/cucumber/cucumber-gherkin-messages/7.2.3/cucumber-gherkin-messages-7.2.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/cucumber/messages/17.1.1/messages-17.1.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/cucumber/tag-expressions/4.1.0/tag-expressions-4.1.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/cucumber/cucumber-expressions/15.0.1/cucumber-expressions-15.0.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/cucumber/datatable/7.2.3/datatable-7.2.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/cucumber/cucumber-plugin/7.2.3/cucumber-plugin-7.2.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/cucumber/docstring/7.2.3/docstring-7.2.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/cucumber/html-formatter/17.0.0/html-formatter-17.0.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/cucumber/ci-environment/8.1.0/ci-environment-8.1.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
