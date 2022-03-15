@@ -1,4 +1,5 @@
 import io.cucumber.java.en.*;
+import view.widgets.*;
 
 
 public class StepsDefinition {
@@ -7,15 +8,13 @@ public class StepsDefinition {
     public void players(Integer int1) {
 
     }
-    @Given("a game setting")
+    @And("a game setting")
     public void a_game_setting() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        GameSettings gameSettings = new GameSettings(2,Complexity.EASY);
     }
-    @Given("a board with size")
+    @And("a board with size")
     public void a_board_with_size() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Board board = new Board(10,12);
     }
     @Given("a deck of cards")
     public void a_deck_of_cards() {
