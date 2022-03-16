@@ -12,7 +12,7 @@ import view.TyleType;
 public class Board extends JPanel {
 
 	private static final long serialVersionUID = 5384602441603297852L;
-	
+
 	private Random rnd = new Random();
 	private Tile[][] board;
 	private int rows;
@@ -73,5 +73,9 @@ public class Board extends JPanel {
 		} else {
 			return TyleType.RADIATION;
 		}
+	}
+
+	public static long getBoardID() {
+		return serialVersionUID;
 	}
 }

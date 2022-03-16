@@ -1,3 +1,5 @@
+package game;
+
 import java.awt.FlowLayout;
 import java.io.IOException;
 import javax.swing.JFrame;
@@ -15,7 +17,7 @@ public class RoboRally {
 
         ControlPanel control = new ControlPanel(board, initialRow, initialColumn, currentDirection);
 
-        JFrame f = new JFrame("RoboRally Demo - v.0.1");
+        JFrame f = new JFrame("game.RoboRally Demo - v.0.1");
         f.setLayout(new FlowLayout(FlowLayout.CENTER));
         f.add(board);
         f.add(control);
