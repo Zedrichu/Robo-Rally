@@ -3,48 +3,83 @@ package game.cards;
 import java.util.ArrayList;
 import java.util.Set;
 
-interface Card {
-    public void action();
+//interface Card {
+ //   public void action();
+//}
+
+public enum CardAction{
+    MOVEUP(3);
+    MOVEUPTWO(2)
+    MOVEUPTHREE(3)
+    MOVEBACK(-1)
+    ROTATELEFT(1)
+    ROTATERIGHT(1)
+    UTURN(2)
+
+    private int value;
+
+    private CardValue(int value){
+        this.value=value;
+    }
+
+    public int getValue() {
+        return value;
+    }
+}
+
+public class Deck {
+    private ArrayList deck;
+
+    public Deck(CardValue value) {
+        this.deck = new ArrayList();
+        for (int i = 0; i <= 84; i++) {
+            if (i <= 18) {
+                CardValue value = CardValue.values(1)[i];
+            } else if (i > 18 && i <= 30) {
+                CardValue value = CardValue.values(2)[i];
+            } else if (i > 30 && i <= 36) {
+                CardValue value = CardValue.values(3)[i];
+            } else if (i > 36 && i <= 54) {
+                CardValue value = CardValue.values(1)[i];
+            } else if (i > 54 && i <= 72) {
+                CardValue value = CardValue.values(1)[i];
+            } else if (i > 72 && i <= 78) {
+                CardValue value = CardValue.values(2)[i];
+            } else if (i > 78 && i <= 84) {
+                CardValue value = CardValue.values(-1)[i];
+            }
+        }
+        Collections.shuffle(deck);
+
+        Iterator cardIterator = deck.iterator();
+        while (cardIterator.hasNext()) {
+            Card aCard = cardIterator.next();
+            System.out.println(aCard.getCardValue());
+        }
+
+    }
 }
 
 
-public class cardDeck {
-    private final int size = 84;
-    private ArrayList<Card> cardArrayList;
+public class Card
+{
+    private CardValue cardValue;
 
-    public void completeDeck() {
-        //Very not solid - Jeppe
-//        for (int i=0; i<=84;i++){
-//            if (i<=18) {
-//                cardArrayList.add(1 tile forward);
-//            }
-//            else if (i>18 && i<=30){
-//                cardArrayList.add(2 tiles forward);
-//            }
-//            else if (i>30 && i<=36){
-//                cardArrayList.add(3 tiles foward);
-//            }
-//            else if (i>36 && i<=54){
-//                cardArrayList.add(rotate left 1);
-//            }
-//            else if (i>54 && i<=72){
-//                cardArrayList.add(rotate  right1)
-//            }
-//            else if (i>72 && i<=78){
-//                cardArrayList.add(U turn)
-//            }
-//            else if (i>78 && i<=84){
-//                cardArrayList.add(1 tile backwards)
-//            }
-//       }
-
-
+    public Card (CardValue cardValue)
+    {
+        this.cardValue = cardValue;
     }
 
-    public cardDeck(){
-        cardArrayList = new ArrayList<Card>();
+    public CardValue getCard()
+    {
+        return cardValue;
     }
 
-    //public int generateSetCard(){}
-
+    public void setCardValue(CardValue cardValue)
+    {
+        this.cardValue = cardValue;
+    }
 }
+
+
+
