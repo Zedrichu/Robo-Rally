@@ -7,7 +7,7 @@ import java.util.Random;
 import javax.swing.JPanel;
 
 import view.CardinalPoints;
-import view.TyleType;
+import view.TileType;
 
 public class Board extends JPanel {
 
@@ -55,23 +55,23 @@ public class Board extends JPanel {
 	private void loadBoard() {
 		for (int j = 0; j < rows; j++) {
 			for (int i = 0; i < cols; i++) {
-				Tile t = new Tile(getRandomTyleType());
+				Tile t = new Tile(getRandomTileType());
 				board[j][i] = t;
 				add(t);
 			}
 		}
 	}
 	
-	private TyleType getRandomTyleType() {
+	private TileType getRandomTileType() {
 		double val = rnd.nextDouble();
 		if (val < 0.88) {
-			return TyleType.OPEN_FLOOR;
+			return TileType.OPEN_FLOOR;
 		} else if (val < 0.92) {
-			return TyleType.PIT;
+			return TileType.PIT;
 		} else if (val < 0.96) {
-			return TyleType.ACID;
+			return TileType.ACID;
 		} else {
-			return TyleType.RADIATION;
+			return TileType.RADIATION;
 		}
 	}
 

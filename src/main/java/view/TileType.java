@@ -1,15 +1,15 @@
 package view;
 
-public enum TyleType {
+public enum TileType {
 	
 	OPEN_FLOOR("tiles/floor.png"),
 	PIT("tiles/pit.png"),
 	ACID("tiles/acid.png"),
 	RADIATION("tiles/radiation.png");
 	
-	private String pictureFile;
+	final private String pictureFile;
 	
-	private TyleType(String pictureFile) {
+	private TileType(String pictureFile) {
 		this.pictureFile = pictureFile;
 	}
 	

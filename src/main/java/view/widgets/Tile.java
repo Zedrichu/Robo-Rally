@@ -12,20 +12,20 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import view.CardinalPoints;
-import view.TyleType;
+import view.TileType;
 
 public class Tile extends JPanel {
 
 	public static final int PIXEL_SIZE = 66;
 	
 	private static final long serialVersionUID = 8749974136051364514L;
-	private TyleType type;
+	private TileType type;
 	private BufferedImage image;
 	private BufferedImage imageRobot;
 	private boolean containsRobot = false;
 	private CardinalPoints direction;
 	
-	public Tile(TyleType type) {
+	public Tile(TileType type) {
 		super(true);
 		
 		this.type = type;

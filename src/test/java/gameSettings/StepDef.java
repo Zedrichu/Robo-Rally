@@ -39,7 +39,7 @@ public class StepDef {
     }
     @Then("game initialisation")
     public void game_initialisation() {
-        System.out.println("Game is initialized");
+        System.out.println("Game is initialised");
     }
 
 }
