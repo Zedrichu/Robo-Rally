@@ -11,9 +11,9 @@ public enum CardAction{
     MOVEUP(3);
     MOVEUPTWO(2)
     MOVEUPTHREE(3)
-    MOVEBACK(-1)
+    MOVEBACK(1)
     ROTATELEFT(1)
-    ROTATERIGHT(1)
+    ROTATERIGHT(3)
     UTURN(2)
 
     private int value;
