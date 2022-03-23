@@ -8,7 +8,7 @@ import java.util.Iterator;
  //   public void action();
 //}
 
-enum CardValue{
+enum CardType{
     MOVEON(1,18,"MoveOn"),
     MOVEONTWO(2,12,"MoveOn2"),
     MOVEONTHREE(3,6,"MoveOn3"),
@@ -21,7 +21,7 @@ enum CardValue{
     final private int number;
     final private String name;
 
-    CardValue(int value, int number, String name){
+    CardType(int value, int number, String name){
         this.value = value;
         this.number = number;
         this.name = name;
@@ -42,30 +42,32 @@ enum CardValue{
 }
 
 public class CardDeck {
-    private ArrayList<CardValue> deck;
+    private ArrayList<CardType> deck;
 
     public static void main(String[] args) {
         CardDeck deck = new CardDeck();
+        deck.printDeck();
     }
 
     public CardDeck() {
-        this.deck = new ArrayList<CardValue>(84);
-        CardValue[] cards = CardValue.values();
+        this.deck = new ArrayList<CardType>(84);
+        CardType[] cards = CardType.values();
 
-        for (CardValue card: cards) {
+        for (CardType card: cards) {
             for (int i=0; i<card.getNumber();i++){
                 deck.add(card);
             }
         }
 
         Collections.shuffle(deck);
+    }
 
-        Iterator<CardValue> cardIterator = deck.iterator();
+    public void printDeck(){
+        Iterator<CardType> cardIterator = deck.iterator();
         while (cardIterator.hasNext()) {
-            CardValue aCard = cardIterator.next();
+            CardType aCard = cardIterator.next();
             System.out.println(aCard.getName());
         }
-
     }
 }
 

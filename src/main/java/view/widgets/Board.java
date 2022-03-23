@@ -64,8 +64,10 @@ public class Board extends JPanel {
 	
 	private TileType getRandomTileType() {
 		double val = rnd.nextDouble();
-		if (val < 0.88) {
+		if (val <0.80){
 			return TileType.OPEN_FLOOR;
+		} else if (val < 0.88) {
+			return TileType.STARTING;
 		} else if (val < 0.92) {
 			return TileType.PIT;
 		} else if (val < 0.96) {

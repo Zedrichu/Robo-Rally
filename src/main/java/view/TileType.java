@@ -5,11 +5,13 @@ public enum TileType {
 	OPEN_FLOOR("tiles/floor.png"),
 	PIT("tiles/pit.png"),
 	ACID("tiles/acid.png"),
-	RADIATION("tiles/radiation.png");
-	
+	RADIATION("tiles/radiation.png"),
+	STARTING("tiles/starting.png");
+
+
 	final private String pictureFile;
 	
-	private TileType(String pictureFile) {
+	TileType(String pictureFile) {
 		this.pictureFile = pictureFile;
 	}
 	

@@ -2,6 +2,7 @@ package gameSettings;
 import game.*;
 import static org.junit.Assert.*;
 import game.GameSettings;
+import game.players.Player;
 import io.cucumber.java.en.*;
 import view.widgets.*;
 
