@@ -18,6 +18,13 @@ public enum CardinalPoints {
 		return null;
 	}
 
+	public static CardinalPoints getCardinalPointByAngle(int angle) {
+		for (CardinalPoints cp : CardinalPoints.values()) {
+			if (angle == cp.getAngle()) {return cp;}
+		}
+		return null;
+	}
+
 	public int getAngle() {
 		return angle;
 	}
