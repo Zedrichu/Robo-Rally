@@ -42,6 +42,8 @@ public class Player {
         this.position = new Position(x,y);
     }
 
+    public void  setPosition(Position pos) {this.position = pos;}
+
     public Position getPosition() {
         return position;
     }

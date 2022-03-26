@@ -3,11 +3,7 @@ import game.cards.*;
 import game.Position;
 import view.CardinalPoints;
 
-enum CardType {
-    MOVE, ROTATE;
-}
-
-abstract class Card {
+abstract public class Card {
     private static long counter=0;
     private CardType type;
     long ID;
@@ -50,10 +46,10 @@ class MovingCard extends Card {
     public Object[] applyAction(Position position, CardinalPoints direction) {
         int angle = direction.getAngle();
         Position newPosition = switch (angle) {
-            case 0 -> new Position(position.x, position.y - this.multiplier);
-            case 90 -> new Position(position.x + this.multiplier, position.y);
-            case 180 -> new Position(position.x, position.y + this.multiplier);
-            case 270 -> new Position(position.x - this.multiplier, position.y);
+            case 0 -> new Position(position.x - this.multiplier, position.y);
+            case 90 -> new Position(position.x, position.y + this.multiplier);
+            case 180 -> new Position(position.x + this.multiplier, position.y);
+            case 270 -> new Position(position.x, position.y - this.multiplier);
             default -> null;
         };
         return new Object[] {newPosition, direction};
