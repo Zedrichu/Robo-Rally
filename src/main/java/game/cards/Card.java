@@ -17,7 +17,8 @@ abstract class Card {
     //void flipCard()
 
     Card(CardType type) {
-        this.ID = counter++; this.type = type;
+        this.ID = counter++;
+        this.type = type;
     }
 
     public void setName(String name) {
@@ -38,9 +39,10 @@ abstract class Card {
 class MovingCard extends Card {
     final private int multiplier;
 
-    protected MovingCard(int multiplier, String name) {
+    protected MovingCard(int multiplier) {
         super(CardType.MOVE);
-        this.setName(name);
+        this.setName( multiplier<0? "Move"+Math.abs(multiplier)+"Back"
+                : "Move"+multiplier+"Forward");
         this.multiplier = multiplier;
     }
 
@@ -62,9 +64,9 @@ class MovingCard extends Card {
 class RotatingCard extends Card {
     final private int angle; //clockwise
 
-    protected RotatingCard(int angle, String name) {
+    protected RotatingCard(int angle) {
         super(CardType.ROTATE);
-        this.setName(name);
+        this.setName("Rotate");
         this.angle = angle;
     }
 
@@ -74,34 +76,4 @@ class RotatingCard extends Card {
                 .getCardinalPointByAngle((direction.getAngle()+angle)%360);
         return new Object[] {position, newDirection};
     }
-}
-
-class MoveF1 extends MovingCard {
-    MoveF1() {
-        super(1,"Move1Forward");
-    }
-}
-
-class MoveF2 extends MovingCard {
-    MoveF2() {super(2,"Move2Forward");}
-}
-
-class MoveF3 extends MovingCard {
-    MoveF3() {super(3,"Move3Forward");}
-}
-
-class MoveB1 extends MovingCard {
-    MoveB1() {super(-1,"Move1Back");}
-}
-
-class RotateLeft extends RotatingCard {
-    RotateLeft() {super(270,"RotateLeft");}
-}
-
-class RotateRight extends RotatingCard {
-    RotateRight() {super(90,"RotateRight");}
-}
-
-class UTurn extends RotatingCard {
-    UTurn() {super(180,"UTurn");}
 }
