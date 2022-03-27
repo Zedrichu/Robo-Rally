@@ -55,4 +55,13 @@ public class Player {
     public void setDirection(CardinalPoints direction) {
         this.direction = direction;
     }
+
+    public boolean checkInbounds(int rows, int columns){
+         return  (this.position.x < 0 | position.y > columns-1
+            || this.position.y < 0 | position.y > rows-1 );
+    }
+
+
 }
+
+

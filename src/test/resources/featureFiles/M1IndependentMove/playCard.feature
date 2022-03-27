@@ -8,7 +8,7 @@ Feature: Play Card
     Then player "x" is at row 3 and column 3 and direction "E"
   @tag
   Scenario Outline: Move one forward successfully
-    Given player <name> at row <x> and column <y> and direction <dir>
+    Given player <name> at row <y> and column <x> and direction <dir>
     And card of type MOVE and intensity 1
     When card is played
     Then player <name> is at row <ynew> and column <xnew> and direction <dir>

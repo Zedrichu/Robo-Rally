@@ -21,6 +21,9 @@ public class StepDef {
         player.setPosition(int2, int1);
         player.setDirection(CardinalPoints.getCardinalPointChar(chr));
     }
+    @Given("card of type ROTATE and intensity {int}")
+    public void card_of_type_rotate_with_intensity(int x) { card = CardFactory.getCard(CardType.ROTATE, x);}
+
     @Given("card of type MOVE and intensity {int}")
     public void card_movexforward(int x) {
         card = CardFactory.getCard(CardType.MOVE, x);
