@@ -35,6 +35,7 @@ abstract public class Card {
 class MovingCard extends Card {
     final private int multiplier;
 
+    // Constructor for MovingCard
     protected MovingCard(int multiplier) {
         super(CardType.MOVE);
         this.setName( multiplier<0? "Move"+Math.abs(multiplier)+"Back"
@@ -42,14 +43,16 @@ class MovingCard extends Card {
         this.multiplier = multiplier;
     }
 
+
+    // Function to apply an action based on a moving card
     @Override
     public Object[] applyAction(Position position, CardinalPoints direction) {
         int angle = direction.getAngle();
         Position newPosition = switch (angle) {
-            case 0 -> new Position(position.x - this.multiplier, position.y);
-            case 90 -> new Position(position.x, position.y + this.multiplier);
-            case 180 -> new Position(position.x + this.multiplier, position.y);
-            case 270 -> new Position(position.x, position.y - this.multiplier);
+            case 0 -> new Position(position.x, position.y - this.multiplier);
+            case 90 -> new Position(position.x + this.multiplier, position.y);
+            case 180 -> new Position(position.x, position.y + this.multiplier);
+            case 270 -> new Position(position.x - this.multiplier, position.y);
             default -> null;
         };
         return new Object[] {newPosition, direction};
@@ -62,7 +65,11 @@ class RotatingCard extends Card {
 
     protected RotatingCard(int angle) {
         super(CardType.ROTATE);
-        this.setName("Rotate");
+        String name = "Rotate";
+        if (angle == 90) name += "Right";
+        else if (angle == 180) name += "UTurn";
+        else name += "Left";
+        this.setName(name);
         this.angle = angle;
     }
 

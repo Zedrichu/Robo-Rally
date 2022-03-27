@@ -17,8 +17,8 @@ public class StepDef {
     Board board;
     @Given("create cardDeck")
     public void create_card_deck() {
-        deck = new CardDeck();
-        assertNotNull(deck);
+        //deck = new CardDeck();
+        //assertNotNull(deck);
     }
     @Then("generate board")
     public void generate_board() {

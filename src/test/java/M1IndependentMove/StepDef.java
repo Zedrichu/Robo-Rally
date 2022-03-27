@@ -17,7 +17,8 @@ public class StepDef {
     @Given("player {string} at row {int} and column {int} and direction {string}")
     public void player_at_row_and_column_and_direction(String string, Integer int1, Integer int2,String chr) {
         player = new Player(string);
-        player.setPosition(int1, int2);
+        // x -> column so int2 and y -> row so int1
+        player.setPosition(int2, int1);
         player.setDirection(CardinalPoints.getCardinalPointChar(chr));
     }
     @Given("card of type MOVE and intensity {int}")

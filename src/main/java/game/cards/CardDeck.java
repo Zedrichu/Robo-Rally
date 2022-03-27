@@ -9,5 +9,17 @@ import javax.swing.*;
 import java.util.*;
 
 public class CardDeck {
-    //Client of CardFactory
+    //Client of CardFactory - Singleton Design Pattern
+    private static CardDeck instance;
+
+    private CardDeck() {
+
+    }
+
+    public CardDeck getInstance() {
+        if (instance == null) {
+            instance = new CardDeck();
+        }
+        return  instance;
+    }
 }

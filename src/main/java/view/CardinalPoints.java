@@ -3,10 +3,10 @@ package view;
 public enum CardinalPoints {
 	N(0, "N"), S(180,"S"), E(90,"E"), W(270,"W");
 	
-	private int angle;
-	private String abbr;
+	final private int angle;
+	final private String abbr;
 
-	private CardinalPoints(int angle, String abbr) {
+	CardinalPoints(int angle, String abbr) {
 		this.angle = angle;
 		this.abbr = abbr;
 	}
