@@ -9,8 +9,8 @@ Feature: Round
     | x |  | xnew |
     | 4 |  | 5    |
 
-  Scenario:Reset round counter succesfully
-    Given round counter <5>
+  Scenario:Reset round counter successfully
+    Given round counter 5
     When reset round counter
     Then round counter is 0
 

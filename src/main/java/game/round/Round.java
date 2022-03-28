@@ -3,13 +3,22 @@ package game.round;
 import game.players.Player;
 import view.widgets.Board;
 
+import java.util.Set;
+
 // Singleton design applied on Round
 public class Round {
     private int roundNumber=1;
     private Board board;
-    private Player[] players;
+    private Set<Player> players;
     private static Round instance;
 
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public void setPlayers(Set<Player> players) {
+        this.players = players;
+    }
 
     //Singleton design applied on Round
     public static Round getInstance(){
@@ -19,14 +28,16 @@ public class Round {
         return instance;
     }
 
+    private Round() {}
+
+    //Setters
     public void setRoundNumber(int roundNumber) {
         this.roundNumber = roundNumber;
     }
 
-    //Constructor
-    public Round(Player[] players, Board board) {
-        this.board = board;
-        this.players = players;
+    //Increment round number
+    public void incrementRoundNumber(){
+        this.roundNumber = roundNumber+1;
     }
 
 
