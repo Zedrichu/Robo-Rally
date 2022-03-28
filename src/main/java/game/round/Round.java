@@ -23,7 +23,7 @@ public class Round {
     //Singleton design applied on Round
     public static Round getInstance(){
         if (instance == null){
-            //instance = new Round();
+            instance = new Round();
         }
         return instance;
     }

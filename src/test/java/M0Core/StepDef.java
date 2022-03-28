@@ -20,12 +20,11 @@ public class StepDef {
     Set<Player> players;
     Board board = new Board(10,10);
     Round round = Round.getInstance();
-    PlayerFactory playerFactory = new PlayerFactory();
+    PlayerFactory playerFactory;
 
     @Given("round counter {int}")
-    public void round_counter(Integer int1) {
-        round.setRoundNumber(int1);
-        round.setBoard(board);
+    public void round_counter(int x) {
+        round.setRoundNumber(x);
     }
     @Given("set of players <S>")
     public void set_of_players_s() {
@@ -36,12 +35,15 @@ public class StepDef {
     public void all_in_s_have_moved() {
 
     }
+
     @When("increment round counter")
     public void increment_round_counter() {
         round.incrementRoundNumber();
     }
+
     @Then("round counter is {int}")
-    public void round_counter_is(Integer int1) {
-        round.getRoundNumber();
+    public void round_counter_is(int int1) {
+        assertEquals(int1, round.getRoundNumber());
     }
+
 }
