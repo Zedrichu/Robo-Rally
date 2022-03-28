@@ -40,11 +40,16 @@ public class Round {
         this.roundNumber = roundNumber+1;
     }
 
-
-
-    public void incrementRoundNumber(){
-        this.roundNumber = roundNumber+1;
+    // Not done yet
+    public boolean isRoundOver(){
+        boolean res = true;
+        for (Player plr : players) {
+            res = res && (plr.getHandSize() == 5-this.roundNumber);
+        }
+        return res;
     }
+
+
     //Getters
     public int getRoundNumber() {
         return roundNumber;

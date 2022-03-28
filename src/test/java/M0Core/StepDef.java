@@ -34,8 +34,7 @@ public class StepDef {
 
     @Given("all in <S> have moved")
     public void all_in_s_have_moved() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
     @When("increment round counter")
     public void increment_round_counter() {

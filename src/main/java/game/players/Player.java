@@ -12,6 +12,7 @@ public class Player {
     private String playerName;
     private Position position;
     private CardinalPoints direction;
+    private ArrayList<Card> hand;
 
     //private int robotID;
 
