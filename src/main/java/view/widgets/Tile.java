@@ -11,6 +11,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import game.Position;
 import view.CardinalPoints;
 import view.TileType;
 
@@ -24,6 +25,7 @@ public class Tile extends JPanel {
 	private BufferedImage imageRobot;
 	private boolean containsRobot = false;
 	private CardinalPoints direction;
+	public Position position;
 	
 	public Tile(TileType type) {
 		super(true);
@@ -40,7 +42,12 @@ public class Tile extends JPanel {
 		setMaximumSize(getMinimumSize());
 		setPreferredSize(getMinimumSize());
 	}
-	
+
+	public TileType getType() {
+		return type;
+	}
+
+
 	public void setRobot(CardinalPoints direction) {
 		this.containsRobot = true;
 		this.direction = direction;

@@ -2,7 +2,6 @@ package M0Core;
 
 import static org.junit.Assert.*;
 
-import game.GameSettings;
 import game.players.Player;
 import game.players.PlayerFactory;
 import game.round.Round;
@@ -11,12 +10,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import view.widgets.Board;
-import game.round.*;
 
 import java.util.Set;
 
 
-public class StepDef {
+public class StepDefRound {
     Set<Player> players;
     Board board = new Board(10,10);
     Round round = Round.getInstance();

@@ -25,4 +25,6 @@ public class RoboRally {
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
+
 }

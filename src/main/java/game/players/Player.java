@@ -2,6 +2,7 @@ package game.players;
 
 import game.Position;
 import game.cards.Card;
+import game.cards.CardHand;
 import view.CardinalPoints;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class Player {
     private String playerName;
     private Position position;
     private CardinalPoints direction;
-    private ArrayList<Card> hand;
+    private CardHand hand;
 
     //private int robotID;
 
@@ -68,11 +69,11 @@ public class Player {
     }
 
     // Assign cards to each player
-    public void setHand(ArrayList<Card> hand) {
+    public void setHand(CardHand hand) {
         this.hand = hand;
     }
 
-    public ArrayList<Card> getHand() {
+    public CardHand getHand() {
         return hand;
     }
 

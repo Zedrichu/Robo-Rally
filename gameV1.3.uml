@@ -3,30 +3,36 @@
   <ID>JAVA</ID>
   <OriginalElement>game</OriginalElement>
   <nodes>
-    <node x="897.0833333333333" y="283.0">game.Complexity</node>
-    <node x="761.9255952380951" y="548.0">game.GameSettings</node>
-    <node x="0.0" y="384.0">game.players</node>
-    <node x="185.0" y="384.0">game.cards</node>
-    <node x="-343.0" y="354.0">game.RoboRally</node>
-    <node x="592.175595238095" y="29.5">game.Position</node>
+    <node x="217.0" y="0.0">game.Complexity</node>
+    <node x="0.0" y="0.0">game.GameSettings</node>
+    <node x="193.0" y="302.0">game.players</node>
+    <node x="177.0" y="407.0">game.cards</node>
+    <node x="0.0" y="302.0">game.RoboRally</node>
+    <node x="0.0" y="407.0">game.round</node>
+    <node x="350.0" y="407.0">game.Position</node>
   </nodes>
   <notes />
   <edges>
     <edge source="game.GameSettings" target="game.Complexity" relationship="DEPENDENCY">
-      <point x="56.65773809523819" y="-100.5" />
-      <point x="-89.5" y="44.0" />
+      <point x="-43.0" y="-128.5" />
+      <point x="54.0" y="113.0" />
+      <point x="48.5" y="113.0" />
+      <point x="-48.5" y="44.0" />
     </edge>
     <edge source="game.GameSettings" target="game.Complexity" relationship="TO_ONE">
-      <point x="78.5" y="-100.5" />
-      <point x="-67.65773809523819" y="44.0" />
+      <point x="43.0" y="-128.5" />
+      <point x="140.0" y="113.0" />
+      <point x="145.5" y="113.0" />
+      <point x="48.5" y="44.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="1.0" showDependencies="true" x="230.5" y="206.5" />
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="true" x="245.0" y="271.5" />
   <SelectedNodes>
-    <node>game.players</node>
+    <node>game.cards</node>
   </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
+    <Category>Inner Classes</Category>
     <Category>Methods</Category>
     <Category>Properties</Category>
   </Categories>

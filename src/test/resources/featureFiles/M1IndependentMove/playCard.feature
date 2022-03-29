@@ -90,16 +90,19 @@ Feature: Play Card
 
 
   @tag
-  Scenario Outline: move one tile out of bounds
+  Scenario Outline: move tile out of bounds
     Given player <name> at row <y> and column <x> and direction <dir>
-    And card of type MOVE and intensity 1
+    And card of type MOVE and intensity <intens>
     When card is played
     Then player <name> is at row <ynew> and column <xnew> and direction <dirNew>
 
     @tag
     Scenarios:
-      |  | name | x | y | dir | xnew | ynew | dirNew |
-      |  | "XX" | 0 | 2 | 'N' | 1    | 2    | 'N'    |
+      |  | name | x | y | dir | intens | xnew | ynew | dirNew |
+      |  | "XX" | 0 | 0 | 'N' | 1      | 0    | 0    | 'N'    |
+      |  | "XX" | 0 | 1 | 'N' | 2      | 0    | 1    | 'N'    |
+      |  | "XX" | 2 | 2 | 'W' | 3      | 2    | 2    | 'W'    |
+      |  | "XX" | 0 | 0 | 'S' | -1     | 0    | 0    | 'S'    |
 
 
 
