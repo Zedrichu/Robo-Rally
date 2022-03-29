@@ -47,7 +47,9 @@ public class Board extends JPanel {
 	public Random getRandom() {
 		return rnd;
 	}
-	
+
+
+	// These 2 should take a robotID to know which robot to move where #TODO
 	public void setRobot(int row, int col, CardinalPoints direction) {
 		board[row][col].setRobot(direction);
 	}

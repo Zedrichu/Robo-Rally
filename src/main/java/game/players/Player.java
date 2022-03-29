@@ -77,6 +77,12 @@ public class Player {
         return hand;
     }
 
+    public void playCard (Card card) {
+        Object[] res = card.applyAction(this.position, this.direction);
+        this.setPosition((Position) res[0]);
+        this.setDirection((CardinalPoints) res[1]);
+    }
+
     //Returns size of hand
     public int getHandSize() {
         return hand.size();
