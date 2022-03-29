@@ -8,12 +8,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import view.CardinalPoints;
+import view.widgets.Board;
 
 public class StepDef {
     Player player;
     Card card;
     Position newPosition;
     CardinalPoints newDirection;
+    Board board = new Board(10,10);
     @Given("player {string} at row {int} and column {int} and direction {string}")
     public void player_at_row_and_column_and_direction(String string, Integer int1, Integer int2,String chr) {
         player = new Player(string);
