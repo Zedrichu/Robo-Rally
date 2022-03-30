@@ -49,6 +49,11 @@ public class Round {
         return res;
     }
 
+    //Reset Round
+    public void resetRound(){
+        this.roundNumber=0;
+    }
+
 
     //Getters
     public int getRoundNumber() {

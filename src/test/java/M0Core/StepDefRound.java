@@ -44,4 +44,12 @@ public class StepDefRound {
         assertEquals(int1, round.getRoundNumber());
     }
 
+    @When("reset round counter")
+    public void reset_round_counter() {
+        round.resetRound();
+        assertEquals(0,round.getRoundNumber());
+
+    }
+
+
 }

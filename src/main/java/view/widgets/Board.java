@@ -102,7 +102,7 @@ public class Board extends JPanel {
 		} else if (val < 0.96) {
 			return new Tile(TileType.ACID);
 		} else {
-			return TileType.RADIATION;
+			return new Tile(TileType.RADIATION);
 		}
 	}
 
