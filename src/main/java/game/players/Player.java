@@ -14,6 +14,8 @@ public class Player {
     private Position position;
     private CardinalPoints direction;
     private CardHand hand;
+    private int lives = 10;
+
 
     //private int robotID;
 
