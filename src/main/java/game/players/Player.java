@@ -19,6 +19,15 @@ public class Player {
 
     //private int robotID;
 
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
     private int getFreshID() {
         IDs++;
         return IDs;
