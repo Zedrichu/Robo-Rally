@@ -61,7 +61,7 @@ public class Board extends JPanel {
 	private void loadBoard() {
 		for (int j = 0; j < rows; j++) {
 			for (int i = 0; i < cols; i++) {
-				Tile t = new Tile(getRandomTileType());
+				Tile t = getRandomTile();
 				t.position = new Position(i, j);
 				if (t.getType().equals(TileType.STARTING)) {
 					startTiles.add(t);
@@ -91,16 +91,16 @@ public class Board extends JPanel {
 
 	}
 
-	private TileType getRandomTileType() {
+	private Tile getRandomTile() {
 		double val = rnd.nextDouble();
 		if (val <0.80){
-			return TileType.OPEN_FLOOR;
+			return new Tile(TileType.EMPTY);
 		} else if (val < 0.88) {
-			return TileType.STARTING;
+			return new Tile(TileType.STARTING);
 		} else if (val < 0.92) {
-			return TileType.PIT;
+			return new Tile(TileType.PIT);
 		} else if (val < 0.96) {
-			return TileType.ACID;
+			return new Tile(TileType.ACID);
 		} else {
 			return TileType.RADIATION;
 		}
