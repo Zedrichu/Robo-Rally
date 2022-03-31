@@ -41,8 +41,8 @@ public class StepDef {
         tile.position = new Position(x, y);
     }
     // laserTile
-    @Given("laserTile at row {int}  and column {int}")
-    public void laser_tile_at_row_and_column(int x, int y) {
+    @Given("laserTile {string} at row {int}  and column {int}")
+    public void laser_tile_at_row_and_column(String string, int x, int y) {
 
         type = TileType.RADIATION;
         tile = new Tile(type);

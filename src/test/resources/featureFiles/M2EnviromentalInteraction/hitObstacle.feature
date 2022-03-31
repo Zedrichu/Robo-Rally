@@ -12,16 +12,16 @@ Feature: Hit Obstacle
       | | name |  tile        | x | y | lives | damage | newLives |
       | | "XX" |  'acidTile'  | 3 | 2 |   3   |   -2   |    1     |
 
-  @tag
-  Scenario Outline:
-    Given player <name> at row <y> column <x> with card hand <hand> (as linked list)
-    And pitTile <tile> at row <y> and column <x>
-    When round is incremented
-    Then player <name> with card hand <handNew>
-    @tag
-    Scenarios:
-      | | name | tile      | x | y |          hand            |    handNew       |
-      | | "XX" | 'pitTile' | 3 | 2 | ArrayList<CardHand> hand |  hand(head,null) |
+#  @tag
+#  Scenario Outline:
+#    Given player <name> at row <y> column <x> with card hand <hand> (as linked list)
+#    And pitTile <tile> at row <y> and column <x>
+#    When round is incremented
+#    Then player <name> with card hand <handNew>
+#    @tag
+#    Scenarios:
+#      | | name | tile      | x | y |          hand            |    handNew       |
+#      | | "XX" | 'pitTile' | 3 | 2 | ArrayList<CardHand> hand |  hand(head,null) |
   @tag
   Scenario Outline:
     Given Player <name> at row <y> column <x> with <lives> lives
@@ -30,8 +30,8 @@ Feature: Hit Obstacle
     Then player <name> has <lives> add <damage> lives which leaves them at <newLives> lives
     @tag
     Scenarios:
-      | | name |tile          | x | y | lives | damage | newLives|
-      | | "XX" |  laserTile   | 3 | 2 |   3   |   -1   |    2     |
+      | | name |   tile          | x | y | lives | damage | newLives|
+      | | "XX" |   'laserTile'   | 3 | 2 |   3   |   -1   |    2     |
 
   @tag
   Scenario Outline:
