@@ -2,6 +2,7 @@ package M2EnviromentalInteraction;
 
 import game.players.Player;
 import game.round.Round;
+import io.cucumber.java.en.And;
 import view.TileType;
 import view.widgets.Board;
 import view.widgets.Tile;
@@ -49,6 +50,13 @@ public class StepDef {
         tile.position = new Position(x, y);
     }
 
+    @Given("lifeToken {string} at row {int}  and column {int}")
+    public void life_token_at_row_and_column(String string, Integer x, Integer y) {
+        type = TileType.LIFETOKEN;
+        tile = new Tile(type);
+        tile.position = new Position(x, y);
+    }
+
     @When("round is incremented")
     public void round_is_incremented() {
         round = new Round();
@@ -59,13 +67,8 @@ public class StepDef {
 
 
     @Then("player {string} has {int} add {int} lives which leaves them at {int} lives")
-    public void player_has_lives(String string, int lives, int damage) {
+    public void player_has_lives(String string, int lives, int damage, int newlives) {
         player.updateLives(damage);
     }
-
-
-
-
-
 
 }
