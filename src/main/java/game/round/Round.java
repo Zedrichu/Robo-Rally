@@ -28,7 +28,7 @@ public class Round {
         return instance;
     }
 
-    private Round() {}
+    public Round() {}
 
     //Setters
     public void setRoundNumber(int roundNumber) {

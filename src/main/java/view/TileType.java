@@ -6,7 +6,9 @@ public enum TileType {
 	PIT("tiles/pit.png"),
 	ACID("tiles/acid.png"),
 	RADIATION("tiles/radiation.png"),
-	STARTING("tiles/starting.png");
+	STARTING("tiles/starting.png"),
+	LIFETOKEN("tiles/lifeToken.png"),
+	CONVEYORBELT("tiles/conveyorBelt.png");
 
 
 	final private String pictureFile;

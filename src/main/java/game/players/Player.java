@@ -14,6 +14,7 @@ public class Player {
     private Position position;
     private CardinalPoints direction;
     private CardHand hand;
+    private int lives;
 
     //private int robotID;
 
@@ -30,6 +31,8 @@ public class Player {
     public int getPlayerID() {
         return playerID;
     }
+
+    public void setLives(int lives){this.lives = lives;}
 
     public void setPlayerID(int playerID) {
         this.playerID = playerID;
@@ -86,6 +89,13 @@ public class Player {
     //Returns size of hand
     public int getHandSize() {
         return hand.size();
+    }
+
+    public void updateLives(int effect){
+        this.lives = lives + effect;
+    }
+    public double getLives(){
+        return lives;
     }
 
 }
