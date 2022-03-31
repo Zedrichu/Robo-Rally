@@ -40,7 +40,7 @@ public class Round {
         return instance;
     }
 
-    private Round() {}
+    public Round() {}
 
 
     //Setters

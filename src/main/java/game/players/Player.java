@@ -20,15 +20,6 @@ public class Player {
 
     //private int robotID;
 
-
-    public int getLives() {
-        return lives;
-    }
-
-    public void setLives(int lives) {
-        this.lives = lives;
-    }
-
     private int getFreshID() {
         IDs++;
         return IDs;
@@ -141,6 +132,13 @@ public class Player {
         }
         // send current back to deck
         this.setHand(new CardHand(chosen));
+    }
+
+    public void updateLives(int effect){
+        this.lives = lives + effect;
+    }
+    public double getLives(){
+        return lives;
     }
 
 }
