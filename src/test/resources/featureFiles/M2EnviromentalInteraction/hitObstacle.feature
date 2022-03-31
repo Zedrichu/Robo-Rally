@@ -1,53 +1,57 @@
 @tag
 Feature: Hit Obstacle
   @tag
-  Scenario Outline:
+  Scenario Outline: Interaction with Obstacles
     Given Player <name> at row <y> column <x> with <lives> lives
-    And acidTile at row <y> and column <x>
+    And acidTile <tile> at row <y> and column <x>
     When round is incremented
-    Then player <name> has <lives-2> lives
+    Then player <name> has <lives> add <damage> lives which leaves them at <newLives> lives
 
     @tag
     Scenarios:
-      | | name | x | y | lives |lives-2|
-      | | "XX" | 3 | 2 |   3   |   1   |
+      | | name |  tile        | x | y | lives | damage | newLives |
+      | | "XX" |  'acidTile'  | 3 | 2 |   3   |   -2   |    1     |
 
   @tag
-    Scenario Outline:
+  Scenario Outline:
     Given player <name> at row <y> column <x> with card hand <hand> (as linked list)
-    And pitTile at row <y> and column <x>
+    And pitTile <tile> at row <y> and column <x>
     When round is incremented
     Then player <name> with card hand <handNew>
     @tag
     Scenarios:
-      | | name | x | y |          hand            |    handNew       |
-      | | "XX" | 3 | 2 | ArrayList<CardHand> hand |  hand(head,null) |
+      | | name | tile      | x | y |          hand            |    handNew       |
+      | | "XX" | 'pitTile' | 3 | 2 | ArrayList<CardHand> hand |  hand(head,null) |
   @tag
-    Scenario Outline:
+  Scenario Outline:
     Given Player <name> at row <y> column <x> with <lives> lives
-    And laserTile at row <y>  and column <x>
+    And laserTile <tile> at row <y>  and column <x>
     When round is incremented
-    Then player <name> has <lives-1> lives
+    Then player <name> has <lives> add <damage> lives which leaves them at <newLives> lives
     @tag
     Scenarios:
-      | | name | x | y | lives |lives-1|
-      | | "XX" | 3 | 2 |   3   |   2   |
+      | | name |tile          | x | y | lives | damage | newLives|
+      | | "XX" |  laserTile   | 3 | 2 |   3   |   -1   |    2     |
 
   @tag
-    Scenario Outline:
+  Scenario Outline:
     Given Player <name> on row <y> column <x> and direction <dir>
-    And conveyorBelt is on row <y> column <x> with direction <convDir>
+    And conveyorBelt <tile> is on row <y> column <x> with direction <convDir>
     When round is incremented
     Then Player <name> on row <ynew>  new column <xnew> and direction <dir>
     @tag
     Scenarios:
-      | | name| x | y | dir | convDir | xnew | ynew |
-      | | "XX"| 3 | 2 | 'E' |   'S'   |  3   |  3   |
-      | | "XX"| 3 | 2 | 'E' |   'S'   |  3   |  3   |
+      | | name| tile            | x | y | dir | convDir | xnew | ynew |
+      | | "XX"| 'conveyorBelt'  | 3 | 2 | 'E' |   'S'   |  3   |  3   |
+      | | "XX"| 'conveyorBelt'  | 3 | 2 | 'E' |   'S'   |  3   |  3   |
 
   @tag
-    Scenario Outline:
+  Scenario Outline:
     Given Player <name> at row <y> column <x> with <lives> lives
-    And laserTile at row <y>  and column <x>
+    And lifeToken <tile> at row <y>  and column <x>
     When round is incremented
-    Then player <name> has <lives+1> lives
+    Then player <name> has <lives> add <life> lives which leaves them at <newLives> lives
+    @tag
+    Scenarios:
+      | | name |tile       | x | y | lives | life | newLives |
+      | | "XX" |'lifeToken'| 3 | 2 |   3   |   1  |    4     |
