@@ -1,3 +1,4 @@
+Feature: Generate set of random cards
 @tag
   Scenario: Generate set of random cards player "x"
   Given player "x"

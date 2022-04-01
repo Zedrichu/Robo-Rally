@@ -27,8 +27,8 @@ public class PlayerFactory {
 
     public static Set<Player> getPlayerSet(int number) {
         Set<Player> result = new HashSet<Player>();
-        for (int i=0; i<number;i++) {
-            result.add(getPlayer(selectPlayerName()));
+        for (int i=0; i<1;i++) {
+            result.add(getPlayer("Jeppe"));
         }
         return result;
     }

@@ -29,6 +29,7 @@ public class StepDefRound {
         PlayerFactory.getPlayerSet(2);
     }
 
+    //Needs Fixing
     @Given("all in <S> have moved")
     public void all_in_s_have_moved() {
 
@@ -49,6 +50,17 @@ public class StepDefRound {
         round.resetRound();
         assertEquals(0,round.getRoundNumber());
 
+    }
+
+    @When("play round")
+    public void play_round() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Then("all players have <{int} - round number> cards")
+    public void all_players_have_round_number_cards(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
     }
 
 

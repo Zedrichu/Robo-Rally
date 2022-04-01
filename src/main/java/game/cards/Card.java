@@ -3,6 +3,8 @@ import game.cards.*;
 import game.Position;
 import view.CardinalPoints;
 
+import java.util.Objects;
+
 abstract public class Card {
     private static long counter=0;
     private CardType type;

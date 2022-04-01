@@ -33,6 +33,12 @@ public class Player {
         return IDs;
     }
 
+    public void drawCardHand(CardDeck deck) {
+        this.hand = new CardHand(deck.drawCards());
+        //this.hand.printHand();
+    }
+
+
     public Player(String name) {
         this.playerID = getFreshID();
         this.playerName = name;
