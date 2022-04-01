@@ -20,6 +20,18 @@ public class Round {
         this.players = players;
     }
 
+    //Checks that all Players have played
+    public boolean haveAllPlayed() {
+        boolean res=true;
+        for (Player plr : players) {
+            if (plr.getHandSize() != 5-roundNumber) {
+                res = false;
+                break;
+            }
+        }
+        return res;
+    }
+
     //Singleton design applied on Round
     public static Round getInstance(){
         if (instance == null){

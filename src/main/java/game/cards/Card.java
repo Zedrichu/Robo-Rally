@@ -32,6 +32,19 @@ abstract public class Card {
     }
 
     abstract public Object[] applyAction(Position position, CardinalPoints direction);
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return ID == card.ID;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID);
+    }
 }
 
 class MovingCard extends Card {

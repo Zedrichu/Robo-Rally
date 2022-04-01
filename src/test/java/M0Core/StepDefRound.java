@@ -26,13 +26,13 @@ public class StepDefRound {
     }
     @Given("set of players <S>")
     public void set_of_players_s() {
-        PlayerFactory.getPlayerSet(2);
+        round.setPlayers(PlayerFactory.getPlayerSet(2));
     }
 
     //Needs Fixing
     @Given("all in <S> have moved")
     public void all_in_s_have_moved() {
-
+        assertTrue(round.haveAllPlayed());
     }
 
     @When("increment round counter")

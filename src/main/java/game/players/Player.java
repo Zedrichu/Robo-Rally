@@ -2,6 +2,7 @@ package game.players;
 
 import game.Position;
 import game.cards.Card;
+import game.cards.CardDeck;
 import game.cards.CardHand;
 import view.CardinalPoints;
 
