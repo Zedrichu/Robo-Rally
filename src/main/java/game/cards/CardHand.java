@@ -6,7 +6,8 @@ import game.round.Round;
 public class CardHand {
     private final static int drawNo = 9;
     private final static int cardsNo = 5;
-    private ArrayList<Card> hand = new ArrayList<>();
+    private LinkedList<Card> hand= new LinkedList<>();
+    private Round round;
 
     public int size() {return hand.size();}
 

@@ -7,6 +7,8 @@ import view.TileType;
 import view.widgets.Board;
 import view.widgets.Tile;
 import view.widgets.Board;
+import java.util.LinkedList;
+
 
 import game.Position;
 
@@ -25,6 +27,9 @@ public class StepDef {
     Board board;
     Tile tile;
     Round round;
+    CardHand hand;
+    Card card = CardFactory.getCard(CardType.MOVE, 2);
+    CardinalPoints newDir;
 
     @Given("Player {string} at row {int} column {int} with {int} lives")
     public void player_at_row_column_with_lives(String s, int x, int y, int z) {
