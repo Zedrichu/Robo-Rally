@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class StepDefDrawRandomCard {
     Player player;
-    CardDeck deck;
+    CardDeck deck = CardDeck.getInstance();
 
 
     @Given("player {string}")
@@ -30,7 +30,7 @@ public class StepDefDrawRandomCard {
     }
     @Then("player {string} has card hand with {int} cards")
     public void player_has_set_of_cards_with_cards(String string, Integer int1) {
-        assertEquals(9,player.getHandSize());
+        assertEquals((long) int1,player.getHandSize());
     }
 
     @Given("card hand of player {string} with {int} cards")
@@ -41,7 +41,7 @@ public class StepDefDrawRandomCard {
 
     @When("choose {int} cards")
     public void choose_cards(Integer int1) {
-        //player.chooseCards(5);
+        player.chooseCards(5);
     }
 
 }

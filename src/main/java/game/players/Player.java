@@ -129,19 +129,19 @@ public class Player {
         this.setHand(new CardHand(selCards));
     }
 
-
-
-
-
-//    public void chooseCards(int x) {
-//        ArrayList<Card> current = hand.getHand();
-//        boolean selected = true;
-//        for (int i=0;i<x;i++) {
-//            if (selected) {
-//
-//            }
-//        }
-//    }
+    public void chooseCards(int x) {
+        ArrayList<Card> current = hand.getHand();
+        ArrayList<Card> chosen = new ArrayList<>(x);
+        // To be implemented
+        boolean selected = true;
+        for (int i=0;i<x;i++) {
+            if (selected) {
+                chosen.add(current.get(i));
+            }
+        }
+        // send current back to deck
+        this.setHand(new CardHand(chosen));
+    }
 
 }
 

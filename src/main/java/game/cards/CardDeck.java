@@ -26,7 +26,7 @@ public class CardDeck {
         }
     }
 
-    //Method for random selection of 9 cardds out of the Set<Card< deck
+    //Method for random selection of 9 cards out of the Set<Card< deck
     public ArrayList<Card> drawCards(){
         ArrayList<Card> hand = new ArrayList<>();
         for (int i = 0; i<9;i++) {
