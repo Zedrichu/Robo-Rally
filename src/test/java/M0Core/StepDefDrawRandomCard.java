@@ -28,8 +28,20 @@ public class StepDefDrawRandomCard {
     public void draw_cards() {
         player.drawCardHand(deck);
     }
-    @Then("player {string} has set of cards with {int} cards")
+    @Then("player {string} has card hand with {int} cards")
     public void player_has_set_of_cards_with_cards(String string, Integer int1) {
         assertEquals(9,player.getHandSize());
     }
+
+    @Given("card hand of player {string} with {int} cards")
+    public void card_hand_of_player_with_cards(String string, Integer int1) {
+        player.drawCardHand(deck);
+        assertEquals(9,player.getHandSize());
+    }
+
+    @When("choose {int} cards")
+    public void choose_cards(Integer int1) {
+        //player.chooseCards(5);
+    }
+
 }

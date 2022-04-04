@@ -1,5 +1,5 @@
 @tag
-Feature: Round
+Feature: Round Operations
   @tag
   Scenario: Increment round counter
     Given round counter 3
