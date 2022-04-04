@@ -56,6 +56,10 @@ public class Tile extends JPanel {
 	public void unsetRobot() {
 		this.containsRobot = false;
 	}
+
+	public void setDirection(CardinalPoints direction) {
+		this.direction = direction;
+	}
 	
 	@Override
 	public void paint(Graphics g) {

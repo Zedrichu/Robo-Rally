@@ -1,12 +1,15 @@
 package game.players;
 
+
 import java.util.*;
 import game.Position;
 import game.cards.Card;
 import game.cards.CardHand;
 import view.CardinalPoints;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
+import java.util.LinkedList;
+
 
 public class Player {
     private static int IDs = 0;
@@ -16,6 +19,7 @@ public class Player {
     private CardinalPoints direction;
     private CardHand hand;
     private int lives;
+
 
     //private int robotID;
 
@@ -67,10 +71,15 @@ public class Player {
         this.direction = direction;
     }
 
+//    public void looseCard(){
+//        this.hand.removeCard();
+//    }
+
     public boolean checkInbounds(int rows, int columns) {
         return (this.position.x < 0 | position.y > columns - 1
                 || this.position.y < 0 | position.y > rows - 1);
     }
+
 
     // Assign cards to each player
     public void setHand(CardHand hand) {

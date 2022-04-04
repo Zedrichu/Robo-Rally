@@ -11,7 +11,8 @@ public class CardHand {
 
     public int size() {return hand.size();}
 
-
-
+  //  public void removeCard(){
+  //      hand.set(round.getRoundNumber(),null);
+  //  }
     // #TODO
 }
