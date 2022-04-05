@@ -1,5 +1,7 @@
 package game.players;
 
+
+import java.util.*;
 import game.Position;
 import game.cards.Card;
 import game.cards.CardDeck;
@@ -20,6 +22,15 @@ public class Player {
 
     //private int robotID;
 
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
     private int getFreshID() {
         IDs++;
         return IDs;
@@ -39,6 +50,8 @@ public class Player {
     public int getPlayerID() {
         return playerID;
     }
+
+    public void setLives(int lives){this.lives = lives;}
 
     public void setPlayerID(int playerID) {
         this.playerID = playerID;

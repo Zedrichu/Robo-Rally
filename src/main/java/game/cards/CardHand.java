@@ -1,11 +1,13 @@
 package game.cards;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
+import game.round.Round;
 
 public class CardHand {
     private final static int drawNo = 9;
     private final static int cardsNo = 5;
-    private ArrayList<Card> hand = new ArrayList<>();
+    private LinkedList<Card> hand= new LinkedList<>();
+    private Round round;
 
     public ArrayList<Card> getHand() {
         return hand;
@@ -23,7 +25,8 @@ public class CardHand {
 
     public int size() {return hand.size();}
 
-
-
+  //  public void removeCard(){
+  //      hand.set(round.getRoundNumber(),null);
+  //  }
     // #TODO
 }
