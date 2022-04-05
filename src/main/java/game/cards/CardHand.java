@@ -1,12 +1,12 @@
 package game.cards;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import game.round.Round;
 
 public class CardHand {
     private final static int drawNo = 9;
     private final static int cardsNo = 5;
-    private LinkedList<Card> hand= new LinkedList<>();
+    private ArrayList<Card> hand= new ArrayList<>();
     private Round round;
 
     public ArrayList<Card> getHand() {

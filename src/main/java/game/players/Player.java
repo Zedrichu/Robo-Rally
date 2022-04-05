@@ -18,18 +18,7 @@ public class Player {
     private CardinalPoints direction;
     private CardHand hand;
     private int lives = 10;
-
-
     //private int robotID;
-
-
-    public int getLives() {
-        return lives;
-    }
-
-    public void setLives(int lives) {
-        this.lives = lives;
-    }
 
     private int getFreshID() {
         IDs++;
@@ -125,7 +114,7 @@ public class Player {
         }
         //After the cards are selected the remaining 4 cards are assigned to disCards local var.
 
-        //CardDeck method for pushing dicarded cards back in the set
+        //CardDeck method for pushing discarded cards back in the set
                 // - uses hand, and selected cards for disCards definition
         //                             $    pushDiscardsMeth();     $
 

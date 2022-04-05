@@ -26,7 +26,12 @@ public class StepDefRound {
     }
     @Given("set of players <S>")
     public void set_of_players_s() {
-        round.setPlayers(PlayerFactory.getPlayerSet(2));
+        players = PlayerFactory.getPlayerSet(2);
+        for (Player player : players) {
+            // Assign cards to each player
+            System.out.println("Player gets some cards");
+        }
+        round.setPlayers(players);
     }
 
     //Needs Fixing
