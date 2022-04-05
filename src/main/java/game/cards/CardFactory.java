@@ -4,6 +4,7 @@ package game.cards;
 public class CardFactory {
 
     public static Card getCard(CardType type, int intensifier) {
+
         return switch (type) {
             // 1 for 1 step forward, -1 for 1 step backward, 2 for 2 steps forward
             case MOVE -> new MovingCard(intensifier);

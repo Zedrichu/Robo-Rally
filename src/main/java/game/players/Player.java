@@ -4,6 +4,7 @@ package game.players;
 import java.util.*;
 import game.Position;
 import game.cards.Card;
+import game.cards.CardDeck;
 import game.cards.CardHand;
 import view.CardinalPoints;
 
@@ -18,7 +19,8 @@ public class Player {
     private Position position;
     private CardinalPoints direction;
     private CardHand hand;
-    private int lives;
+    private int lives = 10;
+
 
 
     //private int robotID;
@@ -27,6 +29,12 @@ public class Player {
         IDs++;
         return IDs;
     }
+
+    public void drawCardHand(CardDeck deck) {
+        this.hand = new CardHand(deck.drawCards());
+        //this.hand.printHand();
+    }
+
 
     public Player(String name) {
         this.playerID = getFreshID();
@@ -99,6 +107,43 @@ public class Player {
     //Returns size of hand
     public int getHandSize() {
         return hand.size();
+    }
+
+// CARD SELECTION METHOD
+    //++++++++++++++++++++++++++++++++YET TO BE IMPLEMENTED+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    void cardSelect(){
+        int nr_sel = 5; int nr_disc = 4;
+        ArrayList<Card> selCards = new ArrayList<Card>();
+        ArrayList<Card> disCards = new ArrayList<Card>();
+
+        while(selCards.size() < nr_sel){
+            //FOR Every click in the 3x3 grid in the GUI
+                //A new card is added to the selCards arraylist
+
+        }
+        //After the cards are selected the remaining 4 cards are assigned to disCards local var.
+
+        //CardDeck method for pushing dicarded cards back in the set
+                // - uses hand, and selected cards for disCards definition
+        //                             $    pushDiscardsMeth();     $
+
+
+        this.setHand(new CardHand(selCards));
+    }
+
+    public void chooseCards(int x) {
+        ArrayList<Card> current = hand.getHand();
+        ArrayList<Card> chosen = new ArrayList<>(x);
+        // To be implemented
+        boolean selected = true;
+        for (int i=0;i<x;i++) {
+            if (selected) {
+                chosen.add(current.get(i));
+            }
+        }
+        // send current back to deck
+        this.setHand(new CardHand(chosen));
     }
 
     public void updateLives(int effect){

@@ -1,5 +1,5 @@
 @tag
-Feature: Round
+Feature: Round Operations
   @tag
   Scenario: Increment round counter
     Given round counter 3
@@ -25,7 +25,7 @@ Feature: Round
     When reset round counter
     Then round counter is 0
   @tag
-    Scenario Outline: Reset round counter unsuccessfully
+    Scenario Outline: Reset round counter successfully
     Given round counter <x>
     When reset round counter
     Then round counter is <xnew>
@@ -33,6 +33,18 @@ Feature: Round
     Scenarios:
       | x | xnew |
       | 5 | 0    |
+
+
+  @tag
+    Scenario Outline: Play round of cards
+    Given set of players <S>
+    And round counter {int}
+    When play round
+    Then all players have <5 - round number> cards
+    @tag
+    Scenarios:
+      | round number |
+      | 1 |
 
 
 

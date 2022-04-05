@@ -35,7 +35,7 @@ public class StepDef {
     }
     @When("create game settings")
     public void create_game_settings() {
-        gameSettings = new GameSettings(id,c,sps);
+        gameSettings = new GameSettings();
         assertNotNull(gameSettings);
     }
     @Then("game initialisation")

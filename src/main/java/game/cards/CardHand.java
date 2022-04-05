@@ -9,6 +9,20 @@ public class CardHand {
     private LinkedList<Card> hand= new LinkedList<>();
     private Round round;
 
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
+
+    public CardHand(ArrayList<Card> array) {
+        this.hand = array;
+    }
+
+    public void printHand(){
+        for (Card card : hand){
+            System.out.println(card.getName());
+        }
+    }
+
     public int size() {return hand.size();}
 
   //  public void removeCard(){

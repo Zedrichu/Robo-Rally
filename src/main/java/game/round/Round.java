@@ -20,6 +20,18 @@ public class Round {
         this.players = players;
     }
 
+    //Checks that all Players have played
+    public boolean haveAllPlayed() {
+        boolean res=true;
+        for (Player plr : players) {
+            if (plr.getHandSize() != 5-roundNumber) {
+                res = false;
+                break;
+            }
+        }
+        return res;
+    }
+
     //Singleton design applied on Round
     public static Round getInstance(){
         if (instance == null){
@@ -29,6 +41,7 @@ public class Round {
     }
 
     public Round() {}
+
 
     //Setters
     public void setRoundNumber(int roundNumber) {
@@ -40,13 +53,9 @@ public class Round {
         this.roundNumber = roundNumber+1;
     }
 
-    // Not done yet
-    public boolean isRoundOver(){
-        boolean res = true;
-        for (Player plr : players) {
-            res = res && (plr.getHandSize() == 5-this.roundNumber);
-        }
-        return res;
+    //Reset Round
+    public void resetRound(){
+        this.roundNumber=0;
     }
 
 

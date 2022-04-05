@@ -2,11 +2,19 @@ package game;
 
 import java.awt.FlowLayout;
 import java.io.IOException;
+import java.lang.management.PlatformLoggingMXBean;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
 import javax.swing.JFrame;
+
+import game.players.Player;
 import view.*;
 import view.widgets.*;
-public class RoboRally {
 
+// Facade class for our game
+public class RoboRally {
+    private static RoboRally instance;
     public static void main(String[] args) throws IOException{
         int initialRow = 2;
         int initialColumn = 2;
@@ -25,6 +33,27 @@ public class RoboRally {
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+    private GameSettings gameSettings;
 
+    public static RoboRally getInstance(){
+        if (instance == null) {
+            instance = new RoboRally();
+        }
+        return instance;
+    }
 
+    public void newGame(){
+        gameSettings = new GameSettings();
+        gameSettings.selectSettings();
+
+    }
+
+    public GameSettings getGameSettings() {
+        return gameSettings;
+    }
+
+    public void endGame() {
+
+    }
 }
+

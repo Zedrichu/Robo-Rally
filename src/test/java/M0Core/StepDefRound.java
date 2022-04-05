@@ -26,12 +26,13 @@ public class StepDefRound {
     }
     @Given("set of players <S>")
     public void set_of_players_s() {
-        PlayerFactory.getPlayerSet(2);
+        round.setPlayers(PlayerFactory.getPlayerSet(2));
     }
 
+    //Needs Fixing
     @Given("all in <S> have moved")
     public void all_in_s_have_moved() {
-
+        assertTrue(round.haveAllPlayed());
     }
 
     @When("increment round counter")
@@ -43,5 +44,24 @@ public class StepDefRound {
     public void round_counter_is(int int1) {
         assertEquals(int1, round.getRoundNumber());
     }
+
+    @When("reset round counter")
+    public void reset_round_counter() {
+        round.resetRound();
+        assertEquals(0,round.getRoundNumber());
+
+    }
+
+    @When("play round")
+    public void play_round() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Then("all players have <{int} - round number> cards")
+    public void all_players_have_round_number_cards(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
 
 }
