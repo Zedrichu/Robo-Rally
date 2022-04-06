@@ -17,7 +17,7 @@ public class StepDefDrawRandomCard {
 
     @Given("player {string}")
     public void player(String string) {
-        player = PlayerFactory.getPlayer(string);
+        player = new Player(string);
     }
     @Given("card deck")
     public void card_deck() {

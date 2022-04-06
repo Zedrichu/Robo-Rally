@@ -13,6 +13,9 @@ public class GameSettings {
     private Set<Player> sps = new HashSet<>();
     private int amountOfPlayers;
 
+    public Set<Player> getPlayers() {
+        return sps;
+    }
 
     public int getAmountOfPlayers() {
         return this.amountOfPlayers;
@@ -27,7 +30,7 @@ public class GameSettings {
         this.amountOfPlayers = 2;
         for (int i=0;i<amountOfPlayers;i++) {
             Player player = new Player("Player");
-            player.setPosition(0,0);
+            player.setPosition(i,i);
             player.setDirection(CardinalPoints.E);
             sps.add(player);
         }

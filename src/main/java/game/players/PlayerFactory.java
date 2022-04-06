@@ -9,32 +9,28 @@ import java.util.Set;
 public class PlayerFactory {
     private final static Scanner s = new Scanner(System.in);
 
-    public static Player getPlayer(String name) {
-        return new Player(name);
-    }
-
-    public static void main(String[] args) {
-        Player plr = getPlayer("Adrian");
-        System.out.println(plr.getPlayerName()+"__"+plr.getPlayerID());
-
-        Set<Player> set = getPlayerSet(2);
-        for (Player item : set) {
-            System.out.println(item.getPlayerName()+"__"+item.getPlayerID());
-        }
-
-        s.close();
-    }
+//    public static void main(String[] args) {
+//        Player plr = new Player("Adrian");
+//        System.out.println(plr.getPlayerName()+"__"+plr.getPlayerID());
+//
+//        Set<Player> set = getPlayerSet(2);
+//        for (Player item : set) {
+//            System.out.println(item.getPlayerName()+"__"+item.getPlayerID());
+//        }
+//
+//        s.close();
+//    }
 
     public static Set<Player> getPlayerSet(int number) {
         Set<Player> result = new HashSet<Player>();
         for (int i=0; i<1;i++) {
-            result.add(getPlayer("Jeppe"));
+            result.add(new Player("Player"+(i+1)));
         }
         return result;
     }
 
-    public static String selectPlayerName(){
-        System.out.println("Please enter the player's name: ");
-        return s.nextLine();
-    }
+//    public static String selectPlayerName(){
+//        System.out.println("Please enter the player's name: ");
+//        return s.nextLine();
+//    }
 }
