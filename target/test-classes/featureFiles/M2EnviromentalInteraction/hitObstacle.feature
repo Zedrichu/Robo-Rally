@@ -34,19 +34,19 @@ Feature: Hit Obstacle
       | | "XX" |   'laserTile'   | 3 | 2 |   3   |   -1   |    2     |
 
 
-# @tag
+ @tag
 
-#  Scenario Outline:
-#   Given Player <name> on row <y> column <x> and direction <dir>
-#   And conveyorBelt <tile> is on row <y> column <x> with direction <convDir>
-#   When round is incremented
-#   Then Player <name> on row <ynew>  new column <xnew> and direction <dir>
-#  @tag
-#  Scenarios:
-#
-#  | | name| tile            | x | y | dir | convDir | xnew | ynew |
-#  | | "XX"| 'conveyorBelt'  | 3 | 2 | 'E' |   'S'   |  3   |  3   |
-#  | | "XX"| 'conveyorBelt'  | 3 | 2 | 'E' |   'S'   |  3   |  3   |
+  Scenario Outline:
+   Given Player <name> on row <y> column <x> and direction <dir>
+   And conveyorBelt <tile> is on row <y> column <x> with direction <convDir>
+   When round is incremented
+   Then Player <name> on row <ynew>  new column <xnew> and direction <dir>
+  @tag
+  Scenarios:
+
+  | | name| tile            | x | y | dir | convDir | xnew | ynew |
+  | | "XX"| 'conveyorBelt'  | 3 | 2 | 'E' |   'S'   |  3   |  4   |
+  | | "XX"| 'conveyorBelt'  | 2 | 5 | 'W' |   'N'   |  2   |  3   |
 
   @tag
   Scenario Outline:
