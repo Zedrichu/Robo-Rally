@@ -8,4 +8,12 @@ public class Position {
         this.x = x;
         this.y = y;
     }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }
