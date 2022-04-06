@@ -58,17 +58,6 @@ Feature: Round Operations
       | 5 | 0    |
 
 
-  @tag
-    Scenario Outline: Play round of cards
-    Given set of players <S>
-    And round counter {int}
-    When play round
-    Then all players have <5 - round number> cards
-    @tag
-    Scenarios:
-      | round number |
-      | 1 |
-
 
 
 
