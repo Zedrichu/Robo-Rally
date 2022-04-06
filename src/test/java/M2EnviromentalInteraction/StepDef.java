@@ -12,6 +12,8 @@ import view.TileType;
 import view.widgets.Board;
 import view.widgets.Tile;
 import view.widgets.Board;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 
@@ -30,16 +32,21 @@ public class StepDef {
     Board board;
     Tile tile;
     Round round;
-    CardHand hand;
     Card card = CardFactory.getCard(CardType.MOVE, 2);
     CardinalPoints newDir;
+    CardDeck deck = CardDeck.getInstance();
+    //CardHand hand;
 
+
+    // Player with amount of lives
     @Given("Player {string} at row {int} column {int} with {int} lives")
     public void player_at_row_column_with_lives(String s, int x, int y, int z) {
         player = new Player(s);
         player.setPosition(x, y);
         player.setLives(z);
     }
+
+    // Player with direction
     @Given("Player {string} on row {int} column {int} and direction {string}")
     public void player_on_row_column_and_direction(String s, int x, int y, String dir) {
         player = new Player(s);
@@ -47,13 +54,13 @@ public class StepDef {
         player.setDirection(CardinalPoints.getCardinalPointChar(dir));
     }
 
-//    @Given("player {string} at row {int} column {int} with card hand ArrayList<CardHand> hand")
-//    public void player_at_row_column_with_card_hand_array_list_card_hand_hand_as_linked_list(String s, int x, int y) {
-//        player = new Player(s);
-//        player.setPosition(x, y);
-//        player.setHand(hand);
-//    }
-
+    // Player with cardHand
+    @Given("player {string} at row {int} column {int} with CardHand")
+    public void player_at_row_column_with_card_hand(String s, int x, int y) {
+        player = new Player(s);
+        player.setPosition(x, y);
+        player.drawCardHand(deck);
+    }
 
     // acidTile
     @Given("acidTile {string} at row {int} and column {int}")
@@ -85,20 +92,20 @@ public class StepDef {
         tile.setDirection(CardinalPoints.getCardinalPointChar(convDir));
     }
 
-    // pitTile
-//    @Given("pitTile {string} at row {int} and column {int}")
-//    public void pit_tile_at_row_and_column(String s, int x, int y) {
-//        type = TileType.PIT;
-//        tile = new Tile(type);
-//        tile.position = new Position(x,y);
-//
-//    }
+    //pitTile
+    @Given("pitTile {string} at row {int} and column {int}")
+    public void pit_tile_at_row_and_column(String s, int x, int y) {
+        type = TileType.PIT;
+        tile = new Tile(type);
+        tile.position = new Position(x,y);
+
+    }
 
     @When("round is incremented")
     public void round_is_incremented() {
         round = new Round();
         round.setRoundNumber(1);
-        System.out.println(round.getRoundNumber());
+        //System.out.println(round.getRoundNumber());
         round.incrementRoundNumber();
     }
 
@@ -122,11 +129,16 @@ public class StepDef {
                 player.getPosition().y == ynew &&
                 player.getDirection().getAbbr().equals(dir));
     }
-//    @Then("player {string} with card hand hand\\(head,null)")
-//    public void player_with_card_hand_hand_head_null(String s) {
-//         player.looseCard();
-//    }
+    //pitTile
+    @Then("player {string} with new CardHand")
+    public void player_with_new_card_hand(String s){
 
+        player.skipCard(round.getRoundNumber());
+
+        assertNull(player.hand.getHand().get(round.getRoundNumber()));
+
+
+    }
 
 
 }

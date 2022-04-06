@@ -12,16 +12,17 @@ Feature: Hit Obstacle
       | | name |  tile        | x | y | lives | damage | newLives |
       | | "XX" |  'acidTile'  | 3 | 2 |   3   |   -2   |    1     |
 
-#  @tag
-#  Scenario Outline:
-#    Given player <name> at row <y> column <x> with card hand <hand> (as linked list)
-#    And pitTile <tile> at row <y> and column <x>
-#    When round is incremented
-#    Then player <name> with card hand <handNew>
-#    @tag
-#    Scenarios:
-#      | | name | tile      | x | y |          hand            |    handNew       |
-#      | | "XX" | 'pitTile' | 3 | 2 | ArrayList<CardHand> hand |  hand(head,null) |
+  @tag
+  Scenario Outline: Interaction with pitTile
+    Given player <name> at row <y> column <x> with CardHand
+    And pitTile <tile> at row <y> and column <x>
+    When round is incremented
+    Then player <name> with new CardHand
+    @tag
+    Scenarios:
+      | | name | tile      | x | y |
+      | | "XX" | 'pitTile' | 3 | 2 |
+
   @tag
   Scenario Outline: Interaction with laserTile
     Given Player <name> at row <y> column <x> with <lives> lives

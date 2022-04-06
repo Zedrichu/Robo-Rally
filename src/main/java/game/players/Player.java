@@ -7,7 +7,7 @@ import game.cards.Card;
 import game.cards.CardDeck;
 import game.cards.CardHand;
 import view.CardinalPoints;
-
+import game.round.Round;
 import java.util.ArrayList;
 
 public class Player {
@@ -16,8 +16,9 @@ public class Player {
     private String playerName;
     private Position position;
     private CardinalPoints direction;
-    private CardHand hand;
+    public CardHand hand;
     private int lives = 10;
+    private Round round;
     //private int robotID;
 
     private int getFreshID() {
@@ -80,13 +81,10 @@ public class Player {
     }
 
     // Assign cards to each player
-    public void setHand(CardHand hand) {
-        this.hand = hand;
+    public void setHand(ArrayList<Card> hand) {
+        this.hand.setHand(hand);
     }
 
-    public CardHand getHand() {
-        return hand;
-    }
 
     public void playCard (Card card) {
         Object[] res = card.applyAction(this.position, this.direction);
@@ -98,6 +96,13 @@ public class Player {
     public int getHandSize() {
         return hand.size();
     }
+
+    public void skipCard(int round){
+        ArrayList<Card> current = this.hand.getHand();
+        current.set(round, null);
+        this.setHand(current);
+    }
+
 
 // CARD SELECTION METHOD
     //++++++++++++++++++++++++++++++++YET TO BE IMPLEMENTED+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -119,7 +124,7 @@ public class Player {
         //                             $    pushDiscardsMeth();     $
 
 
-        this.setHand(new CardHand(selCards));
+        this.setHand(selCards);
     }
 
     public void chooseCards(int x) {
@@ -133,7 +138,7 @@ public class Player {
             }
         }
         // send current back to deck
-        this.setHand(new CardHand(chosen));
+        this.setHand(chosen);
     }
 
     public void updateLives(int effect){
@@ -142,6 +147,8 @@ public class Player {
     public double getLives(){
         return lives;
     }
+
+
 
 }
 
