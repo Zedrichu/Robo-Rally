@@ -44,7 +44,7 @@ Feature: Round Operations
     And set of players <S>
     And all in <S> have moved
     When reset round counter
-    Then round counter is 0
+    Then round counter is 1
   @tag
     Scenario Outline: Reset round counter successfully
     Given round counter <x>
@@ -55,7 +55,7 @@ Feature: Round Operations
     @tag
     Scenarios:
       | x | xnew |
-      | 5 | 0    |
+      | 5 | 1    |
 
 
 

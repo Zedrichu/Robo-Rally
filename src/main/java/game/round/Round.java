@@ -55,7 +55,7 @@ public class Round {
 
     //Reset Round
     public void resetRound(){
-        this.roundNumber=0;
+        this.roundNumber=1;
     }
 
 

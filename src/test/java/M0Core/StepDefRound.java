@@ -71,16 +71,6 @@ public class StepDefRound {
 
     }
 
-    @When("play round")
-    public void play_round() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @Then("all players have <{int} - round number> cards")
-    public void all_players_have_round_number_cards(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
 
 
 }
