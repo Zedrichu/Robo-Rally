@@ -6,11 +6,15 @@ import game.round.Round;
 public class CardHand {
     private final static int drawNo = 9;
     private final static int cardsNo = 5;
-    private ArrayList<Card> hand= new ArrayList<>();
+    private ArrayList<Card> hand = new ArrayList<>();
     private Round round;
 
     public ArrayList<Card> getHand() {
         return hand;
+    }
+
+    public void setHand(ArrayList<Card> hand) {
+        this.hand = hand;
     }
 
     public CardHand(ArrayList<Card> array) {
@@ -22,6 +26,10 @@ public class CardHand {
             System.out.println(card.getName());
         }
     }
+
+
+
+
 
     public int size() {return hand.size();}
 

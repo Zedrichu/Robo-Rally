@@ -40,9 +40,6 @@ public class Round {
         return instance;
     }
 
-    public Round() {}
-
-
     //Setters
     public void setRoundNumber(int roundNumber) {
         this.roundNumber = roundNumber;
