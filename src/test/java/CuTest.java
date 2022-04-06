@@ -4,6 +4,6 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/featureFiles",publish = false)
-public class CucumberTests {
+public class CuTest {
 
 }

@@ -2,6 +2,7 @@ package M0Core;
 
 import static org.junit.Assert.*;
 
+import game.cards.CardDeck;
 import game.players.Player;
 import game.players.PlayerFactory;
 import game.round.Round;
@@ -28,13 +29,13 @@ public class StepDefRound {
     public void set_of_players_s() {
         players = PlayerFactory.getPlayerSet(2);
         for (Player player : players) {
-            // Assign cards to each player
+            player.drawCardHand(CardDeck.getInstance());
+            player.chooseCards(5-round.getRoundNumber());
             System.out.println("Player gets some cards");
         }
         round.setPlayers(players);
     }
 
-    //Needs Fixing
     @Given("all in <S> have moved")
     public void all_in_s_have_moved() {
         assertTrue(round.haveAllPlayed());
