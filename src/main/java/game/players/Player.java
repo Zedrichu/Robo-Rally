@@ -75,6 +75,10 @@ public class Player {
         this.direction = direction;
     }
 
+    public CardHand getHand() {
+        return hand;
+    }
+
     public boolean checkInbounds(int rows, int columns) {
         return (this.position.x < 0 | position.y > columns - 1
                 || this.position.y < 0 | position.y > rows - 1);
