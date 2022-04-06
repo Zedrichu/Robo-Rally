@@ -12,9 +12,9 @@ public class Round {
     private Set<Player> players;
     private static Round instance;
 
-    public void setBoard(Board board) {
-        this.board = board;
-    }
+//    public void setBoard(Board board) {
+//        this.board = board;
+//    }
 
     public void setPlayers(Set<Player> players) {
         this.players = players;

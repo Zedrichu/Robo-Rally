@@ -28,22 +28,35 @@ public class StepDefRound {
     @Given("set of players <S>")
     public void set_of_players_s() {
         players = PlayerFactory.getPlayerSet(2);
+        round.setPlayers(players);
+    }
+
+    @Given("all in <S> have moved")
+    public void all_in_s_have_moved() {
         for (Player player : players) {
             player.drawCardHand(CardDeck.getInstance());
             player.chooseCards(5-round.getRoundNumber());
             System.out.println("Player gets some cards");
         }
         round.setPlayers(players);
+        assertTrue(round.haveAllPlayed());
     }
 
-    @Given("all in <S> have moved")
-    public void all_in_s_have_moved() {
-        assertTrue(round.haveAllPlayed());
+    @Given("not all in <S> have moved")
+    public void not_all_in_s_have_moved() {
+        int i=0;
+        for (Player player : players) {
+            player.drawCardHand(CardDeck.getInstance());
+            player.chooseCards(5-round.getRoundNumber()+1);
+            System.out.println("Not all players have moved");
+        }
+        round.setPlayers(players);
+        assertFalse(round.haveAllPlayed());
     }
 
     @When("increment round counter")
     public void increment_round_counter() {
-        round.incrementRoundNumber();
+        if (round.haveAllPlayed()) round.incrementRoundNumber();
     }
 
     @Then("round counter is {int}")
@@ -53,8 +66,8 @@ public class StepDefRound {
 
     @When("reset round counter")
     public void reset_round_counter() {
-        round.resetRound();
-        assertEquals(0,round.getRoundNumber());
+        if (round.getRoundNumber()==5 && round.haveAllPlayed()) round.resetRound();
+        assertEquals(1,round.getRoundNumber());
 
     }
 
