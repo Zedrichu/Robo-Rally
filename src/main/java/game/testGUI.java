@@ -38,29 +38,6 @@ class ButtonListener implements ActionListener {
 public class testGUI {
     public static void main(String[] args) {
 
-//        SimpleFrame framex = new SimpleFrame("App Title ");
-//        framex.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        framex.setVisible(true);
-//
-//        JFrame frame = new JFrame("Application title");
-//        JPanel panel = new JPanel();
-//        panel.setPreferredSize(new Dimension(300,200));
-//        panel.setBackground(Color.BLUE);
-//
-//        JLabel label = new JLabel("LABEL!");
-//        label.setHorizontalAlignment(SwingConstants.CENTER);
-//        frame.setLayout(new BorderLayout());
-//        frame.add(panel,BorderLayout.WEST);
-//        frame.add(label,BorderLayout.CENTER);
-//
-//        SimplePaint paint = new SimplePaint();
-//        frame.add(paint, BorderLayout.CENTER);
-//        frame.add(new JLabel("Title"), BorderLayout.SOUTH);
-//
-//        frame.pack();
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setVisible(true);
-
         JFrame frame = new JFrame("App title");
         frame.setSize(800,600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
