@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
 
 
 public class StepDefDrawRandomCard {
+
     Player player;
     CardDeck deck = CardDeck.getInstance();
 
