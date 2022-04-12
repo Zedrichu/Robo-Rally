@@ -58,6 +58,8 @@ public class RoboRally {
     }
     private GameSettings gameSettings;
     private CardDeck deck;
+    private Board board;
+
     public static RoboRally getInstance(){
         if (instance == null) {
             instance = new RoboRally();
@@ -65,18 +67,20 @@ public class RoboRally {
         return instance;
     }
 
+    // Constructor for our game, using facade pattern
     public void newGame(){
         gameSettings = new GameSettings();
         gameSettings.selectSettings();
         deck = CardDeck.getInstance();
+        int[] size = gameSettings.getBoardSize();
+        board = new Board(size[0], size[1],gameSettings.getAmountOfPlayers());
+        for (Player plr : gameSettings.getPlayers()){
+            plr.setStartPosition(board.getRandomStartPosition());
+        }
     }
 
     public GameSettings getGameSettings() {
         return gameSettings;
-    }
-
-    public void endGame() {
-
     }
 }
 

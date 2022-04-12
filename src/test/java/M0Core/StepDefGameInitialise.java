@@ -2,39 +2,56 @@ package M0Core;
 
 import static org.junit.Assert.*;
 
+import game.Complexity;
 import game.GameSettings;
+import game.Position;
 import game.RoboRally;
 import game.cards.CardDeck;
+import game.cards.CardType;
+import game.players.Player;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
+import view.TileType;
+import view.widgets.Board;
 
 
 public class StepDefGameInitialise {
 
-    RoboRally robotrally = RoboRally.getInstance();
     GameSettings gameSettings;
     CardDeck deck = CardDeck.getInstance();
+    Board board;
 
 
-    @Given("game settings")
-    public void game_settings() {
-        assertNotNull(robotrally);
+    @Given("game settings with EASY and {int} players")
+    public void game_settings(int x) {
+        gameSettings = new GameSettings();
+        gameSettings.setAmountOfPlayers(x);
+        gameSettings.selectSettings();
+        assertEquals(Complexity.EASY, gameSettings.getComplexity());
+        assertEquals(x,gameSettings.getAmountOfPlayers());
     }
 
     @Given("cardDeck")
     public void card_deck() {
         deck = CardDeck.getInstance();
-        assertNotNull(deck);
-
+        assertEquals(84, deck.getDeckSize());
     }
 
-    //TODO
-    @Then("place players on starting tiles")
-    public void place_players_on_starting_tiles() {
+    @When("game initialisation")
+    public void game_initialisation(){
+        int[] size = gameSettings.getBoardSize();
+        board = new Board(size[0], size[1],gameSettings.getAmountOfPlayers());
+        for (Player plr : gameSettings.getPlayers()){
+            plr.setStartPosition(board.getRandomStartPosition());
+        }
+    }
 
-
-
+    @Then("players are on starting tiles")
+    public void players_are_on_starting_tiles() {
+        for (Player plr : gameSettings.getPlayers()){
+            Position pos = plr.getPosition();
+            assertSame(board.getBoard()[pos.y][pos.x].getType(), TileType.STARTING);
+        }
     }
 }

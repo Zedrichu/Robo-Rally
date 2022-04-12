@@ -8,6 +8,8 @@ import game.cards.CardDeck;
 import game.cards.CardHand;
 import view.CardinalPoints;
 import game.round.Round;
+import view.widgets.Board;
+
 import java.util.ArrayList;
 
 public class Player {
@@ -18,7 +20,6 @@ public class Player {
     private CardinalPoints direction;
     public CardHand hand;
     private int lives = 10;
-    private Round round;
     //private int robotID;
 
     private int getFreshID() {
@@ -31,28 +32,15 @@ public class Player {
         //this.hand.printHand();
     }
 
-
     public Player(String name) {
         this.playerID = getFreshID();
         this.playerName = name;
     }
 
-    public int getPlayerID() {
-        return playerID;
-    }
-
     public void setLives(int lives){this.lives = lives;}
-
-    public void setPlayerID(int playerID) {
-        this.playerID = playerID;
-    }
 
     public String getPlayerName() {
         return playerName;
-    }
-
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
     }
 
     public void setPosition(int x, int y) {
@@ -79,11 +67,6 @@ public class Player {
         return hand;
     }
 
-    public boolean checkInbounds(int rows, int columns) {
-        return (this.position.x < 0 | position.y > columns - 1
-                || this.position.y < 0 | position.y > rows - 1);
-    }
-
     // Assign cards to each player
     public void setHand(ArrayList<Card> hand) {
         this.hand.setHand(hand);
@@ -107,29 +90,27 @@ public class Player {
         this.setHand(current);
     }
 
-
 // CARD SELECTION METHOD
-    //++++++++++++++++++++++++++++++++YET TO BE IMPLEMENTED+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    void cardSelect(){
-        int nr_sel = 5; int nr_disc = 4;
-        ArrayList<Card> selCards = new ArrayList<Card>();
-        ArrayList<Card> disCards = new ArrayList<Card>();
-
-        while(selCards.size() < nr_sel){
-            //FOR Every click in the 3x3 grid in the GUI
-                //A new card is added to the selCards arraylist
-
-        }
-        //After the cards are selected the remaining 4 cards are assigned to disCards local var.
-
-        //CardDeck method for pushing discarded cards back in the set
-                // - uses hand, and selected cards for disCards definition
-        //                             $    pushDiscardsMeth();     $
-
-
-        this.setHand(selCards);
-    }
+    //+++++++++YET TO BE IMPLEMENTED+++++++++
+//    void cardSelect(){
+//        int nr_sel = 5; int nr_disc = 4;
+//        ArrayList<Card> selCards = new ArrayList<Card>();
+//        ArrayList<Card> disCards = new ArrayList<Card>();
+//
+//        while(selCards.size() < nr_sel){
+//            //FOR Every click in the 3x3 grid in the GUI
+//                //A new card is added to the selCards arraylist
+//
+//        }
+//        //After the cards are selected the remaining 4 cards are assigned to disCards local var.
+//
+//        //CardDeck method for pushing discarded cards back in the set
+//                // - uses hand, and selected cards for disCards definition
+//        //                             $    pushDiscardsMeth();     $
+//
+//
+//        this.setHand(selCards);
+//    }
 
     public void chooseCards(int x) {
         ArrayList<Card> current = hand.getHand();
@@ -141,8 +122,12 @@ public class Player {
                 chosen.add(current.get(i));
             }
         }
-        // send current back to deck
+        // send current cards back to deck
         this.setHand(chosen);
+    }
+
+    public void setStartPosition(Position pos) {
+        this.position = new Position(pos.x, pos.y);
     }
 
     public void updateLives(int effect){

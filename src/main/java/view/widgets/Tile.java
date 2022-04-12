@@ -47,10 +47,6 @@ public class Tile extends JPanel {
 		return type;
 	}
 
-	public int applyTile(int lives) {
-		return lives;
-	}
-
 	public void setRobot(CardinalPoints direction) {
 		this.containsRobot = true;
 		this.direction = direction;

@@ -15,7 +15,7 @@ public class StepDef {
     Card card;
     Position newPosition;
     CardinalPoints newDirection;
-    Board board = new Board(10,10);
+    Board board = new Board(10,10,1);
     @Given("player {string} at row {int} and column {int} and direction {string}")
     public void player_at_row_and_column_and_direction(String string, Integer int1, Integer int2,String chr) {
         player = new Player(string);

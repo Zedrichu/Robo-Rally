@@ -23,10 +23,6 @@ abstract public class Card {
         this.name = name;
     }
 
-    public void setType(CardType type) {
-        this.type = type;
-    }
-
     public String getName() {
         return name;
     }

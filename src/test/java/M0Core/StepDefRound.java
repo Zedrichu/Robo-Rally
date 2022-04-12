@@ -17,7 +17,7 @@ import java.util.Set;
 
 public class StepDefRound {
     Set<Player> players;
-    Board board = new Board(10,10);
+    Board board = new Board(10,10,2);
     Round round = Round.getInstance();
     PlayerFactory playerFactory;
 

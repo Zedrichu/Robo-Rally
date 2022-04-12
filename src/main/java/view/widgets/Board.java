@@ -21,8 +21,9 @@ public class Board extends JPanel {
 	private int rows;
 	private int cols;
 	private Set<Tile> startTiles = new HashSet<>();
+
 	
-	public Board(int rows, int cols) {
+	public Board(int rows, int cols, int noPlrs) {
 		this.board = new Tile[rows][cols];
 		this.rows = rows;
 		this.cols = cols;
@@ -33,19 +34,20 @@ public class Board extends JPanel {
 		setMaximumSize(getMinimumSize());
 		setPreferredSize(getMinimumSize());
 		
-		loadBoard();
+		loadBoard(noPlrs);
 	}
-	
+
+	//Getter for board
+	public Tile[][] getBoard() {
+		return board;
+	}
+
 	public int getRows() {
 		return rows;
 	}
 	
 	public int getColumns() {
 		return cols;
-	}
-	
-	public Random getRandom() {
-		return rnd;
 	}
 
 
@@ -58,11 +60,17 @@ public class Board extends JPanel {
 		board[row][col].unsetRobot();
 	}
 	
-	private void loadBoard() {
+	private void loadBoard(int noPlrs) {
+		Random rnd = new Random();
 		for (int j = 0; j < rows; j++) {
 			for (int i = 0; i < cols; i++) {
 				Tile t = getRandomTile();
+				if (noPlrs>0) {
+					double val = rnd.nextDouble();
+					if (val<0.5) {t = new Tile(TileType.STARTING); noPlrs--;}
+				}
 				t.position = new Position(i, j);
+
 				if (t.getType().equals(TileType.STARTING)) {
 					startTiles.add(t);
 				}
@@ -71,7 +79,7 @@ public class Board extends JPanel {
 			}
 		}
 	}
-
+	//Finds a random tile that is a starting tile
 	public Position getRandomStartPosition() {
 		int val = rnd.nextInt(1, startTiles.size());
 		int i = 1;
