@@ -70,6 +70,17 @@ public class StepDefRound {
         assertEquals(1,round.getRoundNumber());
 
     }
+    //TODO
+    @Given("any in <S> don't have any cards")
+    public void any_in_s_don_t_have_any_cards() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Then("all players have a card hand with {int} cards")
+    public void all_players_have_a_card_hand_with_cards(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
 
 
 

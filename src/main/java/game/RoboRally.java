@@ -77,6 +77,7 @@ public class RoboRally {
         for (Player plr : gameSettings.getPlayers()){
             plr.setStartPosition(board.getRandomStartPosition());
         }
+
     }
 
     public GameSettings getGameSettings() {
