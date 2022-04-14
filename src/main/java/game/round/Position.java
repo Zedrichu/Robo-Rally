@@ -1,4 +1,4 @@
-package game;
+package game.round;
 
 public class Position {
     public int x;

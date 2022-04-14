@@ -59,7 +59,6 @@ public class RoboRally {
             System.out.println(plr.getPlayerName()+" "+plr.getPosition()+" "+plr.getDirection().getAbbr());
 
         }
-        game.newGame();
     }
     private GameSettings gameSettings;
     private CardDeck deck;

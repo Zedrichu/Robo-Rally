@@ -1,13 +1,11 @@
 package game.players;
 
 
-import java.util.*;
-import game.Position;
+import game.round.Position;
 import game.cards.Card;
 import game.cards.CardDeck;
 import game.cards.CardHand;
 import view.CardinalPoints;
-import game.round.Round;
 import view.widgets.Board;
 
 import java.util.ArrayList;

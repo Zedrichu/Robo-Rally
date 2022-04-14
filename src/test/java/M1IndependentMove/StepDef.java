@@ -1,6 +1,6 @@
 package M1IndependentMove;
 
-import game.Position;
+import game.round.Position;
 import game.cards.*;
 import game.players.Player;
 import static org.junit.Assert.*;

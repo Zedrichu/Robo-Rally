@@ -4,10 +4,8 @@ import static org.junit.Assert.*;
 
 import game.Complexity;
 import game.GameSettings;
-import game.Position;
-import game.RoboRally;
+import game.round.Position;
 import game.cards.CardDeck;
-import game.cards.CardType;
 import game.players.Player;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

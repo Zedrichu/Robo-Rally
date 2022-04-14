@@ -1,6 +1,5 @@
 package game.cards;
-import game.cards.*;
-import game.Position;
+import game.round.Position;
 import view.CardinalPoints;
 
 import java.util.Objects;

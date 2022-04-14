@@ -1,11 +1,5 @@
 package game.cards;
 
-import game.Position;
-import game.players.Player;
-import game.players.PlayerFactory;
-import io.cucumber.java.bs.A;
-import view.CardinalPoints;
-
 import java.util.*;
 
 public class CardDeck {

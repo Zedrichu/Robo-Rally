@@ -11,7 +11,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import game.Position;
+import game.round.Position;
 import view.CardinalPoints;
 import view.TileType;
 

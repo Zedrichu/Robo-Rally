@@ -2,22 +2,17 @@ package M2EnviromentalInteraction;
 
 
 import static org.junit.Assert.*;
-import game.cards.CardHand;
+
 import game.players.Player;
 import game.round.Round;
 import game.cards.*;
-import io.cucumber.java.en.And;
 import view.CardinalPoints;
 import view.TileType;
 import view.widgets.Board;
 import view.widgets.Tile;
-import view.widgets.Board;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 
-import game.Position;
+import game.round.Position;
 
 
 import io.cucumber.java.en.Given;

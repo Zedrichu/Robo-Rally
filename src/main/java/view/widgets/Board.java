@@ -8,7 +8,7 @@ import java.util.Set;
 
 import javax.swing.JPanel;
 
-import game.Position;
+import game.round.Position;
 import view.CardinalPoints;
 import view.TileType;
 
