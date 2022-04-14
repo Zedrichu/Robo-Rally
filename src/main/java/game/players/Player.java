@@ -73,10 +73,12 @@ public class Player {
     }
 
 
-    public void playCard (Card card) {
+    public void playCard (Card card, Board board) {
         Object[] res = card.applyAction(this.position, this.direction);
-        this.setPosition((Position) res[0]);
-        this.setDirection((CardinalPoints) res[1]);
+        if (board.checkPositionInBounds((Position) res[0])) {
+            this.setPosition((Position) res[0]);
+            this.setDirection((CardinalPoints) res[1]);
+        }
     }
 
     //Returns size of hand

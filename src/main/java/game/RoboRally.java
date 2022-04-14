@@ -13,6 +13,7 @@ import game.cards.Card;
 import game.cards.CardDeck;
 import game.cards.CardHand;
 import game.players.Player;
+import game.round.Round;
 import view.*;
 import view.widgets.*;
 
@@ -20,6 +21,9 @@ import view.widgets.*;
 // Facade class for our game
 public class RoboRally {
     private static RoboRally instance;
+    GameObserver observable = new GameObserver();
+    State observer;
+
     public static void main(String[] args) throws IOException{
 //        int initialRow = 2;
 //        int initialColumn = 2;
@@ -50,11 +54,12 @@ public class RoboRally {
         for (Player plr:plrs){
             CardHand hand = plr.getHand();
             for (Card c : hand.getHand()) {
-                plr.playCard(c);
+                plr.playCard(c,new Board(6,6,plrs.size()));
             }
             System.out.println(plr.getPlayerName()+" "+plr.getPosition()+" "+plr.getDirection().getAbbr());
 
         }
+        game.newGame();
     }
     private GameSettings gameSettings;
     private CardDeck deck;
@@ -77,6 +82,10 @@ public class RoboRally {
         for (Player plr : gameSettings.getPlayers()){
             plr.setStartPosition(board.getRandomStartPosition());
         }
+        observer = new State(board,Round.getInstance());
+        observable.addPCL(observer);
+        observable.setRound(Round.getInstance());
+        observable.setBoard(board);
 
     }
 

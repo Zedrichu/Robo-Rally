@@ -56,7 +56,7 @@ Feature: Round Operations
     Scenarios:
       | x | xnew |
       | 5 | 1    |
-    @tag
+    @pending
       Scenario: Draw Cards for each player on new round successfully
       Given round counter 1
       And any in <S> don't have any cards
