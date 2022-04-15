@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import game.Complexity;
 import game.GameSettings;
-import game.round.Position;
-import game.cards.CardDeck;
+import springboot.model.Position;
+import springboot.model.cards.CardDeck;
 import game.players.Player;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,7 +17,7 @@ import view.widgets.Board;
 public class StepDefGameInitialise {
 
     GameSettings gameSettings;
-    CardDeck deck = CardDeck.getInstance();
+    CardDeck deck = new CardDeck();
     Board board;
 
 
@@ -25,14 +25,15 @@ public class StepDefGameInitialise {
     public void game_settings(int x) {
         gameSettings = new GameSettings();
         gameSettings.setAmountOfPlayers(x);
-        gameSettings.selectSettings();
+        gameSettings.setSettings(Complexity.EASY, x);
         assertEquals(Complexity.EASY, gameSettings.getComplexity());
         assertEquals(x,gameSettings.getAmountOfPlayers());
     }
 
     @Given("cardDeck")
     public void card_deck() {
-        deck = CardDeck.getInstance();
+
+        deck = new CardDeck();
         assertEquals(84, deck.getDeckSize());
     }
 

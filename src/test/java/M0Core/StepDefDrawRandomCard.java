@@ -1,8 +1,7 @@
 package M0Core;
 
-import game.cards.CardDeck;
+import springboot.model.cards.CardDeck;
 import game.players.Player;
-import game.players.PlayerFactory;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,7 +12,7 @@ import static org.junit.Assert.*;
 public class StepDefDrawRandomCard {
 
     Player player;
-    CardDeck deck = CardDeck.getInstance();
+    CardDeck deck = new CardDeck();
 
 
     @Given("player {string}")
@@ -22,7 +21,8 @@ public class StepDefDrawRandomCard {
     }
     @Given("card deck")
     public void card_deck() {
-        deck = CardDeck.getInstance();
+
+        deck = new CardDeck();
         assertNotNull(deck);
     }
     @When("draw cards")

@@ -1,4 +1,4 @@
-package game.cards;
+package springboot.model.cards;
 
 public enum CardType {
     MOVE, ROTATE;

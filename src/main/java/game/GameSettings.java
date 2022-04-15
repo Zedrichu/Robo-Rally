@@ -1,13 +1,10 @@
 package game;
 
 import game.players.Player;
-import view.CardinalPoints;
-import view.widgets.Board;
+import springboot.model.Direction;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import static game.Complexity.EASY;
 
 public class GameSettings {
     private long boardId;
@@ -32,15 +29,15 @@ public class GameSettings {
     }
 
     //selectSettings, needs modification to GUI later.
-    public void selectSettings(){
+    public void setSettings(Complexity complexity, int number){
         for (int i=0;i<amountOfPlayers;i++) {
             Player player = new Player("Player");
-            player.setDirection(CardinalPoints.getRandomDirection());
+            player.setDirection(Direction.getRandomDirection());
             sps.add(player);
         }
-        complexity = EASY;
+        this.complexity = complexity;
     }
-
+// Move to Controller
     //GetBoardSize depending on complexity
     public int[] getBoardSize(){
         return switch (this.complexity){

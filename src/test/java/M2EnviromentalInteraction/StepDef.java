@@ -5,14 +5,17 @@ import static org.junit.Assert.*;
 
 import game.players.Player;
 import game.round.Round;
-import game.cards.*;
-import view.CardinalPoints;
+import springboot.model.cards.Card;
+import springboot.model.cards.CardDeck;
+import springboot.model.cards.CardFactory;
+import springboot.model.cards.CardType;
+import springboot.model.Direction;
 import view.TileType;
 import view.widgets.Board;
 import view.widgets.Tile;
 
 
-import game.round.Position;
+import springboot.model.Position;
 
 
 import io.cucumber.java.en.Given;
@@ -28,9 +31,9 @@ public class StepDef {
     Tile tile;
     Round round;
     Card card = CardFactory.getCard(CardType.MOVE, 2);
-    CardinalPoints newDir;
-    CardDeck deck = CardDeck.getInstance();
-    //CardHand hand;
+    Direction newDir;
+    CardDeck deck = new CardDeck();
+//CardHand hand;
 
 
     // Player with amount of lives
@@ -46,7 +49,7 @@ public class StepDef {
     public void player_on_row_column_and_direction(String s, int x, int y, String dir) {
         player = new Player(s);
         player.setPosition(x, y);
-        player.setDirection(CardinalPoints.getCardinalPointChar(dir));
+        player.setDirection(Direction.getCardinalPointChar(dir));
     }
 
     // Player with cardHand
@@ -84,7 +87,7 @@ public class StepDef {
         type = TileType.CONVEYORBELT;
         tile = new Tile(type);
         tile.position = new Position(x, y);
-        tile.setDirection(CardinalPoints.getCardinalPointChar(convDir));
+        tile.setDirection(Direction.getCardinalPointChar(convDir));
     }
 
     //pitTile
@@ -114,7 +117,7 @@ public class StepDef {
     public void player_on_row_new_column_and_direction(String s, int xnew, int ynew, String dir) {
         Object[] newPosDir = card.applyAction(player.getPosition(), player.getDirection());
         newPosition = (Position) newPosDir[0];
-        newDir = (CardinalPoints) newPosDir[1];
+        newDir = (Direction) newPosDir[1];
 
         player.setPosition(newPosition);
         player.setDirection(newDir);

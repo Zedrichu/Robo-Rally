@@ -2,24 +2,21 @@ package M0Core;
 
 import static org.junit.Assert.*;
 
-import game.cards.CardDeck;
+import springboot.model.cards.CardDeck;
 import game.players.Player;
-import game.players.PlayerFactory;
+import springboot.model.players.PlayerFactory;
 import game.round.Round;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import view.widgets.Board;
 
 import java.util.Set;
 
 
 public class StepDefRound {
     Set<Player> players;
-    Board board = new Board(10,10,2);
     Round round = Round.getInstance();
-    PlayerFactory playerFactory;
 
     @Given("round counter {int}")
     public void round_counter(int x) {
@@ -34,9 +31,9 @@ public class StepDefRound {
     @Given("all in <S> have moved")
     public void all_in_s_have_moved() {
         for (Player player : players) {
-            player.drawCardHand(CardDeck.getInstance());
+
+            player.drawCardHand(new CardDeck());
             player.chooseCards(5-round.getRoundNumber());
-            System.out.println("Player gets some cards");
         }
         round.setPlayers(players);
         assertTrue(round.haveAllPlayed());
@@ -44,11 +41,10 @@ public class StepDefRound {
 
     @Given("not all in <S> have moved")
     public void not_all_in_s_have_moved() {
-        int i=0;
         for (Player player : players) {
-            player.drawCardHand(CardDeck.getInstance());
+
+            player.drawCardHand(new CardDeck());
             player.chooseCards(5-round.getRoundNumber()+1);
-            System.out.println("Not all players have moved");
         }
         round.setPlayers(players);
         assertFalse(round.haveAllPlayed());

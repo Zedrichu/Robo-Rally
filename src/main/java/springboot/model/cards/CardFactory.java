@@ -1,6 +1,6 @@
-package game.cards;
+package springboot.model.cards;
 
-//CardFactory design pattern
+//Factory design pattern generating various cards
 public class CardFactory {
 
     public static Card getCard(CardType type, int intensifier) {

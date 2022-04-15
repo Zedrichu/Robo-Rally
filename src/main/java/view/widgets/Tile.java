@@ -11,8 +11,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import game.round.Position;
-import view.CardinalPoints;
+import springboot.model.Position;
+import springboot.model.Direction;
 import view.TileType;
 
 public class Tile extends JPanel {
@@ -24,7 +24,7 @@ public class Tile extends JPanel {
 	private BufferedImage image;
 	private BufferedImage imageRobot;
 	private boolean containsRobot = false;
-	private CardinalPoints direction;
+	private Direction direction;
 	public Position position;
 	
 	public Tile(TileType type) {
@@ -47,7 +47,7 @@ public class Tile extends JPanel {
 		return type;
 	}
 
-	public void setRobot(CardinalPoints direction) {
+	public void setRobot(Direction direction) {
 		this.containsRobot = true;
 		this.direction = direction;
 	}
@@ -56,7 +56,7 @@ public class Tile extends JPanel {
 		this.containsRobot = false;
 	}
 
-	public void setDirection(CardinalPoints direction) {
+	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}
 	

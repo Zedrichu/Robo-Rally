@@ -7,14 +7,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import view.CardinalPoints;
+import springboot.model.Direction;
 
 public class ControlPanel extends JPanel {
 
 	private static final long serialVersionUID = 3023910913543183787L;
 	private Board board;
 	private int currentRow, currentColumn;
-	private CardinalPoints currentDirection;
+	private Direction currentDirection;
 	
 	private JButton moveN = new JButton("\u2b9d");
 	private JButton moveS = new JButton("\u2b9f");
@@ -22,7 +22,7 @@ public class ControlPanel extends JPanel {
 	private JButton moveE = new JButton("\u2b9e");
 	private JButton rotate = new JButton("\u2b6e");
 
-	public ControlPanel(Board board, int currentRow, int currentColumn, CardinalPoints currentDirection) {
+	public ControlPanel(Board board, int currentRow, int currentColumn, Direction currentDirection) {
 		this.board = board;
 		this.currentRow = currentRow;
 		this.currentColumn = currentColumn;
@@ -45,16 +45,16 @@ public class ControlPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				switch (currentDirection) {
 				case N:
-					currentDirection = CardinalPoints.E;
+					currentDirection = Direction.E;
 					break;
 				case E:
-					currentDirection = CardinalPoints.S;
+					currentDirection = Direction.S;
 					break;
 				case S:
-					currentDirection = CardinalPoints.W;
+					currentDirection = Direction.W;
 					break;
 				case W:
-					currentDirection = CardinalPoints.N;
+					currentDirection = Direction.N;
 					break;
 
 				}

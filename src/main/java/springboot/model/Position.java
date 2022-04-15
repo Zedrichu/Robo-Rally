@@ -1,4 +1,4 @@
-package game.round;
+package springboot.model;
 
 public class Position {
     public int x;

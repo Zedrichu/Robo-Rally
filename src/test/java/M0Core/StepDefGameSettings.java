@@ -20,7 +20,7 @@ public class StepDefGameSettings {
 
     @When("select settings")
     public void select_settings() {
-        game.newGame();
+        game.newGame(2);
     }
 
     @Then("game settings has EASY and {int} players")

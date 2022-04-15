@@ -8,8 +8,8 @@ import java.util.Set;
 
 import javax.swing.JPanel;
 
-import game.round.Position;
-import view.CardinalPoints;
+import springboot.model.Position;
+import springboot.model.Direction;
 import view.TileType;
 
 public class Board extends JPanel {
@@ -52,7 +52,7 @@ public class Board extends JPanel {
 
 
 	// These 2 should take a robotID to know which robot to move where #TODO
-	public void setRobot(int row, int col, CardinalPoints direction) {
+	public void setRobot(int row, int col, Direction direction) {
 		board[row][col].setRobot(direction);
 	}
 	

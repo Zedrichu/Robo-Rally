@@ -1,24 +1,23 @@
 package game.players;
 
 
-import game.round.Position;
-import game.cards.Card;
-import game.cards.CardDeck;
-import game.cards.CardHand;
-import view.CardinalPoints;
+import springboot.model.Position;
+import springboot.model.cards.Card;
+import springboot.model.cards.CardDeck;
+import springboot.model.cards.CardHand;
+import springboot.model.Direction;
 import view.widgets.Board;
 
 import java.util.ArrayList;
 
 public class Player {
     private static int IDs = 0;
-    private int playerID;
-    private String playerName;
+    final private int playerID;
+    final private String playerName;
     private Position position;
-    private CardinalPoints direction;
+    private Direction direction;
     public CardHand hand;
     private int lives = 10;
-    //private int robotID;
 
     private int getFreshID() {
         IDs++;
@@ -26,8 +25,7 @@ public class Player {
     }
 
     public void drawCardHand(CardDeck deck) {
-        this.hand = new CardHand(deck.drawCards());
-        //this.hand.printHand();
+        this.hand = new CardHand(deck.drawCards(9));
     }
 
     public Player(String name) {
@@ -53,11 +51,11 @@ public class Player {
         return position;
     }
 
-    public CardinalPoints getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 
-    public void setDirection(CardinalPoints direction) {
+    public void setDirection(Direction direction) {
         this.direction = direction;
     }
 
@@ -75,7 +73,7 @@ public class Player {
         Object[] res = card.applyAction(this.position, this.direction);
         if (board.checkPositionInBounds((Position) res[0])) {
             this.setPosition((Position) res[0]);
-            this.setDirection((CardinalPoints) res[1]);
+            this.setDirection((Direction) res[1]);
         }
     }
 

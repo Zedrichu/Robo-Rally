@@ -1,21 +1,16 @@
-package game.cards;
-import game.round.Position;
-import view.CardinalPoints;
+package springboot.model.cards;
+import springboot.model.Position;
+import springboot.model.Direction;
 
 import java.util.Objects;
 
 abstract public class Card {
     private static long counter=0;
-    private CardType type;
     long ID;
     private String name;
 
-    //boolean faceUp = true;
-    //void flipCard()
-
-    Card(CardType type) {
+    protected Card() {
         this.ID = counter++;
-        this.type = type;
     }
 
     public void setName(String name) {
@@ -26,7 +21,7 @@ abstract public class Card {
         return name;
     }
 
-    abstract public Object[] applyAction(Position position, CardinalPoints direction);
+    abstract public Object[] applyAction(Position position, Direction direction);
 
     @Override
     public boolean equals(Object o) {
@@ -47,8 +42,8 @@ class MovingCard extends Card {
 
     // Constructor for MovingCard
     protected MovingCard(int multiplier) {
-        super(CardType.MOVE);
-        this.setName( multiplier<0? "Move"+Math.abs(multiplier)+"Back"
+        super();
+        this.setName( multiplier<0? "Move"+Math.abs(multiplier)+"Backward"
                 : "Move"+multiplier+"Forward");
         this.multiplier = multiplier;
     }
@@ -56,14 +51,17 @@ class MovingCard extends Card {
 
     // Function to apply an action based on a moving card
     @Override
-    public Object[] applyAction(Position position, CardinalPoints direction) {
+    public Object[] applyAction(Position position, Direction direction) {
         int angle = direction.getAngle();
-        Position newPosition = switch (angle) {
-            case 0 -> new Position(position.x, position.y - this.multiplier);
-            case 90 -> new Position(position.x + this.multiplier, position.y);
-            case 180 -> new Position(position.x, position.y + this.multiplier);
-            case 270 -> new Position(position.x - this.multiplier, position.y);
-            default -> null;
+        Position newPosition = position;
+        if (angle == 0) {
+            newPosition = new Position(position.x, position.y - this.multiplier);
+        } else if (angle == 90) {
+            newPosition = new Position(position.x + this.multiplier, position.y);
+        } else if (angle == 180) {
+            newPosition = new Position(position.x, position.y + this.multiplier);
+        } else if (angle == 270){
+            newPosition = new Position(position.x - this.multiplier, position.y);
         };
         return new Object[] {newPosition, direction};
     }
@@ -74,7 +72,7 @@ class RotatingCard extends Card {
     final private int angle; //clockwise
 
     protected RotatingCard(int angle) {
-        super(CardType.ROTATE);
+        super();
         String name = "Rotate";
         if (angle == 90) name += "Right";
         else if (angle == 180) name += "UTurn";
@@ -84,8 +82,8 @@ class RotatingCard extends Card {
     }
 
     @Override
-    public Object[] applyAction(Position position, CardinalPoints direction) {
-        CardinalPoints newDirection = CardinalPoints
+    public Object[] applyAction(Position position, Direction direction) {
+        Direction newDirection = Direction
                 .getCardinalPointByAngle((direction.getAngle()+angle)%360);
         return new Object[] {position, newDirection};
     }
