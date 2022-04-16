@@ -24,9 +24,9 @@ public class Tile extends JPanel {
 	private BufferedImage image;
 	private BufferedImage imageRobot;
 	private boolean containsRobot = false;
-	private Direction direction;
+	public Direction direction;
 	public Position position;
-	
+
 	public Tile(TileType type) {
 		super(true);
 		

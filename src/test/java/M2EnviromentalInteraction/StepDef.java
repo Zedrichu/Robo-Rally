@@ -5,13 +5,10 @@ import static org.junit.Assert.*;
 
 import game.players.Player;
 import game.round.Round;
-import springboot.model.cards.Card;
 import springboot.model.cards.CardDeck;
-import springboot.model.cards.CardFactory;
-import springboot.model.cards.CardType;
 import springboot.model.Direction;
+import springboot.model.obstacles.*;
 import view.TileType;
-import view.widgets.Board;
 import view.widgets.Tile;
 
 
@@ -25,14 +22,15 @@ import io.cucumber.java.en.When;
 public class StepDef {
 
     TileType type;
-    Position newPosition;
     Player player;
-    Board board;
     Tile tile;
-    Round round;
-    Card card = CardFactory.getCard(CardType.MOVE, 2);
-    Direction newDir;
+    Round round= new Round();
     CardDeck deck = new CardDeck();
+    private Obstacle o;
+
+
+
+
 //CardHand hand;
 
 
@@ -63,20 +61,26 @@ public class StepDef {
     // acidTile
     @Given("acidTile {string} at row {int} and column {int}")
     public void acid_tile_at_row_and_column(String s, int x, int y) {
+        o = new Acid();
         type = TileType.ACID;
         tile = new Tile(type);
         tile.position = new Position(x, y);
+
     }
     // laserTile
     @Given("laserTile {string} at row {int}  and column {int}")
     public void laser_tile_at_row_and_column(String s, int x, int y) {
+        o = new Laser();
         type = TileType.RADIATION;
         tile = new Tile(type);
         tile.position = new Position(x, y);
+
+
     }
     // lifeToken
     @Given("lifeToken {string} at row {int}  and column {int}")
     public void life_token_at_row_and_column(String s, int x, int y) {
+        o = new LifeToken();
         type = TileType.LIFETOKEN;
         tile = new Tile(type);
         tile.position = new Position(x, y);
@@ -84,6 +88,7 @@ public class StepDef {
     // conveyorBelt
     @Given("conveyorBelt {string} is on row {int} column {int} with direction {string}")
     public void conveyor_belt_is_on_row_column_with_direction(String s, int x, int y, String convDir) {
+        o = new ConveyorBelt(player.getPosition(), player);
         type = TileType.CONVEYORBELT;
         tile = new Tile(type);
         tile.position = new Position(x, y);
@@ -93,6 +98,7 @@ public class StepDef {
     //pitTile
     @Given("pitTile {string} at row {int} and column {int}")
     public void pit_tile_at_row_and_column(String s, int x, int y) {
+        o = new Pit(player, round);
         type = TileType.PIT;
         tile = new Tile(type);
         tile.position = new Position(x,y);
@@ -101,26 +107,24 @@ public class StepDef {
 
     @When("round is incremented")
     public void round_is_incremented() {
-        round = new Round();
         round.setRoundNumber(1);
-        //System.out.println(round.getRoundNumber());
         round.incrementRoundNumber();
     }
 
-    @Then("player {string} has {int} add {int} lives which leaves them at {int} lives")
-    public void player_has_lives(String string, int lives, int damage, int newlives) {
-        player.updateLives(damage);
+    @Then("player {string} has  {int} lives")
+    public void player_has_lives(String string, int newlives) {
+        o.applyDamage();
+
+        System.out.println(o.getDamage());
+        player.updateLives((Integer) o.getDamage());
+
         assertTrue(player.getLives() == newlives);
     }
 
     @Then("Player {string} on row {int}  new column {int} and direction {string}")
     public void player_on_row_new_column_and_direction(String s, int xnew, int ynew, String dir) {
-        Object[] newPosDir = card.applyAction(player.getPosition(), player.getDirection());
-        newPosition = (Position) newPosDir[0];
-        newDir = (Direction) newPosDir[1];
 
-        player.setPosition(newPosition);
-        player.setDirection(newDir);
+        o.applyDamage();
 
 
         assertTrue(player.getPosition().x == xnew &&
@@ -130,8 +134,7 @@ public class StepDef {
     //pitTile
     @Then("player {string} with new CardHand")
     public void player_with_new_card_hand(String s){
-
-        player.skipCard(round.getRoundNumber());
+        o.applyDamage();
 
         assertNull(player.hand.getHand().get(round.getRoundNumber()));
 

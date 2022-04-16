@@ -5,12 +5,12 @@ Feature: Hit Obstacle
     Given Player <name> at row <y> column <x> with <lives> lives
     And acidTile <tile> at row <y> and column <x>
     When round is incremented
-    Then player <name> has <lives> add <damage> lives which leaves them at <newLives> lives
+    Then player <name> has  <newLives> lives
 
     @tag
     Scenarios:
-      | | name |  tile        | x | y | lives | damage | newLives |
-      | | "XX" |  'acidTile'  | 3 | 2 |   3   |   -2   |    1     |
+      | | name |  tile        | x | y | lives |  newLives |
+      | | "XX" |  'acidTile'  | 3 | 2 |   3   |     1     |
 
   @tag
   Scenario Outline: Interaction with pitTile
@@ -28,7 +28,7 @@ Feature: Hit Obstacle
     Given Player <name> at row <y> column <x> with <lives> lives
     And laserTile <tile> at row <y>  and column <x>
     When round is incremented
-    Then player <name> has <lives> add <damage> lives which leaves them at <newLives> lives
+    Then player <name> has  <newLives> lives
     @tag
     Scenarios:
       | | name |   tile          | x | y | lives | damage | newLives|
@@ -54,7 +54,7 @@ Feature: Hit Obstacle
     Given Player <name> at row <y> column <x> with <lives> lives
     And lifeToken <tile> at row <y>  and column <x>
     When round is incremented
-    Then player <name> has <lives> add <life> lives which leaves them at <newLives> lives
+    Then player <name> has  <newLives> lives
     @tag
     Scenarios:
       | | name |tile       | x | y | lives | life | newLives |
