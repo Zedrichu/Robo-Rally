@@ -10,7 +10,6 @@ public enum TileType {
 	LIFETOKEN("tiles/lifeToken.png"),
 	CONVEYORBELT("tiles/conveyorBelt.png");
 
-
 	final private String pictureFile;
 	
 	TileType(String pictureFile) {
