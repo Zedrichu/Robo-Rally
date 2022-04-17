@@ -7,11 +7,9 @@ import springboot.model.cards.CardDeck;
 import springboot.model.cards.CardHand;
 import springboot.model.Direction;
 import springboot.model.checkPoints.CheckPoint;
-import springboot.model.checkPoints.CheckPointSet;
 import springboot.model.checkPoints.collectedCheckpoints;
 import view.widgets.Board;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 public class Player {
@@ -23,6 +21,7 @@ public class Player {
     public CardHand hand;
     private int lives = 10;
     collectedCheckpoints cpSet;
+    Set<CheckPoint> set;
 
 
     private int getFreshID() {
@@ -39,7 +38,9 @@ public class Player {
         this.playerName = name;
     }
 
-    public void setLives(int lives){this.lives = lives;}
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
 
     public String getPlayerName() {
         return playerName;
@@ -65,14 +66,17 @@ public class Player {
         this.direction = direction;
     }
 
-    public CardHand getHand() {return hand;}
+    public CardHand getHand() {
+        return hand;
+    }
+
     // Assign cards to each player
     public void setHand(ArrayList<Card> hand) {
         this.hand.setHand(hand);
     }
 
 
-    public void playCard (Card card, Board board) {
+    public void playCard(Card card, Board board) {
         Object[] res = card.applyAction(this.position, this.direction);
         if (board.checkPositionInBounds((Position) res[0])) {
             this.setPosition((Position) res[0]);
@@ -85,7 +89,7 @@ public class Player {
         return hand.size();
     }
 
-    public void skipCard(int round){
+    public void skipCard(int round) {
         ArrayList<Card> current = this.hand.getHand();
         current.set(round, null);
         this.setHand(current);
@@ -118,7 +122,7 @@ public class Player {
         ArrayList<Card> chosen = new ArrayList<>(x);
         // To be implemented
         boolean selected = true;
-        for (int i=0;i<x;i++) {
+        for (int i = 0; i < x; i++) {
             if (selected) {
                 chosen.add(current.get(i));
             }
@@ -131,26 +135,26 @@ public class Player {
         this.position = new Position(pos.x, pos.y);
     }
 
-    public void updateLives(int effect){
+    public void updateLives(int effect) {
         this.lives = lives + effect;
     }
-    public double getLives(){
+
+    public double getLives() {
         return lives;
     }
 
 
-
-    public void addCheckPoint(CheckPoint cp){
+    public void addCheckPoint(CheckPoint cp) {
+        if (cpSet == null) {
+            cpSet = new collectedCheckpoints();
+            cpSet.addCheckPoint(cp);
+        }
         cpSet.addCheckPoint(cp);
     }
 
-    public collectedCheckpoints getCpSet(){
-        Set<CheckPoint> set = cpSet.getSet();
-        return (collectedCheckpoints) set;
-
+    public Set<CheckPoint> getCpSet() {
+        this.set = cpSet.getSet();
+        return set;
     }
-
-
-
 }
 

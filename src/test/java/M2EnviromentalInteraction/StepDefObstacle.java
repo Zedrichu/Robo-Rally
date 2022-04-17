@@ -27,11 +27,9 @@ public class StepDefObstacle {
     Tile tile;
     Round round= new Round();
     CardDeck deck = new CardDeck();
-    private Obstacle o;
+    private Obstacle<Player, Integer> o;
     CheckPoint cp;
 
-
-//CardHand hand;
 
 
     // Player with amount of lives
@@ -49,6 +47,14 @@ public class StepDefObstacle {
         player.setPosition(x, y);
         player.setDirection(Direction.getCardinalPointChar(dir));
     }
+    // STEP DEF for CHECKPOINT
+    @Given("player {string} on row {int} and column {int} with set of visited CheckPoints")
+    public void player_on_row_and_column_with_set_of_visited_check_points(String s, Integer x, Integer y) {
+        player = new Player(s);
+        player.setPosition(x, y);
+    }
+
+
 
     // Player with cardHand
     @Given("player {string} at row {int} column {int} with CardHand")
@@ -98,11 +104,20 @@ public class StepDefObstacle {
     //pitTile
     @Given("pitTile {string} at row {int} and column {int}")
     public void pit_tile_at_row_and_column(String s, int x, int y) {
-        o = new Pit(player, round);
+        o = new Pit();
         type = TileType.PIT;
         tile = new Tile(type);
         tile.position = new Position(x,y);
 
+    }
+    //checkpoint
+    @Given("CheckPoint {string} on row {int} and column {int} with ID {int}")
+    public void check_point_on_row_and_column_with_id(String s, Integer x, Integer y, Integer id) {
+        cp = new CheckPoint();
+        cp.setPosition(x,y);
+        type = TileType.CHECKPOINT;
+        tile = new Tile(type);
+        tile.position = new Position(x,y);
     }
 
     @When("round is incremented")
@@ -113,17 +128,15 @@ public class StepDefObstacle {
 
     @Then("player {string} has  {int} lives")
     public void player_has_lives(String string, int newlives) {
-        o.applyDamage(player);
+        o.applyDamage(player, null);
 
-        System.out.println(o.getDamage());
-
-        assertTrue(player.getLives() == newlives);
+        assertEquals(player.getLives(), newlives, 0.0);
     }
 
     @Then("Player {string} on row {int}  new column {int} and direction {string}")
     public void player_on_row_new_column_and_direction(String s, int xnew, int ynew, String dir) {
 
-        o.applyDamage(player);
+        o.applyDamage(player, null);
 
 
         assertTrue(player.getPosition().x == xnew &&
@@ -139,25 +152,12 @@ public class StepDefObstacle {
         assertNull(player.hand.getHand().get(round.getRoundNumber()));
     }
 
-    // STEP DEF for CHECKPOINT
-    @Given("player {string} on row {int} and column {int} with set of visited CheckPoints")
-    public void player_on_row_and_column_with_set_of_visited_check_points(String s, int x, int y) {
-        player = new Player(s);
-        player.setPosition(x, y);
 
-    }
-    @Given("CheckPoint {string} on row {int} and column {int} with ID {int}")
-    public void check_point_on_row_and_column_with_id(String s, int x, int y, int cpID) {
-
-        cp = new CheckPoint();
-        cp.setPosition(x,y);
-    }
 
     @Then("player {string} has new set of visited CheckPoints")
     public void player_has_new_set_of_visited_check_points(String s) {
         player.addCheckPoint(cp);
-
-        assertTrue(player.getCpSet().getSet().contains(cp));
+        assertTrue(player.getCpSet().contains(cp));
 
     }
 }

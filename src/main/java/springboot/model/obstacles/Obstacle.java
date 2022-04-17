@@ -1,14 +1,8 @@
 package springboot.model.obstacles;
 
-public abstract class Obstacle<Player, int> {
-    Object damage;
+public abstract class Obstacle<P, R> {
 
-    Obstacle(){}
+    public abstract void applyDamage(P p, R r);
 
-    public abstract void applyDamage();
-
-    public Object getDamage() {
-        return damage;
-    }
 }
 

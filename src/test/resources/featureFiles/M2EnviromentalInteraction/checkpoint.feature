@@ -19,7 +19,7 @@
     Scenario Outline:
       Given player <name> at position row <y> and column <x> has set of CheckPoints excepted <cpID>
       And CheckPoint <tile> on row <y> column <x> with ID <cpID>
-      When CheckPoint is hit
+      When round is incremented
       Then player <name> has a completed set of checkpoints and wins
 
       @tag

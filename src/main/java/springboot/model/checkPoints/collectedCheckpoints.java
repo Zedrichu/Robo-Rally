@@ -6,9 +6,9 @@ import java.util.Set;
 public class collectedCheckpoints {
     Set<CheckPoint> set;
 
-
-    collectedCheckpoints(){Set<CheckPoint> set = new HashSet<>();}
-
+    public collectedCheckpoints() {
+            this.set = new HashSet<CheckPoint>();
+    }
 
     public void addCheckPoint(CheckPoint cp){
         set.add(cp);

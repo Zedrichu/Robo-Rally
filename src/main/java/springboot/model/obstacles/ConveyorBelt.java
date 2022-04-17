@@ -6,16 +6,18 @@ import springboot.model.cards.Card;
 import springboot.model.cards.CardFactory;
 import springboot.model.cards.CardType;
 
-public class ConveyorBelt extends Obstacle{
+public class ConveyorBelt extends Obstacle<Player, Integer>{
 
     Card card = CardFactory.getCard(CardType.MOVE, 2);
 
-    public void applyDamage(Player player){
-        Object[] newPosDir = card.applyAction((Position) damage, player.getDirection());
+
+    @Override
+    public void applyDamage(Player player, Integer integer) {
+        Object[] newPosDir = card.applyAction(player.getPosition(), player.getDirection());
 
         Position position = (Position) newPosDir[0];
 
         player.setPosition(position);
-    }
 
+    }
 }

@@ -31,8 +31,8 @@ Feature: Hit Obstacle
     Then player <name> has  <newLives> lives
     @tag
     Scenarios:
-      | | name |   tile          | x | y | lives | damage | newLives|
-      | | "XX" |   'laserTile'   | 3 | 2 |   3   |   -1   |    2     |
+      | | name |   tile          | x | y | lives | newLives|
+      | | "XX" |   'laserTile'   | 3 | 2 |   3   |   2     |
 
 
  @tag
@@ -57,6 +57,6 @@ Feature: Hit Obstacle
     Then player <name> has  <newLives> lives
     @tag
     Scenarios:
-      | | name |tile       | x | y | lives | life | newLives |
-      | | "XX" |'lifeToken'| 3 | 2 |   3   |   1  |    4     |
+      | | name |tile       | x | y | lives  | newLives |
+      | | "XX" |'lifeToken'| 3 | 2 |   3    |    4     |
 

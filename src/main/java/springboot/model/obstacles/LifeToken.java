@@ -2,17 +2,14 @@ package springboot.model.obstacles;
 
 import game.players.Player;
 
-public class LifeToken extends Obstacle{
-    public LifeToken(){}
-    int life;
+public class LifeToken extends Obstacle<Player, Integer>{
 
-    public void applyDamage(Player player){
-        player.updateLives(2);
+
+    @Override
+    public void applyDamage(Player player, Integer integer) {
+        player.updateLives(1);
     }
 
-    public Object getDamage() {
-        return life;
-    }
 
 
 }

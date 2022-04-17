@@ -2,16 +2,11 @@ package springboot.model.obstacles;
 
 import game.players.Player;
 
-public class Laser extends Obstacle{
+public class Laser extends Obstacle<Player, Integer>{
 
-    public void applyDamage(Player player){
+    @Override
+    public void applyDamage(Player player, Integer integer) {
         player.updateLives(-1);
     }
-    public Laser(){}
-
-    public Object getDamage() {
-        return damage;
-    }
-
 
 }
