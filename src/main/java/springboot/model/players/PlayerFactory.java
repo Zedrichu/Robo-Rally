@@ -16,4 +16,9 @@ public class PlayerFactory {
         return result;
     }
 
+    public static Player getPlayer(String name) {
+        Player result = new Player(name);
+        return result;
+    }
+
 }

@@ -18,7 +18,7 @@ public class GameSettingsController {
         this.view = new GameSettingsView(this);
     }
 
-    public void startGame(Complexity complexity, int noPlayers) {
+    public void setupBoard(Complexity complexity, int noPlayers) {
         System.out.println("Game Started!");
     }
 

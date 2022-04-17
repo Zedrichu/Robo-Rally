@@ -21,7 +21,7 @@ public class GameSettingsView extends JFrame {
 
     public GameSettingsView(GameSettingsController controller) {
         this.controller = controller;
-        this.setSize(400,500);
+        this.setSize(500,500);
         initGUI();
     }
 
@@ -39,7 +39,7 @@ public class GameSettingsView extends JFrame {
         btnStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.startGame((Complexity) comboComplex.getSelectedItem(),(Integer) comboNumber.getSelectedItem());
+                controller.setupBoard((Complexity) comboComplex.getSelectedItem(),(Integer) comboNumber.getSelectedItem());
                 setVisible(false);
             }
         });
