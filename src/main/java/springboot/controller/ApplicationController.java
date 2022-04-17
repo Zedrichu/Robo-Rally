@@ -1,6 +1,7 @@
 package springboot.controller;
 
 import game.Complexity;
+import game.GameSettings;
 
 public class ApplicationController {
 
@@ -20,6 +21,7 @@ public class ApplicationController {
     public static void main(String[] args) {
         ApplicationController app = new ApplicationController();
         app.settings();
+
     }
 
-}
+
