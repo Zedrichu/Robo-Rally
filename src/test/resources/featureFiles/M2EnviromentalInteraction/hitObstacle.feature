@@ -37,7 +37,7 @@ Feature: Hit Obstacle
 
  @tag
 
-  Scenario Outline:
+  Scenario Outline: Interaction with conveyor belt
    Given Player <name> on row <y> column <x> and direction <dir>
    And conveyorBelt <tile> is on row <y> column <x> with direction <convDir>
    When round is incremented
@@ -50,7 +50,7 @@ Feature: Hit Obstacle
   | | "XX"| 'conveyorBelt'  | 2 | 5 | 'W' |   'N'   |  2   |  3   |
 
   @tag
-  Scenario Outline:
+  Scenario Outline:Interaction with life token
     Given Player <name> at row <y> column <x> with <lives> lives
     And lifeToken <tile> at row <y>  and column <x>
     When round is incremented
@@ -59,3 +59,4 @@ Feature: Hit Obstacle
     Scenarios:
       | | name |tile       | x | y | lives | life | newLives |
       | | "XX" |'lifeToken'| 3 | 2 |   3   |   1  |    4     |
+

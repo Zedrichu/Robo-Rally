@@ -6,9 +6,13 @@ import springboot.model.cards.Card;
 import springboot.model.cards.CardDeck;
 import springboot.model.cards.CardHand;
 import springboot.model.Direction;
+import springboot.model.checkPoints.CheckPoint;
+import springboot.model.checkPoints.CheckPointSet;
+import springboot.model.checkPoints.collectedCheckpoints;
 import view.widgets.Board;
-
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Player {
     private static int IDs = 0;
@@ -18,6 +22,8 @@ public class Player {
     private Direction direction;
     public CardHand hand;
     private int lives = 10;
+    collectedCheckpoints cpSet;
+
 
     private int getFreshID() {
         IDs++;
@@ -59,10 +65,7 @@ public class Player {
         this.direction = direction;
     }
 
-    public CardHand getHand() {
-        return hand;
-    }
-
+    public CardHand getHand() {return hand;}
     // Assign cards to each player
     public void setHand(ArrayList<Card> hand) {
         this.hand.setHand(hand);
@@ -133,6 +136,18 @@ public class Player {
     }
     public double getLives(){
         return lives;
+    }
+
+
+
+    public void addCheckPoint(CheckPoint cp){
+        cpSet.addCheckPoint(cp);
+    }
+
+    public collectedCheckpoints getCpSet(){
+        Set<CheckPoint> set = cpSet.getSet();
+        return (collectedCheckpoints) set;
+
     }
 
 

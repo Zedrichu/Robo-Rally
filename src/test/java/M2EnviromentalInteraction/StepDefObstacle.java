@@ -7,6 +7,7 @@ import game.players.Player;
 import game.round.Round;
 import springboot.model.cards.CardDeck;
 import springboot.model.Direction;
+import springboot.model.checkPoints.CheckPoint;
 import springboot.model.obstacles.*;
 import view.TileType;
 import view.widgets.Tile;
@@ -19,7 +20,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class StepDef {
+public class StepDefObstacle {
 
     TileType type;
     Player player;
@@ -27,8 +28,7 @@ public class StepDef {
     Round round= new Round();
     CardDeck deck = new CardDeck();
     private Obstacle o;
-
-
+    CheckPoint cp;
 
 
 //CardHand hand;
@@ -88,7 +88,7 @@ public class StepDef {
     // conveyorBelt
     @Given("conveyorBelt {string} is on row {int} column {int} with direction {string}")
     public void conveyor_belt_is_on_row_column_with_direction(String s, int x, int y, String convDir) {
-        o = new ConveyorBelt(player.getPosition(), player);
+        o = new ConveyorBelt();
         type = TileType.CONVEYORBELT;
         tile = new Tile(type);
         tile.position = new Position(x, y);
@@ -113,10 +113,9 @@ public class StepDef {
 
     @Then("player {string} has  {int} lives")
     public void player_has_lives(String string, int newlives) {
-        o.applyDamage();
+        o.applyDamage(player);
 
         System.out.println(o.getDamage());
-        player.updateLives((Integer) o.getDamage());
 
         assertTrue(player.getLives() == newlives);
     }
@@ -124,7 +123,7 @@ public class StepDef {
     @Then("Player {string} on row {int}  new column {int} and direction {string}")
     public void player_on_row_new_column_and_direction(String s, int xnew, int ynew, String dir) {
 
-        o.applyDamage();
+        o.applyDamage(player);
 
 
         assertTrue(player.getPosition().x == xnew &&
@@ -134,13 +133,33 @@ public class StepDef {
     //pitTile
     @Then("player {string} with new CardHand")
     public void player_with_new_card_hand(String s){
-        o.applyDamage();
+        int r = round.getRoundNumber();
+        o.applyDamage(player, r);
 
         assertNull(player.hand.getHand().get(round.getRoundNumber()));
-
-
     }
 
+    // STEP DEF for CHECKPOINT
+    @Given("player {string} on row {int} and column {int} with set of visited CheckPoints")
+    public void player_on_row_and_column_with_set_of_visited_check_points(String s, int x, int y) {
+        player = new Player(s);
+        player.setPosition(x, y);
 
+    }
+    @Given("CheckPoint {string} on row {int} and column {int} with ID {int}")
+    public void check_point_on_row_and_column_with_id(String s, int x, int y, int cpID) {
+
+        cp = new CheckPoint();
+        cp.setPosition(x,y);
+    }
+
+    @Then("player {string} has new set of visited CheckPoints")
+    public void player_has_new_set_of_visited_check_points(String s) {
+        player.addCheckPoint(cp);
+
+        assertTrue(player.getCpSet().getSet().contains(cp));
+
+    }
 }
+
 
