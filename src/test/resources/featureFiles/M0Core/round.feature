@@ -56,12 +56,13 @@ Feature: Round Operations
     Scenarios:
       | x | xnew |
       | 5 | 1    |
-#    @pending
-#      Scenario: Draw Cards for each player on new round successfully
-#      Given round counter 1
-#      And any in <S> don't have any cards
-#      When draw cards
-#      Then all players have a card hand with 9 cards
+   @tag
+      Scenario: Draw Cards for each player on new round successfully
+      Given round counter 1
+      And set of players <S>
+      And any in <S> don't have any cards
+      When draw cards for each player
+      Then each player have a card hand with 9 cards
 
 
 
