@@ -20,10 +20,19 @@ public class GameSettingsController {
 
     public void setupBoard(Complexity complexity, int noPlayers) {
         System.out.println("Game Started!");
-        //Must notify model to add complexity and noPlayers
-        gameSettings.setSettings(complexity, noPlayers);
+        gameSettings = new GameSettings();
+        gameSettings.setComplexity(complexity);
+        gameSettings.setAmountOfPlayers(noPlayers);
     }
 
+    //Getter from Model to Controller
+    public Complexity getGameComplexity() {
+        return gameSettings.getComplexity();
+    }
+    public int getNoPlayers() {
+        return gameSettings.getAmountOfPlayers();
+    }
+    //Display the view
     public void display() {view.setVisible(true);}
 
 }
