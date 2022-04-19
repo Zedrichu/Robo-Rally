@@ -7,6 +7,7 @@ public class ApplicationController {
 
     private GameSettingsController settingsController;
     private BoardSetupController boardController;
+    private CardController cardController;
 
     public void settings() {
         settingsController = new GameSettingsController(this);
@@ -18,10 +19,12 @@ public class ApplicationController {
         boardController.display();
     }
 
+
+
     public static void main(String[] args) {
         ApplicationController app = new ApplicationController();
         app.settings();
 
     }
 
-
+}

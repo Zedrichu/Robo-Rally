@@ -20,6 +20,8 @@ public class GameSettingsController {
 
     public void setupBoard(Complexity complexity, int noPlayers) {
         System.out.println("Game Started!");
+        //Must notify model to add complexity and noPlayers
+        gameSettings.setSettings(complexity, noPlayers);
     }
 
     public void display() {view.setVisible(true);}
