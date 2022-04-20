@@ -8,8 +8,10 @@ import java.util.Set;
 
 import javax.swing.JPanel;
 
+import game.players.Player;
 import springboot.model.Position;
 import springboot.model.Direction;
+import springboot.model.checkPoints.CheckPointSet;
 import view.TileType;
 
 public class Board extends JPanel {
@@ -21,8 +23,9 @@ public class Board extends JPanel {
 	private int rows;
 	private int cols;
 	private Set<Tile> startTiles = new HashSet<>();
+	private CheckPointSet TotalCps;
 
-	
+
 	public Board(int rows, int cols, int noPlrs) {
 		this.board = new Tile[rows][cols];
 		this.rows = rows;
@@ -58,6 +61,12 @@ public class Board extends JPanel {
 	
 	public void unsetRobot(int row, int col) {
 		board[row][col].unsetRobot();
+	}
+
+	public void robotWins(Player player){
+		if (player.hasAllCP(TotalCps)) {
+			player.isWinner(true);
+		}
 	}
 	
 	private void loadBoard(int noPlrs) {

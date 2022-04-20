@@ -10,12 +10,11 @@ import java.util.Set;
 // set of individual checkpoints
 public class CheckPointSet {
     CheckPoint cp;
-    // Creating an empty HashSet
-    //HashSet<Integer> h = new HashSet<Integer>();
 
+    // Creating an empty HashSet
     Set<CheckPoint> set = new HashSet<CheckPoint>();
 
-    CheckPointSet(int number){
+    public CheckPointSet(int number){
         for (int i = 0; i <= number ; i++){
             cp = new CheckPoint();
             set.add(cp);

@@ -10,14 +10,13 @@ public class CheckPoint {
     int x;
     int y;
 
-    private int getID(){
+    public int getID(){
         IDs++;
         return IDs;
     }
 
     public CheckPoint(){
         this.ID = getID();
-        //setPosition(x,y);
     }
 
     public void setPosition(int x, int y) {

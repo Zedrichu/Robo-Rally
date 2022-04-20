@@ -7,6 +7,7 @@ import springboot.model.cards.CardDeck;
 import springboot.model.cards.CardHand;
 import springboot.model.Direction;
 import springboot.model.checkPoints.CheckPoint;
+import springboot.model.checkPoints.CheckPointSet;
 import springboot.model.checkPoints.collectedCheckpoints;
 import view.widgets.Board;
 import java.util.ArrayList;
@@ -21,7 +22,8 @@ public class Player {
     public CardHand hand;
     private int lives = 10;
     collectedCheckpoints cpSet;
-    Set<CheckPoint> set;
+    private Boolean Wins;
+
 
 
     private int getFreshID() {
@@ -143,18 +145,27 @@ public class Player {
         return lives;
     }
 
+    public Boolean hasCP(CheckPoint cp) {
+        return (cpSet.getSet().contains(cp)) ;
+    }
 
     public void addCheckPoint(CheckPoint cp) {
-        if (cpSet == null) {
-            cpSet = new collectedCheckpoints();
-            cpSet.addCheckPoint(cp);
+        if (cpSet == null) cpSet = new collectedCheckpoints();{
+
         }
-        cpSet.addCheckPoint(cp);
+        if (hasCP(cp) == false) cpSet.addToBasket(cp);
+    }
+
+    public boolean hasAllCP(CheckPointSet set){
+       return cpSet.equals(set);
+    }
+
+    public void isWinner(Boolean k){
+        this.Wins = k;
     }
 
     public Set<CheckPoint> getCpSet() {
-        this.set = cpSet.getSet();
-        return set;
+        return cpSet.getSet();
     }
 }
 

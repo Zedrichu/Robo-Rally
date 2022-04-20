@@ -8,8 +8,10 @@ import game.round.Round;
 import springboot.model.cards.CardDeck;
 import springboot.model.Direction;
 import springboot.model.checkPoints.CheckPoint;
+import springboot.model.checkPoints.CheckPointSet;
 import springboot.model.obstacles.*;
 import view.TileType;
+import view.widgets.Board;
 import view.widgets.Tile;
 
 
@@ -28,9 +30,10 @@ public class StepDefObstacle {
     Round round= new Round();
     CardDeck deck = new CardDeck();
     private Obstacle<Player, Integer> o;
-    CheckPoint cp;
-
-
+    CheckPoint cp = new CheckPoint();
+    CheckPointSet TotalCPSet;
+    Board board = new Board(10,10, 3);
+    private int size = 0;
 
     // Player with amount of lives
     @Given("Player {string} at row {int} column {int} with {int} lives")
@@ -47,15 +50,6 @@ public class StepDefObstacle {
         player.setPosition(x, y);
         player.setDirection(Direction.getCardinalPointChar(dir));
     }
-    // STEP DEF for CHECKPOINT
-    @Given("player {string} on row {int} and column {int} with set of visited CheckPoints")
-    public void player_on_row_and_column_with_set_of_visited_check_points(String s, Integer x, Integer y) {
-        player = new Player(s);
-        player.setPosition(x, y);
-    }
-
-
-
     // Player with cardHand
     @Given("player {string} at row {int} column {int} with CardHand")
     public void player_at_row_column_with_card_hand(String s, int x, int y) {
@@ -80,8 +74,6 @@ public class StepDefObstacle {
         type = TileType.RADIATION;
         tile = new Tile(type);
         tile.position = new Position(x, y);
-
-
     }
     // lifeToken
     @Given("lifeToken {string} at row {int}  and column {int}")
@@ -110,14 +102,34 @@ public class StepDefObstacle {
         tile.position = new Position(x,y);
 
     }
-    //checkpoint
+    @Given("player {string} on row {int} and column {int} with set of visited CheckPoints including Checkpoint {int}")
+    public void player_on_row_and_column_with_set_of_visited_check_points_including_checkpoint(String s, int x, int y, int cpID) {
+        player = new Player(s);
+        player.setPosition(x, y);
+        player.addCheckPoint(cp);
+        //System.out.print("in given " + player.getCpSet());
+        this.size = player.getCpSet().size();
+
+    }
+    // visiting new CheckPoint
+    @Given("player {string} on row {int} and column {int} with set of visited CheckPoints")
+    public void player_on_row_and_column_with_set_of_visited_check_points(String s, int x, int y) {
+        player = new Player(s);
+        player.setPosition(x, y);
+    }
+    // CheckPoint tile
     @Given("CheckPoint {string} on row {int} and column {int} with ID {int}")
-    public void check_point_on_row_and_column_with_id(String s, Integer x, Integer y, Integer id) {
-        cp = new CheckPoint();
+    public void check_point_on_row_and_column_with_id(String s, int x, int y, int cpID) {
         cp.setPosition(x,y);
         type = TileType.CHECKPOINT;
-        tile = new Tile(type);
+        tile = new Tile(type);//
         tile.position = new Position(x,y);
+
+    }
+
+    @Given("full set of CheckPoints from board of size {int}")
+    public void full_set_of_check_points_from_board_of_size(int size)  {
+        TotalCPSet = new CheckPointSet(size);
     }
 
     @When("round is incremented")
@@ -127,7 +139,7 @@ public class StepDefObstacle {
     }
 
     @Then("player {string} has  {int} lives")
-    public void player_has_lives(String string, int newlives) {
+    public void player_has_lives(String s, int newlives) {
         o.applyDamage(player, null);
 
         assertEquals(player.getLives(), newlives, 0.0);
@@ -138,7 +150,6 @@ public class StepDefObstacle {
 
         o.applyDamage(player, null);
 
-
         assertTrue(player.getPosition().x == xnew &&
                 player.getPosition().y == ynew &&
                 player.getDirection().getAbbr().equals(dir));
@@ -148,17 +159,26 @@ public class StepDefObstacle {
     public void player_with_new_card_hand(String s){
         int r = round.getRoundNumber();
         o.applyDamage(player, r);
-
         assertNull(player.hand.getHand().get(round.getRoundNumber()));
     }
-
-
-
+    
+    // collecting CheckPoints
     @Then("player {string} has new set of visited CheckPoints")
     public void player_has_new_set_of_visited_check_points(String s) {
         player.addCheckPoint(cp);
         assertTrue(player.getCpSet().contains(cp));
+    }
+    // player has collected all CheckPoints = WINS
+    @Then("if player {string} has complete set of CheckPoints then player wins")
+    public void if_player_has_complete_set_of_check_points_then_player_wins(String s) {
+        board.robotWins(player);
+    }
 
+    // player visits a CheckPoint which has previously been visited
+    @Then("player {string} has same set of CheckPoints as before")
+    public void player_has_same_set_of_check_points_as_before(String s) {
+        assertTrue(player.getCpSet().contains(cp));
+        assertEquals(size,player.getCpSet().size());
     }
 }
 
