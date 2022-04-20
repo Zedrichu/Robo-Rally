@@ -40,7 +40,11 @@ public class GameSettingsView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.setupBoard((Complexity) comboComplex.getSelectedItem(),(Integer) comboNumber.getSelectedItem());
-                setVisible(false);
+                dispose();
+                PlayerSetupView playerSetupView = new PlayerSetupView(controller,(Integer) comboNumber.getSelectedItem());
+                playerSetupView.setVisible(true);
+                //setVisible(false);
+
             }
         });
 
@@ -51,7 +55,7 @@ public class GameSettingsView extends JFrame {
         add(btnStart, GridBagUtils.constraint(1,2,5));
 
         pack();
-        setLocationRelativeTo(null);
+
     }
 
     public void showError() {

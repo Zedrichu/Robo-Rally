@@ -25,13 +25,6 @@ public class GameSettingsController {
         gameSettings.setAmountOfPlayers(noPlayers);
     }
 
-    //Getter from Model to Controller
-    public Complexity getGameComplexity() {
-        return gameSettings.getComplexity();
-    }
-    public int getNoPlayers() {
-        return gameSettings.getAmountOfPlayers();
-    }
     //Display the view
     public void display() {view.setVisible(true);}
 
