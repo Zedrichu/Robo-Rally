@@ -26,7 +26,8 @@ public class PlayerSetupView extends JFrame {
         setLayout(new SpringLayout());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Jpanel panel = new JPanel();
+        JPanel panel = new JPanel();
+
 
 
     }
