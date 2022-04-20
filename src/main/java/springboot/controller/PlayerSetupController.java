@@ -3,19 +3,13 @@ package springboot.controller;
 import springboot.view.PlayerSetupView;
 
 public class PlayerSetupController {
-    private ApplicationController application;
-    private int noPlayers;
+    private GameSettingsController gameSettingsController;
     private PlayerSetupView view;
 
-    public PlayerSetupController(ApplicationController application, int noPlayers){
-        this.application = application;
-        this.noPlayers = noPlayers;
+    public PlayerSetupController(GameSettingsController gameSettingsController, int noPlayers){
+        this.gameSettingsController = gameSettingsController;
+        this.view = new PlayerSetupView(gameSettingsController, noPlayers);
     }
-
-
-
-
-    public void startGame() {}
 
     public void display(){view.setVisible(true);}
 

@@ -2,6 +2,8 @@ package springboot.view;
 
 import game.Complexity;
 import springboot.controller.GameSettingsController;
+import springboot.utils.GridBagUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,25 +28,21 @@ public class GameSettingsView extends JFrame {
     }
 
     private void initGUI() {
-        setSize(300,400);
+        setMinimumSize(new Dimension(300,250));
         setResizable(true);
-        setTitle("Game settings menu!");
+        setTitle("Game Settings Menu");
         setLayout(new GridBagLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         comboComplex = new JComboBox(Complexity.values());
         Integer[] range = {1,2,3,4,5,6,7,8,9};
         comboNumber = new JComboBox(range);
-        btnStart = new JButton("Start Robo-Rally");
+        btnStart = new JButton("Go to Board Selection");
         btnStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.setupBoard((Complexity) comboComplex.getSelectedItem(),(Integer) comboNumber.getSelectedItem());
+                controller.setupGame((Complexity) comboComplex.getSelectedItem(),(Integer) comboNumber.getSelectedItem());
                 dispose();
-                PlayerSetupView playerSetupView = new PlayerSetupView(controller,(Integer) comboNumber.getSelectedItem());
-                playerSetupView.setVisible(true);
-                //setVisible(false);
-
             }
         });
 
@@ -55,6 +53,8 @@ public class GameSettingsView extends JFrame {
         add(btnStart, GridBagUtils.constraint(1,2,5));
 
         pack();
+        setLocationRelativeTo(null);
+
 
     }
 
@@ -64,12 +64,3 @@ public class GameSettingsView extends JFrame {
     }
 }
 
-class GridBagUtils {
-    public static GridBagConstraints constraint(int x, int y,int inset) {
-        GridBagConstraints c = new GridBagConstraints();
-        c.gridx = x;
-        c.gridy = y;
-        c.insets = new Insets(inset,inset,inset,inset);
-        return c;
-    }
-}
