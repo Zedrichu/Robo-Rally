@@ -2,9 +2,7 @@ package game.players;
 
 
 import springboot.model.Position;
-import springboot.model.cards.Card;
-import springboot.model.cards.CardDeck;
-import springboot.model.cards.CardHand;
+import springboot.model.cards.*;
 import springboot.model.Direction;
 import springboot.model.checkPoints.CheckPoint;
 import springboot.model.checkPoints.CheckPointSet;
@@ -167,5 +165,17 @@ public class Player {
     public Set<CheckPoint> getCpSet() {
         return cpSet.getSet();
     }
+
+    public Position push(Player player2){
+        Card card = CardFactory.getCard(CardType.MOVE, 1);
+
+        Object[] newPosDir = card.applyAction(player2.getPosition(), getDirection());
+
+        Position position = (Position) newPosDir[0];
+
+        return position;
+
+    }
 }
+
 
