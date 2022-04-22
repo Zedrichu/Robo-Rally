@@ -8,7 +8,6 @@ import view.widgets.Board;
 public class BoardSetupController {
 
     private BoardSetupView view;
-    private Board board;
     private GameSettingsController settingsController;
 
     public BoardSetupController(GameSettingsController settingsController){

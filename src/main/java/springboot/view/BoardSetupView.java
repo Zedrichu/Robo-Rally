@@ -3,6 +3,7 @@ package springboot.view;
 import springboot.controller.BoardSetupController;
 import springboot.controller.GameSettingsController;
 import springboot.utils.GridBagUtils;
+import view.widgets.Board;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +18,8 @@ public class BoardSetupView extends JFrame {
         this.gameSettingsController = gameSettingsController;
         initGUI();
     }
+
+
 
     private void initGUI(){
         //add(new JLabel(new ImageIcon("Path/To/Your/Image.png")));

@@ -16,6 +16,7 @@ public class GameSettingsController {
 
     private BoardSetupController boardSetupController;
     private PlayerSetupController playerSetupController;
+    private BoardPositionController boardPositionController;
     private ApplicationController application;
     private Board board;
     private Set<Player> sps;
@@ -42,13 +43,19 @@ public class GameSettingsController {
         int[] sizes = gameSettings.getBoardSize();
         board = new Board(sizes[0],sizes[1],gameSettings.getAmountOfPlayers());
 
+
         playerSetupController = new PlayerSetupController(this, gameSettings.getAmountOfPlayers());
         playerSetupController.display();
     }
 
+
     public void setupPlayers(Set<String> names) {
         System.out.println("Players have been initialized");
+        //TODO: Needs list of positions
+        //
 
+        boardPositionController = new BoardPositionController(this, board, gameSettings.getAmountOfPlayers());
+        boardPositionController.display();
     }
 
     //Display the view

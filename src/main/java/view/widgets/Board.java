@@ -67,7 +67,9 @@ public class Board extends JPanel {
 				Tile t = getRandomTile();
 				if (noPlrs>0) {
 					double val = rnd.nextDouble();
-					if (val<0.5) {t = new Tile(TileType.STARTING); noPlrs--;}
+					if (val<0.20) {
+						t = new Tile(TileType.STARTING);
+						noPlrs--;}
 				}
 				t.position = new Position(i, j);
 
@@ -77,6 +79,7 @@ public class Board extends JPanel {
 				board[j][i] = t;
 				add(t);
 			}
+
 		}
 	}
 	//Finds a random tile that is a starting tile
@@ -101,10 +104,8 @@ public class Board extends JPanel {
 
 	private Tile getRandomTile() {
 		double val = rnd.nextDouble();
-		if (val <0.80){
+		if (val <0.80) {
 			return new Tile(TileType.EMPTY);
-		} else if (val < 0.88) {
-			return new Tile(TileType.STARTING);
 		} else if (val < 0.92) {
 			return new Tile(TileType.PIT);
 		} else if (val < 0.96) {

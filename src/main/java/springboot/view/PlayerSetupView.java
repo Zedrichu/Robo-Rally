@@ -53,6 +53,7 @@ public class PlayerSetupView extends JFrame {
                 // Validation at some point "Jeppe" = "Jeppe" not good ;(
 
                 controller.setupPlayers(names);
+                dispose();
             }
         });
 
@@ -61,19 +62,6 @@ public class PlayerSetupView extends JFrame {
         setLocationRelativeTo(null);
 
 
-
-
-
-
-     //   JButton submit = new JButton("Submit");
-        //  submit.addActionListener(new ActionListener() {
-        //    @Override
-        //   public void actionPerformed(ActionEvent e) {
-        //     System.out.println("Names have been picked");
-        //      controller.setPlayerNames();
-        //      controller.setPlayerSetup(true);
-
-        //});
 
 
     }
