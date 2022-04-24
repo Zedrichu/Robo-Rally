@@ -26,6 +26,10 @@ public class GameSettingsController {
     private GameSettingsView view;
     //private CardDeck deck;
 
+    public GameSettingsController(){
+        super();
+    }
+
     public GameSettingsController(ApplicationController application) {
         this.application = application;
         this.view = new GameSettingsView(this);

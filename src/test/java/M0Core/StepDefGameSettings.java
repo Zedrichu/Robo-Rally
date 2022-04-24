@@ -16,7 +16,7 @@ public class StepDefGameSettings {
 
     @Given("new game")
     public void new_game() {
-        gameSettingsController = new GameSettingsController(new ApplicationController());
+        gameSettingsController = new GameSettingsController();
         assertNotNull(gameSettingsController);
     }
 
