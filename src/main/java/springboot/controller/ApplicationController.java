@@ -8,6 +8,12 @@ public class ApplicationController {
     private GameSettingsController settingsController;
     private CardController cardController;
     private PlayerSetupController playerSetupController;
+    //private RunningGameController runningGameController;
+
+    public void game(){
+        //runningGameController = new RunningGameController(this);
+
+    }
 
     public void settings() {
         settingsController = new GameSettingsController(this);

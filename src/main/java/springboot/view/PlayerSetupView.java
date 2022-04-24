@@ -13,6 +13,7 @@ import springboot.utils.GridBagUtils;
 
 public class PlayerSetupView extends JFrame {
     private GameSettingsController controller;
+    private PlayerSetupController playerSetupController;
     private Set<String> names = new HashSet<>();
     private JButton submitBtn;
 
@@ -21,8 +22,9 @@ public class PlayerSetupView extends JFrame {
 
     }
 
-    public PlayerSetupView(GameSettingsController controller, int noPlayers) {
+    public PlayerSetupView(GameSettingsController controller, PlayerSetupController playerSetupController, int noPlayers) {
         this.controller = controller;
+        this.playerSetupController = playerSetupController;
         initGUI(noPlayers);
     }
 
@@ -52,20 +54,17 @@ public class PlayerSetupView extends JFrame {
                 }
                 // Validation at some point "Jeppe" = "Jeppe" not good ;(
 
-                controller.setupPlayers(names);
-                dispose();
             }
         });
 
         add(submitBtn, GridBagUtils.constraint(1,noPlayers+1,5));
         pack();
         setLocationRelativeTo(null);
-
-
-
-
     }
 
+    private void showErr(){
+        JOptionPane.showMessageDialog(null,"All names must be different!","Invalid names",JOptionPane.ERROR_MESSAGE);
 
+    }
 
 }

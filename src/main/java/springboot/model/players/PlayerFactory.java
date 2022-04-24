@@ -8,10 +8,10 @@ import java.util.Set;
 //Implementing the Factory design pattern for Player objects generation
 public class PlayerFactory {
 
-    public static Set<Player> getPlayerSet(int number) {
+    public static Set<Player> getPlayerSet(int number, Set<String> names) {
         Set<Player> result = new HashSet<Player>();
-        for (int i=0; i<number;i++) {
-            result.add(new Player("Player"+(i+1)));
+        for (String name : names) {
+            result.add(new Player(name));
         }
         return result;
     }

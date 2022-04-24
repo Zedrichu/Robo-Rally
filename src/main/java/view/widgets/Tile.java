@@ -43,6 +43,10 @@ public class Tile extends JPanel {
 		setPreferredSize(getMinimumSize());
 	}
 
+	public Position getPosition() {
+		return position;
+	}
+
 	public TileType getType() {
 		return type;
 	}
@@ -74,5 +78,13 @@ public class Tile extends JPanel {
 			g2d.drawImage(imageRobot, 0, 0, null);
 			g2d.setTransform(old2);
         }
+	}
+
+	@Override
+	public String toString() {
+		return "Tile{" +
+				type +
+				"," + position +
+				'}';
 	}
 }

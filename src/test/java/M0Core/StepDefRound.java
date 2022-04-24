@@ -12,6 +12,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -25,7 +26,11 @@ public class StepDefRound {
     }
     @Given("set of players <S>")
     public void set_of_players_s() {
-        players = PlayerFactory.getPlayerSet(2);
+        Set<String> names = new HashSet<String>(){{
+            add("Adrian");
+            add("Jeppe");
+        }};
+        players = PlayerFactory.getPlayerSet(2,names);
         round.setPlayers(players);
     }
 

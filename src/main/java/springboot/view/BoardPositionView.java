@@ -1,6 +1,8 @@
 package springboot.view;
 
 import ch.qos.logback.core.pattern.color.BoldYellowCompositeConverter;
+import game.players.Player;
+import springboot.controller.BoardPositionController;
 import springboot.controller.GameSettingsController;
 import springboot.model.Position;
 import springboot.utils.GridBagUtils;
@@ -12,26 +14,24 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class BoardPositionView extends JFrame {
     private GameSettingsController gameSettingsController;
+    private BoardPositionController boardPositionController;
     private JButton SubmitButton;
-
-
-    public static void main(String[] args) {
-
-    }
 
     public BoardPositionView(GameSettingsController gameSettingsController, Board board, int noPlayers) {
         this.gameSettingsController = gameSettingsController;
-        initGUI(board, noPlayers);
+        this.boardPositionController = boardPositionController;
+        initGUI(board, noPlayers, sps);
     }
 
 
-    private void initGUI(Board board,int noPlayers) {
+    private void initGUI(Board board,int noPlayers, Set<Player> sps) {
         setMinimumSize(new Dimension(600,700));
         setResizable(false);
-        setTitle("Player pick positions");
+        setTitle("Players pick positions");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridBagLayout());
         JButton GameButton = new JButton("Go to Game!");
@@ -49,10 +49,17 @@ public class BoardPositionView extends JFrame {
         //comboPosition = new JCombobox();
         JPanel panelTwo = new JPanel(new GridBagLayout());
         JLabel label = new JLabel("Pick starting tile");
-        for (int i = 0; i < noPlayers; i++) {
-            add(new JLabel("Player " + (i) + ":"), GridBagUtils.constraint(i,0,5));
-            //add(new JComboBox(Position board.getRandomStartPosition(), GridBagUtils.constraint(i,1,5)));
+        panelTwo.add(label,GridBagUtils.constraint(0,0,5));
 
+        ArrayList<Object[]> selections = new ArrayList<>();
+
+        int i=0;
+        for (Player player : sps) {
+            panelTwo.add(new JLabel("Player " + (player.getPlayerName()) + ":"), GridBagUtils.constraint(i,1,5));
+            JComboBox input = new JComboBox(board.getStartTiles());
+            selections.add(new Object[]{player, input});
+            panelTwo.add(input, GridBagUtils.constraint(i,2,5));
+            i++;
         }
         panelTwo.add(GameButton);
         GameButton.addActionListener(new ActionListener() {
@@ -63,6 +70,8 @@ public class BoardPositionView extends JFrame {
 
         });
 
+        add(panelOne, GridBagUtils.constraint(0,0,5));
+        add(panelTwo, GridBagUtils.constraint(0,1,5));
 
         pack();
         setLocationRelativeTo(null);

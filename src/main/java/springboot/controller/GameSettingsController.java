@@ -5,6 +5,7 @@ import game.GameSettings;
 import game.players.Player;
 import org.springframework.stereotype.Controller;
 import springboot.Application;
+import springboot.model.players.PlayerFactory;
 import springboot.view.BoardSetupView;
 import springboot.view.GameSettingsView;
 import view.widgets.Board;
@@ -51,10 +52,8 @@ public class GameSettingsController {
 
     public void setupPlayers(Set<String> names) {
         System.out.println("Players have been initialized");
-        //TODO: Needs list of positions
-        //
-
-        boardPositionController = new BoardPositionController(this, board, gameSettings.getAmountOfPlayers());
+        sps = PlayerFactory.getPlayerSet(gameSettings.getAmountOfPlayers(), names);
+        boardPositionController = new BoardPositionController(this, board, gameSettings.getAmountOfPlayers(), sps);
         boardPositionController.display();
     }
 

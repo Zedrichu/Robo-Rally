@@ -2,9 +2,7 @@ package view.widgets;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import javax.swing.JPanel;
 
@@ -82,6 +80,11 @@ public class Board extends JPanel {
 
 		}
 	}
+
+	public Object[] getStartTiles() {
+		return startTiles.toArray();
+	}
+
 	//Finds a random tile that is a starting tile
 	public Position getRandomStartPosition() {
 		int val = rnd.nextInt(1, startTiles.size());
