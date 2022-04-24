@@ -19,6 +19,16 @@ public class BoardPositionController {
         this.view = new BoardPositionView(gameSettingsController, this, board, noPlayers, sps);
     }
 
+    public boolean validatePositions(Set<Player> sps) {
+        Set<Position> toValidate = new HashSet<>();
+        for (Player player : sps){
+            toValidate.add(player.getPosition());
+        }
+
+        return toValidate.size() == sps.size();
+    }
+
+
 
     public void display(){view.setVisible(true);}
 

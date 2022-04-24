@@ -21,7 +21,7 @@ public class BoardPositionView extends JFrame {
     private BoardPositionController boardPositionController;
     private JButton SubmitButton;
 
-    public BoardPositionView(GameSettingsController gameSettingsController, Board board, int noPlayers) {
+    public BoardPositionView(GameSettingsController gameSettingsController, BoardPositionController boardPositionController, Board board, int noPlayers, Set<Player> sps) {
         this.gameSettingsController = gameSettingsController;
         this.boardPositionController = boardPositionController;
         initGUI(board, noPlayers, sps);
@@ -39,7 +39,7 @@ public class BoardPositionView extends JFrame {
         //JPanel mainPanel = new JPanel(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
         //Panel one shows the board
         JPanel panelOne = new JPanel(new GridBagLayout());
-        add(board);
+        panelOne.add(board);
 
 
 
@@ -61,11 +61,22 @@ public class BoardPositionView extends JFrame {
             panelTwo.add(input, GridBagUtils.constraint(i,2,5));
             i++;
         }
-        panelTwo.add(GameButton);
+        panelTwo.add(GameButton,GridBagUtils.constraint(noPlayers,2,5));
         GameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                for (Object[] pair : selections){
+                    Player plr = (Player) pair[0];
+                    Position pos = ((Tile)((JComboBox) pair[1]).getSelectedItem()).getPosition();
+                    plr.setPosition(pos);
+                }
+                if (boardPositionController.validatePositions(sps)){
+                    System.out.println("Entire game setup is completed!");
+                    //Pass new thing
+                }
+                else {
+                    showErr();
+                }
             }
 
         });
@@ -75,6 +86,11 @@ public class BoardPositionView extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
+    }
+
+    private void showErr(){
+        JOptionPane.showMessageDialog(null,"All positions must be different!","Invalid positions",JOptionPane.ERROR_MESSAGE);
+
     }
 
 }

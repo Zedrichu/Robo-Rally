@@ -54,6 +54,13 @@ public class PlayerSetupView extends JFrame {
                 }
                 // Validation at some point "Jeppe" = "Jeppe" not good ;(
 
+                if (playerSetupController.validateNames(names, noPlayers)){
+                    controller.setupPlayers(names);
+                    dispose();
+                } else {
+                    showErr();
+                };
+
             }
         });
 
