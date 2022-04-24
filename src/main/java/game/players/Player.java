@@ -143,7 +143,7 @@ public class Player {
         return lives;
     }
 
-    public Boolean hasCP(CheckPoint cp) {
+    public boolean hasCP(CheckPoint cp) {
         return (cpSet.getSet().contains(cp)) ;
     }
 
@@ -158,7 +158,7 @@ public class Player {
        return cpSet.equals(set);
     }
 
-    public void isWinner(Boolean k){
+    public void isWinner(boolean k){
         this.Wins = k;
     }
 
@@ -166,15 +166,12 @@ public class Player {
         return cpSet.getSet();
     }
 
-    public Position push(Player player2){
+    public void pushPlayer(Player player2){
         Card card = CardFactory.getCard(CardType.MOVE, 1);
 
         Object[] newPosDir = card.applyAction(player2.getPosition(), getDirection());
 
-        Position position = (Position) newPosDir[0];
-
-        return position;
-
+        player2.setPosition((Position) newPosDir[0]);
     }
 }
 

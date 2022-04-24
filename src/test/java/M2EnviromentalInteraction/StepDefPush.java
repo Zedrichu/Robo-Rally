@@ -63,7 +63,7 @@ public class StepDefPush {
 
     @Then("player2 {string} is pushed in direction {string} to new location at row {int} column {int} with direction {string}")
     public void player2_is_pushed_in_direction_to_new_location_at_row_column_with_direction(String s2, String dir1, int y3, int x3, String dir2) {
-        player2.setPosition(player1.push(player2));
+        player1.pushPlayer(player2);
 
         assertTrue(player2.getPosition().x == x3
                 && player2.getPosition().y == y3

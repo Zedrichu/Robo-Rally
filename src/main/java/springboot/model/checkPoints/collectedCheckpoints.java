@@ -19,8 +19,8 @@ public class collectedCheckpoints {
         return set;
     }
 
-    public boolean hasAll(CheckPointSet setall){
-        return (set.containsAll((Collection<CheckPoint>) setall));
-    }
+//    public boolean hasAll(CheckPointSet setall){
+//        return (set.containsAll((Collection<CheckPoint>) setall));
+//    }
 
 }
