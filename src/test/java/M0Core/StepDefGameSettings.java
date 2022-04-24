@@ -7,25 +7,27 @@ import game.RoboRally;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import springboot.controller.ApplicationController;
+import springboot.controller.GameSettingsController;
 
 public class StepDefGameSettings {
 
-    RoboRally game;
+    GameSettingsController gameSettingsController;
 
     @Given("new game")
     public void new_game() {
-        game = RoboRally.getInstance();
-        assertNotNull(game);
+        gameSettingsController = new GameSettingsController(new ApplicationController());
+        assertNotNull(gameSettingsController);
     }
 
     @When("select settings")
     public void select_settings() {
-        game.newGame(2);
+        gameSettingsController.setGameSettings(Complexity.EASY, 2);
     }
 
     @Then("game settings has EASY and {int} players")
     public void game_settings_has_easy_and_players(Integer int1) {
-        GameSettings set = game.getGameSettings();
+        GameSettings set = gameSettingsController.getGameSettings();
         assertEquals(2,set.getAmountOfPlayers());
         assertEquals(Complexity.EASY,set.getComplexity());
     }

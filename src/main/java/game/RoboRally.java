@@ -72,7 +72,8 @@ public class RoboRally {
     // Constructor for our game, using facade pattern
     public void newGame(int noPlayers){
         gameSettings = new GameSettings();
-        gameSettings.setSettings(Complexity.EASY, noPlayers);
+        gameSettings.setComplexity(Complexity.EASY);
+        gameSettings.setAmountOfPlayers(noPlayers);
 
         deck = new CardDeck();
         int[] size = gameSettings.getBoardSize();

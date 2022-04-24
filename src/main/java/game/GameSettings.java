@@ -35,15 +35,6 @@ public class GameSettings {
         this.complexity = complexity;
     }
 
-    //selectSettings, needs modification to GUI later.
-    public void setSettings(Complexity complexity, int number){
-        for (int i=0;i<amountOfPlayers;i++) {
-            Player player = new Player("Player");
-            player.setDirection(Direction.getRandomDirection());
-            sps.add(player);
-        }
-        this.complexity = complexity;
-    }
 // Move to Controller
     //GetBoardSize depending on complexity
     public int[] getBoardSize(){

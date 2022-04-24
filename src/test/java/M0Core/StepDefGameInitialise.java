@@ -25,7 +25,8 @@ public class StepDefGameInitialise {
     public void game_settings(int x) {
         gameSettings = new GameSettings();
         gameSettings.setAmountOfPlayers(x);
-        gameSettings.setSettings(Complexity.EASY, x);
+        gameSettings.setComplexity(Complexity.EASY);
+        gameSettings.setAmountOfPlayers(x);
         assertEquals(Complexity.EASY, gameSettings.getComplexity());
         assertEquals(x,gameSettings.getAmountOfPlayers());
     }

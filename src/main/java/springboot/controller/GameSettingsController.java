@@ -26,9 +26,19 @@ public class GameSettingsController {
     private GameSettingsView view;
     //private CardDeck deck;
 
-    GameSettingsController(ApplicationController application) {
+    public GameSettingsController(ApplicationController application) {
         this.application = application;
         this.view = new GameSettingsView(this);
+    }
+
+    public GameSettings getGameSettings() {
+        return gameSettings;
+    }
+
+    public void setGameSettings(Complexity complexity, int noPlayers) {
+        gameSettings = new GameSettings();
+        this.gameSettings.setComplexity(complexity);
+        this.gameSettings.setAmountOfPlayers(noPlayers);
     }
 
     public void setupGame(Complexity complexity, int noPlayers) {
