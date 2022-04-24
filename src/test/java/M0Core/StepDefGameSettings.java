@@ -3,20 +3,18 @@ import static org.junit.Assert.*;
 
 import game.Complexity;
 import game.GameSettings;
-import game.RoboRally;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import springboot.controller.ApplicationController;
-import springboot.controller.GameSettingsController;
+import springboot.controller.gameSetup.GameSettingsFacadeController;
 
 public class StepDefGameSettings {
 
-    GameSettingsController gameSettingsController;
+    GameSettingsFacadeController gameSettingsController;
 
     @Given("new game")
     public void new_game() {
-        gameSettingsController = new GameSettingsController();
+        gameSettingsController = new GameSettingsFacadeController();
         assertNotNull(gameSettingsController);
     }
 

@@ -2,11 +2,10 @@ package M0Core;
 
 import static org.junit.Assert.*;
 
-import org.junit.Assert;
 import springboot.model.cards.CardDeck;
 import game.players.Player;
 import springboot.model.players.PlayerFactory;
-import game.round.Round;
+import springboot.model.round.Round;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

@@ -1,7 +1,6 @@
-package game.round;
+package springboot.model.round;
 
 import game.players.Player;
-import view.widgets.Board;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

@@ -1,9 +1,8 @@
-package springboot.view;
+package springboot.view.gameSetupViews;
 
-import ch.qos.logback.core.pattern.color.BoldYellowCompositeConverter;
 import game.players.Player;
-import springboot.controller.BoardPositionController;
-import springboot.controller.GameSettingsController;
+import springboot.controller.gameSetup.BoardPositionController;
+import springboot.controller.gameSetup.GameSettingsFacadeController;
 import springboot.model.Position;
 import springboot.utils.GridBagUtils;
 import view.widgets.Board;
@@ -17,11 +16,11 @@ import java.util.ArrayList;
 import java.util.Set;
 
 public class BoardPositionView extends JFrame {
-    private GameSettingsController gameSettingsController;
+    private GameSettingsFacadeController gameSettingsController;
     private BoardPositionController boardPositionController;
     private JButton SubmitButton;
 
-    public BoardPositionView(GameSettingsController gameSettingsController, BoardPositionController boardPositionController, Board board, int noPlayers, Set<Player> sps) {
+    public BoardPositionView(GameSettingsFacadeController gameSettingsController, BoardPositionController boardPositionController, Board board, int noPlayers, Set<Player> sps) {
         this.gameSettingsController = gameSettingsController;
         this.boardPositionController = boardPositionController;
         initGUI(board, noPlayers, sps);

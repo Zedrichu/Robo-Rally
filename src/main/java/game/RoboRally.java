@@ -10,7 +10,7 @@ import springboot.model.cards.Card;
 import springboot.model.cards.CardDeck;
 import springboot.model.cards.CardHand;
 import game.players.Player;
-import game.round.Round;
+import springboot.model.round.Round;
 import view.widgets.*;
 
 
