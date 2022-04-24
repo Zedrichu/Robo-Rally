@@ -2,9 +2,7 @@ package view.widgets;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import javax.swing.JPanel;
 
@@ -76,7 +74,9 @@ public class Board extends JPanel {
 				Tile t = getRandomTile();
 				if (noPlrs>0) {
 					double val = rnd.nextDouble();
-					if (val<0.5) {t = new Tile(TileType.STARTING); noPlrs--;}
+					if (val<0.20) {
+						t = new Tile(TileType.STARTING);
+						noPlrs--;}
 				}
 				t.position = new Position(i, j);
 
@@ -86,8 +86,14 @@ public class Board extends JPanel {
 				board[j][i] = t;
 				add(t);
 			}
+
 		}
 	}
+
+	public Object[] getStartTiles() {
+		return startTiles.toArray();
+	}
+
 	//Finds a random tile that is a starting tile
 	public Position getRandomStartPosition() {
 		int val = rnd.nextInt(1, startTiles.size());
@@ -110,10 +116,8 @@ public class Board extends JPanel {
 
 	private Tile getRandomTile() {
 		double val = rnd.nextDouble();
-		if (val <0.80){
+		if (val <0.80) {
 			return new Tile(TileType.EMPTY);
-		} else if (val < 0.88) {
-			return new Tile(TileType.STARTING);
 		} else if (val < 0.92) {
 			return new Tile(TileType.PIT);
 		} else if (val < 0.96) {

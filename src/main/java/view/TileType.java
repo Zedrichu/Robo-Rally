@@ -11,7 +11,6 @@ public enum TileType {
 	CONVEYORBELT("tiles/conveyorBelt.png"),
 	CHECKPOINT("tiles/checkPoint.png");
 
-
 	final private String pictureFile;
 	
 	TileType(String pictureFile) {

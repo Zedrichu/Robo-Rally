@@ -10,7 +10,10 @@ public class GameSettings {
     private long boardId;
     private Complexity complexity;
     private Set<Player> sps = new HashSet<>();
-    private int amountOfPlayers = 2;
+    private int amountOfPlayers;
+
+    public GameSettings() {
+    }
 
     public Set<Player> getPlayers() {
         return sps;
@@ -26,6 +29,10 @@ public class GameSettings {
 
     public Complexity getComplexity() {
         return complexity;
+    }
+
+    public void setComplexity(Complexity complexity) {
+        this.complexity = complexity;
     }
 
     //selectSettings, needs modification to GUI later.
@@ -46,4 +53,6 @@ public class GameSettings {
             case HARD -> new int[]{11, 11};
         };
     }
+
+
 }

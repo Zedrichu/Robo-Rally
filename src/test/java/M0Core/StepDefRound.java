@@ -2,6 +2,7 @@ package M0Core;
 
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
 import springboot.model.cards.CardDeck;
 import game.players.Player;
 import springboot.model.players.PlayerFactory;
@@ -11,6 +12,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -24,7 +26,11 @@ public class StepDefRound {
     }
     @Given("set of players <S>")
     public void set_of_players_s() {
-        players = PlayerFactory.getPlayerSet(2);
+        Set<String> names = new HashSet<String>(){{
+            add("Adrian");
+            add("Jeppe");
+        }};
+        players = PlayerFactory.getPlayerSet(2,names);
         round.setPlayers(players);
     }
 
@@ -66,16 +72,29 @@ public class StepDefRound {
         assertEquals(1,round.getRoundNumber());
 
     }
-    //TODO
+
     @Given("any in <S> don't have any cards")
     public void any_in_s_don_t_have_any_cards() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        for (Player player : players) {
+            player.drawCardHand(new CardDeck());
+            //unsure if this is the correct way to do this
+            player.chooseCards(0);
+        }
+        round.setPlayers(players);
+        assertTrue(round.checkNoCardsInHand());
     }
-    @Then("all players have a card hand with {int} cards")
-    public void all_players_have_a_card_hand_with_cards(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+    @When("draw cards for each player")
+    public void draw_cards_for_each_player() {
+        for (Player player : players) {
+            player.drawCardHand(new CardDeck());
+        }
+    }
+    @Then("each player have a card hand with {int} cards")
+    public void each_player_have_a_card_hand_with_cards(Integer int1) {
+       for (Player player : players) {
+           assertEquals(9, player.getHandSize());
+       }
     }
 
 

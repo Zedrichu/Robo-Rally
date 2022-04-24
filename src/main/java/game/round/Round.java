@@ -27,6 +27,16 @@ public class Round implements PropertyChangeListener {
         this.players = players;
     }
 
+    //Checks that all players have no cards in hand
+    public boolean checkNoCardsInHand() {
+        for (Player player : players) {
+            if (player.getHand() == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     //Checks that all Players have played
     public boolean haveAllPlayed() {
         boolean res=true;
