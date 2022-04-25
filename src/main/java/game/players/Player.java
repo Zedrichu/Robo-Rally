@@ -5,10 +5,10 @@ import springboot.model.Position;
 import springboot.model.cards.*;
 import springboot.model.Direction;
 import springboot.model.checkPoints.CheckPoint;
-import springboot.model.checkPoints.CheckPointSet;
 import springboot.model.checkPoints.collectedCheckpoints;
 import view.widgets.Board;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Player {
@@ -19,8 +19,7 @@ public class Player {
     private Direction direction;
     public CardHand hand;
     private int lives = 10;
-    collectedCheckpoints cpSet;
-    private Boolean Wins;
+    Set<CheckPoint> collectedCP;
 
 
 
@@ -96,28 +95,6 @@ public class Player {
         this.setHand(current);
     }
 
-// CARD SELECTION METHOD
-    //+++++++++YET TO BE IMPLEMENTED+++++++++
-//    void cardSelect(){
-//        int nr_sel = 5; int nr_disc = 4;
-//        ArrayList<Card> selCards = new ArrayList<Card>();
-//        ArrayList<Card> disCards = new ArrayList<Card>();
-//
-//        while(selCards.size() < nr_sel){
-//            //FOR Every click in the 3x3 grid in the GUI
-//                //A new card is added to the selCards arraylist
-//
-//        }
-//        //After the cards are selected the remaining 4 cards are assigned to disCards local var.
-//
-//        //CardDeck method for pushing discarded cards back in the set
-//                // - uses hand, and selected cards for disCards definition
-//        //                             $    pushDiscardsMeth();     $
-//
-//
-//        this.setHand(selCards);
-//    }
-
     public void chooseCards(int x) {
         ArrayList<Card> current = hand.getHand();
         ArrayList<Card> chosen = new ArrayList<>(x);
@@ -145,26 +122,22 @@ public class Player {
     }
 
     public boolean hasCP(CheckPoint cp) {
-        return (cpSet.getSet().contains(cp)) ;
+        return (collectedCP.contains(cp)) ;
     }
 
     public void addCheckPoint(CheckPoint cp) {
-        if (cpSet == null) cpSet = new collectedCheckpoints();{
-
+        if (collectedCP == null) {
+            collectedCP = new HashSet<>();
         }
-        if (!hasCP(cp)) cpSet.addToBasket(cp);
+        if (!hasCP(cp)) collectedCP.add(cp);
     }
 
-    public boolean hasAllCP(CheckPointSet set){
-       return cpSet.equals(set);
+    public boolean hasAllCP(Set<CheckPoint> set){
+       return collectedCP.equals(set);
     }
 
-    public void isWinner(boolean k){
-        this.Wins = k;
-    }
-
-    public Set<CheckPoint> getCpSet() {
-        return cpSet.getSet();
+    public Set<CheckPoint> getCollectedCP() {
+        return collectedCP;
     }
 
     public void pushPlayer(Player player2){
@@ -174,6 +147,7 @@ public class Player {
 
         player2.setPosition((Position) newPosDir[0]);
     }
+
 }
 
 

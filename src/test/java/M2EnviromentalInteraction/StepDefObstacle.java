@@ -108,7 +108,7 @@ public class StepDefObstacle {
         player.setPosition(x, y);
         player.addCheckPoint(cp);
         //System.out.print("in given " + player.getCpSet());
-        this.size = player.getCpSet().size();
+        this.size = player.getCollectedCP().size();
 
     }
     // visiting new CheckPoint
@@ -166,19 +166,19 @@ public class StepDefObstacle {
     @Then("player {string} has new set of visited CheckPoints")
     public void player_has_new_set_of_visited_check_points(String s) {
         player.addCheckPoint(cp);
-        assertTrue(player.getCpSet().contains(cp));
+        assertTrue(player.getCollectedCP().contains(cp));
     }
     // player has collected all CheckPoints = WINS
     @Then("if player {string} has complete set of CheckPoints then player wins")
     public void if_player_has_complete_set_of_check_points_then_player_wins(String s) {
-        board.robotWins(player);
+        player.hasAllCP(board.getCheckPoints());
     }
 
     // player visits a CheckPoint which has previously been visited
     @Then("player {string} has same set of CheckPoints as before")
     public void player_has_same_set_of_check_points_as_before(String s) {
-        assertTrue(player.getCpSet().contains(cp));
-        assertEquals(size,player.getCpSet().size());
+        assertTrue(player.getCollectedCP().contains(cp));
+        assertEquals(size,player.getCollectedCP().size());
     }
 }
 

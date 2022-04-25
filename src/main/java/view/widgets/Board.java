@@ -23,25 +23,19 @@ public class Board extends JPanel {
 	private int cols;
 	private Set<Tile> startTiles = new HashSet<>();
 	//private CheckPointSet TotalCps;
-	private Set<CheckPoint>CheckPoints = new HashSet<>();
+	private Set<CheckPoint> checkPoints = new HashSet<>();
 
 
 	public Set<CheckPoint> getCheckPoints() {
-
-		return CheckPoints;
+		return checkPoints;
 	}
-	
 
-	public void setCheckPoints() {
-
-		    public CheckPointSet(int number){
-			for (int i = 0; i <= number ; i++){
-				cp = new CheckPoint();
-				set.add(cp);
-
-			}
-		}
-	}
+//	public void setCheckPoints(int number) {
+//		for (int i = 0; i <= number ; i++){
+//			CheckPoint cp = new CheckPoint();
+//			checkPoints.add(cp);
+//		}
+//	}
 
 
 
@@ -80,12 +74,6 @@ public class Board extends JPanel {
 	
 	public void unsetRobot(int row, int col) {
 		board[row][col].unsetRobot();
-	}
-
-	public void robotWins(Player player){
-		if (player.hasAllCP(TotalCps)) {
-			player.isWinner(true);
-		}
 	}
 	
 	private void loadBoard(int noPlrs) {
@@ -137,8 +125,10 @@ public class Board extends JPanel {
 
 	private Tile getRandomTile() {
 		double val = rnd.nextDouble();
-		if (val <0.80) {
+		if (val < 0.75) {
 			return new Tile(TileType.EMPTY);
+	 	} else if (val <0.80) {
+			return new Tile(TileType.CHECKPOINT);
 		} else if (val < 0.92) {
 			return new Tile(TileType.PIT);
 		} else if (val < 0.96) {
