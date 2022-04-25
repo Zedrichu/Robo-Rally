@@ -1,6 +1,6 @@
 package springboot.model.obstacles;
 
-import game.players.Player;
+import springboot.model.players.Player;
 
 public class Pit extends Obstacle<Player, Integer>{
     @Override

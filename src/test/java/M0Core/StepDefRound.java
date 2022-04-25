@@ -3,7 +3,7 @@ package M0Core;
 import static org.junit.Assert.*;
 
 import springboot.model.cards.CardDeck;
-import game.players.Player;
+import springboot.model.players.Player;
 import springboot.model.players.PlayerFactory;
 import springboot.model.round.Round;
 

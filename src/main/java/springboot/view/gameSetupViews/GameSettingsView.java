@@ -1,6 +1,6 @@
 package springboot.view.gameSetupViews;
 
-import game.Complexity;
+import springboot.model.Complexity;
 import springboot.controller.gameSetup.GameSettingsFacadeController;
 import springboot.utils.GridBagUtils;
 

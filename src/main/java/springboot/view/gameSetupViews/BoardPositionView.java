@@ -1,6 +1,6 @@
 package springboot.view.gameSetupViews;
 
-import game.players.Player;
+import springboot.model.players.Player;
 import springboot.controller.gameSetup.BoardPositionController;
 import springboot.controller.gameSetup.GameSettingsFacadeController;
 import springboot.model.Position;

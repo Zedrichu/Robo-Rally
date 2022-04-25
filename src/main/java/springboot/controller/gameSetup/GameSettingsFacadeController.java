@@ -1,8 +1,8 @@
 package springboot.controller.gameSetup;
 
-import game.Complexity;
-import game.GameSettings;
-import game.players.Player;
+import springboot.model.Complexity;
+import springboot.model.GameSettings;
+import springboot.model.players.Player;
 import springboot.controller.ApplicationController;
 import springboot.model.cards.CardDeck;
 import springboot.model.players.PlayerFactory;

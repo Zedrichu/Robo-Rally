@@ -1,6 +1,6 @@
 package springboot.model.obstacles;
 
-import game.players.Player;
+import springboot.model.players.Player;
 import springboot.model.Position;
 import springboot.model.cards.Card;
 import springboot.model.cards.CardFactory;

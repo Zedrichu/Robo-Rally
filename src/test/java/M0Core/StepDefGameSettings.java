@@ -1,8 +1,8 @@
 package M0Core;
 import static org.junit.Assert.*;
 
-import game.Complexity;
-import game.GameSettings;
+import springboot.model.Complexity;
+import springboot.model.GameSettings;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

@@ -1,4 +1,4 @@
-package game.players;
+package springboot.model.players;
 
 
 import springboot.model.Position;
@@ -20,7 +20,7 @@ public class Player {
     public CardHand hand;
     private int lives = 10;
     collectedCheckpoints cpSet;
-    private Boolean Wins;
+    private boolean wins;
 
 
 
@@ -137,7 +137,7 @@ public class Player {
     }
 
     public void isWinner(boolean k){
-        this.Wins = k;
+        this.wins = k;
     }
 
     public Set<CheckPoint> getCpSet() {
