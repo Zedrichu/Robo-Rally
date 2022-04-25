@@ -16,7 +16,7 @@ public class GameController {
 
     public GameController(ApplicationController application, GameSettings gameSettings, Board board, CardDeck deck){
         this.application = application;
-        this.healthView = new HealthView(this);
+        this.healthView = new HealthView(this,gameSettings);
 
 
     }

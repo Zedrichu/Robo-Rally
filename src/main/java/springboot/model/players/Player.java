@@ -109,7 +109,7 @@ public class Player {
         this.lives = lives + effect;
     }
 
-    public double getLives() {
+    public int getLives() {
         return lives;
     }
 
