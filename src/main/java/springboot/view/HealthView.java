@@ -1,12 +1,11 @@
 package springboot.view;
 
 import springboot.controller.gameplay.GameController;
-import springboot.controller.gameplay.HealthController;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class HealthBarView extends JFrame {
+public class HealthView extends JFrame {
 
     private GameController gameController;
     float current_health;
@@ -14,7 +13,7 @@ public class HealthBarView extends JFrame {
     float percentage;
 
     JPanel HealthBarPanel;
-    public HealthBarView(GameController gameController){
+    public HealthView(GameController gameController){
         this.gameController = gameController;
         initGUI();
     }

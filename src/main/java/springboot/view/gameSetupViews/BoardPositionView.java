@@ -1,6 +1,7 @@
 package springboot.view.gameSetupViews;
 
 import springboot.controller.board.BoardController;
+import springboot.model.Direction;
 import springboot.model.players.Player;
 import springboot.controller.gameSetup.BoardPositionController;
 import springboot.controller.gameSetup.GameSettingsFacadeController;
@@ -24,14 +25,16 @@ public class BoardPositionView extends JFrame {
     private JButton SubmitButton;
 
     public BoardPositionView(GameSettingsFacadeController gameSettingsController, BoardPositionController boardPositionController,
-                             BoardController board, int noPlayers, Set<Player> sps) {
+                             BoardController boardController, int noPlayers, Set<Player> sps) {
         this.gameSettingsController = gameSettingsController;
         this.boardPositionController = boardPositionController;
-        initGUI(board, noPlayers, sps);
+        this.boardController = boardController;
+
+        initGUI(boardController, noPlayers, sps);
     }
 
 
-    private void initGUI(BoardController board,int noPlayers, Set<Player> sps) {
+    private void initGUI(BoardController boardController,int noPlayers, Set<Player> sps) {
         setMinimumSize(new Dimension(600,700));
         setResizable(false);
         setTitle("Players pick positions");
@@ -42,7 +45,7 @@ public class BoardPositionView extends JFrame {
         //JPanel mainPanel = new JPanel(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
         //Panel one shows the board
         JPanel panelOne = new JPanel(new GridBagLayout());
-        panelOne.add(board.getView());
+        panelOne.add(boardController.getView());
 
         //Panel drop down menu to pick starting tile
         //comboPosition = new JCombobox();
@@ -55,7 +58,7 @@ public class BoardPositionView extends JFrame {
         int i=0;
         for (Player player : sps) {
             panelTwo.add(new JLabel("Player " + (player.getPlayerName()) + ":"), GridBagUtils.constraint(i,1,5));
-            JComboBox input = new JComboBox(board.getBoard().getStartTiles());
+            JComboBox input = new JComboBox(boardController.getBoard().getStartTiles());
             selections.add(new Object[]{player, input});
             panelTwo.add(input, GridBagUtils.constraint(i,2,5));
             i++;
@@ -67,12 +70,14 @@ public class BoardPositionView extends JFrame {
                 for (Object[] pair : selections){
                     Player plr = (Player) pair[0];
                     Position pos = ((Tile)((JComboBox) pair[1]).getSelectedItem()).getPosition();
-                    plr.setPosition(pos); //Error
+                    plr.setDirection(Direction.getRandomDirection());
+                    plr.setPosition(pos);
 
                 }
                 if (boardPositionController.validatePositions(sps)){
                     System.out.println("Entire game setup is completed!");
-                    //Pass new thing
+                    gameSettingsController.selectPositions(sps);
+                    dispose();
                 }
                 else {
                     showErr();

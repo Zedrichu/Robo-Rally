@@ -25,6 +25,14 @@ public class Board {
 		this.cols = cols;
 	}
 
+	public int getCols() {
+		return cols;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
 	//Getter for board
 	public Tile[][] getBoard() {
 		return board;

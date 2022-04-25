@@ -1,11 +1,11 @@
 package springboot.controller.gameplay;
 
-import springboot.view.HealthBarView;
+import springboot.view.HealthView;
 
 public class HealthController {
-    private HealthBarView view;
+    private HealthView view;
 
-    public HealthController(HealthBarView view) {
+    public HealthController(HealthView view) {
         this.view = view;
     }
 

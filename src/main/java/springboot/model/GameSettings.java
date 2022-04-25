@@ -11,11 +11,12 @@ public class GameSettings {
     private Set<Player> sps = new HashSet<>();
     private int amountOfPlayers;
 
-    public GameSettings() {
-    }
-
     public Set<Player> getPlayers() {
         return sps;
+    }
+
+    public void setPlayers(Set<Player> sps) {
+        this.sps = sps;
     }
 
     public void setAmountOfPlayers(int amountOfPlayers) {

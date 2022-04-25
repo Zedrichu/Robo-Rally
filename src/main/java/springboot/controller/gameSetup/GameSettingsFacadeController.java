@@ -78,8 +78,10 @@ public class GameSettingsFacadeController {
         boardPositionController.display();
     }
 
-  //  public void BoardPosition(Set<Player> players, ){
-   // }
+    public void selectPositions(Set<Player> sps) {
+        gameSettings.setPlayers(sps);
+        application.game(gameSettings, board, cardDeck);
+    }
 
     //Display the view
     public void display() {view.setVisible(true);}
