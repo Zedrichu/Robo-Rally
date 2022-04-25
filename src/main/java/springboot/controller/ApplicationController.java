@@ -2,17 +2,18 @@ package springboot.controller;
 
 import springboot.controller.gameSetup.GameSettingsFacadeController;
 import springboot.controller.gameSetup.PlayerSetupController;
+import springboot.controller.gameplay.GameController;
 
 public class ApplicationController {
 
     private GameSettingsFacadeController settingsController;
     private CardController cardController;
     private PlayerSetupController playerSetupController;
-    //private RunningGameController runningGameController;
+    private GameController gameController;
 
     public void game(){
-        //runningGameController = new RunningGameController(this);
-
+        gameController = new GameController(this);
+        gameController.display();
     }
 
     public void settings() {

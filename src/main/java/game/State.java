@@ -1,7 +1,7 @@
 package game;
 
 import springboot.model.round.Round;
-import view.widgets.Board;
+import springboot.model.board.Board;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

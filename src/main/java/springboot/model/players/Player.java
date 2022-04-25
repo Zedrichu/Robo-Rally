@@ -1,12 +1,11 @@
-package game.players;
+package springboot.model.players;
 
 
 import springboot.model.Position;
 import springboot.model.cards.*;
 import springboot.model.Direction;
 import springboot.model.checkPoints.CheckPoint;
-import springboot.model.checkPoints.collectedCheckpoints;
-import view.widgets.Board;
+import springboot.model.board.Board;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,9 +19,6 @@ public class Player {
     public CardHand hand;
     private int lives = 10;
     Set<CheckPoint> collectedCP;
-
-
-
 
     private int getFreshID() {
         IDs++;
@@ -109,10 +105,6 @@ public class Player {
         this.setHand(chosen);
     }
 
-    public void setStartPosition(Position pos) {
-        this.position = new Position(pos.x, pos.y);
-    }
-
     public void updateLives(int effect) {
         this.lives = lives + effect;
     }
@@ -143,9 +135,9 @@ public class Player {
     public void pushPlayer(Player player2){
         Card card = CardFactory.getCard(CardType.MOVE, 1);
 
-        Object[] newPosDir = card.applyAction(player2.getPosition(), getDirection());
+        Position pos = (Position) card.applyAction(player2.getPosition(), getDirection())[0];
 
-        player2.setPosition((Position) newPosDir[0]);
+        player2.setPosition(pos);
     }
 
 }

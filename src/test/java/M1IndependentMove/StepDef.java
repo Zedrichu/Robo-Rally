@@ -10,14 +10,14 @@ import springboot.model.cards.Card;
 import springboot.model.cards.CardFactory;
 import springboot.model.cards.CardType;
 import springboot.model.Direction;
-import view.widgets.Board;
+import springboot.model.board.Board;
 
 public class StepDef {
     Player player;
     Card card;
     Position newPosition;
     Direction newDirection;
-    Board board = new Board(10,10,1);
+    Board board = new Board(10,10);
     @Given("player {string} at row {int} and column {int} and direction {string}")
     public void player_at_row_and_column_and_direction(String string, Integer int1, Integer int2,String chr) {
         player = new Player(string);

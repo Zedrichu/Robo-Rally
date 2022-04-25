@@ -1,5 +1,6 @@
 package springboot.controller.gameSetup;
 
+import springboot.controller.board.BoardController;
 import springboot.model.Complexity;
 import springboot.model.GameSettings;
 import springboot.model.players.Player;
@@ -7,7 +8,7 @@ import springboot.controller.ApplicationController;
 import springboot.model.cards.CardDeck;
 import springboot.model.players.PlayerFactory;
 import springboot.view.gameSetupViews.GameSettingsView;
-import view.widgets.Board;
+import springboot.model.board.Board;
 
 
 import java.util.Set;
@@ -18,6 +19,7 @@ public class GameSettingsFacadeController {
     private BoardSetupController boardSetupController;
     private PlayerSetupController playerSetupController;
     private BoardPositionController boardPositionController;
+    private BoardController boardController;
     private ApplicationController application;
     private Board board;
     private Set<Player> sps;
@@ -58,7 +60,8 @@ public class GameSettingsFacadeController {
     public void setupBoard(){
         System.out.println("Board has been selected");
         int[] sizes = gameSettings.getBoardSize();
-        board = new Board(sizes[0],sizes[1],gameSettings.getAmountOfPlayers());
+        board = new Board(sizes[0],sizes[1]);
+        board.loadBoard(gameSettings.getAmountOfPlayers());
 
         cardDeck = new CardDeck();
 
@@ -70,9 +73,13 @@ public class GameSettingsFacadeController {
     public void setupPlayers(Set<String> names) {
         System.out.println("Players have been initialized");
         sps = PlayerFactory.getPlayerSet(gameSettings.getAmountOfPlayers(), names);
-        boardPositionController = new BoardPositionController(this, board, gameSettings.getAmountOfPlayers(), sps);
+        boardController = new BoardController(this);
+        boardPositionController = new BoardPositionController(this, boardController, gameSettings.getAmountOfPlayers(), sps);
         boardPositionController.display();
     }
+
+  //  public void BoardPosition(Set<Player> players, ){
+   // }
 
     //Display the view
     public void display() {view.setVisible(true);}

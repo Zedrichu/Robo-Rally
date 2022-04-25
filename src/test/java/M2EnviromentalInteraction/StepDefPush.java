@@ -9,7 +9,7 @@ import springboot.model.Position;
 import springboot.model.cards.Card;
 import springboot.model.cards.CardFactory;
 import springboot.model.cards.CardType;
-import view.widgets.Board;
+import springboot.model.board.Board;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -20,11 +20,10 @@ public class StepDefPush {
     Player player1;
     Player player2;
     Card card;
-    private CardType type;
     Position newPosition;
     Direction newDirection;
     
-    Board board = new Board(10,10,1);
+    Board board = new Board(10,10);
 
     @Given("A player1 {string} at row {int} column {int} with direction {string}")
     public void a_player1_at_row_y1_column_with_direction(String s1, int x1, int y1, String dir1) {
@@ -40,7 +39,7 @@ public class StepDefPush {
     }
     @Given("A player1 {string} has a MoveCard with intensity {int}")
     public void a_player1_has_a_move_card_with_intensity(String s1, int intensity) {
-        card = CardFactory.getCard(type.MOVE, intensity);
+        card = CardFactory.getCard(CardType.MOVE, intensity);
     }
     @When("player1 {string} plays MoveCard")
     public void player1_plays_move_card(String s1) {

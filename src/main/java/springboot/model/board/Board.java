@@ -1,56 +1,28 @@
-package view.widgets;
+package springboot.model.board;
 
-import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.util.*;
 
-import javax.swing.JPanel;
-
-import springboot.model.players.Player;
 import springboot.model.Position;
-import springboot.model.Direction;
 import springboot.model.checkPoints.CheckPoint;
-import springboot.model.checkPoints.CheckPointSet;
-import view.TileType;
+import springboot.model.tiles.TileType;
 
-public class Board extends JPanel {
-
-	private static final long serialVersionUID = 5384602441603297852L;
+public class Board {
 
 	private Random rnd = new Random();
 	private Tile[][] board;
 	private int rows;
 	private int cols;
 	private Set<Tile> startTiles = new HashSet<>();
-	//private CheckPointSet TotalCps;
 	private Set<CheckPoint> checkPoints = new HashSet<>();
-
 
 	public Set<CheckPoint> getCheckPoints() {
 		return checkPoints;
 	}
 
-//	public void setCheckPoints(int number) {
-//		for (int i = 0; i <= number ; i++){
-//			CheckPoint cp = new CheckPoint();
-//			checkPoints.add(cp);
-//		}
-//	}
-
-
-
-	public Board(int rows, int cols, int noPlrs) {
+	public Board(int rows, int cols) {
 		this.board = new Tile[rows][cols];
 		this.rows = rows;
 		this.cols = cols;
-		
-		setLayout(new GridLayout(rows, cols));
-		
-		setMinimumSize(new Dimension(cols * Tile.PIXEL_SIZE, rows * Tile.PIXEL_SIZE));
-		setMaximumSize(getMinimumSize());
-		setPreferredSize(getMinimumSize());
-		
-		loadBoard(noPlrs);
 	}
 
 	//Getter for board
@@ -58,25 +30,7 @@ public class Board extends JPanel {
 		return board;
 	}
 
-	public int getRows() {
-		return rows;
-	}
-	
-	public int getColumns() {
-		return cols;
-	}
-
-
-	// These 2 should take a robotID to know which robot to move where #TODO
-	public void setRobot(int row, int col, Direction direction) {
-		board[row][col].setRobot(direction);
-	}
-	
-	public void unsetRobot(int row, int col) {
-		board[row][col].unsetRobot();
-	}
-	
-	private void loadBoard(int noPlrs) {
+	public void loadBoard(int noPlrs) {
 		Random rnd = new Random();
 		for (int j = 0; j < rows; j++) {
 			for (int i = 0; i < cols; i++) {
@@ -92,11 +46,18 @@ public class Board extends JPanel {
 				if (t.getType().equals(TileType.STARTING)) {
 					startTiles.add(t);
 				}
+
+				if (t.getType().equals(TileType.CHECKPOINT)) {
+					checkPoints.add(new CheckPoint());
+				}
 				board[j][i] = t;
-				add(t);
 			}
 
 		}
+	}
+
+	public void getTemplate(MapType type) {
+		// board = loadJSON(type.getBoardJSON());
 	}
 
 	public Object[] getStartTiles() {
@@ -138,7 +99,4 @@ public class Board extends JPanel {
 		}
 	}
 
-	public static long getBoardID() {
-		return serialVersionUID;
-	}
 }

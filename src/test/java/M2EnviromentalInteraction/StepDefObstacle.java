@@ -10,9 +10,9 @@ import springboot.model.Direction;
 import springboot.model.checkPoints.CheckPoint;
 import springboot.model.checkPoints.CheckPointSet;
 import springboot.model.obstacles.*;
-import view.TileType;
-import view.widgets.Board;
-import view.widgets.Tile;
+import springboot.model.tiles.TileType;
+import springboot.model.board.Board;
+import springboot.model.board.Tile;
 
 
 import springboot.model.Position;
@@ -32,13 +32,14 @@ public class StepDefObstacle {
     private Obstacle<Player, Integer> o;
     CheckPoint cp = new CheckPoint();
     CheckPointSet TotalCPSet;
-    Board board = new Board(10,10, 3);
+    Board board = new Board(10,10);
     private int size = 0;
 
     // Player with amount of lives
     @Given("Player {string} at row {int} column {int} with {int} lives")
     public void player_at_row_column_with_lives(String s, int x, int y, int z) {
         player = new Player(s);
+        board.loadBoard(3);
         player.setPosition(x, y);
         player.setLives(z);
     }
@@ -49,6 +50,7 @@ public class StepDefObstacle {
         player = new Player(s);
         player.setPosition(x, y);
         player.setDirection(Direction.getCardinalPointChar(dir));
+        board.loadBoard(3);
     }
     // Player with cardHand
     @Given("player {string} at row {int} column {int} with CardHand")
@@ -56,6 +58,7 @@ public class StepDefObstacle {
         player = new Player(s);
         player.setPosition(x, y);
         player.drawCardHand(deck);
+        board.loadBoard(3);
     }
 
     // acidTile
@@ -109,6 +112,7 @@ public class StepDefObstacle {
         player.addCheckPoint(cp);
         //System.out.print("in given " + player.getCpSet());
         this.size = player.getCollectedCP().size();
+        board.loadBoard(3);
 
     }
     // visiting new CheckPoint
@@ -147,7 +151,6 @@ public class StepDefObstacle {
 
     @Then("Player {string} on row {int}  new column {int} and direction {string}")
     public void player_on_row_new_column_and_direction(String s, int xnew, int ynew, String dir) {
-
         o.applyDamage(player, null);
 
         assertTrue(player.getPosition().x == xnew &&
