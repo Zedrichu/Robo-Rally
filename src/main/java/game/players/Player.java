@@ -24,6 +24,7 @@ public class Player {
 
 
 
+
     private int getFreshID() {
         IDs++;
         return IDs;
@@ -151,7 +152,7 @@ public class Player {
         if (cpSet == null) cpSet = new collectedCheckpoints();{
 
         }
-        if (hasCP(cp) == false) cpSet.addToBasket(cp);
+        if (!hasCP(cp)) cpSet.addToBasket(cp);
     }
 
     public boolean hasAllCP(CheckPointSet set){

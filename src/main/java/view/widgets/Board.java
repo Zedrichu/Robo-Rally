@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import game.players.Player;
 import springboot.model.Position;
 import springboot.model.Direction;
+import springboot.model.checkPoints.CheckPoint;
 import springboot.model.checkPoints.CheckPointSet;
 import view.TileType;
 
@@ -21,7 +22,27 @@ public class Board extends JPanel {
 	private int rows;
 	private int cols;
 	private Set<Tile> startTiles = new HashSet<>();
-	private CheckPointSet TotalCps;
+	//private CheckPointSet TotalCps;
+	private Set<CheckPoint>CheckPoints = new HashSet<>();
+
+
+	public Set<CheckPoint> getCheckPoints() {
+
+		return CheckPoints;
+	}
+	
+
+	public void setCheckPoints() {
+
+		    public CheckPointSet(int number){
+			for (int i = 0; i <= number ; i++){
+				cp = new CheckPoint();
+				set.add(cp);
+
+			}
+		}
+	}
+
 
 
 	public Board(int rows, int cols, int noPlrs) {
