@@ -34,7 +34,7 @@ public class GameSettingsView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         comboComplex = new JComboBox(Complexity.values());
-        Integer[] range = {1,2,3,4,5,6,7,8,9};
+        Integer[] range = {1,2,3,4,5,6,7,8};
         comboNumber = new JComboBox(range);
         btnStart = new JButton("Go to Board Selection");
         btnStart.addActionListener(new ActionListener() {
