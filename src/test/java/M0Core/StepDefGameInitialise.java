@@ -10,8 +10,8 @@ import springboot.model.players.Player;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import view.TileType;
-import view.widgets.Board;
+import springboot.model.tiles.TileType;
+import springboot.model.board.Board;
 
 
 public class StepDefGameInitialise {
@@ -41,9 +41,10 @@ public class StepDefGameInitialise {
     @When("game initialisation")
     public void game_initialisation(){
         int[] size = gameSettings.getBoardSize();
-        board = new Board(size[0], size[1],gameSettings.getAmountOfPlayers());
+        board = new Board(size[0], size[1]);
+        board.loadBoard(gameSettings.getAmountOfPlayers());
         for (Player plr : gameSettings.getPlayers()){
-            plr.setStartPosition(board.getRandomStartPosition());
+            plr.setPosition(board.getRandomStartPosition());
         }
     }
 

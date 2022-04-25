@@ -5,10 +5,9 @@ import springboot.model.Position;
 import springboot.model.cards.*;
 import springboot.model.Direction;
 import springboot.model.checkPoints.CheckPoint;
-import springboot.model.checkPoints.CheckPointSet;
-import springboot.model.checkPoints.collectedCheckpoints;
-import view.widgets.Board;
+import springboot.model.board.Board;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Player {
@@ -19,10 +18,7 @@ public class Player {
     private Direction direction;
     public CardHand hand;
     private int lives = 10;
-    collectedCheckpoints cpSet;
-    private boolean wins;
-
-
+    Set<CheckPoint> collectedCP;
 
     private int getFreshID() {
         IDs++;
@@ -109,10 +105,6 @@ public class Player {
         this.setHand(chosen);
     }
 
-    public void setStartPosition(Position pos) {
-        this.position = new Position(pos.x, pos.y);
-    }
-
     public void updateLives(int effect) {
         this.lives = lives + effect;
     }
@@ -122,35 +114,32 @@ public class Player {
     }
 
     public boolean hasCP(CheckPoint cp) {
-        return (cpSet.getSet().contains(cp)) ;
+        return (collectedCP.contains(cp)) ;
     }
 
     public void addCheckPoint(CheckPoint cp) {
-        if (cpSet == null) cpSet = new collectedCheckpoints();{
-
+        if (collectedCP == null) {
+            collectedCP = new HashSet<>();
         }
-        if (hasCP(cp) == false) cpSet.addToBasket(cp);
+        if (!hasCP(cp)) collectedCP.add(cp);
     }
 
-    public boolean hasAllCP(CheckPointSet set){
-       return cpSet.equals(set);
+    public boolean hasAllCP(Set<CheckPoint> set){
+       return collectedCP.equals(set);
     }
 
-    public void isWinner(boolean k){
-        this.wins = k;
-    }
-
-    public Set<CheckPoint> getCpSet() {
-        return cpSet.getSet();
+    public Set<CheckPoint> getCollectedCP() {
+        return collectedCP;
     }
 
     public void pushPlayer(Player player2){
         Card card = CardFactory.getCard(CardType.MOVE, 1);
 
-        Object[] newPosDir = card.applyAction(player2.getPosition(), getDirection());
+        Position pos = (Position) card.applyAction(player2.getPosition(), getDirection())[0];
 
-        player2.setPosition((Position) newPosDir[0]);
+        player2.setPosition(pos);
     }
+
 }
 
 
