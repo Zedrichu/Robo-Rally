@@ -1,7 +1,7 @@
 package M0Core;
 
 import springboot.model.cards.CardDeck;
-import game.players.Player;
+import springboot.model.players.Player;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

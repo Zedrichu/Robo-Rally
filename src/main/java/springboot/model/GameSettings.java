@@ -1,7 +1,6 @@
-package game;
+package springboot.model;
 
-import game.players.Player;
-import springboot.model.Direction;
+import springboot.model.players.Player;
 
 import java.util.HashSet;
 import java.util.Set;

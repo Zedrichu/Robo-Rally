@@ -6,7 +6,7 @@ import java.util.*;
 
 import javax.swing.JPanel;
 
-import game.players.Player;
+import springboot.model.players.Player;
 import springboot.model.Position;
 import springboot.model.Direction;
 import springboot.model.checkPoints.CheckPointSet;

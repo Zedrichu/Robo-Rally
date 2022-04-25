@@ -1,11 +1,11 @@
 package springboot.controller;
 
-import game.Complexity;
-import game.GameSettings;
+import springboot.controller.gameSetup.GameSettingsFacadeController;
+import springboot.controller.gameSetup.PlayerSetupController;
 
 public class ApplicationController {
 
-    private GameSettingsController settingsController;
+    private GameSettingsFacadeController settingsController;
     private CardController cardController;
     private PlayerSetupController playerSetupController;
     //private RunningGameController runningGameController;
@@ -16,7 +16,7 @@ public class ApplicationController {
     }
 
     public void settings() {
-        settingsController = new GameSettingsController(this);
+        settingsController = new GameSettingsFacadeController(this);
         settingsController.display();
     }
 

@@ -1,4 +1,4 @@
-package game.players;
+package springboot.model.players;
 
 
 import springboot.model.Position;
@@ -20,7 +20,7 @@ public class Player {
     public CardHand hand;
     private int lives = 10;
     collectedCheckpoints cpSet;
-    private Boolean Wins;
+    private boolean wins;
 
 
 
@@ -95,28 +95,6 @@ public class Player {
         this.setHand(current);
     }
 
-// CARD SELECTION METHOD
-    //+++++++++YET TO BE IMPLEMENTED+++++++++
-//    void cardSelect(){
-//        int nr_sel = 5; int nr_disc = 4;
-//        ArrayList<Card> selCards = new ArrayList<Card>();
-//        ArrayList<Card> disCards = new ArrayList<Card>();
-//
-//        while(selCards.size() < nr_sel){
-//            //FOR Every click in the 3x3 grid in the GUI
-//                //A new card is added to the selCards arraylist
-//
-//        }
-//        //After the cards are selected the remaining 4 cards are assigned to disCards local var.
-//
-//        //CardDeck method for pushing discarded cards back in the set
-//                // - uses hand, and selected cards for disCards definition
-//        //                             $    pushDiscardsMeth();     $
-//
-//
-//        this.setHand(selCards);
-//    }
-
     public void chooseCards(int x) {
         ArrayList<Card> current = hand.getHand();
         ArrayList<Card> chosen = new ArrayList<>(x);
@@ -159,7 +137,7 @@ public class Player {
     }
 
     public void isWinner(boolean k){
-        this.Wins = k;
+        this.wins = k;
     }
 
     public Set<CheckPoint> getCpSet() {
