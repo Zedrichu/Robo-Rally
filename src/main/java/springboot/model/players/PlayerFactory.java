@@ -1,7 +1,5 @@
 package springboot.model.players;
 
-import game.players.Player;
-
 import java.util.HashSet;
 import java.util.Set;
 

@@ -1,18 +1,16 @@
-package springboot.view;
+package springboot.view.gameSetupViews;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-import game.players.Player;
-import io.cucumber.java.en_old.Ac;
-import springboot.controller.GameSettingsController;
-import springboot.controller.PlayerSetupController;
+import springboot.controller.gameSetup.GameSettingsFacadeController;
+import springboot.controller.gameSetup.PlayerSetupController;
 import springboot.utils.GridBagUtils;
 
 public class PlayerSetupView extends JFrame {
-    private GameSettingsController controller;
+    private GameSettingsFacadeController controller;
     private PlayerSetupController playerSetupController;
     private Set<String> names = new HashSet<>();
     private JButton submitBtn;
@@ -22,7 +20,7 @@ public class PlayerSetupView extends JFrame {
 
     }
 
-    public PlayerSetupView(GameSettingsController controller, PlayerSetupController playerSetupController, int noPlayers) {
+    public PlayerSetupView(GameSettingsFacadeController controller, PlayerSetupController playerSetupController, int noPlayers) {
         this.controller = controller;
         this.playerSetupController = playerSetupController;
         initGUI(noPlayers);
