@@ -1,7 +1,5 @@
 package springboot.model.players;
 
-import game.players.Player;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,9 +14,6 @@ public class PlayerFactory {
         return result;
     }
 
-    public static Player getPlayer(String name) {
-        Player result = new Player(name);
-        return result;
-    }
+    public static Player getPlayer(String name) { return new Player(name);}
 
 }

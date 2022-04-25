@@ -1,20 +1,19 @@
-package springboot.controller;
+package springboot.controller.gameSetup;
 
-import game.Complexity;
-import game.GameSettings;
-import game.players.Player;
-import org.springframework.stereotype.Controller;
-import springboot.Application;
+import springboot.model.Complexity;
+import springboot.model.GameSettings;
+import springboot.model.players.Player;
+import springboot.controller.ApplicationController;
+import springboot.model.cards.CardDeck;
 import springboot.model.players.PlayerFactory;
-import springboot.view.BoardSetupView;
-import springboot.view.GameSettingsView;
+import springboot.view.gameSetupViews.GameSettingsView;
 import view.widgets.Board;
 
 
 import java.util.Set;
 
 
-public class GameSettingsController {
+public class GameSettingsFacadeController {
 
     private BoardSetupController boardSetupController;
     private PlayerSetupController playerSetupController;
@@ -24,11 +23,26 @@ public class GameSettingsController {
     private Set<Player> sps;
     private GameSettings gameSettings;
     private GameSettingsView view;
+    private CardDeck cardDeck;
     //private CardDeck deck;
 
-    GameSettingsController(ApplicationController application) {
+    public GameSettingsFacadeController(){
+        super();
+    }
+
+    public GameSettingsFacadeController(ApplicationController application) {
         this.application = application;
         this.view = new GameSettingsView(this);
+    }
+
+    public GameSettings getGameSettings() {
+        return gameSettings;
+    }
+
+    public void setGameSettings(Complexity complexity, int noPlayers) {
+        gameSettings = new GameSettings();
+        this.gameSettings.setComplexity(complexity);
+        this.gameSettings.setAmountOfPlayers(noPlayers);
     }
 
     public void setupGame(Complexity complexity, int noPlayers) {
@@ -46,7 +60,7 @@ public class GameSettingsController {
         int[] sizes = gameSettings.getBoardSize();
         board = new Board(sizes[0],sizes[1],gameSettings.getAmountOfPlayers());
 
-
+        cardDeck = new CardDeck();
 
         playerSetupController = new PlayerSetupController(this, gameSettings.getAmountOfPlayers());
         playerSetupController.display();

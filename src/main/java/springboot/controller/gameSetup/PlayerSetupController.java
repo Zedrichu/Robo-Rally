@@ -1,14 +1,14 @@
-package springboot.controller;
+package springboot.controller.gameSetup;
 
-import springboot.view.PlayerSetupView;
+import springboot.view.gameSetupViews.PlayerSetupView;
 
 import java.util.Set;
 
 public class PlayerSetupController {
-    private GameSettingsController gameSettingsController;
+    private GameSettingsFacadeController gameSettingsController;
     private PlayerSetupView view;
 
-    public PlayerSetupController(GameSettingsController gameSettingsController, int noPlayers){
+    public PlayerSetupController(GameSettingsFacadeController gameSettingsController, int noPlayers){
         this.gameSettingsController = gameSettingsController;
         this.view = new PlayerSetupView(gameSettingsController, this, noPlayers);
     }

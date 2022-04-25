@@ -1,6 +1,6 @@
 package M2EnviromentalInteraction;
 
-import game.players.Player;
+import springboot.model.players.Player;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

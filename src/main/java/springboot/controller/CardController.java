@@ -1,6 +1,6 @@
 package springboot.controller;
 
-import game.GameSettings;
+import springboot.model.GameSettings;
 import springboot.model.cards.CardDeck;
 import springboot.view.CardView;
 

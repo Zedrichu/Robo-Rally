@@ -1,7 +1,6 @@
-package game;
+package springboot.model;
 
-import game.players.Player;
-import springboot.model.Direction;
+import springboot.model.players.Player;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -35,15 +34,6 @@ public class GameSettings {
         this.complexity = complexity;
     }
 
-    //selectSettings, needs modification to GUI later.
-    public void setSettings(Complexity complexity, int number){
-        for (int i=0;i<amountOfPlayers;i++) {
-            Player player = new Player("Player");
-            player.setDirection(Direction.getRandomDirection());
-            sps.add(player);
-        }
-        this.complexity = complexity;
-    }
 // Move to Controller
     //GetBoardSize depending on complexity
     public int[] getBoardSize(){

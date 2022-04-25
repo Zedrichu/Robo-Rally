@@ -1,27 +1,26 @@
-package springboot.view;
+package springboot.view.gameSetupViews;
 
-import game.Complexity;
-import springboot.controller.GameSettingsController;
+import springboot.model.Complexity;
+import springboot.controller.gameSetup.GameSettingsFacadeController;
 import springboot.utils.GridBagUtils;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.stream.IntStream;
 
 public class GameSettingsView extends JFrame {
 
     private JButton btnStart;
     private JComboBox comboComplex;
     private JComboBox comboNumber;
-    private GameSettingsController controller;
+    private GameSettingsFacadeController controller;
 
     public static void main(String[] args) {
 
     }
 
-    public GameSettingsView(GameSettingsController controller) {
+    public GameSettingsView(GameSettingsFacadeController controller) {
         this.controller = controller;
         this.setSize(500,500);
         initGUI();

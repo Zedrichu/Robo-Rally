@@ -5,12 +5,14 @@ import java.io.IOException;
 import java.util.Set;
 import javax.swing.JFrame;
 
+import springboot.model.Complexity;
 import springboot.model.Direction;
+import springboot.model.GameSettings;
 import springboot.model.cards.Card;
 import springboot.model.cards.CardDeck;
 import springboot.model.cards.CardHand;
-import game.players.Player;
-import game.round.Round;
+import springboot.model.players.Player;
+import springboot.model.round.Round;
 import view.widgets.*;
 
 
@@ -72,7 +74,8 @@ public class RoboRally {
     // Constructor for our game, using facade pattern
     public void newGame(int noPlayers){
         gameSettings = new GameSettings();
-        gameSettings.setSettings(Complexity.EASY, noPlayers);
+        gameSettings.setComplexity(Complexity.EASY);
+        gameSettings.setAmountOfPlayers(noPlayers);
 
         deck = new CardDeck();
         int[] size = gameSettings.getBoardSize();

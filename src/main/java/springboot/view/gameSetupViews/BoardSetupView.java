@@ -1,9 +1,7 @@
-package springboot.view;
+package springboot.view.gameSetupViews;
 
-import springboot.controller.BoardSetupController;
-import springboot.controller.GameSettingsController;
+import springboot.controller.gameSetup.GameSettingsFacadeController;
 import springboot.utils.GridBagUtils;
-import view.widgets.Board;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,10 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BoardSetupView extends JFrame {
-    private GameSettingsController gameSettingsController;
+    private GameSettingsFacadeController gameSettingsController;
     private JButton randomBtn;
 
-    public BoardSetupView(GameSettingsController gameSettingsController){
+    public BoardSetupView(GameSettingsFacadeController gameSettingsController){
         this.gameSettingsController = gameSettingsController;
         initGUI();
     }

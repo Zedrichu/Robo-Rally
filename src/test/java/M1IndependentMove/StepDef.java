@@ -1,7 +1,7 @@
 package M1IndependentMove;
 
 import springboot.model.Position;
-import game.players.Player;
+import springboot.model.players.Player;
 import static org.junit.Assert.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
