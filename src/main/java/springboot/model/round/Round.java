@@ -8,7 +8,8 @@ import java.util.Set;
 
 // Singleton design applied on Round
 public class Round implements PropertyChangeListener {
-    private int roundNumber=1;
+
+    private int roundNumber;
     private Set<Player> players;
     private static Round instance;
 
@@ -16,10 +17,17 @@ public class Round implements PropertyChangeListener {
 //        this.board = board;
 //    }
 
+    private Round(Set<Player> players){
+        this.players = players;
+        this.roundNumber = 1;
+    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+    }
 
+    public Set<Player> getPlayers() {
+        return players;
     }
 
     public void setPlayers(Set<Player> players) {
@@ -49,9 +57,9 @@ public class Round implements PropertyChangeListener {
     }
 
     //Singleton design applied on Round
-    public static Round getInstance(){
+    public static Round getInstance(Set<Player> players){
         if (instance == null){
-            instance = new Round();
+            instance = new Round(players);
         }
         return instance;
     }

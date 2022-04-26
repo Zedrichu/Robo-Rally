@@ -2,24 +2,30 @@ package springboot.view.boardViews;
 
 import springboot.controller.BoardController;
 import springboot.model.board.Board;
+import springboot.model.players.Player;
+import springboot.model.round.Round;
 import springboot.utils.GridBagUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Set;
 
-public class BoardView extends JPanel {
+public class BoardView extends JLayeredPane implements PropertyChangeListener {
     private Board board;
+    private Set<Player> players;
     private BoardController controller;
 
-
-
-    public BoardView(BoardController controller, Board board){
+    public BoardView(BoardController controller, Board board, Set<Player> players){
         this.controller = controller;
         this.board = board;
-        initGUI(board);
+        this.players = players;
+        initGUI(this.board, this.players);
     }
 
-    public void initGUI(Board board){
+    public void initGUI(Board board, Set<Player> sps){
         int cols = board.getCols();
         int rows = board.getRows();
         setLayout(new GridLayout(rows,cols));
@@ -33,10 +39,25 @@ public class BoardView extends JPanel {
                 add(tw, GridBagUtils.constraint(i,j,0));
             }
         }
+
+        for (Player plr : sps){
+            RobotView rw = new RobotView(plr.getRobot());
+            System.out.println(plr.getPosition());
+            //add(rw, GridBagUtils.constraint(plr.getPosition().x, plr.getPosition().y, 0));
+        }
     }
 
     public Board getBoard() {
         return board;
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getPropertyName().equals("board")){
+            this.board = ((Board) evt.getNewValue());
+            revalidate();
+        } else if (evt.getPropertyName().equals("round")) {
+            this.players = ((Round) evt.getNewValue()).getPlayers();
+        }
+    }
 }

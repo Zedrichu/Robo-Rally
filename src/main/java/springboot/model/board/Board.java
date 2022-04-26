@@ -6,7 +6,6 @@ import java.util.*;
 
 import springboot.model.Position;
 import springboot.model.checkPoints.CheckPoint;
-import springboot.model.tiles.TileType;
 
 public class Board implements PropertyChangeListener {
 

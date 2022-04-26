@@ -10,7 +10,7 @@ import springboot.model.Direction;
 import springboot.model.checkPoints.CheckPoint;
 import springboot.model.checkPoints.CheckPointSet;
 import springboot.model.obstacles.*;
-import springboot.model.tiles.TileType;
+import springboot.model.board.TileType;
 import springboot.model.board.Board;
 import springboot.model.board.Tile;
 
@@ -22,12 +22,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.HashSet;
+
 public class StepDefObstacle {
 
     TileType type;
     Player player;
     Tile tile;
-    Round round= new Round();
+    Round round = Round.getInstance(new HashSet<>());
     CardDeck deck = new CardDeck();
     private Obstacle<Player, Integer> o;
     CheckPoint cp = new CheckPoint();

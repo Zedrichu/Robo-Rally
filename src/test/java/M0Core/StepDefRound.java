@@ -17,7 +17,7 @@ import java.util.Set;
 
 public class StepDefRound {
     Set<Player> players;
-    Round round = Round.getInstance();
+    Round round = Round.getInstance(new HashSet<>());
 
     @Given("round counter {int}")
     public void round_counter(int x) {

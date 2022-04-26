@@ -2,7 +2,6 @@ package springboot.model.board;
 
 import springboot.model.Position;
 import springboot.model.Direction;
-import springboot.model.tiles.TileType;
 
 public class Tile {
 

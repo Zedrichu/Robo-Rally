@@ -29,7 +29,7 @@ public class CardTableView extends JPanel{
         int i=0;
         for (Card c : cardHand.getHand()){
             JButton card = new CardView(c);
-            add(card, GridBagUtils.constraint(i,0,3));
+            add(card, GridBagUtils.constraint(i%3,i/3,3));
             i++;
         }
 

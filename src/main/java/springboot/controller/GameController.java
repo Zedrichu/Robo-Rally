@@ -27,6 +27,10 @@ public class GameController {
         return board;
     }
 
+    public Round getRound() {
+        return round;
+    }
+
     public void addPCL(PropertyChangeListener pcl) {
         support.addPropertyChangeListener(pcl);
     }
@@ -50,10 +54,10 @@ public class GameController {
     public GameController(ApplicationController application, GameSettings gameSettings, Board board, CardDeck deck){
         this.support = new PropertyChangeSupport(this);
         setBoard(board);
-        setRound(round);
-        //setDeck(deck);
+        setRound(Round.getInstance(gameSettings.getPlayers()));
+
         this.healthView = new HealthView(gameSettings.getPlayers());
-        this.boardView = new BoardView(BoardController.getInstance(this), this.board);
+        this.boardView = new BoardView(BoardController.getInstance(this), this.board, this.round.getPlayers());
         this.cardTableController = new CardTableController(application,deck);
         this.gameView = new GameView(this, cardTableController, healthView, boardView);
     }

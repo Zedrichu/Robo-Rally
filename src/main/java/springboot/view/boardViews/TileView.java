@@ -1,6 +1,6 @@
 package springboot.view.boardViews;
 
-import springboot.model.tiles.TileType;
+import springboot.model.board.TileType;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -25,6 +25,9 @@ public class TileView extends JPanel {
         } catch (IOException e){
             this.image = new BufferedImage(1,1,BufferedImage.TYPE_INT_RGB);
         }
+
+        if (this.type == TileType.CHECKPOINT)
+            setOpaque(false);
         setMinimumSize(new Dimension(PIXEL_SIZE, PIXEL_SIZE));
         setMaximumSize(getMinimumSize());
         setPreferredSize(getMinimumSize());

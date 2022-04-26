@@ -10,7 +10,7 @@ import springboot.model.players.Player;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import springboot.model.tiles.TileType;
+import springboot.model.board.TileType;
 import springboot.model.board.Board;
 
 

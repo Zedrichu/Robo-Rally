@@ -1,4 +1,4 @@
-package springboot.model.tiles;
+package springboot.model.board;
 
 public enum TileType {
 	

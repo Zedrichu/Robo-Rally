@@ -16,6 +16,7 @@ public class Player {
     final private String playerName;
     private Position position;
     private Direction direction;
+    private String robot = "tiles/robot.png";
     public CardHand hand;
     private int lives = 10;
     Set<CheckPoint> collectedCP;
@@ -23,6 +24,14 @@ public class Player {
     private int getFreshID() {
         IDs++;
         return IDs;
+    }
+
+    public void setRobot(String robot) {
+        this.robot = robot;
+    }
+
+    public String getRobot() {
+        return robot;
     }
 
     public void drawCardHand(CardDeck deck) {

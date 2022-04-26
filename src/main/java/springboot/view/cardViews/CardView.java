@@ -11,14 +11,11 @@ import java.io.IOException;
 
 public class CardView extends JButton {
 
-    Card card;
     BufferedImage image;
 
     CardView(Card card){
         super();
-
         String path = "cards/"+card.getName()+".png";
-        System.out.println(path);
 
         try {
             image = ImageIO.read(this.getClass().getClassLoader().getResourceAsStream(path));
@@ -33,16 +30,5 @@ public class CardView extends JButton {
         setVerticalTextPosition(SwingConstants.BOTTOM);
         setHorizontalTextPosition(SwingConstants.CENTER);
         setMinimumSize(new Dimension(90,140));
-        this.card = card;
-        initGUI(card);
     }
-
-    private void initGUI(Card card) {
-        //setBorderPainted(false);
-        //setFocusPainted(false);
-        //setContentAreaFilled(false);
-
-    }
-
-
 }
