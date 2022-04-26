@@ -1,6 +1,6 @@
 package springboot.controller.gameSetup;
 
-import springboot.controller.board.BoardController;
+import springboot.controller.BoardController;
 import springboot.model.Complexity;
 import springboot.model.GameSettings;
 import springboot.model.players.Player;
@@ -72,13 +72,14 @@ public class GameSettingsFacadeController {
     public void setupPlayers(Set<String> names) {
         System.out.println("Players have been initialized");
         sps = PlayerFactory.getPlayerSet(gameSettings.getAmountOfPlayers(), names);
+
         boardPositionController = new BoardPositionController(this, boardController, gameSettings.getAmountOfPlayers(), sps);
         boardPositionController.display();
     }
 
-    public void selectPositions(Set<Player> sps) {
+    public void selectPositions(Set<Player> sps, BoardController boardController) {
         gameSettings.setPlayers(sps);
-        application.game(gameSettings, board, cardDeck);
+        application.game(boardController, gameSettings, cardDeck);
     }
 
     //Display the view

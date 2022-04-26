@@ -1,6 +1,6 @@
 package springboot.view.boardViews;
 
-import springboot.controller.board.BoardController;
+import springboot.controller.BoardController;
 import springboot.model.board.Board;
 import springboot.utils.GridBagUtils;
 

@@ -87,4 +87,11 @@ public class StepDefRound {
             player.drawCardHand(new CardDeck());
         }
     }
+
+    @Then("each player have a card hand with {int} cards")
+    public void each_player_have_a_card_hand_with_cards(Integer int1) {
+        for (Player player : players) {
+            assertEquals(9, player.getHandSize());
+        }
+    }
 }

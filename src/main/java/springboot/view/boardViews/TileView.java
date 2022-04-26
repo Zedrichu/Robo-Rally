@@ -1,24 +1,13 @@
 package springboot.view.boardViews;
 
-import springboot.model.board.Tile;
 import springboot.model.tiles.TileType;
-
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class TileView extends JPanel {

@@ -1,10 +1,9 @@
-package springboot.controller.board;
+package springboot.controller;
 
 import springboot.controller.gameSetup.GameSettingsFacadeController;
 import springboot.model.GameSettings;
 import springboot.model.board.Board;
 import springboot.view.boardViews.BoardView;
-import springboot.controller.gameplay.GameController;
 
 // Singleton design pattern
 public class BoardController {

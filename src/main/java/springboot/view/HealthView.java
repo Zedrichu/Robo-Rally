@@ -1,11 +1,8 @@
 package springboot.view;
 
-import springboot.controller.gameplay.GameController;
-import springboot.model.GameSettings;
 import springboot.model.players.Player;
 import springboot.utils.GridBagUtils;
 
-import java.util.ArrayList;
 import java.util.Set;
 import javax.swing.*;
 import java.awt.*;

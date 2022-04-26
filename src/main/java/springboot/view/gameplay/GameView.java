@@ -1,19 +1,15 @@
 package springboot.view.gameplay;
 
-import springboot.controller.gameSetup.GameSettingsFacadeController;
-import springboot.controller.gameplay.GameController;
+import springboot.controller.CardTableController;
+import springboot.controller.GameController;
 import springboot.model.GameSettings;
-import springboot.model.board.Board;
-import springboot.model.cards.CardDeck;
-import springboot.model.players.Player;
 import springboot.utils.GridBagUtils;
-import springboot.view.CardView;
 import springboot.view.HealthView;
 import springboot.view.boardViews.BoardView;
+import springboot.view.cardViews.CardTableView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Set;
 
 public class GameView extends JFrame {
     private GameController gameController;
@@ -21,21 +17,21 @@ public class GameView extends JFrame {
     private JButton playCards;
 
 
-    public GameView(GameController gameController, HealthView healthView, BoardView boardView) {
+    public GameView(GameController gameController, CardTableController cardTableController, HealthView healthView, BoardView boardView) {
         this.gameController = gameController;
-        initGUI(healthView,boardView);
+        initGUI(healthView,boardView,cardTableController.getView());
     }
 
-    private void initGUI(HealthView healthView,BoardView boardView) {
+    private void initGUI(HealthView healthView,BoardView boardView, CardTableView cardTableView) {
         setMinimumSize(new Dimension(600, 700));
-        setResizable(false);
-        setTitle("Players pick positions");
+        setResizable(true); //false
+        setTitle("Game on!");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridBagLayout());
 
         add(healthView, GridBagUtils.constraint(1,0,10));
         add(boardView, GridBagUtils.constraint(0,0,10));
-        //add(cardView, GridBagUtils.constraint(0,1,10));
+        add(cardTableView, GridBagUtils.constraint(0,1,10));
 
         pack();
         setLocationRelativeTo(null);

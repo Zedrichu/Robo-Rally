@@ -1,12 +1,10 @@
 package springboot.controller.gameSetup;
 
 
-import springboot.controller.board.BoardController;
-import springboot.model.players.Player;
+import springboot.controller.BoardController;
 import springboot.model.Position;
-import springboot.view.boardViews.BoardView;
+import springboot.model.players.Player;
 import springboot.view.gameSetupViews.BoardPositionView;
-import springboot.model.board.Board;
 
 import java.util.HashSet;
 import java.util.Set;

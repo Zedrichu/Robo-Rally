@@ -74,8 +74,8 @@ class RotatingCard extends Card {
     protected RotatingCard(int angle) {
         super();
         String name = "Rotate";
-        if (angle == 90) name += "Right";
-        else if (angle == 180) name += "UTurn";
+        if (angle % 360 == 90) name += "Right";
+        else if (angle % 360 == 180) name += "UTurn";
         else name += "Left";
         this.setName(name);
         this.angle = angle;

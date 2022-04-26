@@ -1,15 +1,13 @@
 package springboot.view.gameSetupViews;
 
-import springboot.controller.board.BoardController;
+import springboot.controller.BoardController;
 import springboot.model.Direction;
 import springboot.model.players.Player;
 import springboot.controller.gameSetup.BoardPositionController;
 import springboot.controller.gameSetup.GameSettingsFacadeController;
 import springboot.model.Position;
 import springboot.utils.GridBagUtils;
-import springboot.model.board.Board;
 import springboot.model.board.Tile;
-import springboot.view.boardViews.BoardView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,14 +19,11 @@ import java.util.Set;
 public class BoardPositionView extends JFrame {
     private GameSettingsFacadeController gameSettingsController;
     private BoardPositionController boardPositionController;
-    private BoardController boardController;
-    private JButton SubmitButton;
 
     public BoardPositionView(GameSettingsFacadeController gameSettingsController, BoardPositionController boardPositionController,
                              BoardController boardController, int noPlayers, Set<Player> sps) {
         this.gameSettingsController = gameSettingsController;
         this.boardPositionController = boardPositionController;
-        this.boardController = boardController;
 
         initGUI(boardController, noPlayers, sps);
     }
@@ -77,7 +72,7 @@ public class BoardPositionView extends JFrame {
                 }
                 if (boardPositionController.validatePositions(sps)){
                     System.out.println("Entire game setup is completed!");
-                    gameSettingsController.selectPositions(sps);
+                    gameSettingsController.selectPositions(sps, boardController);
                     dispose();
                 }
                 else {
