@@ -54,10 +54,15 @@ public class StepDefRound {
         round.setPlayers(players);
         assertFalse(round.haveAllPlayed());
     }
-    @Given("A player <name> with {int} lives")
-    public void a_player_name_with_lives(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @Given("any in <S> don't have any cards")
+    public void any_in_s_don_t_have_any_cards() {
+        for (Player player : players) {
+            player.drawCardHand(new CardDeck());
+            //unsure if this is the correct way to do this
+            player.chooseCards(0);
+        }
+        round.setPlayers(players);
+        assertTrue(round.checkNoCardsInHand());
     }
 
     @When("increment round counter")
@@ -74,18 +79,6 @@ public class StepDefRound {
     public void reset_round_counter() {
         if (round.getRoundNumber()==5 && round.haveAllPlayed()) round.resetRound();
         assertEquals(1,round.getRoundNumber());
-
-    }
-
-    @Given("any in <S> don't have any cards")
-    public void any_in_s_don_t_have_any_cards() {
-        for (Player player : players) {
-            player.drawCardHand(new CardDeck());
-            //unsure if this is the correct way to do this
-            player.chooseCards(0);
-        }
-        round.setPlayers(players);
-        assertTrue(round.checkNoCardsInHand());
     }
 
     @When("draw cards for each player")
@@ -94,23 +87,4 @@ public class StepDefRound {
             player.drawCardHand(new CardDeck());
         }
     }
-    @Then("each player have a card hand with {int} cards")
-    public void each_player_have_a_card_hand_with_cards(Integer int1) {
-       for (Player player : players) {
-           assertEquals(9, player.getHandSize());
-       }
-    }
-
-    @When("Lives of all players are checked")
-    public void lives_of_all_players_are_checked() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @Then("Player <name> dies removing them from set of players <S>")
-    public void player_name_dies_removing_them_from_set_of_players_s() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-
 }

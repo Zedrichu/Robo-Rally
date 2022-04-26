@@ -14,8 +14,6 @@ import java.util.Set;
 public class ApplicationController {
 
     private GameSettingsFacadeController settingsController;
-    private CardController cardController;
-    private PlayerSetupController playerSetupController;
     private GameController gameController;
 
     public void game(GameSettings gameSettings, Board board, CardDeck deck) {

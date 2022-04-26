@@ -10,7 +10,6 @@ import java.awt.*;
 public class BoardView extends JPanel {
     private Board board;
     private BoardController controller;
-    JPanel boardPanel = new JPanel();
 
 
 

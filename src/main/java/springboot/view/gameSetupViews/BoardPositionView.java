@@ -40,6 +40,7 @@ public class BoardPositionView extends JFrame {
         setTitle("Players pick positions");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridBagLayout());
+        setResizable(true);
         JButton GameButton = new JButton("Go to Game!");
 
         //JPanel mainPanel = new JPanel(new BoxLayout(mainPanel, BoxLayout.X_AXIS));

@@ -59,9 +59,8 @@ public class GameSettingsFacadeController {
 
     public void setupBoard(){
         System.out.println("Board has been selected");
-        int[] sizes = gameSettings.getBoardSize();
-        board = new Board(sizes[0],sizes[1]);
-        board.loadBoard(gameSettings.getAmountOfPlayers());
+
+        boardController = BoardController.getInstance(this);
 
         cardDeck = new CardDeck();
 
@@ -73,7 +72,6 @@ public class GameSettingsFacadeController {
     public void setupPlayers(Set<String> names) {
         System.out.println("Players have been initialized");
         sps = PlayerFactory.getPlayerSet(gameSettings.getAmountOfPlayers(), names);
-        boardController = new BoardController(this);
         boardPositionController = new BoardPositionController(this, boardController, gameSettings.getAmountOfPlayers(), sps);
         boardPositionController.display();
     }

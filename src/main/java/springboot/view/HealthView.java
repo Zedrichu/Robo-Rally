@@ -26,8 +26,8 @@ public class HealthView extends JPanel {
 
         add(new JLabel("Health bar overview"),GridBagUtils.constraint(1,0,10));
         int i =1;
-        for (Player player : gameSettings.getPlayers()) {
-            add(new JLabel("Player " + (player.getPlayerName()) + "'s Health : " + (player.getLives()) + " lives"), GridBagUtils.constraint(0, i, 5));
+        for (Player player : players) {
+            add(new JLabel("Player " + (player.getPlayerName()) + "'s Health: " + (player.getLives()) + " lives"), GridBagUtils.constraint(0, i, 5));
             JProgressBar healthBar = new JProgressBar(0, 10);
             healthBar.setValue(player.getLives());
             if (player.getLives() < 4) {

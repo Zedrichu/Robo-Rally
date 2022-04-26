@@ -9,23 +9,21 @@ import java.awt.event.ActionListener;
 
 public class CardView extends JFrame implements ActionListener {
 
-    private static CardLayout cardL = new CardLayout(40,30);
-    //JPanel frame
-    private void CardGUI(){
+
+    public CardView(){
+
+       // for (Player player /: players) {
+       //     initGUI(player);
+     //   }
+    }
 
 
-        JPanel cardPanel = new JPanel();
-        cardPanel.setLayout(cardL);
-        cardPanel.setBounds(300,300,250,500);
+    private void initGUI(){
+        setMinimumSize(new Dimension(400,300));
+        setLayout(new GridBagLayout());
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
-
-        //Not completed need more r
-       // JPanel panel = new JPanel();
-       // JButton button = new JButton("Card");
-       // panel.add(button);
-
-       // button.addActionListener(new CardController());
     }
 
     @Override

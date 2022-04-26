@@ -7,7 +7,9 @@ import springboot.model.board.Board;
 import springboot.model.cards.CardDeck;
 import springboot.model.players.Player;
 import springboot.utils.GridBagUtils;
+import springboot.view.CardView;
 import springboot.view.HealthView;
+import springboot.view.boardViews.BoardView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,19 +21,23 @@ public class GameView extends JFrame {
     private JButton playCards;
 
 
-    public GameView(GameController gameController) {
+    public GameView(GameController gameController, HealthView healthView, BoardView boardView) {
         this.gameController = gameController;
+        initGUI(healthView,boardView);
     }
 
-    private void initGUI(Board board, CardDeck cardDeck, Set<Player> sps) {
+    private void initGUI(HealthView healthView,BoardView boardView) {
         setMinimumSize(new Dimension(600, 700));
         setResizable(false);
         setTitle("Players pick positions");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridBagLayout());
 
-        JPanel health = new HealthView(
+        add(healthView, GridBagUtils.constraint(1,0,10));
+        add(boardView, GridBagUtils.constraint(0,0,10));
+        //add(cardView, GridBagUtils.constraint(0,1,10));
 
-       // }
+        pack();
+        setLocationRelativeTo(null);
     }
 }
