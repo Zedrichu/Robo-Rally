@@ -19,9 +19,6 @@ import springboot.model.round.Round;
 // Facade class for our game
 public class RoboRally {
     private static RoboRally instance;
-    GameObserver observable = new GameObserver();
-    State observer;
-
 //    public static void main(String[] args) throws IOException{
 //        int initialRow = 2;
 //        int initialColumn = 2;

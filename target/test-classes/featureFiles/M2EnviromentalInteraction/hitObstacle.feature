@@ -36,7 +36,6 @@ Feature: Hit Obstacle
 
 
  @tag
-
   Scenario Outline: Interaction with conveyor belt
    Given Player <name> on row <y> column <x> and direction <dir>
    And conveyorBelt <tile> is on row <y> column <x> with direction <convDir>
@@ -57,6 +56,6 @@ Feature: Hit Obstacle
     Then player <name> has  <newLives> lives
     @tag
     Scenarios:
-      | | name |tile       | x | y | lives  | newLives |
-      | | "XX" |'lifeToken'| 3 | 2 |   3    |    4     |
+      |  | name | tile        | x | y | lives | newLives |
+      |  | "XX" | 'lifeToken' | 3 | 2 | 3     | 4        |
 

@@ -1,12 +1,14 @@
 package springboot.model.board;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.*;
 
 import springboot.model.Position;
 import springboot.model.checkPoints.CheckPoint;
 import springboot.model.tiles.TileType;
 
-public class Board {
+public class Board implements PropertyChangeListener {
 
 	private Random rnd = new Random();
 	private Tile[][] board;
@@ -107,4 +109,8 @@ public class Board {
 		}
 	}
 
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+
+	}
 }

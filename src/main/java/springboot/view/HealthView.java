@@ -11,30 +11,18 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class HealthView extends JFrame {
+public class HealthView extends JPanel {
 
-    private GameController gameController;
-    private GameSettings gameSettings;
-    float current_health;
-    float max_health;
-    float percentage;
+    private Set<Player> players;
 
-    JPanel HealthBarPanel;
-    public HealthView(GameController gameController, GameSettings gameSettings){
-        this.gameSettings = gameSettings;
-        this.gameController = gameController;
-        initGUI(gameSettings.getPlayers());
+    public HealthView(Set<Player> players){
+        super();
+        initGUI(players);
     }
 
     private void initGUI(Set<Player> players) {
         setMinimumSize(new Dimension(300,300));
-        setResizable(false);
-        setTitle("Player Setup");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new GridBagLayout());
-        setTitle("Health");
-
-
 
         add(new JLabel("Health bar overview"),GridBagUtils.constraint(1,0,10));
         int i =1;
@@ -54,13 +42,6 @@ public class HealthView extends JFrame {
             add(healthBar, GridBagUtils.constraint(1, i, 10));
             i++;
         }
-
-
-
-
-        pack();
-        setLocationRelativeTo(null);
-
     }
 
 }

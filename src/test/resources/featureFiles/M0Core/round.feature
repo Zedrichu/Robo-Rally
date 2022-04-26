@@ -64,6 +64,13 @@ Feature: Round Operations
       When draw cards for each player
       Then each player have a card hand with 9 cards
 
+  @tag
+  Scenario Outline: Player dies
+    Given A player <name> with 0 lives
+    And set of players <S>
+    When Lives of all players are checked
+    Then Player <name> dies removing them from set of players <S>
+
 
 
 

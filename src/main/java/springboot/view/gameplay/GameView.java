@@ -7,12 +7,15 @@ import springboot.model.board.Board;
 import springboot.model.cards.CardDeck;
 import springboot.model.players.Player;
 import springboot.utils.GridBagUtils;
+import springboot.view.HealthView;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Set;
 
 public class GameView extends JFrame {
     private GameController gameController;
+    private GameSettings gameSettings;
     private JButton playCards;
 
 
@@ -27,10 +30,7 @@ public class GameView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridBagLayout());
 
-        JPanel health = new JPanel();
-        JLabel healthLabel = new JLabel("Health of players");
-        health.add(healthLabel, GridBagUtils.constraint(1, 0, 5));
-        //for (Player player : sps) {
+        JPanel health = new HealthView(
 
        // }
     }

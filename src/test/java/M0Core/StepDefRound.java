@@ -54,6 +54,11 @@ public class StepDefRound {
         round.setPlayers(players);
         assertFalse(round.haveAllPlayed());
     }
+    @Given("A player <name> with {int} lives")
+    public void a_player_name_with_lives(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
 
     @When("increment round counter")
     public void increment_round_counter() {
@@ -96,6 +101,16 @@ public class StepDefRound {
        }
     }
 
+    @When("Lives of all players are checked")
+    public void lives_of_all_players_are_checked() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Then("Player <name> dies removing them from set of players <S>")
+    public void player_name_dies_removing_them_from_set_of_players_s() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
 
 
 }
