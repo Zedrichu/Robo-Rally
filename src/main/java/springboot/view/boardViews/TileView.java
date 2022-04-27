@@ -1,7 +1,9 @@
 package springboot.view.boardViews;
 
+import springboot.model.board.Tile;
 import springboot.model.board.TileType;
 import javax.imageio.ImageIO;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.awt.Dimension;
@@ -13,21 +15,26 @@ import javax.swing.JPanel;
 public class TileView extends JPanel {
 
     public static final int PIXEL_SIZE = 66;
-    private TileType type;
+    private Tile tile;
     private BufferedImage image;
+    private BufferedImage robImage;
 
-    public TileView(TileType type){
+    public TileView(Tile tile){
         super(true);
-
-        this.type = type;
+        this.tile = tile;
+        TileType type = tile.getType();
         try {
-
-            this.image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(this.type.getPictureFile()));
+            this.image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(type.getPictureFile()));
+            if (tile.getRobotOnTop()) {
+                this.robImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream(tile.getRobotIcon()));
+            }
         } catch (IOException e){
             this.image = new BufferedImage(1,1,BufferedImage.TYPE_INT_RGB);
+            this.robImage = new BufferedImage(1,1,BufferedImage.TYPE_INT_RGB);
         }
 
-        if (this.type == TileType.CHECKPOINT)
+        if (type == TileType.CHECKPOINT ||
+                tile.getRobotOnTop())
             setOpaque(false);
         setMinimumSize(new Dimension(PIXEL_SIZE, PIXEL_SIZE));
         setMaximumSize(getMinimumSize());
@@ -41,14 +48,15 @@ public class TileView extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.drawImage(image, 0, 0,null);
+        g2d.drawImage(image,0,0,null);
+
+        if (tile.getRobotOnTop()) {
+            AffineTransform old2 = g2d.getTransform();
+            g2d.rotate(Math.toRadians(tile.getDirection().getAngle()),33,33);
+            g2d.drawImage(robImage, 0, 0, null);
+            g2d.setTransform(old2);
+        }
 
     }
 }
-//
-//        if (containsRobot) {
-//            AffineTransform old2 = g2d.getTransform();
-//            g2d.rotate(Math.toRadians(direction.getAngle()), 33, 33);
-//            g2d.drawImage(imageRobot, 0, 0, null);
-//            g2d.setTransform(old2);
-//        }
+

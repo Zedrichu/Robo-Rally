@@ -1,8 +1,10 @@
 package springboot.model.obstacles;
 
-public abstract class Obstacle<P, R> {
+import springboot.model.players.Player;
 
-    public abstract void applyDamage(P player, R damage);
+public abstract class Obstacle<R> {
+
+    public abstract void applyDamage(Player player, R damage);
 
 }
 

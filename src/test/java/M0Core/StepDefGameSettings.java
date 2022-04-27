@@ -1,6 +1,8 @@
 package M0Core;
 import static org.junit.Assert.*;
 
+import io.cucumber.java.bs.A;
+import springboot.controller.ApplicationController;
 import springboot.model.Complexity;
 import springboot.model.GameSettings;
 import io.cucumber.java.en.Given;
@@ -10,11 +12,12 @@ import springboot.controller.gameSetup.GameSettingsFacadeController;
 
 public class StepDefGameSettings {
 
+    ApplicationController applicationController = new ApplicationController();
     GameSettingsFacadeController gameSettingsController;
 
     @Given("new game")
     public void new_game() {
-        gameSettingsController = new GameSettingsFacadeController();
+        gameSettingsController = new GameSettingsFacadeController(applicationController);
         assertNotNull(gameSettingsController);
     }
 

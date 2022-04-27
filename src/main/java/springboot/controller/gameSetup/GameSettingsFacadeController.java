@@ -11,11 +11,13 @@ import springboot.view.gameSetupViews.GameSettingsView;
 import springboot.model.board.Board;
 
 
+import java.beans.PropertyChangeSupport;
 import java.util.Set;
 
 
 public class GameSettingsFacadeController {
 
+    private PropertyChangeSupport support;
     private BoardSetupController boardSetupController;
     private PlayerSetupController playerSetupController;
     private BoardPositionController boardPositionController;
@@ -28,11 +30,9 @@ public class GameSettingsFacadeController {
     private CardDeck cardDeck;
     //private CardDeck deck;
 
-    public GameSettingsFacadeController(){
-        super();
-    }
-
     public GameSettingsFacadeController(ApplicationController application) {
+        super();
+        this.support = new PropertyChangeSupport(this);
         this.application = application;
         this.view = new GameSettingsView(this);
     }

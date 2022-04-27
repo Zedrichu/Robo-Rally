@@ -19,7 +19,7 @@ public class Tile {
 	private TileType type;
 	private boolean robotOnTop;
 	private String robotIcon;
-	public Direction direction;
+	private Direction direction;
 	public Position position;
 
 
@@ -27,6 +27,16 @@ public class Tile {
 		this.type = type;
 		this.robotOnTop = false;
 	}
+
+	public String getRobotIcon() {
+		return robotIcon;
+	}
+
+	public void setRobotIcon(String robotIcon) {
+		this.robotIcon = robotIcon;
+	}
+
+	public boolean getRobotOnTop(){return this.robotOnTop;}
 
 	public void setRobotOnTop(boolean robotOnTop) {
 		this.robotOnTop = robotOnTop;
@@ -61,6 +71,10 @@ public class Tile {
 
 
 
+
+	public Direction getDirection() {
+		return direction;
+	}
 
 	@Override
 	public String toString() {

@@ -31,7 +31,7 @@ public class StepDefObstacle {
     Tile tile;
     Round round = Round.getInstance(new HashSet<>());
     CardDeck deck = new CardDeck();
-    private Obstacle<Player, Integer> o;
+    private Obstacle<Integer> o;
     CheckPoint cp = new CheckPoint();
     CheckPointSet TotalCPSet;
     Board board = new Board(10,10);

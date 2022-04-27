@@ -69,7 +69,10 @@ public class Board implements PropertyChangeListener {
 	public void placePlayers(Set<Player> sps) {
 		for (Player plr : sps){
 			Position pos = plr.getPosition();
-			board[pos.y][pos.x].setRobotOnTop(true);
+			Tile tile = board[pos.y][pos.x];
+			tile.setRobotOnTop(true);
+			tile.setDirection(plr.getDirection());
+			tile.setRobotIcon(plr.getRobot());
 		}
 	}
 

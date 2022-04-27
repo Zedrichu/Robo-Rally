@@ -6,7 +6,7 @@ import springboot.model.cards.Card;
 import springboot.model.cards.CardFactory;
 import springboot.model.cards.CardType;
 
-public class ConveyorBelt extends Obstacle<Player, Integer>{
+public class ConveyorBelt extends Obstacle<Integer>{
 
     Card card = CardFactory.getCard(CardType.MOVE, 2);
 
