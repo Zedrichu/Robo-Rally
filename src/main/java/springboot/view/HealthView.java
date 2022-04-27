@@ -1,30 +1,40 @@
 package springboot.view;
 
 import springboot.model.players.Player;
+import springboot.model.round.Round;
 import springboot.utils.GridBagUtils;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Set;
 import javax.swing.*;
 import java.awt.*;
 
 
-public class HealthView extends JPanel {
+public class HealthView extends JPanel implements PropertyChangeListener {
 
-    private Set<Player> players;
+    private Round round;
 
-    public HealthView(Set<Player> players){
+    public HealthView(Round round){
         super();
-        initGUI(players);
+        this.round = round;
+        initGUI(round.getPlayers());
     }
 
     private void initGUI(Set<Player> players) {
-        setMinimumSize(new Dimension(300,300));
+        setMinimumSize(new Dimension(400,300));
         setLayout(new GridBagLayout());
+        setBackground( Color.DARK_GRAY );
 
-        add(new JLabel("Health bar overview"),GridBagUtils.constraint(1,0,10));
+        JLabel healthTitle = new JLabel("Health bar overview");
+        healthTitle.setFont(new Font("Arial", Font.BOLD, 20));
+        healthTitle.setForeground(Color.ORANGE);
+        add(healthTitle,GridBagUtils.constraint(1,0,10));
         int i =1;
         for (Player player : players) {
-            add(new JLabel("Player " + (player.getPlayerName()) + "'s Health: " + (player.getLives()) + " lives"), GridBagUtils.constraint(0, i, 5));
+            JLabel plrtitle = new JLabel("Player " + (player.getPlayerName()) + "'s Health: " + (player.getLives()) + " lives");
+            plrtitle.setForeground(Color.ORANGE);
+            add(plrtitle, GridBagUtils.constraint(0, i, 5));
             JProgressBar healthBar = new JProgressBar(0, 10);
             healthBar.setValue(player.getLives());
             if (player.getLives() < 4) {
@@ -41,4 +51,11 @@ public class HealthView extends JPanel {
         }
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getPropertyName().equals("round")) {
+            this.round = (Round) evt.getNewValue();
+            revalidate();
+        }
+    }
 }

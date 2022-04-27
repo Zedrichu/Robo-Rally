@@ -1,31 +1,29 @@
 package springboot.view.gameSetupViews;
 
 import springboot.controller.gameSetup.GameSettingsFacadeController;
-import springboot.model.Complexity;
 import springboot.model.GameSettings;
 import springboot.model.board.Board;
-import springboot.model.board.MapType;
 import springboot.utils.GridBagUtils;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
+import java.beans.PropertyChangeSupport;
 
 public class BoardSetupView extends JFrame {
     private GameSettingsFacadeController gameSettingsController;
     private JButton randomBtn;
 
 
-    public BoardSetupView(GameSettingsFacadeController gameSettingsController){
+    public BoardSetupView(GameSettingsFacadeController gameSettingsController, PropertyChangeSupport support){
         this.gameSettingsController = gameSettingsController;
-        initGUI();
+        initGUI(support);
     }
 
 
 
-    private void initGUI(){
+    private void initGUI(PropertyChangeSupport support){
         //add(new JLabel(new ImageIcon("Path/To/Your/Image.png")));
         setMinimumSize(new Dimension(300,300));
         setResizable(false);
@@ -42,8 +40,8 @@ public class BoardSetupView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int[] sizes = gameSettings.getBoardSize();
-                Board board = new Board(sizes[0], sizes[1]);
-                board.loadBoard(gameSettings.getAmountOfPlayers());
+                Board board = new Board(support, sizes[0], sizes[1]);
+                board.loadRandomBoard(gameSettings.getAmountOfPlayers());
 
                 gameSettingsController.setupBoard(board);
                 dispose();

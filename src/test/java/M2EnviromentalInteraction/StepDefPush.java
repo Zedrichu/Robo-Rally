@@ -11,6 +11,8 @@ import springboot.model.cards.CardFactory;
 import springboot.model.cards.CardType;
 import springboot.model.board.Board;
 
+import java.beans.PropertyChangeSupport;
+
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -23,17 +25,17 @@ public class StepDefPush {
     Position newPosition;
     Direction newDirection;
     
-    Board board = new Board(10,10);
+    Board board = new Board(new PropertyChangeSupport(this),10,10);
 
     @Given("A player1 {string} at row {int} column {int} with direction {string}")
     public void a_player1_at_row_y1_column_with_direction(String s1, int x1, int y1, String dir1) {
-        player1 = new Player(s1);
+        player1 = new Player(new PropertyChangeSupport(this), s1);
         player1.setPosition(y1, x1);
         player1.setDirection(Direction.getCardinalPointChar(dir1));
     }
     @Given("A player2 {string} at row {int} column {int} with direction {string}")
     public void a_player2_at_row_column_with_direction(String s2, int x2, int y2, String dir2) {
-        player2 = new Player(s2);
+        player2 = new Player(new PropertyChangeSupport(this), s2);
         player2.setPosition(y2, x2);
         player2.setDirection(Direction.getCardinalPointChar(dir2));
     }

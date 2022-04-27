@@ -2,6 +2,7 @@ package springboot.model.board;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.*;
 
 import springboot.model.Position;
@@ -10,6 +11,7 @@ import springboot.model.players.Player;
 
 public class Board implements PropertyChangeListener {
 
+	private PropertyChangeSupport support;
 	private Random rnd = new Random();
 	private Tile[][] board;
 	private int rows;
@@ -21,7 +23,8 @@ public class Board implements PropertyChangeListener {
 		return checkPoints;
 	}
 
-	public Board(int rows, int cols) {
+	public Board(PropertyChangeSupport support, int rows, int cols) {
+		this.support = support;
 		this.board = new Tile[rows][cols];
 		this.rows = rows;
 		this.cols = cols;
@@ -40,7 +43,7 @@ public class Board implements PropertyChangeListener {
 		return board;
 	}
 
-	public void loadBoard(int noPlrs) {
+	public void loadRandomBoard(int noPlrs) {
 		Random rnd = new Random();
 		for (int j = 0; j < rows; j++) {
 			for (int i = 0; i < cols; i++) {
@@ -102,17 +105,17 @@ public class Board implements PropertyChangeListener {
 
 	private Tile getRandomTile() {
 		double val = rnd.nextDouble();
-		if (val < 0.75) {
+		if (val < 0.70) {
 			return new Tile(TileType.EMPTY);
-	 	} else if (val <0.80) {
+	 	} else if (val <0.78) {
 			return new Tile(TileType.CHECKPOINT);
-		} else if (val < 0.96) {
+		} else if (val < 0.82) {
 			return new Tile(TileType.PIT);
-		} else if (val < 0.96) {
+		} else if (val < 0.86) {
 			return new Tile(TileType.ACID);
-		} else if (val < 0.92) {
+		} else if (val < 0.90) {
 			return new Tile(TileType.LASER);
-		} else if (val < 0.85) {
+		} else if (val < 0.97) {
 			return new Tile(TileType.CONVEYORBELT);
 		} else {
 			return new Tile(TileType.LIFETOKEN);

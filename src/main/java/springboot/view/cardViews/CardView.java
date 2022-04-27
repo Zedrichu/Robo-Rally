@@ -26,6 +26,7 @@ public class CardView extends JButton {
         ImageIcon icon = new ImageIcon(img);
         setText(card.getName());
         setIcon(icon);
+        setBackground( Color.RED );
 
         setVerticalTextPosition(SwingConstants.BOTTOM);
         setHorizontalTextPosition(SwingConstants.CENTER);

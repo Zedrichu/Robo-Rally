@@ -9,27 +9,28 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import springboot.controller.gameSetup.GameSettingsFacadeController;
 
+import java.beans.PropertyChangeSupport;
+
 public class StepDefGameSettings {
 
-    ApplicationController applicationController = new ApplicationController();
-    GameSettingsFacadeController gameSettingsController;
+    GameSettings gameSettings;
+
 
     @Given("new game")
     public void new_game() {
-        gameSettingsController = new GameSettingsFacadeController(applicationController);
-        assertNotNull(gameSettingsController);
+        gameSettings = new GameSettings(new PropertyChangeSupport(this));
     }
 
     @When("select settings")
     public void select_settings() {
-        gameSettingsController.setGameSettings(Complexity.EASY, 2);
+        gameSettings.setComplexity(Complexity.EASY);
+        gameSettings.setAmountOfPlayers(2);
     }
 
     @Then("game settings has EASY and {int} players")
     public void game_settings_has_easy_and_players(Integer int1) {
-        GameSettings set = gameSettingsController.getGameSettings();
-        assertEquals(2,set.getAmountOfPlayers());
-        assertEquals(Complexity.EASY,set.getComplexity());
+        assertEquals(2,gameSettings.getAmountOfPlayers());
+        assertEquals(Complexity.EASY,gameSettings.getComplexity());
     }
 
 }

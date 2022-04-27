@@ -3,6 +3,7 @@ package springboot.controller;
 import springboot.model.GameSettings;
 import springboot.model.board.Board;
 import springboot.model.cards.CardDeck;
+import springboot.model.players.Player;
 import springboot.view.HealthView;
 import springboot.view.boardViews.BoardView;
 import springboot.view.gameplay.GameView;
@@ -13,7 +14,7 @@ import java.beans.PropertyChangeSupport;
 
 public class GameController {
     private final PropertyChangeSupport support;
-    private springboot.controller.tableController tableController;
+    private TableController tableController;
     private GameView gameView;
     private HealthView healthView;
     private BoardView boardView;
@@ -52,14 +53,15 @@ public class GameController {
         this.support = new PropertyChangeSupport(this);
         board.placePlayers(gameSettings.getPlayers());
         setBoard(board);
-        setRound(Round.getInstance(gameSettings.getPlayers()));
+        setRound(Round.getInstance(support, gameSettings.getPlayers()));
 
-        this.healthView = new HealthView(gameSettings.getPlayers());
+        this.healthView = new HealthView(this.round);
         this.boardView = new BoardView(this.board, this.round.getPlayers());
-        this.tableController = new tableController(application,deck);
+        this.tableController = new TableController(application, this.round, deck);
         this.gameView = new GameView(this, tableController, healthView, boardView);
     }
 
     public void display(){ gameView.setVisible(true); }
+
 
 }

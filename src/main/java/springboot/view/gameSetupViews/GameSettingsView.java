@@ -2,12 +2,17 @@ package springboot.view.gameSetupViews;
 
 import springboot.model.Complexity;
 import springboot.controller.gameSetup.GameSettingsFacadeController;
+import springboot.utils.GradientLabel;
 import springboot.utils.GridBagUtils;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class GameSettingsView extends JFrame {
 
@@ -32,6 +37,25 @@ public class GameSettingsView extends JFrame {
         setTitle("Game Settings Menu");
         setLayout(new GridBagLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        getContentPane().setBackground( Color.DARK_GRAY );
+
+        JPanel panelOne = new JPanel();
+
+        BufferedImage image;
+        try {
+            image = ImageIO.read(this.getClass().getClassLoader().getResourceAsStream("roborally/welcome.png"));
+        } catch (IOException e) {
+            image = new BufferedImage(1,1,BufferedImage.TYPE_INT_RGB);
+        }
+        ImageIcon img = new ImageIcon(image);
+        JLabel roboRally = new JLabel("", img, JLabel.CENTER);
+        panelOne.add(roboRally,BorderLayout.CENTER);
+
+
+
+        //add(roboRally,GridBagUtils.constraint(1,0,5));
+
+        JPanel panelTwo = new JPanel();
 
         comboComplex = new JComboBox(Complexity.values());
         Integer[] range = {1,2,3,4,5,6,7,8};
@@ -45,11 +69,18 @@ public class GameSettingsView extends JFrame {
             }
         });
 
-        add(new JLabel("Level of difficulty:"), GridBagUtils.constraint(0,0,5));
-        add(comboComplex, GridBagUtils.constraint(1,0,5));
-        add(new JLabel("Number of participants:"), GridBagUtils.constraint(0,1,5));
-        add(comboNumber, GridBagUtils.constraint(1,1,5));
-        add(btnStart, GridBagUtils.constraint(1,2,5));
+        JLabel lvlDiff = new JLabel("Level Difficulty");
+        lvlDiff.setForeground(Color.RED);
+        panelTwo.add(lvlDiff, GridBagUtils.constraint(0,1,5));
+        panelTwo.add(comboComplex, GridBagUtils.constraint(1,1,5));
+        JLabel numPlayers = new JLabel("Number of Players");
+        numPlayers.setForeground(Color.RED);
+        panelTwo.add(numPlayers, GridBagUtils.constraint(0,2,5));
+        panelTwo.add(comboNumber, GridBagUtils.constraint(1,2,5));
+        panelTwo.add(btnStart, GridBagUtils.constraint(1,3,5));
+
+        add(panelOne,GridBagUtils.constraint(0,0,5));
+        add(panelTwo,GridBagUtils.constraint(0,1,5));
 
         pack();
         setLocationRelativeTo(null);

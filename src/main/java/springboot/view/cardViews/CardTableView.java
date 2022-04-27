@@ -1,18 +1,20 @@
 package springboot.view.cardViews;
 
-import springboot.controller.tableController;
+import springboot.controller.TableController;
 import springboot.model.cards.Card;
 import springboot.model.cards.CardHand;
 import springboot.utils.GridBagUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class CardTableView extends JPanel{
+public class CardTableView extends JPanel implements PropertyChangeListener {
 
-    private tableController tableController;
+    private TableController tableController;
 
-    public CardTableView(tableController tableController, CardHand cardHand){
+    public CardTableView(TableController tableController, CardHand cardHand){
         this.tableController = tableController;
         initGUI(cardHand);
     }
@@ -22,6 +24,7 @@ public class CardTableView extends JPanel{
         setMinimumSize(new Dimension(400, 300));
         setLayout(new GridBagLayout());
         setForeground(Color.red);
+        setBackground( Color.DARK_GRAY );
 
         int i=0;
         for (Card c : cardHand.getHand()){
@@ -29,10 +32,12 @@ public class CardTableView extends JPanel{
             add(card, GridBagUtils.constraint(i%3,i/3,3));
             i++;
         }
-
-
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+
+    }
 }
 
 

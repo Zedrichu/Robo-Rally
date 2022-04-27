@@ -47,28 +47,33 @@ public class StartPositionView extends JFrame {
         //comboPosition = new JCombobox();
         JPanel panelTwo = new JPanel(new GridBagLayout());
         JLabel label = new JLabel("Pick starting tile");
+        label.setFont(new Font("Serif", Font.BOLD, 20));
         panelTwo.add(label,GridBagUtils.constraint(0,0,5));
 
         ArrayList<Object[]> selections = new ArrayList<>();
 
-        int i=0;
+        int i=2;
         for (Player player : sps) {
-            panelTwo.add(new JLabel("Player " + (player.getPlayerName()) + ":"), GridBagUtils.constraint(i,1,5));
+            panelTwo.add(new JLabel("Player " + (player.getPlayerName()) + ":"), GridBagUtils.constraint(2*(i%2),2*(i/2),5));
             JComboBox inputPos = new JComboBox(boardController.getBoard().getStartTiles());
             JComboBox inputDir = new JComboBox(Direction.values());
             selections.add(new Object[]{player, inputPos, inputDir});
-            panelTwo.add(inputPos, GridBagUtils.constraint(i,2,5));
-            panelTwo.add(inputDir, GridBagUtils.constraint(i,3,5));
+            panelTwo.add(inputPos, GridBagUtils.constraint(2*(i%2),2*(i/2)+1,5));
+            panelTwo.add(inputDir, GridBagUtils.constraint(2*(i%2)+1,2*(i/2)+1,5));
             i++;
         }
-        panelTwo.add(GameButton,GridBagUtils.constraint(noPlayers,2,5));
+
+
+
+        panelTwo.add(GameButton,GridBagUtils.constraint(2*(i%2)+7,2*(i/2)+5,5));
         GameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (Object[] pair : selections){
                     Player plr = (Player) pair[0];
                     Position pos = ((Tile)((JComboBox) pair[1]).getSelectedItem()).getPosition();
-                    plr.setDirection(Direction.getRandomDirection());
+                    Direction dir = (Direction) ((JComboBox) pair[2]).getSelectedItem();
+                    plr.setDirection(dir);
                     plr.setPosition(pos);
 
                 }
@@ -85,7 +90,7 @@ public class StartPositionView extends JFrame {
         });
 
         add(panelOne, GridBagUtils.constraint(0,0,5));
-        add(panelTwo, GridBagUtils.constraint(0,1,5));
+        add(panelTwo, GridBagUtils.constraint(1,0,5));
 
         pack();
         setLocationRelativeTo(null);

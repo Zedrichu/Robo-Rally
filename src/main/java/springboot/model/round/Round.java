@@ -4,11 +4,12 @@ import springboot.model.players.Player;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Set;
 
 // Singleton design applied on Round
 public class Round implements PropertyChangeListener {
-
+    private PropertyChangeSupport support;
     private int roundNumber;
     private Set<Player> players;
     private static Round instance;
@@ -17,7 +18,8 @@ public class Round implements PropertyChangeListener {
 //        this.board = board;
 //    }
 
-    private Round(Set<Player> players){
+    private Round(PropertyChangeSupport support, Set<Player> players){
+        this.support = support;
         this.players = players;
         this.roundNumber = 1;
     }
@@ -32,6 +34,7 @@ public class Round implements PropertyChangeListener {
 
     public void setPlayers(Set<Player> players) {
         this.players = players;
+        support.firePropertyChange("players",Set.of(), players);
     }
 
     //Checks that all players have no cards in hand
@@ -57,9 +60,9 @@ public class Round implements PropertyChangeListener {
     }
 
     //Singleton design applied on Round
-    public static Round getInstance(Set<Player> players){
+    public static Round getInstance(PropertyChangeSupport support, Set<Player> players){
         if (instance == null){
-            instance = new Round(players);
+            instance = new Round(support, players);
         }
         return instance;
     }
@@ -67,18 +70,20 @@ public class Round implements PropertyChangeListener {
     //Setters
     public void setRoundNumber(int roundNumber) {
         this.roundNumber = roundNumber;
+        support.firePropertyChange("round",0, roundNumber);
     }
 
     //Increment round number
     public void incrementRoundNumber(){
         this.roundNumber = roundNumber+1;
+        support.firePropertyChange("round",roundNumber-1, roundNumber);
     }
 
     //Reset Round
     public void resetRound(){
         this.roundNumber=1;
+        support.firePropertyChange("round",5, roundNumber);
     }
-
 
     //Getters
     public int getRoundNumber() {

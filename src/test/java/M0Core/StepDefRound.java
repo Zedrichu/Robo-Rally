@@ -11,13 +11,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.beans.PropertyChangeSupport;
 import java.util.HashSet;
 import java.util.Set;
 
 
 public class StepDefRound {
     Set<Player> players;
-    Round round = Round.getInstance(new HashSet<>());
+    Round round = Round.getInstance(new PropertyChangeSupport(this), new HashSet<>());
 
     @Given("round counter {int}")
     public void round_counter(int x) {
@@ -29,7 +30,7 @@ public class StepDefRound {
             add("Adrian");
             add("Jeppe");
         }};
-        players = PlayerFactory.getPlayerSet(2,names);
+        players = PlayerFactory.getPlayerSet(new PropertyChangeSupport(this),2,names);
         round.setPlayers(players);
     }
 

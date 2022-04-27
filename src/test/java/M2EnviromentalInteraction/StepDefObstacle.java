@@ -9,7 +9,6 @@ import springboot.model.cards.CardDeck;
 import springboot.model.Direction;
 import springboot.model.checkPoints.CheckPoint;
 import springboot.model.checkPoints.CheckPointSet;
-import springboot.model.obstacles.*;
 import springboot.model.board.TileType;
 import springboot.model.board.Board;
 import springboot.model.board.Tile;
@@ -22,6 +21,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.beans.PropertyChangeSupport;
 import java.util.HashSet;
 
 public class StepDefObstacle {
@@ -29,18 +29,18 @@ public class StepDefObstacle {
     TileType type;
     Player player;
     Tile tile;
-    Round round = Round.getInstance(new HashSet<>());
+    Round round = Round.getInstance(new PropertyChangeSupport(this),new HashSet<>());
     CardDeck deck = new CardDeck();
     CheckPoint cp = new CheckPoint();
     CheckPointSet TotalCPSet;
-    Board board = new Board(10,10);
+    Board board = new Board(new PropertyChangeSupport(this),10,10);
     private int size = 0;
 
     // Player with amount of lives
     @Given("Player {string} at row {int} column {int} with {int} lives")
     public void player_at_row_column_with_lives(String s, int x, int y, int z) {
-        player = new Player(s);
-        board.loadBoard(3);
+        player = new Player(new PropertyChangeSupport(this), s);
+        board.loadRandomBoard(3);
         player.setPosition(x, y);
         player.setLives(z);
     }
@@ -48,18 +48,18 @@ public class StepDefObstacle {
     // Player with direction
     @Given("Player {string} on row {int} column {int} and direction {string}")
     public void player_on_row_column_and_direction(String s, int x, int y, String dir) {
-        player = new Player(s);
+        player = new Player(new PropertyChangeSupport(this),s);
         player.setPosition(x, y);
         player.setDirection(Direction.getCardinalPointChar(dir));
-        board.loadBoard(3);
+        board.loadRandomBoard(3);
     }
     // Player with cardHand
     @Given("player {string} at row {int} column {int} with CardHand")
     public void player_at_row_column_with_card_hand(String s, int x, int y) {
-        player = new Player(s);
+        player = new Player(new PropertyChangeSupport(this),s);
         player.setPosition(x, y);
         player.drawCardHand(deck);
-        board.loadBoard(3);
+        board.loadRandomBoard(3);
     }
 
     // acidTile
@@ -97,11 +97,11 @@ public class StepDefObstacle {
     // visiting new CheckPoint
     @Given("player {string} on row {int} and column {int} with set of visited CheckPoints")
     public void player_on_row_and_column_with_set_of_visited_check_points(String s, int x, int y) {
-        player = new Player(s);
+        player = new Player(new PropertyChangeSupport(this),s);
         player.setPosition(x, y);
         player.addCheckPoint(cp);
         this.size = player.getCollectedCP().size();
-        board.loadBoard(3);
+        board.loadRandomBoard(3);
     }
     // CheckPoint tile
     @Given("CheckPoint {string} on row {int} and column {int} with ID")

@@ -45,7 +45,7 @@ public class GameSettingsFacadeController {
 
     //Setter for game settings with complexity and number of players
     public void setGameSettings(Complexity complexity, int noPlayers) {
-        this.gameSettings = new GameSettings();
+        this.gameSettings = new GameSettings(support);
         this.gameSettings.setComplexity(complexity);
         this.gameSettings.setAmountOfPlayers(noPlayers);
     }
@@ -55,7 +55,7 @@ public class GameSettingsFacadeController {
         this.setGameSettings(complexity, noPlayers);
 
         // Ready to set up the board with selected information
-        boardSetupController = new BoardSetupController(this);
+        boardSetupController = new BoardSetupController(this, support);
         boardSetupController.display();
     }
     //Set up the board that generates the cardDock and goes to the PlayerSetupView
@@ -72,7 +72,7 @@ public class GameSettingsFacadeController {
     //Method that goes to StartPositionView
     public void setupPlayers(Set<String> names) {
         System.out.println("Players have been initialized");
-        sps = PlayerFactory.getPlayerSet(gameSettings.getAmountOfPlayers(), names);
+        sps = PlayerFactory.getPlayerSet(support, gameSettings.getAmountOfPlayers(), names);
 
         startPositionController = new StartPositionController(this, boardController, gameSettings.getAmountOfPlayers(), sps);
         startPositionController.display();

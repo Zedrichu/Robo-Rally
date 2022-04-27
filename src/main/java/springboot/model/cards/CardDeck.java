@@ -1,8 +1,10 @@
 package springboot.model.cards;
 
+
 import java.util.*;
 
 public class CardDeck {
+
     //Client of the CardFactory
     final private Random random = new Random();
     private final Set<Card> deck = new HashSet<>();
