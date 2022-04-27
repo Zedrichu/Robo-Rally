@@ -1,13 +1,10 @@
 package springboot.controller;
 
-import springboot.controller.ApplicationController;
-import springboot.controller.BoardController;
 import springboot.model.GameSettings;
 import springboot.model.board.Board;
 import springboot.model.cards.CardDeck;
 import springboot.view.HealthView;
 import springboot.view.boardViews.BoardView;
-import springboot.view.cardViews.CardTableView;
 import springboot.view.gameplay.GameView;
 import springboot.model.round.Round;
 
@@ -16,7 +13,7 @@ import java.beans.PropertyChangeSupport;
 
 public class GameController {
     private final PropertyChangeSupport support;
-    private CardTableController cardTableController;
+    private springboot.controller.tableController tableController;
     private GameView gameView;
     private HealthView healthView;
     private BoardView boardView;
@@ -51,16 +48,16 @@ public class GameController {
         this.round = round;
     }
 
-    public GameController(ApplicationController application, GameSettings gameSettings, Board board, CardDeck deck){
+    public GameController(ApplicationController application, GameSettings gameSettings, Board board, CardDeck deck, PropertyChangeSupport support){
         this.support = new PropertyChangeSupport(this);
         board.placePlayers(gameSettings.getPlayers());
         setBoard(board);
         setRound(Round.getInstance(gameSettings.getPlayers()));
 
         this.healthView = new HealthView(gameSettings.getPlayers());
-        this.boardView = new BoardView(BoardController.getInstance(this), this.board, this.round.getPlayers());
-        this.cardTableController = new CardTableController(application,deck);
-        this.gameView = new GameView(this, cardTableController, healthView, boardView);
+        this.boardView = new BoardView(this.board, this.round.getPlayers());
+        this.tableController = new tableController(application,deck);
+        this.gameView = new GameView(this, tableController, healthView, boardView);
     }
 
     public void display(){ gameView.setVisible(true); }

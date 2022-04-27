@@ -1,22 +1,19 @@
 package springboot.view.cardViews;
 
-import springboot.controller.CardTableController;
+import springboot.controller.tableController;
 import springboot.model.cards.Card;
-import springboot.model.cards.CardDeck;
 import springboot.model.cards.CardHand;
-import springboot.model.players.Player;
 import springboot.utils.GridBagUtils;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 
 public class CardTableView extends JPanel{
 
-    private CardTableController cardTableController;
+    private tableController tableController;
 
-    public CardTableView(CardTableController cardTableController, CardHand cardHand){
-        this.cardTableController = cardTableController;
+    public CardTableView(tableController tableController, CardHand cardHand){
+        this.tableController = tableController;
         initGUI(cardHand);
     }
 

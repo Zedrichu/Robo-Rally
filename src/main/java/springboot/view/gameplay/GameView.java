@@ -1,6 +1,6 @@
 package springboot.view.gameplay;
 
-import springboot.controller.CardTableController;
+import springboot.controller.tableController;
 import springboot.controller.GameController;
 import springboot.model.GameSettings;
 import springboot.utils.GridBagUtils;
@@ -17,9 +17,9 @@ public class GameView extends JFrame {
     private JButton playCards;
 
 
-    public GameView(GameController gameController, CardTableController cardTableController, HealthView healthView, BoardView boardView) {
+    public GameView(GameController gameController, tableController tableController, HealthView healthView, BoardView boardView) {
         this.gameController = gameController;
-        initGUI(healthView,boardView,cardTableController.getView());
+        initGUI(healthView,boardView, tableController.getView());
     }
 
     private void initGUI(HealthView healthView,BoardView boardView, CardTableView cardTableView) {

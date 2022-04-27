@@ -16,10 +16,8 @@ import java.util.Set;
 public class BoardView extends JLayeredPane implements PropertyChangeListener {
     private Board board;
     private Set<Player> players;
-    private BoardController controller;
 
-    public BoardView(BoardController controller, Board board, Set<Player> players){
-        this.controller = controller;
+    public BoardView( Board board, Set<Player> players){
         this.board = board;
         this.players = players;
         initGUI(this.board, this.players);
@@ -39,8 +37,6 @@ public class BoardView extends JLayeredPane implements PropertyChangeListener {
                 add(tw, GridBagUtils.constraint(i,j,0));
             }
         }
-
-
     }
 
     public Board getBoard() {

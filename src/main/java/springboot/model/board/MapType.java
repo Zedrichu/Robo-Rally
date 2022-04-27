@@ -8,7 +8,6 @@ public enum MapType {
     // CHECKMATE
     // DIZZYDASH
     //
-
     CHECKMATE(Complexity.EASY, "maps/checkmate.png","maps/checkmate.json");
 
     final private String boardJSON;

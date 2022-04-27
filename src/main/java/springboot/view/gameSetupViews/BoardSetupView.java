@@ -1,16 +1,22 @@
 package springboot.view.gameSetupViews;
 
 import springboot.controller.gameSetup.GameSettingsFacadeController;
+import springboot.model.Complexity;
+import springboot.model.GameSettings;
+import springboot.model.board.Board;
+import springboot.model.board.MapType;
 import springboot.utils.GridBagUtils;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class BoardSetupView extends JFrame {
     private GameSettingsFacadeController gameSettingsController;
     private JButton randomBtn;
+
 
     public BoardSetupView(GameSettingsFacadeController gameSettingsController){
         this.gameSettingsController = gameSettingsController;
@@ -27,12 +33,19 @@ public class BoardSetupView extends JFrame {
         setLayout(new GridBagLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        //Gets information from the game settings controller
+        GameSettings gameSettings = gameSettingsController.getGameSettings();
 
+        //Button and creation of a random board
         randomBtn = new JButton("Random Board");
         randomBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameSettingsController.setupBoard();
+                int[] sizes = gameSettings.getBoardSize();
+                Board board = new Board(sizes[0], sizes[1]);
+                board.loadBoard(gameSettings.getAmountOfPlayers());
+
+                gameSettingsController.setupBoard(board);
                 dispose();
             }
         });

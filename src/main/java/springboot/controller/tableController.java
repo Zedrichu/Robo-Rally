@@ -1,19 +1,17 @@
 package springboot.controller;
 
-import springboot.model.GameSettings;
 import springboot.model.cards.*;
-import springboot.view.boardViews.BoardView;
 import springboot.view.cardViews.CardTableView;
 
 import java.util.ArrayList;
 
-public class CardTableController {
+public class tableController {
 
     private ApplicationController application;
     private CardTableView view;
     private CardDeck deck;
 
-    CardTableController(ApplicationController application, CardDeck deck) {
+    tableController(ApplicationController application, CardDeck deck) {
         this.application = application;
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(CardFactory.getCard(CardType.MOVE,1));

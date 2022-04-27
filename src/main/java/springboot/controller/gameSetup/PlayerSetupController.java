@@ -13,11 +13,12 @@ public class PlayerSetupController {
         this.view = new PlayerSetupView(gameSettingsController, this, noPlayers);
     }
 
+    //Method that validates the player name
     public boolean validateNames(Set<String> names, int noPlayers){
         return names.size() == noPlayers;
     }
 
-
+    //Method to display view
     public void display(){view.setVisible(true);}
 
 }

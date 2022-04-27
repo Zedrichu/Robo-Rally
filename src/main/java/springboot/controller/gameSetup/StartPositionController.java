@@ -4,18 +4,18 @@ package springboot.controller.gameSetup;
 import springboot.controller.BoardController;
 import springboot.model.Position;
 import springboot.model.players.Player;
-import springboot.view.gameSetupViews.BoardPositionView;
+import springboot.view.gameSetupViews.StartPositionView;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class BoardPositionController {
-    private BoardPositionView view;
+public class StartPositionController {
+    private StartPositionView view;
     private GameSettingsFacadeController gameSettingsController;
 
-    public BoardPositionController(GameSettingsFacadeController gameSettingsController, BoardController boardControl, int noPlayers, Set<Player> sps) {
+    public StartPositionController(GameSettingsFacadeController gameSettingsController, BoardController boardControl, int noPlayers, Set<Player> sps) {
         this.gameSettingsController = gameSettingsController;
-        this.view = new BoardPositionView(gameSettingsController, this, boardControl, noPlayers, sps);
+        this.view = new StartPositionView(gameSettingsController, this, boardControl, noPlayers, sps);
     }
 
     public boolean validatePositions(Set<Player> sps) {
