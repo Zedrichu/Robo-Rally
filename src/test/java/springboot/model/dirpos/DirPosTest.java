@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import springboot.model.Position;
 import springboot.model.Direction;
 
+import java.util.Arrays;
+
 class DirPosTest {
     @Test
     void testEverything() {
@@ -18,6 +20,12 @@ class DirPosTest {
         assertNotNull(new Position(5,3).toString());
         assertNotEquals(new Position(3,4).hashCode(), new Position(4,3).hashCode());
         assertEquals(new Position(3,4).hashCode(), new Position(3,4).hashCode());
+        for (int i=0; i<100;i++){
+            Direction dir = Direction.getRandomDirection();
+            assertTrue(Arrays.asList(Direction.values()).contains(dir));
+        }
+
+
     }
 
     }

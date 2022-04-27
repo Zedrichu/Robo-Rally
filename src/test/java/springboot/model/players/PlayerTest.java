@@ -12,6 +12,14 @@ public class PlayerTest {
     void testPlayer() {
         Player plr = PlayerFactory.getPlayer(new PropertyChangeSupport(this),"Adrian");
         assertEquals(plr.getPlayerName(),"Adrian");
+
+        plr.setRobot("Sara");
+        assertTrue(plr.getRobot() == "Sara");
+
+        assertTrue(PlayerFactory.getPlayer("sara").getPlayerName().equals("sara"));
+
+
+
     }
 
 }
