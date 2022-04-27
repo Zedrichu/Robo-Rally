@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import springboot.model.Position;
 import springboot.model.players.Player;
 
+import java.beans.PropertyChangeSupport;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,15 +17,15 @@ class BoardTest {
     @Test
     void testPlayer() {
        // Tile[][] board;
-        Board b = new Board(10, 10);
-        Board b1 = new Board(10, 10);
-        Board b2 = new Board(10, 10);
+        Board b = new Board(new PropertyChangeSupport(this),10, 10);
+        Board b1 = new Board(new PropertyChangeSupport(this),10, 10);
+        Board b2 = new Board(new PropertyChangeSupport(this),10, 10);
         assertEquals(b.getCols(), 10);
         assertEquals(b.getRows(), 10);
 
-        assertTrue(Arrays.deepEquals(b.getBoard(), new Board(10, 10).getBoard()));
+        assertTrue(Arrays.deepEquals(b.getBoard(), new Board(new PropertyChangeSupport(this),10, 10).getBoard()));
 
-        b1.loadBoard(2);
+        b1.loadRandomBoard(2);
 
         b1.getStartTiles();
 
@@ -39,8 +40,8 @@ class BoardTest {
        // tile2.position = new Position(2,1);
        // tile1.position = new Position(1,2);
 
-        Player p1 = new Player("Sara");
-        Player p2 = new Player("jeppe");
+        Player p1 = new Player(new PropertyChangeSupport(this),"Sara");
+        Player p2 = new Player(new PropertyChangeSupport(this),"jeppe");
         p1.setPosition(2,1);
         p2.setPosition(1,2);
 
