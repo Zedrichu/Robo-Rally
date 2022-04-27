@@ -26,10 +26,21 @@ public class StepDefGameSettings {
     }
 
     @Then("game settings has EASY and {int} players")
-    public void game_settings_has_easy_and_players(Integer int1) {
+    public void game_settings_has_easy_and_players(int int1) {
         GameSettings set = gameSettingsController.getGameSettings();
-        assertEquals(2,set.getAmountOfPlayers());
+        assertEquals(int1,set.getAmountOfPlayers());
         assertEquals(Complexity.EASY,set.getComplexity());
     }
-
+    @Then("game settings has MEDIUM and {int} players")
+    public void game_settings_has_medium_and_players(int int1) {
+        GameSettings set = gameSettingsController.getGameSettings();
+        assertEquals(int1, set.getAmountOfPlayers());
+        assertEquals(Complexity.MEDIUM,set.getComplexity());
+    }
+    @Then("game settings has HARD and {int} players")
+    public void game_settings_has_HARD_and_players(int int1) {
+        GameSettings set = gameSettingsController.getGameSettings();
+        assertEquals(int1,set.getAmountOfPlayers());
+        assertEquals(Complexity.HARD,set.getComplexity());
+    }
 }

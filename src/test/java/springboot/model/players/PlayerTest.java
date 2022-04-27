@@ -12,6 +12,11 @@ public class PlayerTest {
 
         plr.setRobot("Sara");
         assertTrue(plr.getRobot() == "Sara");
+
+        assertTrue(PlayerFactory.getPlayer("sara").getPlayerName().equals("sara"));
+
+
+
     }
 
 }
