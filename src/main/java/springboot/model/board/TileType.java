@@ -1,23 +1,30 @@
 package springboot.model.board;
 
+import springboot.model.obstacles.*;
+import springboot.model.obstacles.Obstacle;
+
 public enum TileType {
 	
-	EMPTY("tiles/floor.png"),
-	PIT("tiles/pit.png"),
-	ACID("tiles/acid.png"),
-	RADIATION("tiles/radiation.png"),
-	STARTING("tiles/starting.png"),
-	LIFETOKEN("tiles/lifeToken.png"),
-	CONVEYORBELT("tiles/conveyorBelt.png"),
-	CHECKPOINT("tiles/checkPoint.png");
+	EMPTY("tiles/floor.png", null),
+	PIT("tiles/pit.png", new Pit()),
+	ACID("tiles/acid.png", new Acid()),
+	LASER("tiles/radiation.png", new Laser()),
+	STARTING("tiles/starting.png", null),
+	LIFETOKEN("tiles/lifeToken.png", new LifeToken()),
+	CONVEYORBELT("tiles/conveyorBelt.png", new ConveyorBelt()),
+	CHECKPOINT("tiles/checkPoint.png", null);
 
 	final private String pictureFile;
+	final private Obstacle obstacle;
 	
-	TileType(String pictureFile) {
+	TileType(String pictureFile, Obstacle obstacle) {
 		this.pictureFile = pictureFile;
+		this.obstacle = obstacle;
 	}
 	
 	public String getPictureFile() {
 		return pictureFile;
 	}
+
+	public Obstacle getObstacle() { return obstacle;}
 }

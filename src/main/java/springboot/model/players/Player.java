@@ -6,6 +6,8 @@ import springboot.model.cards.*;
 import springboot.model.Direction;
 import springboot.model.checkPoints.CheckPoint;
 import springboot.model.board.Board;
+import springboot.model.obstacles.Obstacle;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -138,6 +140,10 @@ public class Player {
 
     public Set<CheckPoint> getCollectedCP() {
         return collectedCP;
+    }
+
+    public void hitObstacle(Obstacle obstacle, int number) {
+        obstacle.applyDamage(this, number);
     }
 
     public void pushPlayer(Player player2){

@@ -31,7 +31,7 @@ public class StepDefObstacle {
     Tile tile;
     Round round = Round.getInstance(new HashSet<>());
     CardDeck deck = new CardDeck();
-    private Obstacle<Integer> o;
+    private Obstacle o;
     CheckPoint cp = new CheckPoint();
     CheckPointSet TotalCPSet;
     Board board = new Board(10,10);
@@ -76,7 +76,7 @@ public class StepDefObstacle {
     @Given("laserTile {string} at row {int}  and column {int}")
     public void laser_tile_at_row_and_column(String s, int x, int y) {
         o = new Laser();
-        type = TileType.RADIATION;
+        type = TileType.LASER;
         tile = new Tile(type);
         tile.position = new Position(x, y);
 
@@ -147,13 +147,13 @@ public class StepDefObstacle {
 
     @Then("player {string} has  {int} lives")
     public void player_has_lives(String s, int newlives) {
-        tile.placeObstacle().applyDamage(player, null);
+        player.hitObstacle(tile.getType().getObstacle(), round.getRoundNumber());
         assertEquals(player.getLives(), newlives, 0.0);
     }
 
     @Then("Player {string} on row {int}  new column {int} and direction {string}")
     public void player_on_row_new_column_and_direction(String s, int xnew, int ynew, String dir) {
-        tile.placeObstacle().applyDamage(player, null);
+        player.hitObstacle(tile.getType().getObstacle(), round.getRoundNumber());
         assertTrue(player.getPosition().x == xnew &&
                 player.getPosition().y == ynew &&
                 player.getDirection().getAbbr().equals(dir));
@@ -161,7 +161,7 @@ public class StepDefObstacle {
     //pitTile
     @Then("player {string} with new CardHand")
     public void player_with_new_card_hand(String s){
-        tile.placeObstacle().applyDamage(player, round.getRoundNumber());
+        player.hitObstacle(tile.getType().getObstacle(), round.getRoundNumber());
         assertNull(player.hand.getHand().get(round.getRoundNumber()));
     }
     
