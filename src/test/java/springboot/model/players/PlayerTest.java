@@ -9,6 +9,9 @@ public class PlayerTest {
     void testPlayer() {
         Player plr = PlayerFactory.getPlayer("Adrian");
         assertEquals(plr.getPlayerName(),"Adrian");
+
+        plr.setRobot("Sara");
+        assertTrue(plr.getRobot() == "Sara");
     }
 
 }
