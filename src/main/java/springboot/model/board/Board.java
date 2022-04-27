@@ -103,12 +103,16 @@ public class Board implements PropertyChangeListener {
 			return new Tile(TileType.EMPTY);
 	 	} else if (val <0.80) {
 			return new Tile(TileType.CHECKPOINT);
-		} else if (val < 0.92) {
+		} else if (val < 0.96) {
 			return new Tile(TileType.PIT);
 		} else if (val < 0.96) {
 			return new Tile(TileType.ACID);
-		} else {
+		} else if (val < 0.92) {
 			return new Tile(TileType.RADIATION);
+		} else if (val < 0.85) {
+			return new Tile(TileType.CONVEYORBELT);
+		} else {
+			return new Tile(TileType.LIFETOKEN);
 		}
 	}
 

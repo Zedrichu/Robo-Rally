@@ -79,6 +79,7 @@ public class StepDefObstacle {
         type = TileType.RADIATION;
         tile = new Tile(type);
         tile.position = new Position(x, y);
+
     }
     // lifeToken
     @Given("lifeToken {string} at row {int}  and column {int}")
@@ -146,15 +147,13 @@ public class StepDefObstacle {
 
     @Then("player {string} has  {int} lives")
     public void player_has_lives(String s, int newlives) {
-        o.applyDamage(player, null);
-
+        tile.placeObstacle().applyDamage(player, null);
         assertEquals(player.getLives(), newlives, 0.0);
     }
 
     @Then("Player {string} on row {int}  new column {int} and direction {string}")
     public void player_on_row_new_column_and_direction(String s, int xnew, int ynew, String dir) {
-        o.applyDamage(player, null);
-
+        tile.placeObstacle().applyDamage(player, null);
         assertTrue(player.getPosition().x == xnew &&
                 player.getPosition().y == ynew &&
                 player.getDirection().getAbbr().equals(dir));
@@ -162,8 +161,7 @@ public class StepDefObstacle {
     //pitTile
     @Then("player {string} with new CardHand")
     public void player_with_new_card_hand(String s){
-        int r = round.getRoundNumber();
-        o.applyDamage(player, r);
+        tile.placeObstacle().applyDamage(player, round.getRoundNumber());
         assertNull(player.hand.getHand().get(round.getRoundNumber()));
     }
     

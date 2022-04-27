@@ -33,6 +33,7 @@ public class TileView extends JPanel {
         setMaximumSize(getMinimumSize());
         setPreferredSize(getMinimumSize());
 
+
     }
 
     public void paint(Graphics g){
