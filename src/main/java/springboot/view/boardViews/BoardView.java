@@ -40,11 +40,7 @@ public class BoardView extends JLayeredPane implements PropertyChangeListener {
             }
         }
 
-        for (Player plr : sps){
-            RobotView rw = new RobotView(plr.getRobot());
-            System.out.println(plr.getPosition());
-            //add(rw, GridBagUtils.constraint(plr.getPosition().x, plr.getPosition().y, 0));
-        }
+
     }
 
     public Board getBoard() {

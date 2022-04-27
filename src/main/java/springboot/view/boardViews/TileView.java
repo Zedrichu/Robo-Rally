@@ -21,6 +21,7 @@ public class TileView extends JPanel {
 
         this.type = type;
         try {
+
             this.image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(this.type.getPictureFile()));
         } catch (IOException e){
             this.image = new BufferedImage(1,1,BufferedImage.TYPE_INT_RGB);

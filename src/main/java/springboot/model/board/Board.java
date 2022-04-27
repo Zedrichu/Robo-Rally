@@ -6,6 +6,7 @@ import java.util.*;
 
 import springboot.model.Position;
 import springboot.model.checkPoints.CheckPoint;
+import springboot.model.players.Player;
 
 public class Board implements PropertyChangeListener {
 
@@ -65,8 +66,11 @@ public class Board implements PropertyChangeListener {
 		}
 	}
 
-	public void getTemplate(MapType type) {
-		// board = loadJSON(type.getBoardJSON());
+	public void placePlayers(Set<Player> sps) {
+		for (Player plr : sps){
+			Position pos = plr.getPosition();
+			board[pos.y][pos.x].setRobotOnTop(true);
+		}
 	}
 
 	public Object[] getStartTiles() {

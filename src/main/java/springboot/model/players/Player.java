@@ -100,13 +100,12 @@ public class Player {
         this.setHand(current);
     }
 
-    public void chooseCards(int x) {
+    public void chooseCards(int x,boolean[] selects) {
         ArrayList<Card> current = hand.getHand();
         ArrayList<Card> chosen = new ArrayList<>(x);
-        // To be implemented
-        boolean selected = true;
+
         for (int i = 0; i < x; i++) {
-            if (selected) {
+            if (selects[i]) {
                 chosen.add(current.get(i));
             }
         }

@@ -42,7 +42,7 @@ public class StepDefDrawRandomCard {
 
     @When("choose {int} cards")
     public void choose_cards(Integer int1) {
-        player.chooseCards(5);
+        player.chooseCards(5, new boolean[] {true,true,true,true,true,true});
     }
 
 }

@@ -38,7 +38,7 @@ public class StepDefRound {
         for (Player player : players) {
 
             player.drawCardHand(new CardDeck());
-            player.chooseCards(5-round.getRoundNumber());
+            player.chooseCards(5-round.getRoundNumber(), new boolean[] {true,true,true,true,true,true});
         }
         round.setPlayers(players);
         assertTrue(round.haveAllPlayed());
@@ -49,7 +49,7 @@ public class StepDefRound {
         for (Player player : players) {
 
             player.drawCardHand(new CardDeck());
-            player.chooseCards(5-round.getRoundNumber()+1);
+            player.chooseCards(5-round.getRoundNumber()+1, new boolean[] {true,true,true,true,true,true});
         }
         round.setPlayers(players);
         assertFalse(round.haveAllPlayed());
@@ -59,7 +59,7 @@ public class StepDefRound {
         for (Player player : players) {
             player.drawCardHand(new CardDeck());
             //unsure if this is the correct way to do this
-            player.chooseCards(0);
+            player.chooseCards(0,new boolean[] {true,true,true,true,true,true});
         }
         round.setPlayers(players);
         assertTrue(round.checkNoCardsInHand());

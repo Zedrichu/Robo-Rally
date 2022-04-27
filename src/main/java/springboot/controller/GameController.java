@@ -53,6 +53,7 @@ public class GameController {
 
     public GameController(ApplicationController application, GameSettings gameSettings, Board board, CardDeck deck){
         this.support = new PropertyChangeSupport(this);
+        board.placePlayers(gameSettings.getPlayers());
         setBoard(board);
         setRound(Round.getInstance(gameSettings.getPlayers()));
 

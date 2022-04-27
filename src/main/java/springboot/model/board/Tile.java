@@ -6,11 +6,18 @@ import springboot.model.Direction;
 public class Tile {
 
 	private TileType type;
+	private boolean robotOnTop;
+	private String robotIcon;
 	public Direction direction;
 	public Position position;
 
 	public Tile(TileType type) {
 		this.type = type;
+		this.robotOnTop = false;
+	}
+
+	public void setRobotOnTop(boolean robotOnTop) {
+		this.robotOnTop = robotOnTop;
 	}
 
 	public Position getPosition() {
