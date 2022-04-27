@@ -33,7 +33,7 @@ public class BoardView extends JLayeredPane implements PropertyChangeListener {
 
         for (int j=0; j<rows; j++){
             for (int i=0;i<cols;i++){
-                TileView tw = new TileView(board.getBoard()[j][i].getType());
+                TileView tw = new TileView(board.getBoard()[j][i]);
                 add(tw, GridBagUtils.constraint(i,j,0));
             }
         }

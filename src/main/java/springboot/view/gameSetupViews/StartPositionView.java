@@ -54,9 +54,11 @@ public class StartPositionView extends JFrame {
         int i=0;
         for (Player player : sps) {
             panelTwo.add(new JLabel("Player " + (player.getPlayerName()) + ":"), GridBagUtils.constraint(i,1,5));
-            JComboBox input = new JComboBox(boardController.getBoard().getStartTiles());
-            selections.add(new Object[]{player, input});
-            panelTwo.add(input, GridBagUtils.constraint(i,2,5));
+            JComboBox inputPos = new JComboBox(boardController.getBoard().getStartTiles());
+            JComboBox inputDir = new JComboBox(Direction.values());
+            selections.add(new Object[]{player, inputPos, inputDir});
+            panelTwo.add(inputPos, GridBagUtils.constraint(i,2,5));
+            panelTwo.add(inputDir, GridBagUtils.constraint(i,3,5));
             i++;
         }
         panelTwo.add(GameButton,GridBagUtils.constraint(noPlayers,2,5));

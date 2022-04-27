@@ -31,7 +31,6 @@ public class StepDefObstacle {
     Tile tile;
     Round round = Round.getInstance(new HashSet<>());
     CardDeck deck = new CardDeck();
-    private Obstacle<Player, Integer> o;
     CheckPoint cp = new CheckPoint();
     CheckPointSet TotalCPSet;
     Board board = new Board(10,10);
@@ -66,34 +65,25 @@ public class StepDefObstacle {
     // acidTile
     @Given("acidTile {string} at row {int} and column {int}")
     public void acid_tile_at_row_and_column(String s, int x, int y) {
-        o = new Acid();
-        type = TileType.ACID;
-        tile = new Tile(type);
+        tile = new Tile(TileType.ACID);
         tile.position = new Position(x, y);
-
     }
     // laserTile
     @Given("laserTile {string} at row {int}  and column {int}")
     public void laser_tile_at_row_and_column(String s, int x, int y) {
-        o = new Laser();
-        type = TileType.RADIATION;
-        tile = new Tile(type);
+        tile = new Tile(TileType.LASER);
         tile.position = new Position(x, y);
     }
     // lifeToken
     @Given("lifeToken {string} at row {int}  and column {int}")
     public void life_token_at_row_and_column(String s, int x, int y) {
-        o = new LifeToken();
-        type = TileType.LIFETOKEN;
-        tile = new Tile(type);
+        tile = new Tile(TileType.LIFETOKEN);
         tile.position = new Position(x, y);
     }
     // conveyorBelt
     @Given("conveyorBelt {string} is on row {int} column {int} with direction {string}")
     public void conveyor_belt_is_on_row_column_with_direction(String s, int x, int y, String convDir) {
-        o = new ConveyorBelt();
-        type = TileType.CONVEYORBELT;
-        tile = new Tile(type);
+        tile = new Tile(TileType.CONVEYORBELT);
         tile.position = new Position(x, y);
         tile.setDirection(Direction.getCardinalPointChar(convDir));
     }
@@ -101,36 +91,25 @@ public class StepDefObstacle {
     //pitTile
     @Given("pitTile {string} at row {int} and column {int}")
     public void pit_tile_at_row_and_column(String s, int x, int y) {
-        o = new Pit();
-        type = TileType.PIT;
-        tile = new Tile(type);
+        tile = new Tile(TileType.PIT);
         tile.position = new Position(x,y);
-
-    }
-    @Given("player {string} on row {int} and column {int} with set of visited CheckPoints including Checkpoint {int}")
-    public void player_on_row_and_column_with_set_of_visited_check_points_including_checkpoint(String s, int x, int y, int cpID) {
-        player = new Player(s);
-        player.setPosition(x, y);
-        player.addCheckPoint(cp);
-        //System.out.print("in given " + player.getCpSet());
-        this.size = player.getCollectedCP().size();
-        board.loadBoard(3);
-
     }
     // visiting new CheckPoint
     @Given("player {string} on row {int} and column {int} with set of visited CheckPoints")
     public void player_on_row_and_column_with_set_of_visited_check_points(String s, int x, int y) {
         player = new Player(s);
         player.setPosition(x, y);
+        player.addCheckPoint(cp);
+        this.size = player.getCollectedCP().size();
+        board.loadBoard(3);
     }
     // CheckPoint tile
-    @Given("CheckPoint {string} on row {int} and column {int} with ID {int}")
-    public void check_point_on_row_and_column_with_id(String s, int x, int y, int cpID) {
+    @Given("CheckPoint {string} on row {int} and column {int} with ID")
+    public void check_point_on_row_and_column_with_id(String s, int x, int y) {
         cp.setPosition(x,y);
         type = TileType.CHECKPOINT;
         tile = new Tile(type);//
         tile.position = new Position(x,y);
-
     }
 
     @Given("full set of CheckPoints from board of size {int}")
@@ -146,15 +125,13 @@ public class StepDefObstacle {
 
     @Then("player {string} has  {int} lives")
     public void player_has_lives(String s, int newlives) {
-        o.applyDamage(player, null);
-
+        player.hitObstacle(tile.getType().getObstacle(), round.getRoundNumber());
         assertEquals(player.getLives(), newlives, 0.0);
     }
 
     @Then("Player {string} on row {int}  new column {int} and direction {string}")
     public void player_on_row_new_column_and_direction(String s, int xnew, int ynew, String dir) {
-        o.applyDamage(player, null);
-
+        player.hitObstacle(tile.getType().getObstacle(), round.getRoundNumber());
         assertTrue(player.getPosition().x == xnew &&
                 player.getPosition().y == ynew &&
                 player.getDirection().getAbbr().equals(dir));
@@ -162,8 +139,7 @@ public class StepDefObstacle {
     //pitTile
     @Then("player {string} with new CardHand")
     public void player_with_new_card_hand(String s){
-        int r = round.getRoundNumber();
-        o.applyDamage(player, r);
+        player.hitObstacle(tile.getType().getObstacle(), round.getRoundNumber());
         assertNull(player.hand.getHand().get(round.getRoundNumber()));
     }
     

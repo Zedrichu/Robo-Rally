@@ -69,7 +69,10 @@ public class Board implements PropertyChangeListener {
 	public void placePlayers(Set<Player> sps) {
 		for (Player plr : sps){
 			Position pos = plr.getPosition();
-			board[pos.y][pos.x].setRobotOnTop(true);
+			Tile tile = board[pos.y][pos.x];
+			tile.setRobotOnTop(true);
+			tile.setDirection(plr.getDirection());
+			tile.setRobotIcon(plr.getRobot());
 		}
 	}
 
@@ -103,12 +106,16 @@ public class Board implements PropertyChangeListener {
 			return new Tile(TileType.EMPTY);
 	 	} else if (val <0.80) {
 			return new Tile(TileType.CHECKPOINT);
-		} else if (val < 0.92) {
+		} else if (val < 0.96) {
 			return new Tile(TileType.PIT);
 		} else if (val < 0.96) {
 			return new Tile(TileType.ACID);
+		} else if (val < 0.92) {
+			return new Tile(TileType.LASER);
+		} else if (val < 0.85) {
+			return new Tile(TileType.CONVEYORBELT);
 		} else {
-			return new Tile(TileType.RADIATION);
+			return new Tile(TileType.LIFETOKEN);
 		}
 	}
 

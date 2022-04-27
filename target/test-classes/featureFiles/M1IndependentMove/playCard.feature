@@ -1,19 +1,12 @@
 @tag
 Feature: Play Card
   @tag
-  Scenario: Move one forward successfully
-    Given player "x" at row 3 and column 2 and direction "E"
-    And card of type MOVE and intensity 1
-    When card is played
-    Then player "x" is at row 3 and column 3 and direction "E"
-  @tag
   Scenario Outline: Move one forward successfully
     Given player <name> at row <y> and column <x> and direction <dir>
     And card of type MOVE and intensity 1
     When card is played
     Then player <name> is at row <ynew> and column <xnew> and direction <dir>
-
-    @tag
+   @tag
     Scenarios:
       |  | name | x | y | dir | xnew | ynew |
       |  | "XX" | 3 | 2 | 'E' | 4    | 2    |
@@ -38,7 +31,7 @@ Feature: Play Card
     @tag
     Scenarios:
       |  | name | x | y | dir | xnew | ynew |
-      |  | "XX" | 3 | 2 | "E" | 6    | 2    |
+      |  | "XX" | 3 | 2 | 'E' | 6    | 2    |
 
   @tag
   Scenario Outline: Move one backwards successfully
@@ -50,7 +43,7 @@ Feature: Play Card
     @tag
     Scenarios:
       |  | name | x | y | dir | xnew | ynew |
-      |  | "XX" | 3 | 5 | "S" | 3    | 4    |
+      |  | "XX" | 3 | 5 | 'S' | 3    | 4    |
 
   @tag
   Scenario Outline: Rotate left successfully
@@ -62,7 +55,7 @@ Feature: Play Card
     @tag
     Scenarios:
       |  | name | x | y | dir | xnew | ynew | dirNew |
-      |  | "XX" | 3 | 2 | "E" | 3    | 2    | "N"    |
+      |  | "XX" | 3 | 2 | 'E' | 3    | 2    | 'N'    |
 
   @tag
   Scenario Outline: Rotate right successfully
