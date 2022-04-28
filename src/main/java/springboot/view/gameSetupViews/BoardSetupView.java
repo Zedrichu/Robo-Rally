@@ -22,7 +22,6 @@ public class BoardSetupView extends JFrame {
     }
 
 
-
     private void initGUI(PropertyChangeSupport support){
         //add(new JLabel(new ImageIcon("Path/To/Your/Image.png")));
         setMinimumSize(new Dimension(300,300));
@@ -30,9 +29,24 @@ public class BoardSetupView extends JFrame {
         setTitle("Board Selection");
         setLayout(new GridBagLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setBackground(Color.DARK_GRAY);
+
+        //Panel 1 with label
+        JPanel panelOne = new JPanel();
+        JLabel boardOverview = new JLabel("Board Overview");
+        boardOverview.setFont(new Font("MONOSPACED", Font.BOLD, 40));
+        boardOverview.setForeground(Color.decode("#DC47DA"));
+        panelOne.add(boardOverview);
+        panelOne.setBackground(Color.DARK_GRAY);
+
 
         //Gets information from the game settings controller
         GameSettings gameSettings = gameSettingsController.getGameSettings();
+
+        //Panel 2 with board preview
+        JPanel panelTwo = new JPanel();
+        panelOne.setBackground(Color.DARK_GRAY);
+
 
         //Button and creation of a random board
         randomBtn = new JButton("Random Board");
@@ -47,8 +61,15 @@ public class BoardSetupView extends JFrame {
                 dispose();
             }
         });
+        randomBtn.setBackground(Color.decode("#DC47DA"));
+        randomBtn.setForeground(Color.BLACK);
+        randomBtn.setFont(new Font("MONOSPACED", Font.BOLD, 20));
+        randomBtn.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK), BorderFactory.createRaisedBevelBorder()));
+        panelTwo.add(randomBtn);
 
-        add(randomBtn, GridBagUtils.constraint(0,0,5));
+
+        add(panelOne, GridBagUtils.constraint(0,0,5));
+        add(panelTwo, GridBagUtils.constraint(0,1,5));
         pack();
         setLocationRelativeTo(null);
 

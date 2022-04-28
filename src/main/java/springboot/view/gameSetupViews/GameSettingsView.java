@@ -2,12 +2,11 @@ package springboot.view.gameSetupViews;
 
 import springboot.model.Complexity;
 import springboot.controller.gameSetup.GameSettingsFacadeController;
-import springboot.utils.GradientLabel;
+import springboot.model.board.Board;
 import springboot.utils.GridBagUtils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +19,7 @@ public class GameSettingsView extends JFrame {
     private JComboBox comboComplex;
     private JComboBox comboNumber;
     private GameSettingsFacadeController controller;
+
 
     public static void main(String[] args) {
 
@@ -39,8 +39,11 @@ public class GameSettingsView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setBackground( Color.DARK_GRAY );
 
+
+        //Panel 1
         JPanel panelOne = new JPanel();
 
+        //Image loader
         BufferedImage image;
         try {
             image = ImageIO.read(this.getClass().getClassLoader().getResourceAsStream("roborally/welcome.png"));
@@ -50,17 +53,24 @@ public class GameSettingsView extends JFrame {
         ImageIcon img = new ImageIcon(image);
         JLabel roboRally = new JLabel("", img, JLabel.CENTER);
         panelOne.add(roboRally,BorderLayout.CENTER);
+        panelOne.setBackground(Color.DARK_GRAY);
+        panelOne.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
 
 
 
-        //add(roboRally,GridBagUtils.constraint(1,0,5));
 
+        //Panel 2 for the combo boxes set up
         JPanel panelTwo = new JPanel();
+        panelTwo.setBackground(Color.DARK_GRAY);
+        panelTwo.setBorder(BorderFactory.createRaisedSoftBevelBorder());
 
+        //Combo boxes
         comboComplex = new JComboBox(Complexity.values());
         Integer[] range = {1,2,3,4,5,6,7,8};
         comboNumber = new JComboBox(range);
         btnStart = new JButton("Go to Board Selection");
+        btnStart.setBackground(Color.decode("#DC47DA"));
+        btnStart.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK), BorderFactory.createLoweredBevelBorder()));
         btnStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,6 +79,7 @@ public class GameSettingsView extends JFrame {
             }
         });
 
+        //Adding to panel 2
         JLabel lvlDiff = new JLabel("Level Difficulty");
         lvlDiff.setForeground(Color.RED);
         panelTwo.add(lvlDiff, GridBagUtils.constraint(0,1,5));
@@ -79,6 +90,7 @@ public class GameSettingsView extends JFrame {
         panelTwo.add(comboNumber, GridBagUtils.constraint(1,2,5));
         panelTwo.add(btnStart, GridBagUtils.constraint(1,3,5));
 
+        //Adding to the frame
         add(panelOne,GridBagUtils.constraint(0,0,5));
         add(panelTwo,GridBagUtils.constraint(0,1,5));
 
