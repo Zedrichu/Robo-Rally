@@ -10,16 +10,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BoardTest {
 
     @Test
-    void testPlayer() {
+    void testBoard() {
        // Tile[][] board;
         Board b = new Board(new PropertyChangeSupport(this),10, 10);
         Board b1 = new Board(new PropertyChangeSupport(this),10, 10);
-        Board b2 = new Board(new PropertyChangeSupport(this),10, 10);
         assertEquals(b.getCols(), 10);
         assertEquals(b.getRows(), 10);
 
@@ -33,13 +31,6 @@ class BoardTest {
 
         Set<Player> players = new HashSet<Player>();
 
-       // Tile tile1 = new Tile(TileType.LASER);
-       // Tile tile2 = new Tile(TileType.LASER);
-
-
-       // tile2.position = new Position(2,1);
-       // tile1.position = new Position(1,2);
-
         Player p1 = new Player(new PropertyChangeSupport(this),"Sara");
         Player p2 = new Player(new PropertyChangeSupport(this),"jeppe");
         p1.setPosition(2,1);
@@ -48,7 +39,11 @@ class BoardTest {
         players.add(p1);
         players.add(p2);
 
-        //b.placePlayers(players);
+        b1.placePlayers(players);
+        assertNotNull(p1.getPosition());
+        assertNotNull(p2.getPosition());
+
+
     }
 
 }
