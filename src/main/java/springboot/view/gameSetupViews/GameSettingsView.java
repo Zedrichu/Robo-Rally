@@ -54,9 +54,7 @@ public class GameSettingsView extends JFrame {
         JLabel roboRally = new JLabel("", img, JLabel.CENTER);
         panelOne.add(roboRally,BorderLayout.CENTER);
         panelOne.setBackground(Color.DARK_GRAY);
-        panelOne.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
-
-
+        panelOne.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createRaisedBevelBorder()));
 
 
         //Panel 2 for the combo boxes set up
@@ -69,8 +67,10 @@ public class GameSettingsView extends JFrame {
         Integer[] range = {1,2,3,4,5,6,7,8};
         comboNumber = new JComboBox(range);
         btnStart = new JButton("Go to Board Selection");
+        btnStart.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK), BorderFactory.createRaisedBevelBorder()));
         btnStart.setBackground(Color.decode("#DC47DA"));
-        btnStart.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK), BorderFactory.createLoweredBevelBorder()));
+        btnStart.setForeground(Color.BLACK);
+        btnStart.setOpaque(true);
         btnStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

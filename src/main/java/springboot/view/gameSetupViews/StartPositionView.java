@@ -36,25 +36,38 @@ public class StartPositionView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridBagLayout());
         setResizable(true);
+        getContentPane().setBackground( Color.DARK_GRAY );
         JButton GameButton = new JButton("Go to Game!");
-
+        GameButton.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK), BorderFactory.createRaisedBevelBorder()));
+        GameButton.setBackground(Color.decode("#DC47DA"));
+        GameButton.setForeground(Color.BLACK);
+        GameButton.setOpaque(true);
         //JPanel mainPanel = new JPanel(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
         //Panel one shows the board
         JPanel panelOne = new JPanel(new GridBagLayout());
         panelOne.add(boardController.getView());
+        panelOne.setBackground(Color.DARK_GRAY);
+        panelOne.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createRaisedBevelBorder()));
+
 
         //Panel drop down menu to pick starting tile
         //comboPosition = new JCombobox();
         JPanel panelTwo = new JPanel(new GridBagLayout());
-        JLabel label = new JLabel("Pick starting tile");
-        label.setFont(new Font("Serif", Font.BOLD, 20));
-        panelTwo.add(label,GridBagUtils.constraint(0,0,5));
+        JLabel pickPos = new JLabel("Pick starting tile");
+        pickPos.setFont(new Font("Serif", Font.BOLD, 20));
+        pickPos.setForeground(Color.decode("#DC47DA"));
+        panelTwo.add(pickPos,GridBagUtils.constraint(0,0,5));
+        panelTwo.setBackground(Color.DARK_GRAY);
+        panelTwo.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createRaisedBevelBorder()));
 
         ArrayList<Object[]> selections = new ArrayList<>();
 
         int i=2;
         for (Player player : sps) {
-            panelTwo.add(new JLabel("Player " + (player.getPlayerName()) + ":"), GridBagUtils.constraint(2*(i%2),2*(i/2),5));
+
+            JLabel setStartPos = new JLabel("Player " + (player.getPlayerName()) + ":");
+            setStartPos.setForeground(Color.decode("#DC47DA"));
+            panelTwo.add(setStartPos, GridBagUtils.constraint(2*(i%2),2*(i/2),5));
             JComboBox inputPos = new JComboBox(boardController.getBoard().getStartTiles());
             JComboBox inputDir = new JComboBox(Direction.values());
             selections.add(new Object[]{player, inputPos, inputDir});

@@ -33,17 +33,24 @@ public class PlayerSetupView extends JFrame {
         setTitle("Player Setup");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridBagLayout());
+        getContentPane().setBackground( Color.DARK_GRAY );
 
         ArrayList<JTextField> inputs = new ArrayList<>(noPlayers);
 
         for (int i = 0; i < noPlayers; i++) {
-            add(new JLabel ("Player " + (i + 1)+"'s" + " name: "), GridBagUtils.constraint(0,i,5));
+            JLabel setName = new JLabel ("Player " + (i + 1)+"'s" + " name: ");
+            setName.setForeground(Color.decode("#DC47DA"));
+            add(setName, GridBagUtils.constraint(0,i,5));
             JTextField input = new JTextField(15);
             inputs.add(input);
             add(input, GridBagUtils.constraint(1,i,5));
         }
 
         submitBtn = new JButton("Submit");
+        submitBtn.setForeground(Color.BLACK);
+        submitBtn.setBackground(Color.decode("#DC47DA"));
+        submitBtn.setOpaque(true);
+        submitBtn.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createRaisedBevelBorder()));
         submitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -29,7 +29,7 @@ public class BoardSetupView extends JFrame {
         setTitle("Board Selection");
         setLayout(new GridBagLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setBackground(Color.DARK_GRAY);
+        getContentPane().setBackground( Color.DARK_GRAY );
 
         //Panel 1 with label
         JPanel panelOne = new JPanel();
@@ -65,6 +65,10 @@ public class BoardSetupView extends JFrame {
         randomBtn.setForeground(Color.BLACK);
         randomBtn.setFont(new Font("MONOSPACED", Font.BOLD, 20));
         randomBtn.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK), BorderFactory.createRaisedBevelBorder()));
+        randomBtn.setOpaque(true);
+        panelTwo.setBackground(Color.DARK_GRAY);
+        panelTwo.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(),BorderFactory.createRaisedBevelBorder()));
+
         panelTwo.add(randomBtn);
 
 

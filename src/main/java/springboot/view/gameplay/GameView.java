@@ -31,7 +31,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
         setTitle("Game on!");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridBagLayout());
-        getContentPane().setBackground( Color.DARK_GRAY );
+        getContentPane().setBackground(Color.DARK_GRAY );
 
         add(healthView, GridBagUtils.constraint(1,0,10));
         add(boardView, GridBagUtils.constraint(0,0,10));
