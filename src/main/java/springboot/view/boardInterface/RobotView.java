@@ -1,4 +1,4 @@
-package springboot.view.boardViews;
+package springboot.view.boardInterface;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

@@ -19,7 +19,7 @@ public class StepDefDrawRandomCard {
 
     @Given("player {string}")
     public void player(String string) {
-        player = new Player(new PropertyChangeSupport(this), string);
+        player = new Player(string);
     }
     @Given("card deck")
     public void card_deck() {

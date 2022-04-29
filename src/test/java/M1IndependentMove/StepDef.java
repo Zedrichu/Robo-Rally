@@ -20,11 +20,11 @@ public class StepDef {
     Card card;
     Position newPosition;
     Direction newDirection;
-    Board board = new Board(new PropertyChangeSupport(this),10,10);
+    Board board = new Board(10,10);
 
     @Given("player {string} at row {int} and column {int} and direction {string}")
     public void player_at_row_and_column_and_direction(String s, int y, int x, String dir) {
-        player = new Player(new PropertyChangeSupport(this),s);
+        player = new Player(s);
         // x -> column so int2 and y -> row so int1
         player.setPosition(x, y);
         player.setDirection(Direction.getCardinalPointChar(dir));

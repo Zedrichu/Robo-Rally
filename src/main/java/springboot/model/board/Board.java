@@ -11,7 +11,6 @@ import springboot.model.players.Player;
 
 public class Board implements PropertyChangeListener {
 
-	private PropertyChangeSupport support;
 	private Random rnd = new Random();
 	private Tile[][] board;
 	private int rows;
@@ -23,8 +22,7 @@ public class Board implements PropertyChangeListener {
 		return checkPoints;
 	}
 
-	public Board(PropertyChangeSupport support, int rows, int cols) {
-		this.support = support;
+	public Board(int rows, int cols) {
 		this.board = new Tile[rows][cols];
 		this.rows = rows;
 		this.cols = cols;

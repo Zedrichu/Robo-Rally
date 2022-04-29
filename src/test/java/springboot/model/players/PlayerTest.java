@@ -10,13 +10,13 @@ public class PlayerTest {
 
     @Test
     void testPlayer() {
-        Player plr = PlayerFactory.getPlayer(new PropertyChangeSupport(this),"Adrian");
+        Player plr = PlayerFactory.getPlayer("Adrian");
         assertEquals(plr.getPlayerName(),"Adrian");
 
         plr.setRobot("Sara");
         assertTrue(plr.getRobot() == "Sara");
 
-        assertTrue(PlayerFactory.getPlayer(new PropertyChangeSupport(this),"sara").getPlayerName().equals("sara"));
+        assertTrue(PlayerFactory.getPlayer("sara").getPlayerName().equals("sara"));
 
 
 

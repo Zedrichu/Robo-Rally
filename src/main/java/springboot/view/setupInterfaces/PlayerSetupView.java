@@ -1,12 +1,12 @@
-package springboot.view.gameSetupViews;
+package springboot.view.setupInterfaces;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-import springboot.controller.gameSetup.GameSettingsFacadeController;
-import springboot.controller.gameSetup.PlayerSetupController;
+import springboot.controller.setup.GameSettingsFacadeController;
+import springboot.controller.setup.PlayerSetupController;
 import springboot.utils.GridBagUtils;
 
 public class PlayerSetupView extends JFrame {

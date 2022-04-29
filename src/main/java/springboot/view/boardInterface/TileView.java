@@ -1,4 +1,4 @@
-package springboot.view.boardViews;
+package springboot.view.boardInterface;
 
 import springboot.model.board.Tile;
 import springboot.model.board.TileType;

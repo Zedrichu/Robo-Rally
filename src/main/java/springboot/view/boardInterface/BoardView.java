@@ -1,6 +1,5 @@
-package springboot.view.boardViews;
+package springboot.view.boardInterface;
 
-import springboot.controller.BoardController;
 import springboot.model.board.Board;
 import springboot.model.players.Player;
 import springboot.model.round.Round;
@@ -8,7 +7,6 @@ import springboot.utils.GridBagUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Set;

@@ -1,6 +1,6 @@
-package springboot.controller.gameSetup;
+package springboot.controller.setup;
 
-import springboot.view.gameSetupViews.PlayerSetupView;
+import springboot.view.setupInterfaces.PlayerSetupView;
 
 import java.util.Set;
 

@@ -25,7 +25,7 @@ public class StepDefGameInitialise {
 
     @Given("game settings with EASY and {int} players")
     public void game_settings(int x) {
-        gameSettings = new GameSettings(new PropertyChangeSupport(this));
+        gameSettings = new GameSettings();
         gameSettings.setAmountOfPlayers(x);
         gameSettings.setComplexity(Complexity.EASY);
         gameSettings.setAmountOfPlayers(x);
@@ -43,7 +43,7 @@ public class StepDefGameInitialise {
     @When("game initialisation")
     public void game_initialisation(){
         int[] size = gameSettings.getBoardSize();
-        board = new Board(new PropertyChangeSupport(this),size[0], size[1]);
+        board = new Board(size[0], size[1]);
         board.loadRandomBoard(gameSettings.getAmountOfPlayers());
         for (Player plr : gameSettings.getPlayers()){
             plr.setPosition(board.getRandomStartPosition());

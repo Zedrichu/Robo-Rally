@@ -7,15 +7,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class GameSettings {
-    private PropertyChangeSupport support;
     private long boardId;
     private Complexity complexity;
     private Set<Player> sps = new HashSet<>();
     private int amountOfPlayers;
 
-    public GameSettings(PropertyChangeSupport support) {
-        this.support = support;
-    }
 
     public Set<Player> getPlayers() {
         return sps;
@@ -50,6 +46,4 @@ public class GameSettings {
             case HARD -> new int[]{11, 11};
         };
     }
-
-
 }

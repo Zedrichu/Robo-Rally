@@ -1,10 +1,8 @@
-package springboot.controller;
+package springboot.controller.game;
 
-import springboot.controller.gameSetup.GameSettingsFacadeController;
-import springboot.model.GameSettings;
 import springboot.model.board.Board;
 import springboot.model.players.Player;
-import springboot.view.boardViews.BoardView;
+import springboot.view.boardInterface.BoardView;
 
 import java.util.Set;
 

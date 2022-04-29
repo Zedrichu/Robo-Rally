@@ -14,7 +14,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Player {
-    private PropertyChangeSupport support;
     private static int IDs = 0;
     final private int playerID;
     final private String playerName;
@@ -39,13 +38,10 @@ public class Player {
     }
 
     public void drawCardHand(CardDeck deck) {
-
         this.hand = new CardHand(deck.drawCards(9));
-        support.firePropertyChange("player",null, this.hand);
     }
 
-    public Player(PropertyChangeSupport support, String name) {
-        this.support = support;
+    public Player(String name) {
         this.playerID = getFreshID();
         this.playerName = name;
     }

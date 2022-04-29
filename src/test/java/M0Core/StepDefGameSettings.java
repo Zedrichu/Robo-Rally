@@ -1,15 +1,11 @@
 package M0Core;
 import static org.junit.Assert.*;
 
-import springboot.controller.ApplicationController;
 import springboot.model.Complexity;
 import springboot.model.GameSettings;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import springboot.controller.gameSetup.GameSettingsFacadeController;
-
-import java.beans.PropertyChangeSupport;
 
 public class StepDefGameSettings {
 
@@ -18,7 +14,7 @@ public class StepDefGameSettings {
 
     @Given("new game")
     public void new_game() {
-        gameSettings = new GameSettings(new PropertyChangeSupport(this));
+        gameSettings = new GameSettings();
     }
 
     @When("select settings EASY")

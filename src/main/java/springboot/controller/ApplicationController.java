@@ -1,17 +1,18 @@
 package springboot.controller;
 
-import springboot.controller.gameSetup.GameSettingsFacadeController;
+import springboot.controller.game.BoardController;
+import springboot.controller.game.GameController;
+import springboot.controller.setup.GameSettingsFacadeController;
 import springboot.model.GameSettings;
 import springboot.model.cards.CardDeck;
-import java.beans.PropertyChangeSupport;
 
 public class ApplicationController {
 
     private GameSettingsFacadeController settingsController;
     private GameController gameController;
 
-    public void game(PropertyChangeSupport support, BoardController boardController, GameSettings gameSettings, CardDeck deck) {
-        gameController = new GameController(this, gameSettings, boardController.getBoard(), deck, support);
+    public void game(BoardController boardController, GameSettings gameSettings, CardDeck deck) {
+        gameController = new GameController(gameSettings, boardController.getBoard(), deck);
         gameController.display();
     }
 

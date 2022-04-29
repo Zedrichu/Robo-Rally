@@ -1,6 +1,6 @@
-package springboot.view.gameSetupViews;
+package springboot.view.setupInterfaces;
 
-import springboot.controller.gameSetup.GameSettingsFacadeController;
+import springboot.controller.setup.GameSettingsFacadeController;
 import springboot.model.GameSettings;
 import springboot.model.board.Board;
 import springboot.utils.GridBagUtils;
@@ -9,20 +9,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeSupport;
 
 public class BoardSetupView extends JFrame {
-    private GameSettingsFacadeController gameSettingsController;
-    private JButton randomBtn;
+    private final GameSettingsFacadeController gameSettingsController;
 
-
-    public BoardSetupView(GameSettingsFacadeController gameSettingsController, PropertyChangeSupport support){
+    public BoardSetupView(GameSettingsFacadeController gameSettingsController){
         this.gameSettingsController = gameSettingsController;
-        initGUI(support);
+        initGUI();
     }
 
-
-    private void initGUI(PropertyChangeSupport support){
+    private void initGUI(){
         //add(new JLabel(new ImageIcon("Path/To/Your/Image.png")));
         setMinimumSize(new Dimension(300,300));
         setResizable(false);
@@ -49,12 +45,12 @@ public class BoardSetupView extends JFrame {
 
 
         //Button and creation of a random board
-        randomBtn = new JButton("Random Board");
+        JButton randomBtn = new JButton("Random Board");
         randomBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int[] sizes = gameSettings.getBoardSize();
-                Board board = new Board(support, sizes[0], sizes[1]);
+                Board board = new Board(sizes[0], sizes[1]);
                 board.loadRandomBoard(gameSettings.getAmountOfPlayers());
 
                 gameSettingsController.setupBoard(board);

@@ -1,10 +1,10 @@
-package springboot.view.gameSetupViews;
+package springboot.view.setupInterfaces;
 
-import springboot.controller.BoardController;
+import springboot.controller.game.BoardController;
 import springboot.model.Direction;
 import springboot.model.players.Player;
-import springboot.controller.gameSetup.StartPositionController;
-import springboot.controller.gameSetup.GameSettingsFacadeController;
+import springboot.controller.setup.StartPositionController;
+import springboot.controller.setup.GameSettingsFacadeController;
 import springboot.model.Position;
 import springboot.utils.GridBagUtils;
 import springboot.model.board.Tile;

@@ -18,7 +18,7 @@ import java.util.Set;
 
 public class StepDefRound {
     Set<Player> players;
-    Round round = Round.getInstance(new PropertyChangeSupport(this), new HashSet<>());
+    Round round = new Round(new HashSet<>());
 
     @Given("round counter {int}")
     public void round_counter(int x) {
@@ -30,7 +30,7 @@ public class StepDefRound {
             add("Adrian");
             add("Jeppe");
         }};
-        players = PlayerFactory.getPlayerSet(new PropertyChangeSupport(this),2,names);
+        players = PlayerFactory.getPlayerSet(2,names);
         round.setPlayers(players);
     }
 

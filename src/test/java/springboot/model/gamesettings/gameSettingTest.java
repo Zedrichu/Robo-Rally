@@ -15,15 +15,14 @@ class gameSettingTest {
     void testGameSettings() {
 
         Set <Player> players = new HashSet<Player>();
-        players.add(new Player(new PropertyChangeSupport(this),"Sara"));
-        players.add(new Player(new PropertyChangeSupport(this),"jeppe"));
+        players.add(new Player("Sara"));
+        players.add(new Player("jeppe"));
 
-        GameSettings settings = new GameSettings(new PropertyChangeSupport(this));
+        GameSettings settings = new GameSettings();
         settings.setPlayers(players);
         assertSame(settings.getPlayers(), players);
 
         settings.setPlayers(players);
-
     }
 
 }

@@ -16,12 +16,12 @@ class BoardTest {
     @Test
     void testBoard() {
        // Tile[][] board;
-        Board b = new Board(new PropertyChangeSupport(this),10, 10);
-        Board b1 = new Board(new PropertyChangeSupport(this),10, 10);
+        Board b = new Board(10, 10);
+        Board b1 = new Board(10, 10);
         assertEquals(b.getCols(), 10);
         assertEquals(b.getRows(), 10);
 
-        assertTrue(Arrays.deepEquals(b.getBoard(), new Board(new PropertyChangeSupport(this),10, 10).getBoard()));
+        assertTrue(Arrays.deepEquals(b.getBoard(), new Board(10, 10).getBoard()));
 
         b1.loadRandomBoard(2);
 
@@ -31,8 +31,8 @@ class BoardTest {
 
         Set<Player> players = new HashSet<Player>();
 
-        Player p1 = new Player(new PropertyChangeSupport(this),"Sara");
-        Player p2 = new Player(new PropertyChangeSupport(this),"jeppe");
+        Player p1 = new Player("Sara");
+        Player p2 = new Player("jeppe");
         p1.setPosition(2,1);
         p2.setPosition(1,2);
 

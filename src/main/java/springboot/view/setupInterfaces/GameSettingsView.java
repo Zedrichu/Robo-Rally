@@ -1,8 +1,7 @@
-package springboot.view.gameSetupViews;
+package springboot.view.setupInterfaces;
 
 import springboot.model.Complexity;
-import springboot.controller.gameSetup.GameSettingsFacadeController;
-import springboot.model.board.Board;
+import springboot.controller.setup.GameSettingsFacadeController;
 import springboot.utils.GridBagUtils;
 
 import javax.imageio.ImageIO;

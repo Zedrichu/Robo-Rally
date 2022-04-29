@@ -1,4 +1,4 @@
-package springboot.view.cardViews;
+package springboot.view.cardInterface;
 
 import springboot.model.cards.Card;
 
@@ -11,12 +11,14 @@ import java.io.IOException;
 
 public class CardView extends JButton {
 
-    BufferedImage image;
+    private BufferedImage image;
 
     CardView(Card card){
         super();
+        // Defining path for the image resource of each card
         String path = "cards/"+card.getName()+".png";
-
+        setForeground(Color.BLACK);
+        // Loading the card image as button icon
         try {
             image = ImageIO.read(this.getClass().getClassLoader().getResourceAsStream(path));
         } catch (IOException e) {
@@ -32,4 +34,21 @@ public class CardView extends JButton {
         setHorizontalTextPosition(SwingConstants.CENTER);
         setMinimumSize(new Dimension(90,140));
     }
+
+    //Method to change color and label, based on selection,
+    // triggered by each cardView listener
+    public void select(boolean value, int number) {
+        this.setSelected(value);
+        // If selected, make frame around GREEN
+        if (value) {
+            setBackground(Color.GREEN);
+            setText(getText()+"✅"+number);
+        // Else make the frame back RED
+        } else {
+            setBackground(Color.RED);
+            String[] str = getText().split("✅");
+            setText(str[0]);
+        }
+    }
+
 }

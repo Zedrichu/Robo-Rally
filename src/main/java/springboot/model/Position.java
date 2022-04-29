@@ -13,10 +13,7 @@ public class Position {
 
     @Override
     public String toString() {
-        return "Position{" +
-                "x=" + (x+1) +
-                ", y=" + (y+1) +
-                '}';
+        return (x+1)+":"+(y+1);
     }
 
     @Override

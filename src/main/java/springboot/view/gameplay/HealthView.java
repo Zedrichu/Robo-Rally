@@ -1,4 +1,4 @@
-package springboot.view;
+package springboot.view.gameplay;
 
 import springboot.model.players.Player;
 import springboot.model.round.Round;
