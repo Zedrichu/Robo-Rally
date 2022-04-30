@@ -7,6 +7,7 @@ import springboot.view.cardInterface.CardTableView;
 import springboot.view.gameplay.PromptView;
 
 import javax.swing.*;
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,6 +15,7 @@ import java.util.Set;
 
 public class TableController {
 
+    private GameController gameController;
     private final PropertyChangeSupport support;
     private boolean selected;
     private JPanel view;
@@ -21,7 +23,6 @@ public class TableController {
     private final CardDeck deck;
     private Player player;
     private Iterator iterator;
-
 
 
     TableController(PropertyChangeSupport support, GameController gameController, Round round, CardDeck deck) {
@@ -38,7 +39,7 @@ public class TableController {
         PromptView promptView = new PromptView(this, player);
         CardTableView cardTableView = new CardTableView(this, this.player);
 
-        System.out.println("Selection for player: "+ this.player.getPlayerName());
+        System.out.println("Selection for player: " + this.player.getPlayerName());
         this.view = promptView;
         this.view.setVisible(true);
 
@@ -54,8 +55,7 @@ public class TableController {
     }
 
     public void nextPlayer() {
-
-        if (this.iterator.hasNext()){
+        if (this.iterator.hasNext()) {
             this.player = (Player) this.iterator.next();
             support.firePropertyChange("player", null, this.player); //Fires to Prompt or CardTableView
             System.out.println("Selection for player: " + this.player.getPlayerName());
@@ -64,11 +64,11 @@ public class TableController {
         }
     }
 
-    public void handleChosenCards(ArrayList<Integer> selected){
+    public void handleChosenCards(ArrayList<Integer> selected) {
         this.player.chooseCards(5, selected, this.deck);
     }
 
-    public void select(boolean value){
+    public void select(boolean value) {
         support.firePropertyChange("selection", this.selected, value);
         this.selected = value;
     }
@@ -80,4 +80,5 @@ public class TableController {
     public JPanel getView() {
         return view;
     }
+
 }
