@@ -20,6 +20,10 @@ public class CardHand {
     }
 
     public int size() {return hand.size();}
+
+    public Card get(int i) {
+        return hand.get(i);
+    }
 // #TODO
 //  public void removeCard(){
 //      hand.set(round.getRoundNumber(),null);

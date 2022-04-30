@@ -28,6 +28,7 @@ public class BoardView extends JLayeredPane implements PropertyChangeListener {
         setMinimumSize(new Dimension(cols*TileView.PIXEL_SIZE,rows*TileView.PIXEL_SIZE));
         setMaximumSize(getMinimumSize());
         setPreferredSize(getMinimumSize());
+        
 
         for (int j=0; j<rows; j++){
             for (int i=0;i<cols;i++){

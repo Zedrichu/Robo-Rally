@@ -39,7 +39,7 @@ public class TableController {
         PromptView promptView = new PromptView(this, player);
         CardTableView cardTableView = new CardTableView(this, this.player);
 
-        System.out.println("Selection for player: "+ this.player.getPlayerName());
+        System.out.println("Selection for player: " + this.player.getPlayerName());
         this.view = promptView;
         this.view.setVisible(true);
 
@@ -49,14 +49,13 @@ public class TableController {
 
     public void setView(JPanel view) {
         this.view.setVisible(false);
-        this.support.firePropertyChange("table", this.view, view); //Fires back to GameController
+        this.support.firePropertyChange("table", this.view, view);
         this.view = view;
         this.view.setVisible(true);
     }
 
     public void nextPlayer() {
-
-        if (this.iterator.hasNext()){
+        if (this.iterator.hasNext()) {
             this.player = (Player) this.iterator.next();
             support.firePropertyChange("player", null, this.player); //Fires to Prompt or CardTableView
             System.out.println("Selection for player: " + this.player.getPlayerName());
@@ -65,7 +64,7 @@ public class TableController {
         }
     }
 
-    public void handleChosenCards(ArrayList<Integer> selected){
+    public void handleChosenCards(ArrayList<Integer> selected) {
         this.player.chooseCards(5, selected, this.deck);
     }
 

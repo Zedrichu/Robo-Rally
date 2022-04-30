@@ -1,5 +1,6 @@
 package springboot.view.gameplay;
 
+import org.apache.juli.logging.Log;
 import springboot.controller.game.TableController;
 import springboot.controller.game.GameController;
 import springboot.model.GameSettings;
@@ -13,6 +14,7 @@ import java.beans.PropertyChangeListener;
 
 public class GameView extends JFrame implements PropertyChangeListener {
     private final GameController gameController;
+    private LogView logView;
     private GameSettings gameSettings;
     private JPanel tableView;
     private HealthView healthView;
@@ -20,14 +22,15 @@ public class GameView extends JFrame implements PropertyChangeListener {
     private JButton playCards;
 
 
-    public GameView(GameController gameController, TableController tableController, HealthView healthView, BoardView boardView) {
+    public GameView(GameController gameController, TableController tableController, HealthView healthView, BoardView boardView, LogView logView) {
         this.gameController = gameController;
         this.boardView = boardView;
         this.healthView = healthView;
-        initGUI(this.healthView, this.boardView, tableController.getView());
+        this.logView = logView; //
+        initGUI(this.healthView, this.boardView, tableController.getView(),logView);
     }
 
-    private void initGUI(HealthView healthView,BoardView boardView, JPanel tableView) {
+    private void initGUI(HealthView healthView, BoardView boardView, JPanel tableView, LogView logView) {
         setMinimumSize(new Dimension(1000,1100));
         setPreferredSize(getMinimumSize());
         setResizable(true); //false
@@ -40,6 +43,8 @@ public class GameView extends JFrame implements PropertyChangeListener {
         add(boardView, GridBagUtils.constraint(0,0,10));
         add(tableView, GridBagUtils.constraint(0,1,10));
 
+        add(logView, GridBagUtils.constraint(1,1,10));
+
         pack();
         setLocationRelativeTo(null);
     }
@@ -48,7 +53,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("table")) {
             this.tableView = (JPanel) evt.getNewValue();
-            initGUI(this.healthView, this.boardView, this.tableView);
+            initGUI(this.healthView, this.boardView, this.tableView,this.logView);
             revalidate();
         }
     }
