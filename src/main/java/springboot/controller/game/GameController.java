@@ -42,6 +42,12 @@ public class GameController {
         return gameView;
     }
 
+    public void nextRound(){
+        //for (Player player : round.getPlayers()) {
+        //    player.playCard(player.getHand(), board);
+        //}
+    }
+
     public void startGame(CardDeck deck) {
         setHealthView(this.round);
         setBoardView(this.board, this.round.getPlayers());

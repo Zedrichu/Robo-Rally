@@ -40,14 +40,14 @@ public class CardView extends JButton {
 
     //Method to change color and label, based on selection,
     // triggered by each cardView listener
-    public void select(boolean value, int number) {
-        this.setSelected(value);
+    public void select(int number) {
         // If selected, make frame around GREEN
-        if (value) {
+        if (number>0) {
+            setSelected(true);
             setBackground(Color.GREEN);
             this.choice = number;
             setText(getText()+"✅"+number);
-        // Else make the frame back RED
+            // Else make the frame back RED
         } else {
             setSelected(false);
             setBackground(Color.RED);

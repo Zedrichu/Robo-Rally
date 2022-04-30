@@ -14,6 +14,7 @@ import java.util.Set;
 
 public class TableController {
 
+    private GameController gameController;
     private final PropertyChangeSupport support;
     private boolean selected;
     private JPanel view;
@@ -48,7 +49,7 @@ public class TableController {
 
     public void setView(JPanel view) {
         this.view.setVisible(false);
-        support.firePropertyChange("table", this.view, view);
+        this.support.firePropertyChange("table", this.view, view); //Fires back to GameController
         this.view = view;
         this.view.setVisible(true);
     }
@@ -69,7 +70,7 @@ public class TableController {
     }
 
     public void select(boolean value){
-        support.firePropertyChange("selection", this.selected, value);
+        support.firePropertyChange("selection", this.selected, value); //Fires to Prompt or CardTableView
         this.selected = value;
     }
 
