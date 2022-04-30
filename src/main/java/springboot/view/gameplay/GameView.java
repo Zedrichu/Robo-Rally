@@ -28,8 +28,8 @@ public class GameView extends JFrame implements PropertyChangeListener {
     }
 
     private void initGUI(HealthView healthView,BoardView boardView, JPanel tableView) {
-        setMinimumSize(new Dimension(900, 800));
-        setPreferredSize(getMaximumSize());
+        setMinimumSize(new Dimension(1000,1100));
+        setPreferredSize(getMinimumSize());
         setResizable(true); //false
         setTitle("Game on!");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,7 +48,6 @@ public class GameView extends JFrame implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("table")) {
             this.tableView = (JPanel) evt.getNewValue();
-            gameController.setGameView();
             initGUI(this.healthView, this.boardView, this.tableView);
             revalidate();
         }

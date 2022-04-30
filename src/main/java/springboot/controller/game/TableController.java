@@ -8,6 +8,9 @@ import springboot.view.gameplay.PromptView;
 
 import javax.swing.*;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
 
 public class TableController {
 
@@ -17,26 +20,30 @@ public class TableController {
     private final Round round;
     private final CardDeck deck;
     private Player player;
+    private Iterator iterator;
 
-    TableController(PropertyChangeSupport support, Round round, CardDeck deck) {
+
+
+    TableController(PropertyChangeSupport support, GameController gameController, Round round, CardDeck deck) {
         this.round = round;
+        this.gameController = gameController;
         this.support = support;
         this.deck = deck;
-        this.player = round.getPlayers().iterator().next();
+        this.iterator = round.getPlayers().iterator();
+        this.player = (Player) iterator.next();
         this.selected = true;
 
-        if (this.player.getHand() == null) {
-            this.player.drawCardHand(this.deck);
-        }
+        round.drawCardsAll(deck);
 
         PromptView promptView = new PromptView(this, player);
         CardTableView cardTableView = new CardTableView(this, this.player);
 
+        System.out.println("Selection for player: "+ this.player.getPlayerName());
         this.view = promptView;
         this.view.setVisible(true);
 
-        support.addPropertyChangeListener(cardTableView);
-        support.addPropertyChangeListener(promptView);
+        this.support.addPropertyChangeListener(cardTableView);
+        this.support.addPropertyChangeListener(promptView);
     }
 
     public void setView(JPanel view) {
@@ -47,10 +54,18 @@ public class TableController {
     }
 
     public void nextPlayer() {
-        Player tempo = this.player;
-        this.player = this.round.getPlayers().iterator().next();
-        support.firePropertyChange("player", tempo, this.player);
-        System.out.println("Selection for player: "+ this.player.getPlayerName());
+
+        if (this.iterator.hasNext()){
+            this.player = (Player) this.iterator.next();
+            support.firePropertyChange("player", null, this.player); //Fires to Prompt or CardTableView
+            System.out.println("Selection for player: " + this.player.getPlayerName());
+        } else {
+            gameController.nextRound();
+        }
+    }
+
+    public void handleChosenCards(ArrayList<Integer> selected){
+        this.player.chooseCards(5, selected, this.deck);
     }
 
     public void select(boolean value){

@@ -9,14 +9,16 @@ public class CardDeck {
     final private Random random = new Random();
     private final Set<Card> deck = new HashSet<>();
     private int deckSize = 84;
-    private int[] cardinality = {18,12,6,6,18,18,6};
-    private CardType[] types = {CardType.MOVE,CardType.MOVE,CardType.MOVE,CardType.MOVE,CardType.ROTATE,CardType.ROTATE,CardType.ROTATE};
-    private int[] intensities = {1,2,3,-1,1,-1,2};
 
     public CardDeck() {
-        for (int i=0;i<types.length;i++) {
-            for (int j=0; j<cardinality[i];j++) {
-                deck.add(CardFactory.getCard(types[i],intensities[i]));
+        CardType[] types = {CardType.MOVE, CardType.MOVE, CardType.MOVE, CardType.MOVE, CardType.ROTATE, CardType.ROTATE, CardType.ROTATE};
+        int[] cardinality = {18, 12, 6, 6, 18, 18, 6};
+        int[] intensities = {1, 2, 3, -1, 1, -1, 2};
+
+
+        for (int i = 0; i< types.length; i++) {
+            for (int j = 0; j< cardinality[i]; j++) {
+                deck.add(CardFactory.getCard(types[i], intensities[i]));
             }
         }
     }
@@ -36,6 +38,11 @@ public class CardDeck {
             }
         }
         return draws;
+    }
+
+    // Method to restore the cards that were not chosen while drawing
+    public void restoreCards(ArrayList<Card> cards){
+        deck.addAll(cards);
     }
 
     public int getDeckSize() {

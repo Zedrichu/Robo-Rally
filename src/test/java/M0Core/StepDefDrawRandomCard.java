@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -44,7 +45,9 @@ public class StepDefDrawRandomCard {
 
     @When("choose {int} cards")
     public void choose_cards(Integer int1) {
-        player.chooseCards(5, new boolean[] {true,true,true,true,true,true});
+        ArrayList<Integer> select = new ArrayList<>();
+        for (int i=0;i<9;i++) select.add(i);
+        player.chooseCards(5, select, deck);
     }
 
 }

@@ -2,6 +2,7 @@ package M0Core;
 
 import static org.junit.Assert.*;
 
+import springboot.model.cards.Card;
 import springboot.model.cards.CardDeck;
 import springboot.model.players.Player;
 import springboot.model.players.PlayerFactory;
@@ -12,6 +13,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +21,7 @@ import java.util.Set;
 public class StepDefRound {
     Set<Player> players;
     Round round = new Round(new HashSet<>());
+    CardDeck deck = new CardDeck();
 
     @Given("round counter {int}")
     public void round_counter(int x) {
@@ -38,8 +41,10 @@ public class StepDefRound {
     public void all_in_s_have_moved() {
         for (Player player : players) {
 
-            player.drawCardHand(new CardDeck());
-            player.chooseCards(5-round.getRoundNumber(), new boolean[] {true,true,true,true,true,true});
+            player.drawCardHand(deck);
+            ArrayList<Integer> select = new ArrayList<>();
+            for (int i=0;i<9;i++) select.add(i);
+            player.chooseCards(5-round.getRoundNumber(), select, deck);
         }
         round.setPlayers(players);
         assertTrue(round.haveAllPlayed());
@@ -49,8 +54,10 @@ public class StepDefRound {
     public void not_all_in_s_have_moved() {
         for (Player player : players) {
 
-            player.drawCardHand(new CardDeck());
-            player.chooseCards(5-round.getRoundNumber()+1, new boolean[] {true,true,true,true,true,true});
+            player.drawCardHand(deck);
+            ArrayList<Integer> select = new ArrayList<>();
+            for (int i=0;i<9;i++) select.add(i);
+            player.chooseCards(5-round.getRoundNumber()+1, select, deck);
         }
         round.setPlayers(players);
         assertFalse(round.haveAllPlayed());
@@ -58,9 +65,11 @@ public class StepDefRound {
     @Given("any in <S> don't have any cards")
     public void any_in_s_don_t_have_any_cards() {
         for (Player player : players) {
-            player.drawCardHand(new CardDeck());
+            player.drawCardHand(deck);
             //unsure if this is the correct way to do this
-            player.chooseCards(0,new boolean[] {true,true,true,true,true,true});
+            ArrayList<Integer> select = new ArrayList<>();
+            for (int i=0;i<9;i++) select.add(i);
+            player.chooseCards(0, select, deck);
         }
         round.setPlayers(players);
         assertTrue(round.checkNoCardsInHand());

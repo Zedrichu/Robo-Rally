@@ -31,7 +31,7 @@ public class GameController {
     }
 
     public GameController(GameSettings gameSettings, Board board, CardDeck deck){
-        support = new PropertyChangeSupport(this);
+        this.support = new PropertyChangeSupport(this);
         board.placePlayers(gameSettings.getPlayers());
         this.board = board;
         this.round = new Round(gameSettings.getPlayers());
@@ -45,8 +45,9 @@ public class GameController {
     public void startGame(CardDeck deck) {
         setHealthView(this.round);
         setBoardView(this.board, this.round.getPlayers());
-        tableController = new TableController(this.support, this.round, deck);
-        setGameView();
+        this.tableController = new TableController(this.support,this, this.round, deck);
+        this.gameView = new GameView(this, this.tableController, this.healthView, this.boardView);
+        this.support.addPropertyChangeListener(gameView);
     }
 
     public void setBoardView(Board board, Set<Player> sps) {
@@ -55,11 +56,6 @@ public class GameController {
 
     public void setHealthView(Round round) {
         this.healthView = new HealthView(round);
-    }
-
-    public void setGameView() {
-        this.gameView = new GameView(this, this.tableController, this.healthView, this.boardView);
-        this.support.addPropertyChangeListener(gameView);
     }
 
     public void display(){ gameView.setVisible(true); }

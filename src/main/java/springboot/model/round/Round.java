@@ -1,5 +1,6 @@
 package springboot.model.round;
 
+import springboot.model.cards.CardDeck;
 import springboot.model.players.Player;
 
 import java.beans.PropertyChangeEvent;
@@ -47,6 +48,11 @@ public class Round {
         return res;
     }
 
+    public void drawCardsAll(CardDeck deck) {
+        for (Player player : players) {
+            player.drawCardHand(deck);
+        }
+    }
 
     //Setters
     public void setRoundNumber(int roundNumber) {

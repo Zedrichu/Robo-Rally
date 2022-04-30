@@ -102,17 +102,28 @@ public class Player {
         current.set(round, null);
         this.setHand(current);
     }
-
-    public void chooseCards(int x,boolean[] selects) {
+    //Creates chosen and restore depending on input
+    public void chooseCards(int x, ArrayList<Integer> selects, CardDeck deck) {
         ArrayList<Card> current = hand.getHand();
         ArrayList<Card> chosen = new ArrayList<>(x);
+        ArrayList<Card> restore = new ArrayList<>(selects.size()-x);
 
-        for (int i = 0; i < x; i++) {
-            if (selects[i]) {
-                chosen.add(current.get(i));
+        for (int j=0; j<selects.size(); j++) {
+            if (selects.get(j) == 0) {
+                restore.add(current.get(j));
+            }
+        }
+
+        for (int i = 1; i <= x; i++) {
+            for (int j=0; j < selects.size(); j++){
+                if (selects.get(j) == i) {
+                    chosen.add(current.get(j));
+                    break;
+                }
             }
         }
         // send current cards back to deck
+        deck.restoreCards(restore);
         this.setHand(chosen);
     }
 

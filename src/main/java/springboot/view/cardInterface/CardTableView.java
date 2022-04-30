@@ -5,26 +5,29 @@ import springboot.model.cards.Card;
 import springboot.model.cards.CardHand;
 import springboot.model.players.Player;
 import springboot.utils.GridBagUtils;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
 
-public class CardTableView extends JPanel implements PropertyChangeListener {
+public class CardTableView extends JPanel implements PropertyChangeListener, ActionListener {
 
     private final TableController tableController;
-    private CardView[] cardButtons;
+    private List<CardView> cardButtons;
+    private JButton submit;
     private Player player;
+    private ArrayList<Integer> selections;
     private int choiceNo;
 
     public CardTableView(TableController tableController, Player player){
         // Initialize a view for showing available cards on table
         this.tableController = tableController;
         this.player = player;
-        this.choiceNo = 1;
+
         initGUI(this.player.getHand());
     }
 
@@ -35,28 +38,35 @@ public class CardTableView extends JPanel implements PropertyChangeListener {
         setForeground(Color.red);
         setBackground(Color.DARK_GRAY);
 
+        this.cardButtons = new ArrayList<>();
+        this.selections = new ArrayList<>(this.player.getHandSize());
+
         // For each card in the player's hand create a cardView
         int i=0;
-        this.choiceNo = 1;
+        this.choiceNo = 0;
         for (Card card : cardHand.getHand()){
             CardView cardView = new CardView(card);
-            cardView.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    // If haven't selected 5 cards yet allow selections
-                    if (choiceNo <= 5 && !cardView.isSelected()) {
-                        // If a card has been selected, update its view
-                        cardView.select(true, choiceNo++);
-                    } else if (choiceNo > 0) {
-                        // If a card is deselected, restore the initial view
-                        cardView.select(false, choiceNo--);
-                    }
-                }
-            });
+            cardButtons.add(cardView);
+            cardView.addActionListener(this);
             // Add all the cardViews to the common panel
             add(cardView, GridBagUtils.constraint(i%3,i/3,3));
             i++;
         }
+        submit = new JButton("Submit card selection");
+        submit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (choiceNo == 5){
+                    for (CardView card : cardButtons) {
+                        selections.add(card.choice);
+                    }
+                    tableController.handleChosenCards(selections);
+                    tableController.nextPlayer();
+                    tableController.select(true);
+                }
+            }
+        });
+        add(submit, GridBagUtils.constraint(1,i/3,3));
     }
 
     // OBSERVER pattern implemented here
@@ -71,9 +81,27 @@ public class CardTableView extends JPanel implements PropertyChangeListener {
         // If the current player's turn changes update the pointer to that player
         } else if (evt.getPropertyName().equals("player")) {
             this.player = (Player) evt.getNewValue();
+            this.removeAll();
+            initGUI(this.player.getHand());
             revalidate();
         }
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        CardView cardView = (CardView) e.getSource();
+        // If haven't selected 5 cards yet allow selections
+        if (choiceNo < 5 && !cardView.isSelected()) {
+            // If a card has been selected, update its view
+            cardView.select(choiceNo+1);
+            choiceNo++;
+        } else if (choiceNo > 0 && cardView.isSelected()) {
+            // If a card is deselected, restore the initial view
+            cardView.select(0);
+            choiceNo--;
+        }
+    }
+
 }
 
 
