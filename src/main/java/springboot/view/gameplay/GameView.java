@@ -55,6 +55,11 @@ public class GameView extends JFrame implements PropertyChangeListener {
             this.tableView = (JPanel) evt.getNewValue();
             initGUI(this.healthView, this.boardView, this.tableView,this.logView);
             revalidate();
+        } else if (evt.getPropertyName().equals("nextRound")) {
+            getContentPane().removeAll();
+            initGUI(this.healthView, this.boardView, this.tableView, this.logView);
+            repaint();
+            revalidate(); //Could use repaint()
         }
     }
 }

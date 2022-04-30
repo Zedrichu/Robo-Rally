@@ -4,6 +4,7 @@ import springboot.model.GameSettings;
 import springboot.model.board.Board;
 import springboot.model.cards.Card;
 import springboot.model.cards.CardDeck;
+import springboot.model.obstacles.Obstacle;
 import springboot.model.players.Player;
 import springboot.view.gameplay.HealthView;
 import springboot.view.boardInterface.BoardView;
@@ -16,14 +17,14 @@ import java.util.Set;
 
 public class GameController {
 
-    private LogView logView;
-    private PropertyChangeSupport support;
-    private TableController tableController;
+    private final LogView logView;
+    private final PropertyChangeSupport support;
     private GameView gameView;
     private HealthView healthView;
     private BoardView boardView;
     private final Round round;
     private final Board board;
+    private final CardDeck deck;
 
     public Board getBoard() {
         return board;
@@ -37,6 +38,7 @@ public class GameController {
         this.support = new PropertyChangeSupport(this);
         board.placePlayers(gameSettings.getPlayers());
         this.board = board;
+        this.deck = deck;
         this.logView = new LogView();
         this.round = new Round(gameSettings.getPlayers());
         startGame(deck);
@@ -47,9 +49,12 @@ public class GameController {
         for (Player player : round.getPlayers()) {
             for (int i = 0; i < player.getHand().size(); i++) {
                 player.playCard(player.getHand().get(i), board);
-                //player.hitObstacle(board.getTile(player.getPosition()).getObstacle(),);
-                ;
+                Obstacle obstacle = board.getTile(player.getCoordinates()).getType().getObstacle();
+                if (obstacle != null) {
+                    player.hitObstacle(board.getTile(player.getCoordinates()).getType().getObstacle(), round.getRoundNumber());
+                }
             }
+            this.deck.restoreCards(player.hand.getHand());
         }
         //Increments round and sends property change to game view
         round.incrementRoundNumber();
@@ -64,17 +69,11 @@ public class GameController {
         return gameView;
     }
 
-    public void nextRound(){
-        //for (Player player : round.getPlayers()) {
-        //    player.playCard(player.getHand(), board);
-        //}
-    }
-
     public void startGame(CardDeck deck) {
         setHealthView(this.round);
         setBoardView(this.board, this.round.getPlayers());
-        this.tableController = new TableController(this.support,this, this.round, deck);
-        this.gameView = new GameView(this, this.tableController, this.healthView, this.boardView,this.logView);
+        TableController tableController = new TableController(this.support, this, this.round, deck);
+        this.gameView = new GameView(this, tableController, this.healthView, this.boardView,this.logView);
         this.support.addPropertyChangeListener(gameView);
     }
 

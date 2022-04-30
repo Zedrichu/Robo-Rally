@@ -119,8 +119,8 @@ public class Board implements PropertyChangeListener {
 			return new Tile(TileType.LIFETOKEN);
 		}
 	}
-	public Tile getTile(int x, int y) {
-		return board[y][x];
+	public Tile getTile(int[] pos) {
+		return board[pos[1]][pos[0]];
 	}
 
 	@Override

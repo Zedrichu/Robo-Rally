@@ -66,6 +66,8 @@ public class Player {
         return position;
     }
 
+    public int[] getCoordinates() { return new int[] { position.x, position.y}; };
+
     public Direction getDirection() {
         return direction;
     }
