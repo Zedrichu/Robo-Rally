@@ -11,8 +11,8 @@
 
       @tag
       Scenarios:
-        | | name | tile      | y | x |
-        | | "XX" | 'cpTile'  | 3 | 2 |
+        | | name | tile      | x | y |
+        | | "XX" | 'cpTile'  | 3 | 0 |
 
     #CheckPoint already collected
     @tag
@@ -26,4 +26,4 @@
       @tag
       Scenarios:
       | | name | tile      | x | y |size|
-      | | "XX" | 'cpTile'  | 3 | 2 |  3 |
+      | | "XX" | 'cpTile'  | 3 | 0 |  3 |

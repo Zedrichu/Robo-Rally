@@ -5,12 +5,12 @@ Feature: Hit Obstacle
     Given Player <name> at row <y> column <x> with <lives> lives
     And acidTile <tile> at row <y> and column <x>
     When round is incremented
-    Then player <name> has  <newLives> lives
+    Then player <name> gets <int> lives and has  <newLives> lives
 
     @tag
     Scenarios:
-      | | name |  tile        | x | y | lives |  newLives |
-      | | "XX" |  'acidTile'  | 3 | 2 |   3   |     1     |
+      | | name |  tile        | x | y | lives |  newLives | int |
+      | | "XX" |  'acidTile'  | 3 | 2 |   3   |     1     | 2   |
 
   @tag
   Scenario Outline: Interaction with pitTile
@@ -28,11 +28,11 @@ Feature: Hit Obstacle
     Given Player <name> at row <y> column <x> with <lives> lives
     And laserTile <tile> at row <y>  and column <x>
     When round is incremented
-    Then player <name> has  <newLives> lives
+    Then player <name> gets <int> lives and has  <newLives> lives
     @tag
     Scenarios:
-      | | name |   tile          | x | y | lives | newLives|
-      | | "XX" |   'laserTile'   | 3 | 2 |   3   |   2     |
+      | | name |   tile          | x | y | lives | newLives| int |
+      | | "XX" |   'laserTile'   | 3 | 2 |   3   |   2     |  1  |
 
 
  @tag
@@ -45,17 +45,16 @@ Feature: Hit Obstacle
   Scenarios:
 
   | | name| tile            | x | y | dir | convDir | xnew | ynew |
-  | | "XX"| 'conveyorBelt'  | 3 | 2 | 'E' |   'S'   |  3   |  4   |
-  | | "XX"| 'conveyorBelt'  | 2 | 5 | 'W' |   'N'   |  2   |  3   |
+  | | "XX"| 'conveyorBelt'  | 2 | 0 | 'W' |   'N'   |  0   |  0   |
 
   @tag
   Scenario Outline:Interaction with life token
     Given Player <name> at row <y> column <x> with <lives> lives
     And lifeToken <tile> at row <y>  and column <x>
     When round is incremented
-    Then player <name> has  <newLives> lives
+    Then player <name> gets <int> lives and has  <newLives> lives
     @tag
     Scenarios:
-      |  | name | tile        | x | y | lives | newLives |
-      |  | "XX" | 'lifeToken' | 3 | 2 | 3     | 4        |
+      |  | name | tile        | x | y | lives | newLives |int  |
+      |  | "XX" | 'lifeToken' | 3 | 2 | 3     | 4        | -1  |
 

@@ -50,6 +50,7 @@ class BoardTest {
         players.add(p1);
         players.add(p2);
 
+
         b1.placePlayers(players);
         assertNotNull(p1.getPosition());
         assertNotNull(p2.getPosition());

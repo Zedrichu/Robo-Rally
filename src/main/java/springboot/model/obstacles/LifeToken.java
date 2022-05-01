@@ -6,7 +6,7 @@ public class LifeToken extends Obstacle{
 
     @Override
     public void applyDamage(Player player, int integer) {
-        player.updateLives(1);
+        player.updateLives(integer);
     }
 
 }

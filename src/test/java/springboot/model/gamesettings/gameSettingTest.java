@@ -43,6 +43,7 @@ class GameSettingTest {
         sizes = settings2.getBoardSize();
         x = new Board(sizes[0],sizes[1]);
         assertEquals(13,x.getCols());
+        
     }
 
 }

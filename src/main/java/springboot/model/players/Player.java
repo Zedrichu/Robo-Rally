@@ -171,23 +171,22 @@ public class Player {
         Obstacle obstacle = board.getTile(this.getCoordinates()).getType().getObstacle();
         board.getTile(this.getCoordinates()).setRobotOnTop(false,this.direction);
         board.getTile(this.getCoordinates()).setRobotIcon(null);
-        obstacle.applyDamage(this, number);
+     //   obstacle.applyDamage(this, number);
         board.getTile(this.getCoordinates()).setRobotOnTop(true,this.direction);
         board.getTile(this.getCoordinates()).setRobotIcon(this.robot);
-    }
-
-    public void hitObstacle(Obstacle obstacle, int number) {
         obstacle.applyDamage(this, number);
     }
+
+    //public void hitObstacle(Obstacle obstacle, int number)
+    // {
+    //    obstacle.applyDamage(this, number);
+    //}
 
     public void pushPlayer(Player player2){
         Card card = CardFactory.getCard(CardType.MOVE, 1);
-
         Position pos = (Position) card.applyAction(player2.getPosition(), getDirection())[0];
-
         player2.setPosition(pos);
     }
-
 }
 
 

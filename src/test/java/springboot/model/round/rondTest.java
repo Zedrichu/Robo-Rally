@@ -1,8 +1,10 @@
 package springboot.model.round;
 
 import org.junit.jupiter.api.Test;
+import springboot.model.cards.CardDeck;
 import springboot.model.players.Player;
 
+import java.net.CacheRequest;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +15,7 @@ class RoundTest {
     @Test
     void testRound(){
         Player p1 = new Player("Sara");
+        CardDeck deck = new CardDeck();
 
         Set <Player> players = new HashSet<>();
         players.add(p1);
@@ -22,6 +25,11 @@ class RoundTest {
         round.setPlayers(players);
         assertSame(round.getPlayers(), players);
         assertFalse(round.checkNoCardsInHand());
+
+        round.drawCardsAll(deck);
+
+        assertEquals(round.getRoundNumber(), 1);
+
 
     }
 
