@@ -1,0 +1,46 @@
+Manifest-Version: 1.0
+Main-Class: springboot.controller.ApplicationController
+Class-Path: jakarta.transaction-api-1.3.3.jar cucumber-core-7.2.3.jar sp
+ ring-aspects-5.3.17.jar spring-web-5.3.17.jar cucumber-junit-7.2.3.jar 
+ apiguardian-api-1.1.2.jar cucumber-core-7.2.3.jar cucumber-gherkin-7.2.
+ 3.jar cucumber-gherkin-messages-7.2.3.jar messages-17.1.1.jar tag-expre
+ ssions-4.1.0.jar cucumber-expressions-15.0.1.jar datatable-7.2.3.jar cu
+ cumber-plugin-7.2.3.jar docstring-7.2.3.jar html-formatter-17.0.0.jar c
+ i-environment-8.1.0.jar junit-4.13.2.jar hamcrest-core-1.3.jar jboss-lo
+ gging-3.4.3.Final.jar thymeleaf-spring5-3.0.15.RELEASE.jar datatable-7.
+ 2.3.jar jackson-datatype-jsr310-2.13.2.jar thymeleaf-extras-java8time-3
+ .0.4.RELEASE.jar tomcat-embed-el-9.0.60.jar docstring-7.2.3.jar spring-
+ boot-starter-logging-2.6.5.jar istack-commons-runtime-3.0.7.jar cucumbe
+ r-junit-7.2.3.jar spring-boot-starter-2.6.5.jar aspectjweaver-1.9.7.jar
+  spring-tx-5.3.17.jar jackson-databind-2.13.2.jar jackson-module-parame
+ ter-names-2.13.2.jar jakarta.annotation-api-1.3.5.jar byte-buddy-1.12.8
+ .jar spring-boot-starter-thymeleaf-2.6.5.jar FastInfoset-1.2.15.jar spr
+ ing-core-5.3.17.jar html-formatter-17.0.0.jar tomcat-embed-websocket-9.
+ 0.60.jar junit-jupiter-api-5.7.1.jar apiguardian-api-1.1.0.jar opentest
+ 4j-1.2.0.jar junit-platform-commons-1.7.1.jar jaxb-runtime-2.3.1.jar cu
+ cumber-java-7.2.3.jar cucumber-core-7.2.3.jar cucumber-gherkin-7.2.3.ja
+ r cucumber-gherkin-messages-7.2.3.jar messages-17.1.1.jar tag-expressio
+ ns-4.1.0.jar cucumber-expressions-15.0.1.jar datatable-7.2.3.jar cucumb
+ er-plugin-7.2.3.jar docstring-7.2.3.jar html-formatter-17.0.0.jar ci-en
+ vironment-8.1.0.jar apiguardian-api-1.1.2.jar slf4j-api-1.7.32.jar atto
+ parser-2.0.5.RELEASE.jar spring-data-commons-2.6.3.jar HikariCP-4.0.3.j
+ ar cucumber-java-7.2.3.jar txw2-2.3.1.jar spring-jdbc-5.3.17.jar cucumb
+ er-plugin-7.2.3.jar hibernate-commons-annotations-5.1.2.Final.jar log4j
+ -to-slf4j-2.17.2.jar spring-boot-starter-json-2.6.5.jar thymeleaf-3.0.1
+ 5.RELEASE.jar spring-expression-5.3.17.jar spring-aop-5.3.17.jar spring
+ -jcl-5.3.17.jar ci-environment-8.1.0.jar spring-context-5.3.17.jar log4
+ j-api-2.17.2.jar cucumber-gherkin-7.2.3.jar spring-orm-5.3.17.jar unbes
+ cape-1.1.6.RELEASE.jar spring-beans-5.3.17.jar apiguardian-api-1.1.2.ja
+ r snakeyaml-1.29.jar messages-17.1.1.jar cucumber-gherkin-messages-7.2.
+ 3.jar logback-classic-1.2.11.jar spring-webmvc-5.3.17.jar jandex-2.4.2.
+ Final.jar tag-expressions-4.1.0.jar spring-boot-2.6.5.jar spring-data-j
+ pa-2.6.3.jar jackson-core-2.13.2.jar jul-to-slf4j-1.7.36.jar jackson-an
+ notations-2.13.2.jar antlr-2.7.7.jar junit-4.13.2.jar spring-boot-autoc
+ onfigure-2.6.5.jar cucumber-expressions-15.0.1.jar h2-2.1.210.jar sprin
+ g-boot-starter-web-2.6.5.jar hamcrest-core-1.3.jar spring-boot-starter-
+ tomcat-2.6.5.jar jakarta.persistence-api-2.2.3.jar jackson-datatype-jdk
+ 8-2.13.2.jar spring-boot-starter-aop-2.6.5.jar hibernate-core-5.6.7.Fin
+ al.jar classmate-1.5.1.jar spring-boot-starter-data-jpa-2.6.5.jar stax-
+ ex-1.8.jar spring-boot-starter-jdbc-2.6.5.jar tomcat-embed-core-9.0.60.
+ jar logback-core-1.2.11.jar
+
