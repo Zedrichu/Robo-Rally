@@ -23,8 +23,5 @@ public class CardHand {
     public Card get(int i) {
         return hand.get(i);
     }
-// #TODO
-//  public void removeCard(){
-//      hand.set(round.getRoundNumber(),null);
-//  }
+
 }

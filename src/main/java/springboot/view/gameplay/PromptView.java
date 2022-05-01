@@ -65,7 +65,6 @@ public class PromptView extends JPanel implements PropertyChangeListener {
             revalidate();
         }
         if (evt.getPropertyName().equals("nextRound")){
-            //this.removeAll();
             initGUI(this.controller.getRound());
             this.controller.setView(this);
             revalidate();

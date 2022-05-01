@@ -18,6 +18,7 @@ public class LogView extends JPanel {
     private JTextArea logArea;
     private JScrollPane scrollPane;
 
+    //No time to implement this
     public LogView() {
         super();
         initGUI();
@@ -27,7 +28,7 @@ public class LogView extends JPanel {
         setLayout(new GridBagLayout());
         setMinimumSize(new Dimension(400, 300));
         setBackground(Color.DARK_GRAY);
-        setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createRaisedBevelBorder()));
+        setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.decode("#DC47DA")), BorderFactory.createRaisedBevelBorder()));
 
         //JLabel and JPanel for log
         JLabel logLabel = new JLabel("Game Log");
