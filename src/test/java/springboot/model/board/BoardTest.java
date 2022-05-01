@@ -18,6 +18,7 @@ class BoardTest {
        // Tile[][] board;
         Board b = new Board(10, 10);
         Board b1 = new Board(10, 10);
+        Board b2 = new Board(10,10);
         assertEquals(b.getCols(), 10);
         assertEquals(b.getRows(), 10);
 
@@ -26,6 +27,16 @@ class BoardTest {
         b1.loadRandomBoard(2);
 
         b1.getStartTiles();
+
+        b2.loadBoard_Easy();
+        assertNotNull(b2.getBoard());
+
+        b2.loadBoard_Medium();
+        assertNotNull(b2.getBoard());
+
+        b2.loadBoard_Hard();
+        assertNotNull(b2.getBoard());
+
 
         assertNotNull(b1.getRandomStartPosition());
 

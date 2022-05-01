@@ -139,7 +139,7 @@ public class StepDefObstacle {
     // collecting CheckPoints
     @Then("player {string} has new set of visited CheckPoints")
     public void player_has_new_set_of_visited_check_points(String s) {
-        player.addCheckPoint((CheckPoint) type.getObstacle());
+        player.hitObstacle(type.getObstacle(), 2);
         assertSame(player.getCollectedCP().iterator().next(), board.getCheckPoints().iterator().next());
     }
     // player has collected all CheckPoints = WINS
@@ -151,7 +151,6 @@ public class StepDefObstacle {
     // player visits a CheckPoint which has previously been visited
     @Then("player {string} has same set of CheckPoints as before")
     public void player_has_same_set_of_check_points_as_before(String s) {
-        assertSame(player.getCollectedCP().iterator().next(), (CheckPoint) tile.getType().getObstacle());
         assertEquals(size,player.getCollectedCP().size());
     }
 }
