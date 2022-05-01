@@ -79,7 +79,7 @@ public class GameSettingsView extends JFrame {
         });
 
         //Adding to panel 2
-        JLabel lvlDiff = new JLabel("Level Difficulty");
+        JLabel lvlDiff = new JLabel("Level of difficulty");
         lvlDiff.setForeground(Color.RED);
         panelTwo.add(lvlDiff, GridBagUtils.constraint(0,1,5));
         panelTwo.add(comboComplex, GridBagUtils.constraint(1,1,5));
@@ -95,8 +95,6 @@ public class GameSettingsView extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
-
-
     }
 
     public void showError() {

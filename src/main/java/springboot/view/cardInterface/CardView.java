@@ -26,7 +26,7 @@ public class CardView extends JButton {
         } catch (IOException e) {
             image = new BufferedImage(1,1,BufferedImage.TYPE_INT_RGB);
         }
-        Image img = image.getScaledInstance(80,120,4);
+        Image img = image.getScaledInstance(60,100,4);
         ImageIcon icon = new ImageIcon(img);
         setSelected(false);
         setText(card.getName());

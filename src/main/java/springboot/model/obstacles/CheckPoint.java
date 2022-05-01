@@ -7,12 +7,12 @@ import java.util.Objects;
 // individual checkpoints (objects)
 public class CheckPoint extends Obstacle {
 
-    int ID;
+    private int ID;
     private static int IDs=0;
 
     public int getID(){
         IDs++;
-        return IDs;
+        return this.ID;
     }
 
     public CheckPoint(){

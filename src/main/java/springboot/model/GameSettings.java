@@ -1,5 +1,6 @@
 package springboot.model;
 
+import springboot.model.board.Board;
 import springboot.model.players.Player;
 
 import java.beans.PropertyChangeSupport;

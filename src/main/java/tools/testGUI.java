@@ -1,5 +1,7 @@
 package tools;
 
+import springboot.model.obstacles.CheckPoint;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,10 +9,28 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.HashSet;
+import java.util.Objects;
 
 class testGUI {
     public static void main(String[] args) {
-        Controller control = new Controller();
+
+        //Controller control = new Controller();
+        CheckPoint cp = new CheckPoint();
+        CheckPoint cp2 = new CheckPoint();
+        CheckPoint cpx = new CheckPoint();
+        HashSet<CheckPoint> set1 = new HashSet<>();
+        HashSet<CheckPoint> set2 = new HashSet<>();
+        set1.add(cp);
+        set2.add(cp);
+        HashSet<Integer> setId1 = new HashSet<>();
+        HashSet<Integer> setId2 = new HashSet<>();
+        setId1.add(cp.getID());
+        setId2.add(cp.getID());
+        System.out.println(set1.equals(set2));
+        System.out.println(Objects.equals(set1,set2));
+        System.out.println(setId1.equals(setId2));
+
     }
 }
 
@@ -74,7 +94,7 @@ class Red extends JFrame implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if ( (int) evt.getNewValue() % 2 == 0) {
-            button.setText("FUCKER - Red"+controller.getI());
+            button.setText("Red"+controller.getI());
             controller.setView(this);
             revalidate();
         }
@@ -108,7 +128,7 @@ class Blue extends JFrame implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if ((int) evt.getNewValue() % 2 == 1){
-            button.setText("FUCKER - Blue" + controller.getI());
+            button.setText("Blue" + controller.getI());
             controller.setView(this);
             revalidate();
         }

@@ -83,8 +83,13 @@ class RotatingCard extends Card {
 
     @Override
     public Object[] applyAction(Position position, Direction direction) {
-        Direction newDirection = Direction
-                .getCardinalPointByAngle((direction.getAngle()+angle)%360);
-        return new Object[] {position, newDirection};
+        try {
+            Direction newDirection = Direction
+                    .getCardinalPointByAngle((direction.getAngle() + angle) % 360);
+            return new Object[] {position, newDirection};
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new Object[] {position, direction};
+        }
     }
 }

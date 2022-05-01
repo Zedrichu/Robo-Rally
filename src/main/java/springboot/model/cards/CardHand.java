@@ -1,12 +1,9 @@
 package springboot.model.cards;
-
-import springboot.model.GameSettings;
-
 import java.util.ArrayList;
 
 
 // Think of scrapping this class and use ArrayList<Card> as field
-public class CardHand extends GameSettings {
+public class CardHand {
     private ArrayList<Card> hand;
 
     public CardHand(ArrayList<Card> array) {

@@ -26,11 +26,12 @@ public class TileView extends JPanel {
         this.tile = tile;
         TileType type = tile.getType();
         try {
-            //this.image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(type.getPictureFile()));
-            this.image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(type.getPictureFile())));
+            this.image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(type.getPictureFile()));
+            //this.image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(type.getPictureFile())));
             if (tile.getRobotOnTop()) {
-                //this.robImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream(tile.getRobotIcon()));
-                this.robImage = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(tile.getRobotIcon())));
+                System.out.println(tile.getRobotIcon());
+                this.robImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream(tile.getRobotIcon()));
+                //this.robImage = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(tile.getRobotIcon())));
             }
         } catch (IOException e){
             this.image = new BufferedImage(1,1,BufferedImage.TYPE_INT_RGB);

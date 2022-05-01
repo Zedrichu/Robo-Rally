@@ -1,11 +1,7 @@
-package springboot.model.round;
+package springboot.model;
 
 import springboot.model.cards.CardDeck;
 import springboot.model.players.Player;
-
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.util.Set;
 
 public class Round {

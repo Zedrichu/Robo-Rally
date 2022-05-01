@@ -13,7 +13,7 @@ public class CardDeck {
     public CardDeck() {
         CardType[] types = {CardType.MOVE, CardType.MOVE, CardType.MOVE, CardType.MOVE, CardType.ROTATE, CardType.ROTATE, CardType.ROTATE};
         int[] cardinality = {18, 12, 6, 6, 18, 18, 6};
-        int[] intensities = {1, 2, 3, -1, 1, -1, 2};
+        int[] intensities = {1, 2, -1, 3, 1, 3, 2};
 
 
         for (int i = 0; i< types.length; i++) {

@@ -44,6 +44,7 @@ public class Player {
         this.playerID = getFreshID();
         this.playerName = name;
         this.collectedCP = new HashSet<>();
+        this.robot = "robots/robot"+playerID+".png";
     }
 
     public void setLives(int lives) {
@@ -160,7 +161,7 @@ public class Player {
     }
 
     public boolean hasAllCP(Set<CheckPoint> set){
-       return collectedCP.equals(set);
+       return this.collectedCP.equals(set);
     }
 
     public Set<CheckPoint> getCollectedCP() {

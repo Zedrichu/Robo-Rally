@@ -1,7 +1,7 @@
 package springboot.view.gameplay;
 
 import springboot.model.players.Player;
-import springboot.model.round.Round;
+import springboot.model.Round;
 import springboot.utils.GridBagUtils;
 
 import java.beans.PropertyChangeEvent;
