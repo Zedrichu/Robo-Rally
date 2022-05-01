@@ -40,6 +40,7 @@ public class StepDef {
 
     @When("card is played")
     public void card_is_played() {
+        board.loadRandomBoard(2);
         player.playCard(card,board);
     }
     @Then("player {string} is at row {int} and column {int} and direction {string}")

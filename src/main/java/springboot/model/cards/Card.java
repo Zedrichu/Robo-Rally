@@ -54,13 +54,13 @@ class MovingCard extends Card {
     public Object[] applyAction(Position position, Direction direction) {
         int angle = direction.getAngle();
         Position newPosition = position;
-        if (angle == 0) {
+        if (angle % 360 == 0) {
             newPosition = new Position(position.x, position.y - this.multiplier);
-        } else if (angle == 90) {
+        } else if (angle % 360 == 90) {
             newPosition = new Position(position.x + this.multiplier, position.y);
-        } else if (angle == 180) {
+        } else if (angle % 360 == 180) {
             newPosition = new Position(position.x, position.y + this.multiplier);
-        } else if (angle == 270){
+        } else if (angle % 360 == 270){
             newPosition = new Position(position.x - this.multiplier, position.y);
         };
         return new Object[] {newPosition, direction};

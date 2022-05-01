@@ -4,11 +4,10 @@ package springboot.model.players;
 import springboot.model.Position;
 import springboot.model.cards.*;
 import springboot.model.Direction;
-import springboot.model.checkPoints.CheckPoint;
+import springboot.model.obstacles.CheckPoint;
 import springboot.model.board.Board;
 import springboot.model.obstacles.Obstacle;
 
-import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -44,6 +43,7 @@ public class Player {
     public Player(String name) {
         this.playerID = getFreshID();
         this.playerName = name;
+        this.collectedCP = new HashSet<>();
     }
 
     public void setLives(int lives) {
@@ -87,10 +87,21 @@ public class Player {
 
 
     public void playCard(Card card, Board board) {
-        Object[] res = card.applyAction(this.position, this.direction);
-        if (board.checkPositionInBounds((Position) res[0])) {
-            this.setPosition((Position) res[0]);
-            this.setDirection((Direction) res[1]);
+        if (this.direction == null) {
+            System.out.println("Ghost!"+card.getName()+this.getPlayerName());
+
+        } else {
+            Object[] res = card.applyAction(this.position, this.direction);
+
+            if (board.checkPositionInBounds((Position) res[0])) {
+                board.getTile(this.getCoordinates()).setRobotOnTop(false,this.direction);
+                board.getTile(this.getCoordinates()).setRobotIcon(null);
+                this.setPosition((Position) res[0]);
+                int[] temp = new int[]{((Position) res[0]).x, ((Position) res[0]).y};
+                this.setDirection((Direction) res[1]);
+                board.getTile(temp).setRobotOnTop(true, this.direction);
+                board.getTile(temp).setRobotIcon(this.robot);
+            }
         }
     }
 
@@ -154,6 +165,15 @@ public class Player {
 
     public Set<CheckPoint> getCollectedCP() {
         return collectedCP;
+    }
+
+    public void hitObstacle(Board board, int number) {
+        Obstacle obstacle = board.getTile(this.getCoordinates()).getType().getObstacle();
+        board.getTile(this.getCoordinates()).setRobotOnTop(false,this.direction);
+        board.getTile(this.getCoordinates()).setRobotIcon(null);
+        obstacle.applyDamage(this, number);
+        board.getTile(this.getCoordinates()).setRobotOnTop(true,this.direction);
+        board.getTile(this.getCoordinates()).setRobotIcon(this.robot);
     }
 
     public void hitObstacle(Obstacle obstacle, int number) {

@@ -24,11 +24,16 @@ public class BoardView extends JLayeredPane implements PropertyChangeListener {
     public void initGUI(Board board, Set<Player> sps){
         int cols = board.getCols();
         int rows = board.getRows();
+
+        board.placePlayers(sps);
+
         setLayout(new GridLayout(rows,cols));
         setMinimumSize(new Dimension(cols*TileView.PIXEL_SIZE,rows*TileView.PIXEL_SIZE));
         setMaximumSize(getMinimumSize());
         setPreferredSize(getMinimumSize());
-        
+        setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createRaisedBevelBorder()));
+
+
 
         for (int j=0; j<rows; j++){
             for (int i=0;i<cols;i++){

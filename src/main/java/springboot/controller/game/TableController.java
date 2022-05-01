@@ -14,6 +14,8 @@ import java.util.Set;
 
 public class TableController {
 
+    private PromptView promptView;
+    private CardTableView cardTableView;
     private GameController gameController;
     private final PropertyChangeSupport support;
     private boolean selected;
@@ -34,10 +36,16 @@ public class TableController {
         this.player = (Player) iterator.next();
         this.selected = true;
 
+        if (this.view != null) {
+            this.view.removeAll();
+            this.view.revalidate();
+        }
+
+
         round.drawCardsAll(deck);
 
-        PromptView promptView = new PromptView(this, player);
-        CardTableView cardTableView = new CardTableView(this, this.player);
+        promptView = new PromptView(this, player);
+        cardTableView = new CardTableView(this, this.player);
 
         System.out.println("Selection for player: " + this.player.getPlayerName());
         this.view = promptView;
@@ -47,11 +55,20 @@ public class TableController {
         this.support.addPropertyChangeListener(promptView);
     }
 
+    public Round getRound() {
+        return round;
+    }
+
     public void setView(JPanel view) {
         this.view.setVisible(false);
         this.support.firePropertyChange("table", this.view, view);
         this.view = view;
         this.view.setVisible(true);
+    }
+
+    public void nextRound(){
+        this.iterator = this.round.getPlayers().iterator();
+        this.round.drawCardsAll(this.deck);
     }
 
     public void nextPlayer() {
@@ -60,6 +77,7 @@ public class TableController {
             support.firePropertyChange("player", null, this.player); //Fires to Prompt or CardTableView
             System.out.println("Selection for player: " + this.player.getPlayerName());
         } else {
+            this.view.removeAll();
             gameController.nextRound();
         }
     }

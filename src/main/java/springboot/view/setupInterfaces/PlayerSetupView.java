@@ -13,12 +13,6 @@ public class PlayerSetupView extends JFrame {
     private GameSettingsFacadeController controller;
     private PlayerSetupController playerSetupController;
     private Set<String> names = new HashSet<>();
-    private JButton submitBtn;
-
-
-    public static void main(String[] args) {
-
-    }
 
     public PlayerSetupView(GameSettingsFacadeController controller, PlayerSetupController playerSetupController, int noPlayers) {
         this.controller = controller;
@@ -46,7 +40,7 @@ public class PlayerSetupView extends JFrame {
             add(input, GridBagUtils.constraint(1,i,5));
         }
 
-        submitBtn = new JButton("Submit");
+        JButton submitBtn = new JButton("Submit");
         submitBtn.setForeground(Color.BLACK);
         submitBtn.setBackground(Color.decode("#DC47DA"));
         submitBtn.setOpaque(true);

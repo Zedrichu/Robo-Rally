@@ -2,17 +2,6 @@ package springboot.model.board;
 
 import springboot.model.Position;
 import springboot.model.Direction;
-import springboot.model.checkPoints.CheckPoint;
-import springboot.model.obstacles.*;
-
-import static springboot.model.board.TileType.ACID;
-import static springboot.model.board.TileType.PIT;
-import static springboot.model.board.TileType.CONVEYORBELT;
-import static springboot.model.board.TileType.LASER;
-import static springboot.model.board.TileType.LIFETOKEN;
-import static springboot.model.board.TileType.STARTING;
-import static springboot.model.board.TileType.EMPTY;
-import static springboot.model.board.TileType.CHECKPOINT;
 
 public class Tile {
 
@@ -22,10 +11,10 @@ public class Tile {
 	private Direction direction;
 	public Position position;
 
-
 	public Tile(TileType type) {
 		this.type = type;
 		this.robotOnTop = false;
+		this.direction = Direction.getRandomDirection();
 	}
 
 	public String getRobotIcon() {
@@ -38,7 +27,8 @@ public class Tile {
 
 	public boolean getRobotOnTop(){return this.robotOnTop;}
 
-	public void setRobotOnTop(boolean robotOnTop) {
+	public void setRobotOnTop(boolean robotOnTop, Direction direction) {
+		this.direction = direction;
 		this.robotOnTop = robotOnTop;
 	}
 

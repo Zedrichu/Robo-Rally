@@ -1,5 +1,6 @@
 package springboot.model.board;
 
+import springboot.model.obstacles.CheckPoint;
 import springboot.model.obstacles.*;
 import springboot.model.obstacles.Obstacle;
 
@@ -12,10 +13,11 @@ public enum TileType {
 	STARTING("tiles/starting.png", null),
 	LIFETOKEN("tiles/lifeToken.png", new LifeToken()),
 	CONVEYORBELT("tiles/conveyorBelt.png", new ConveyorBelt()),
-	CHECKPOINT("tiles/checkPoint.png", null);
+	CHECKPOINT("tiles/checkPoint.png", new CheckPoint());
 
 	final private String pictureFile;
 	final private Obstacle obstacle;
+
 	
 	TileType(String pictureFile, Obstacle obstacle) {
 		this.pictureFile = pictureFile;

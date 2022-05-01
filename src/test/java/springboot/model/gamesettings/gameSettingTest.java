@@ -10,7 +10,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class gameSettingTest {
+class GameSettingTest {
     @Test
     void testGameSettings() {
 

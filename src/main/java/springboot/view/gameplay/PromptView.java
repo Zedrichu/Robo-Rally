@@ -2,6 +2,7 @@ package springboot.view.gameplay;
 
 import springboot.controller.game.TableController;
 import springboot.model.players.Player;
+import springboot.model.round.Round;
 import springboot.utils.GridBagUtils;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -10,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Random;
 
 public class PromptView extends JPanel implements PropertyChangeListener {
 
@@ -21,14 +23,14 @@ public class PromptView extends JPanel implements PropertyChangeListener {
         super(true);
         this.player = player;
         this.controller = controller;
-        initGUI();
+        initGUI(this.controller.getRound());
     }
 
-    public void initGUI() {
+    public void initGUI(Round round) {
         setMinimumSize(new Dimension(300,150));
         setPreferredSize(getMinimumSize());
         setBorder(new BevelBorder(BevelBorder.LOWERED,new Color(255,230,100), new Color(3,1,77)));
-        this.textField = new JLabel("Player "+this.player.getPlayerName()
+        this.textField = new JLabel("Round: "+round.getRoundNumber()+"||| Player "+this.player.getPlayerName()
                 + " has to select cards in order!");
         this.textField.setVerticalTextPosition(SwingConstants.CENTER);
         this.textField.setMinimumSize(new Dimension(100,100));
@@ -50,7 +52,7 @@ public class PromptView extends JPanel implements PropertyChangeListener {
         if (evt.getPropertyName().equals("player")) {
             this.player = (Player) evt.getNewValue();
             this.removeAll();
-            initGUI();
+            initGUI(this.controller.getRound());
             revalidate();
         } else if (evt.getPropertyName().equals("selection")
                 && (boolean) evt.getNewValue() ) {
@@ -58,10 +60,11 @@ public class PromptView extends JPanel implements PropertyChangeListener {
             revalidate();
         }
         if (evt.getPropertyName().equals("nextRound")){
-            this.removeAll();
-            initGUI();
+            //this.removeAll();
+            initGUI(this.controller.getRound());
             this.controller.setView(this);
             revalidate();
+
         }
     }
 }

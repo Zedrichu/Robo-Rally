@@ -3,12 +3,12 @@ package M2EnviromentalInteraction;
 
 import static org.junit.Assert.*;
 
+import springboot.model.obstacles.Obstacle;
 import springboot.model.players.Player;
 import springboot.model.round.Round;
 import springboot.model.cards.CardDeck;
 import springboot.model.Direction;
-import springboot.model.checkPoints.CheckPoint;
-import springboot.model.checkPoints.CheckPointSet;
+import springboot.model.obstacles.CheckPoint;
 import springboot.model.board.TileType;
 import springboot.model.board.Board;
 import springboot.model.board.Tile;
@@ -21,8 +21,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import java.beans.PropertyChangeSupport;
 import java.util.HashSet;
+import java.util.Set;
 
 public class StepDefObstacle {
 
@@ -31,16 +31,14 @@ public class StepDefObstacle {
     Tile tile;
     Round round = new Round(new HashSet<>());
     CardDeck deck = new CardDeck();
-    CheckPoint cp = new CheckPoint();
-    CheckPointSet TotalCPSet;
     Board board = new Board(10,10);
+    Set<CheckPoint> totalCP;
     private int size = 0;
 
     // Player with amount of lives
     @Given("Player {string} at row {int} column {int} with {int} lives")
     public void player_at_row_column_with_lives(String s, int x, int y, int z) {
         player = new Player(s);
-        board.loadRandomBoard(3);
         player.setPosition(x, y);
         player.setLives(z);
     }
@@ -51,7 +49,6 @@ public class StepDefObstacle {
         player = new Player(s);
         player.setPosition(x, y);
         player.setDirection(Direction.getCardinalPointChar(dir));
-        board.loadRandomBoard(3);
     }
     // Player with cardHand
     @Given("player {string} at row {int} column {int} with CardHand")
@@ -59,7 +56,7 @@ public class StepDefObstacle {
         player = new Player(s);
         player.setPosition(x, y);
         player.drawCardHand(deck);
-        board.loadRandomBoard(3);
+
     }
 
     // acidTile
@@ -99,22 +96,18 @@ public class StepDefObstacle {
     public void player_on_row_and_column_with_set_of_visited_check_points(String s, int x, int y) {
         player = new Player(s);
         player.setPosition(x, y);
-        player.addCheckPoint(cp);
         this.size = player.getCollectedCP().size();
-        board.loadRandomBoard(3);
     }
     // CheckPoint tile
     @Given("CheckPoint {string} on row {int} and column {int} with ID")
     public void check_point_on_row_and_column_with_id(String s, int x, int y) {
-        cp.setPosition(x,y);
         type = TileType.CHECKPOINT;
-        tile = new Tile(type);//
-        tile.position = new Position(x,y);
+        board.addCheckPoint((CheckPoint) type.getObstacle());
     }
 
     @Given("full set of CheckPoints from board of size {int}")
     public void full_set_of_check_points_from_board_of_size(int size)  {
-        TotalCPSet = new CheckPointSet(size);
+        totalCP = board.getCheckPoints();
     }
 
     @When("round is incremented")
@@ -146,8 +139,8 @@ public class StepDefObstacle {
     // collecting CheckPoints
     @Then("player {string} has new set of visited CheckPoints")
     public void player_has_new_set_of_visited_check_points(String s) {
-        player.addCheckPoint(cp);
-        assertTrue(player.getCollectedCP().contains(cp));
+        player.addCheckPoint((CheckPoint) type.getObstacle());
+        assertSame(player.getCollectedCP().iterator().next(), board.getCheckPoints().iterator().next());
     }
     // player has collected all CheckPoints = WINS
     @Then("if player {string} has complete set of CheckPoints then player wins")
@@ -158,7 +151,7 @@ public class StepDefObstacle {
     // player visits a CheckPoint which has previously been visited
     @Then("player {string} has same set of CheckPoints as before")
     public void player_has_same_set_of_check_points_as_before(String s) {
-        assertTrue(player.getCollectedCP().contains(cp));
+        assertSame(player.getCollectedCP().iterator().next(), (CheckPoint) tile.getType().getObstacle());
         assertEquals(size,player.getCollectedCP().size());
     }
 }

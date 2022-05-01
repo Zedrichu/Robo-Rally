@@ -25,6 +25,8 @@ public class HealthView extends JPanel implements PropertyChangeListener {
         setMinimumSize(new Dimension(400,300));
         setLayout(new GridBagLayout());
         setBackground( Color.DARK_GRAY );
+        setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.decode("#DC47DA")), BorderFactory.createRaisedBevelBorder()));
+
 
         JLabel healthTitle = new JLabel("Health bar overview");
         healthTitle.setFont(new Font("Arial", Font.BOLD, 20));
@@ -53,7 +55,7 @@ public class HealthView extends JPanel implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals("round")) {
+        if (evt.getPropertyName().equals("nextRound")) {
             this.round = (Round) evt.getNewValue();
             revalidate();
         }

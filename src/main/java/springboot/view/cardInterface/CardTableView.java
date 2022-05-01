@@ -33,10 +33,13 @@ public class CardTableView extends JPanel implements PropertyChangeListener, Act
 
 
     private void initGUI(CardHand cardHand) {
-        setMinimumSize(new Dimension(400, 300));
+        //setMinimumSize(new Dimension(400, 300));
         setLayout(new GridBagLayout());
         setForeground(Color.red);
         setBackground(Color.DARK_GRAY);
+        setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.decode("#DC47DA")), BorderFactory.createRaisedBevelBorder()));
+
+
 
         this.cardButtons = new ArrayList<>();
         this.selections = new ArrayList<>(this.player.getHandSize());

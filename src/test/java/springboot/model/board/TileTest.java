@@ -1,6 +1,7 @@
 package springboot.model.board;
 
 import org.junit.jupiter.api.Test;
+import springboot.model.Direction;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,18 +12,17 @@ public class TileTest {
 
         Tile t = new Tile(TileType.ACID);
 
-        t.setRobotOnTop(true);
+        t.setRobotOnTop(true, Direction.getRandomDirection());
 
         t.setRobotIcon("R1");
 
-        assertTrue(t.getRobotIcon().equals("R1"));
+        assertEquals("R1", t.getRobotIcon());
 
         assertTrue(t.getRobotOnTop());
 
         assertNotNull(t.toString());
 
         assertNull(t.getPosition());
-        assertNull(t.getDirection());
 
         assertNotNull(t.getType().getPictureFile());
 

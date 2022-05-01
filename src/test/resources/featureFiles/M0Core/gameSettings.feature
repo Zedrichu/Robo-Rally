@@ -6,13 +6,13 @@ Feature: Game Settings
   When select settings EASY
   Then game settings has EASY and 2 players
 
-  @tag
+  @tag2
   Scenario:MEDIUM Game settings are selected
   Given new game
   When select settings MEDIUM
   Then game settings has MEDIUM and 2 players
 
-  @tag
+  @tag2
   Scenario: HARD Game settings are selected
   Given new game
   When select settings HARD

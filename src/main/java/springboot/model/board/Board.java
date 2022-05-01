@@ -2,11 +2,10 @@ package springboot.model.board;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.util.*;
 
 import springboot.model.Position;
-import springboot.model.checkPoints.CheckPoint;
+import springboot.model.obstacles.CheckPoint;
 import springboot.model.players.Player;
 
 public class Board implements PropertyChangeListener {
@@ -59,7 +58,7 @@ public class Board implements PropertyChangeListener {
 				}
 
 				if (t.getType().equals(TileType.CHECKPOINT)) {
-					checkPoints.add(new CheckPoint());
+					checkPoints.add((CheckPoint) t.getType().getObstacle());
 				}
 				board[j][i] = t;
 			}
@@ -71,10 +70,14 @@ public class Board implements PropertyChangeListener {
 		for (Player plr : sps){
 			Position pos = plr.getPosition();
 			Tile tile = board[pos.y][pos.x];
-			tile.setRobotOnTop(true);
+			tile.setRobotOnTop(true,plr.getDirection());
 			tile.setDirection(plr.getDirection());
 			tile.setRobotIcon(plr.getRobot());
 		}
+	}
+
+	public void addCheckPoint(CheckPoint checkPoint) {
+		this.checkPoints.add(checkPoint);
 	}
 
 	public Object[] getStartTiles() {
