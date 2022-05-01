@@ -10,6 +10,7 @@ import springboot.model.Position;
 import springboot.model.obstacles.CheckPoint;
 import springboot.model.players.Player;
 
+
 public class Board implements PropertyChangeListener {
 
 	private Random rnd = new Random();
@@ -62,6 +63,7 @@ public class Board implements PropertyChangeListener {
 				if (t.getType().equals(TileType.CHECKPOINT)) {
 					checkPoints.add((CheckPoint) t.getType().getObstacle());
 				}
+
 				board[j][i] = t;
 			}
 		}
@@ -76,7 +78,9 @@ public class Board implements PropertyChangeListener {
 					t.position = new Position(i, j);
 					board[j][i] = t;
 				} else if ((i==3 && j==0) || (i==5 && j==3) || (i==4 && j==7)) {
-					Tile t = new Tile(TileType.CHECKPOINT);
+					TileType type = TileType.CHECKPOINT;
+					type.setObstacle(new CheckPoint());
+					Tile t = new Tile(type);
 					t.position = new Position(i, j);
 					board[j][i] = t;
 					checkPoints.add(new CheckPoint());
@@ -125,7 +129,9 @@ public class Board implements PropertyChangeListener {
 					t.position = new Position(i, j);
 					board[j][i] = t;
 				}else if((i==3 && j==4) || (i==4 && j==7) || (i==7 && j==6) || (i==6 && j==3)) {
-					Tile t = new Tile(TileType.CHECKPOINT);
+					var type =TileType.CHECKPOINT;
+					type.setObstacle(new CheckPoint());
+					Tile t = new Tile(type);
 					t.position = new Position(i, j);
 					board[j][i] = t;
 					checkPoints.add(new CheckPoint());
@@ -184,7 +190,9 @@ public class Board implements PropertyChangeListener {
 					t.position = new Position(i, j);
 					board[j][i] = t;
 				}else if((i==0 && j==6) || (i==6 && j==6) || (i==6 && j==0) || (i==6 && j==12) || (i==12 && j==6)) {
-					Tile t = new Tile(TileType.CHECKPOINT);
+					TileType type =TileType.CHECKPOINT;
+					type.setObstacle(new CheckPoint());
+					Tile t = new Tile(type);
 					t.position = new Position(i, j);
 					board[j][i] = t;
 					checkPoints.add(new CheckPoint());
@@ -274,15 +282,17 @@ public class Board implements PropertyChangeListener {
 
 	private Tile getRandomTile() {
 		double val = rnd.nextDouble();
-		if (val < 0.70) {
+		if (val < 0.02) {
+			TileType type = TileType.CHECKPOINT;
+			type.setObstacle(new CheckPoint());
+			return new Tile(type);
+	 	} else if (val < 0.81) {
 			return new Tile(TileType.EMPTY);
-	 	} else if (val <0.78) {
-			return new Tile(TileType.CHECKPOINT);
 		} else if (val < 0.82) {
 			return new Tile(TileType.PIT);
 		} else if (val < 0.86) {
 			return new Tile(TileType.ACID);
-		} else if (val < 0.90) {
+		} else if (val < 0.91) {
 			return new Tile(TileType.LASER);
 		} else if (val < 0.97) {
 			return new Tile(TileType.CONVEYORBELT);

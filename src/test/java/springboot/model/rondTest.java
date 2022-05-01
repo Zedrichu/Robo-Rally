@@ -1,4 +1,4 @@
-package springboot.model.round;
+package springboot.model;
 
 import org.junit.jupiter.api.Test;
 import springboot.model.players.Player;

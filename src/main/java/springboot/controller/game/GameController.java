@@ -61,7 +61,7 @@ public class GameController {
                     else if (player.hasAllCP(this.board.getCheckPoints())) {
                         System.out.println("Winner "+player.getPlayerName());
                         this.gameView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                        JOptionPane.showMessageDialog(this.gameView, "Winner is "+player.getPlayerName()+"!");
+                        JOptionPane.showMessageDialog(gameView, "Winner is "+player.getPlayerName()+"!");
                         //this.gameView.dispose();
 
                     }

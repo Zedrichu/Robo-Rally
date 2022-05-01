@@ -20,7 +20,5 @@ public class ConveyorBelt extends Obstacle{
         Position position = (Position) newPosDir[0];
 
         player.setPosition(position);
-        player.setDirection(dir);
-
     }
 }

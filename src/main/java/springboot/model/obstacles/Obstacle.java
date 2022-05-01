@@ -1,5 +1,6 @@
 package springboot.model.obstacles;
 
+import springboot.model.board.Tile;
 import springboot.model.players.Player;
 
 public abstract class Obstacle {

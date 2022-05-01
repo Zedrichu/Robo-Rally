@@ -1,6 +1,5 @@
 package springboot.model.players;
 
-import java.beans.PropertyChangeSupport;
 import java.util.HashSet;
 import java.util.Set;
 

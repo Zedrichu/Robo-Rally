@@ -3,9 +3,8 @@ package M2EnviromentalInteraction;
 
 import static org.junit.Assert.*;
 
-import springboot.model.obstacles.Obstacle;
 import springboot.model.players.Player;
-import springboot.model.round.Round;
+import springboot.model.Round;
 import springboot.model.cards.CardDeck;
 import springboot.model.Direction;
 import springboot.model.obstacles.CheckPoint;

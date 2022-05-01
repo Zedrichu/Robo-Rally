@@ -2,7 +2,7 @@ package springboot.controller.game;
 
 import springboot.model.cards.*;
 import springboot.model.players.Player;
-import springboot.model.round.Round;
+import springboot.model.Round;
 import springboot.view.cardInterface.CardTableView;
 import springboot.view.gameplay.PromptView;
 
@@ -10,7 +10,6 @@ import javax.swing.*;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Set;
 
 public class TableController {
 

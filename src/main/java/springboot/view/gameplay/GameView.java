@@ -31,7 +31,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
     }
 
     private void initGUI(HealthView healthView, BoardView boardView, JPanel tableView, LogView logView) {
-        setMinimumSize(new Dimension(1000,1100));
+        setMinimumSize(new Dimension(1300,1100));
         setPreferredSize(getMinimumSize());
         setResizable(true); //false
         setTitle("Game on!");
@@ -39,9 +39,9 @@ public class GameView extends JFrame implements PropertyChangeListener {
         setLayout(new GridBagLayout());
         getContentPane().setBackground(Color.DARK_GRAY );
 
-        add(healthView, GridBagUtils.constraint(1,0,10));
+        add(healthView, GridBagUtils.constraint(0,1,10));
         add(boardView, GridBagUtils.constraint(0,0,10));
-        add(tableView, GridBagUtils.constraint(0,1,10));
+        add(tableView, GridBagUtils.constraint(1,0,10));
 
         add(logView, GridBagUtils.constraint(1,1,10));
 

@@ -2,7 +2,7 @@ package springboot.view.boardInterface;
 
 import springboot.model.board.Board;
 import springboot.model.players.Player;
-import springboot.model.round.Round;
+import springboot.model.Round;
 import springboot.utils.GridBagUtils;
 
 import javax.swing.*;

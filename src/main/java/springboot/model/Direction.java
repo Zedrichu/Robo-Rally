@@ -20,11 +20,11 @@ public enum Direction {
 		return null;
 	}
 
-	public static Direction getCardinalPointByAngle(int angle) {
+	public static Direction getCardinalPointByAngle(int angle) throws Exception {
 		for (Direction cp : Direction.values()) {
-			if (angle == cp.getAngle()) {return cp;}
+			if (angle % 360 == cp.getAngle()) {return cp;}
 		}
-		return null;
+		throw new Exception("Angle"+angle+"not found in directions");
 	}
 
 	//Generates random direction

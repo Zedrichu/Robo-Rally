@@ -55,7 +55,7 @@ public class BoardSetupView extends JFrame {
                 int[] sizes = gameSettings.getBoardSize();
                 Board board = new Board(sizes[0], sizes[1]);
                 board.loadRandomBoard(gameSettings.getAmountOfPlayers());
-
+                System.out.println(board.getCheckPoints());
                 gameSettingsController.setupBoard(board);
                 dispose();
             }
