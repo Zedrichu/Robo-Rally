@@ -1,0 +1,200 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MovingCard</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">springboot.model.cards</a>
+</div>
+
+<h1>Coverage Summary for Class: MovingCard (springboot.model.cards)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MovingCard</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (15/15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package springboot.model.cards;
+<i class="no-highlight">2</i>&nbsp;import springboot.model.Position;
+<i class="no-highlight">3</i>&nbsp;import springboot.model.Direction;
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;import java.util.Objects;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;abstract public class Card {
+<i class="no-highlight">8</i>&nbsp;    private static long counter=0;
+<i class="no-highlight">9</i>&nbsp;    long ID;
+<i class="no-highlight">10</i>&nbsp;    private String name;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;    protected Card() {
+<i class="no-highlight">13</i>&nbsp;        this.ID = counter++;
+<i class="no-highlight">14</i>&nbsp;    }
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;    public void setName(String name) {
+<i class="no-highlight">17</i>&nbsp;        this.name = name;
+<i class="no-highlight">18</i>&nbsp;    }
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;    public String getName() {
+<i class="no-highlight">21</i>&nbsp;        return name;
+<i class="no-highlight">22</i>&nbsp;    }
+<i class="no-highlight">23</i>&nbsp;
+<i class="no-highlight">24</i>&nbsp;    abstract public Object[] applyAction(Position position, Direction direction);
+<i class="no-highlight">25</i>&nbsp;
+<i class="no-highlight">26</i>&nbsp;    @Override
+<i class="no-highlight">27</i>&nbsp;    public boolean equals(Object o) {
+<i class="no-highlight">28</i>&nbsp;        if (this == o) return true;
+<i class="no-highlight">29</i>&nbsp;        if (o == null || getClass() != o.getClass()) return false;
+<i class="no-highlight">30</i>&nbsp;        Card card = (Card) o;
+<i class="no-highlight">31</i>&nbsp;        return ID == card.ID;
+<i class="no-highlight">32</i>&nbsp;    }
+<i class="no-highlight">33</i>&nbsp;
+<i class="no-highlight">34</i>&nbsp;    @Override
+<i class="no-highlight">35</i>&nbsp;    public int hashCode() {
+<i class="no-highlight">36</i>&nbsp;        return Objects.hash(ID);
+<i class="no-highlight">37</i>&nbsp;    }
+<i class="no-highlight">38</i>&nbsp;}
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;class MovingCard extends Card {
+<i class="no-highlight">41</i>&nbsp;    final private int multiplier;
+<i class="no-highlight">42</i>&nbsp;
+<i class="no-highlight">43</i>&nbsp;    // Constructor for MovingCard
+<i class="no-highlight">44</i>&nbsp;    protected MovingCard(int multiplier) {
+<b class="fc"><i class="no-highlight">45</i>&nbsp;        super();</b>
+<b class="fc"><i class="no-highlight">46</i>&nbsp;        this.setName( multiplier&lt;0? &quot;Move&quot;+Math.abs(multiplier)+&quot;Backward&quot;</b>
+<b class="fc"><i class="no-highlight">47</i>&nbsp;                : &quot;Move&quot;+multiplier+&quot;Forward&quot;);</b>
+<b class="fc"><i class="no-highlight">48</i>&nbsp;        this.multiplier = multiplier;</b>
+<i class="no-highlight">49</i>&nbsp;    }
+<i class="no-highlight">50</i>&nbsp;
+<i class="no-highlight">51</i>&nbsp;
+<i class="no-highlight">52</i>&nbsp;    // Function to apply an action based on a moving card
+<i class="no-highlight">53</i>&nbsp;    @Override
+<i class="no-highlight">54</i>&nbsp;    public Object[] applyAction(Position position, Direction direction) {
+<b class="fc"><i class="no-highlight">55</i>&nbsp;        int angle = direction.getAngle();</b>
+<b class="fc"><i class="no-highlight">56</i>&nbsp;        Position newPosition = position;</b>
+<b class="fc"><i class="no-highlight">57</i>&nbsp;        if (angle % 360 == 0) {</b>
+<b class="fc"><i class="no-highlight">58</i>&nbsp;            newPosition = new Position(position.x, position.y - this.multiplier);</b>
+<b class="fc"><i class="no-highlight">59</i>&nbsp;        } else if (angle % 360 == 90) {</b>
+<b class="fc"><i class="no-highlight">60</i>&nbsp;            newPosition = new Position(position.x + this.multiplier, position.y);</b>
+<b class="fc"><i class="no-highlight">61</i>&nbsp;        } else if (angle % 360 == 180) {</b>
+<b class="fc"><i class="no-highlight">62</i>&nbsp;            newPosition = new Position(position.x, position.y + this.multiplier);</b>
+<b class="fc"><i class="no-highlight">63</i>&nbsp;        } else if (angle % 360 == 270){</b>
+<b class="fc"><i class="no-highlight">64</i>&nbsp;            newPosition = new Position(position.x - this.multiplier, position.y);</b>
+<i class="no-highlight">65</i>&nbsp;        };
+<b class="fc"><i class="no-highlight">66</i>&nbsp;        return new Object[] {newPosition, direction};</b>
+<i class="no-highlight">67</i>&nbsp;    }
+<i class="no-highlight">68</i>&nbsp;
+<i class="no-highlight">69</i>&nbsp;}
+<i class="no-highlight">70</i>&nbsp;
+<i class="no-highlight">71</i>&nbsp;class RotatingCard extends Card {
+<i class="no-highlight">72</i>&nbsp;    final private int angle; //clockwise
+<i class="no-highlight">73</i>&nbsp;
+<i class="no-highlight">74</i>&nbsp;    protected RotatingCard(int angle) {
+<i class="no-highlight">75</i>&nbsp;        super();
+<i class="no-highlight">76</i>&nbsp;        String name = &quot;Rotate&quot;;
+<i class="no-highlight">77</i>&nbsp;        if (angle % 360 == 90) name += &quot;Right&quot;;
+<i class="no-highlight">78</i>&nbsp;        else if (angle % 360 == 180) name += &quot;UTurn&quot;;
+<i class="no-highlight">79</i>&nbsp;        else name += &quot;Left&quot;;
+<i class="no-highlight">80</i>&nbsp;        this.setName(name);
+<i class="no-highlight">81</i>&nbsp;        this.angle = angle;
+<i class="no-highlight">82</i>&nbsp;    }
+<i class="no-highlight">83</i>&nbsp;
+<i class="no-highlight">84</i>&nbsp;    @Override
+<i class="no-highlight">85</i>&nbsp;    public Object[] applyAction(Position position, Direction direction) {
+<i class="no-highlight">86</i>&nbsp;        try {
+<i class="no-highlight">87</i>&nbsp;            Direction newDirection = Direction
+<i class="no-highlight">88</i>&nbsp;                    .getCardinalPointByAngle((direction.getAngle() + angle) % 360);
+<i class="no-highlight">89</i>&nbsp;            return new Object[] {position, newDirection};
+<i class="no-highlight">90</i>&nbsp;        } catch (Exception e) {
+<i class="no-highlight">91</i>&nbsp;            System.out.println(e.getMessage());
+<i class="no-highlight">92</i>&nbsp;            return new Object[] {position, direction};
+<i class="no-highlight">93</i>&nbsp;        }
+<i class="no-highlight">94</i>&nbsp;    }
+<i class="no-highlight">95</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-05-01 22:43</div>
+</div>
+</body>
+</html>

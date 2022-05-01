@@ -1,0 +1,152 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Direction</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">springboot.model</a>
+</div>
+
+<h1>Coverage Summary for Class: Direction (springboot.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Direction</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/19)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package springboot.model;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.util.Random;
+<i class="no-highlight">4</i>&nbsp;
+<b class="fc"><i class="no-highlight">5</i>&nbsp;public enum Direction {</b>
+<b class="fc"><i class="no-highlight">6</i>&nbsp;	N(0, &quot;N&quot;), S(180,&quot;S&quot;), E(90,&quot;E&quot;), W(270,&quot;W&quot;);</b>
+<i class="no-highlight">7</i>&nbsp;	
+<i class="no-highlight">8</i>&nbsp;	final private int angle;
+<i class="no-highlight">9</i>&nbsp;	final private String abbr;
+<i class="no-highlight">10</i>&nbsp;
+<b class="fc"><i class="no-highlight">11</i>&nbsp;	Direction(int angle, String abbr) {</b>
+<b class="fc"><i class="no-highlight">12</i>&nbsp;		this.angle = angle;</b>
+<b class="fc"><i class="no-highlight">13</i>&nbsp;		this.abbr = abbr;</b>
+<i class="no-highlight">14</i>&nbsp;	}
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;	public static Direction getCardinalPointChar(String c) {
+<b class="fc"><i class="no-highlight">17</i>&nbsp;		for (Direction cp : Direction.values()) {</b>
+<b class="fc"><i class="no-highlight">18</i>&nbsp;			if (c.equals(cp.getAbbr())) {return cp;}</b>
+<i class="no-highlight">19</i>&nbsp;		}
+<b class="fc"><i class="no-highlight">20</i>&nbsp;		return null;</b>
+<i class="no-highlight">21</i>&nbsp;	}
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;	public static Direction getCardinalPointByAngle(int angle) throws Exception {
+<b class="fc"><i class="no-highlight">24</i>&nbsp;		for (Direction cp : Direction.values()) {</b>
+<b class="fc"><i class="no-highlight">25</i>&nbsp;			if (angle % 360 == cp.getAngle()) {return cp;}</b>
+<i class="no-highlight">26</i>&nbsp;		}
+<b class="fc"><i class="no-highlight">27</i>&nbsp;		throw new Exception(&quot;Angle&quot;+angle+&quot;not found in directions&quot;);</b>
+<i class="no-highlight">28</i>&nbsp;	}
+<i class="no-highlight">29</i>&nbsp;
+<i class="no-highlight">30</i>&nbsp;	//Generates random direction
+<i class="no-highlight">31</i>&nbsp;	public static Direction getRandomDirection(){
+<b class="fc"><i class="no-highlight">32</i>&nbsp;		Random r = new Random();</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;		float x = r.nextFloat();</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;		if (x &lt; 0.25) {return Direction.N;}</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;		else if (x &lt; 0.5) {return Direction.E;}</b>
+<b class="fc"><i class="no-highlight">36</i>&nbsp;		else if (x &lt; 0.75) {return Direction.S;}</b>
+<b class="fc"><i class="no-highlight">37</i>&nbsp;		else {return Direction.W;}</b>
+<i class="no-highlight">38</i>&nbsp;	}
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;	public int getAngle() {
+<b class="fc"><i class="no-highlight">41</i>&nbsp;		return angle;</b>
+<i class="no-highlight">42</i>&nbsp;	}
+<i class="no-highlight">43</i>&nbsp;
+<i class="no-highlight">44</i>&nbsp;	public String getAbbr() {
+<b class="fc"><i class="no-highlight">45</i>&nbsp;		return abbr;</b>
+<i class="no-highlight">46</i>&nbsp;	}
+<i class="no-highlight">47</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-05-01 22:43</div>
+</div>
+</body>
+</html>

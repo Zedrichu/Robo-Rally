@@ -15,8 +15,8 @@ public class ObstacleTest {
         Obstacle o5 = new CheckPoint();
         Obstacle o6 = new LifeToken();
 
-        assertFalse(o4.equals(o5));
-        assertTrue(o4.equals(o4));
+        assertNotEquals(o4, o5);
+        assertEquals(o4, o4);
 
         o4.applyDamage(new Player("sara"), 0);
 

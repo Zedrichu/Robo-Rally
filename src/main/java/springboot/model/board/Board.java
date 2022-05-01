@@ -283,10 +283,8 @@ public class Board {
 
 	private Tile getRandomTile() {
 		double val = rnd.nextDouble();
-		if (val < 0.02) {
-			TileType type = TileType.CHECKPOINT;
-			type.setObstacle(new CheckPoint());
-			return new Tile(type);
+		if (val < 0.05) {
+			return new Tile(TileType.CHECKPOINT);
 	 	} else if (val < 0.81) {
 			return new Tile(TileType.EMPTY);
 		} else if (val < 0.82) {

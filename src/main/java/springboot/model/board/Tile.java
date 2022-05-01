@@ -2,6 +2,7 @@ package springboot.model.board;
 
 import springboot.model.Position;
 import springboot.model.Direction;
+import springboot.model.obstacles.CheckPoint;
 
 public class Tile {
 
@@ -12,6 +13,9 @@ public class Tile {
 	public Position position;
 
 	public Tile(TileType type) {
+		if (type == TileType.CHECKPOINT) {
+			type.setObstacle(new CheckPoint());
+		};
 		this.type = type;
 		this.robotOnTop = false;
 		this.direction = Direction.getRandomDirection();

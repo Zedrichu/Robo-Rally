@@ -8,15 +8,15 @@ import java.util.Objects;
 public class CheckPoint extends Obstacle {
 
     private int ID;
-    private static int IDs=0;
+    private static int IDs = 0;
 
     public int getID(){
-        IDs++;
         return this.ID;
     }
 
     public CheckPoint(){
-        this.ID = getID();
+        IDs++;
+        this.ID = IDs;
     }
 
     @Override
