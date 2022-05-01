@@ -2,6 +2,7 @@ package springboot.controller.game;
 
 import springboot.model.GameSettings;
 import springboot.model.board.Board;
+import springboot.model.cards.Card;
 import springboot.model.cards.CardDeck;
 import springboot.model.obstacles.Obstacle;
 import springboot.model.players.Player;
@@ -51,7 +52,10 @@ public class GameController {
         //Play cards for each player in set of players
         for (Player player : this.round.getPlayers()) {
             for (int i = 0; i < player.getHand().size(); i++) {
-                player.playCard(player.getHand().get(i), this.board);
+                Card card = player.getHand().get(i);
+                if (card != null) {
+                    player.playCard(player.getHand().get(i), this.board);
+                }
                 Obstacle obstacle = this.board.getTile(player.getCoordinates()).getType().getObstacle();
                 if (obstacle != null) {
                     player.hitObstacle(this.board, this.round.getRoundNumber());
