@@ -7,6 +7,11 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.util.Objects;
 import javax.swing.JPanel;
 
 public class TileView extends JPanel {
@@ -21,9 +26,11 @@ public class TileView extends JPanel {
         this.tile = tile;
         TileType type = tile.getType();
         try {
-            this.image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(type.getPictureFile()));
+            //this.image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(type.getPictureFile()));
+            this.image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(type.getPictureFile())));
             if (tile.getRobotOnTop()) {
-                this.robImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream(tile.getRobotIcon()));
+                //this.robImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream(tile.getRobotIcon()));
+                this.robImage = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(tile.getRobotIcon())));
             }
         } catch (IOException e){
             this.image = new BufferedImage(1,1,BufferedImage.TYPE_INT_RGB);

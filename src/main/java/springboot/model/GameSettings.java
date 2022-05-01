@@ -41,9 +41,9 @@ public class GameSettings {
     //GetBoardSize depending on complexity
     public int[] getBoardSize(){
         return switch (this.complexity){
-            case EASY  -> new int[]{7, 7};
-            case MEDIUM  -> new int[]{9, 9};
-            case HARD -> new int[]{11, 11};
+            case EASY  -> new int[]{9, 9};
+            case MEDIUM  -> new int[]{11, 11};
+            case HARD -> new int[]{13, 13};
         };
     }
 }
