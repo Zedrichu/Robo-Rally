@@ -8,7 +8,7 @@ import springboot.model.players.Player;
 import springboot.view.gameplay.HealthView;
 import springboot.view.boardInterface.BoardView;
 import springboot.view.gameplay.GameView;
-import springboot.model.round.Round;
+import springboot.model.Round;
 import springboot.view.gameplay.LogView;
 
 import javax.swing.*;
@@ -71,6 +71,7 @@ public class GameController {
         }
         //Increments round and sends property change to game view
         this.round.resetRound();
+
 
         this.gameView.removeAll();
         this.boardView.removeAll();

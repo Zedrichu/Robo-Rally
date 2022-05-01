@@ -26,7 +26,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
         this.gameController = gameController;
         this.boardView = boardView;
         this.healthView = healthView;
-        this.logView = logView; //
+        this.logView = logView; //No time to implement this
         initGUI(this.healthView, this.boardView, tableController.getView(),logView);
     }
 
