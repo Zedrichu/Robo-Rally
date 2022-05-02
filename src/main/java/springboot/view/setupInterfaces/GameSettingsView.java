@@ -1,7 +1,7 @@
 package springboot.view.setupInterfaces;
 
 import springboot.model.Complexity;
-import springboot.controller.setup.GameSettingsFacadeController;
+import springboot.controller.setup.GameSettingsController;
 import springboot.utils.GridBagUtils;
 
 import javax.imageio.ImageIO;
@@ -17,14 +17,14 @@ public class GameSettingsView extends JFrame {
     private JButton btnStart;
     private JComboBox comboComplex;
     private JComboBox comboNumber;
-    private GameSettingsFacadeController controller;
+    private GameSettingsController controller;
 
 
     public static void main(String[] args) {
 
     }
 
-    public GameSettingsView(GameSettingsFacadeController controller) {
+    public GameSettingsView(GameSettingsController controller) {
         this.controller = controller;
         this.setSize(500,500);
         initGUI();

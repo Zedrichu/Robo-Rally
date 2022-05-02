@@ -11,33 +11,52 @@ import springboot.view.setupInterfaces.GameSettingsView;
 import springboot.model.board.Board;
 import java.util.Set;
 
+/**
+ * Facade controller class unifying all the game settings together and preparing the data for the game
+ *      - Client of the Player Factory
+ * @author Adrian Zvizdenco & Jeppe Mikkelsen
+ */
+public class GameSettingsController {
 
-public class GameSettingsFacadeController {
-
-    private final ApplicationController application;
+    private final ApplicationController application; //Link to outer facade controller
     private BoardController boardController;
     private GameSettings gameSettings;
     private final GameSettingsView view;
     private CardDeck cardDeck;
 
-    // Initialize settings controller with app controller
-    public GameSettingsFacadeController(ApplicationController application) {
+    /**
+     * Initialize the application controller and create a corresponding view.
+     * @param application - ApplicationController, to create link with other facades in the application
+     */
+    public GameSettingsController(ApplicationController application) {
         this.application = application;
         this.view = new GameSettingsView(this);
     }
 
-    //Game settings getter
+    /**
+     * Game Settings Getter
+     * @return object of GameSettings
+     */
     public GameSettings getGameSettings() {
         return gameSettings;
     }
 
-    //Setter for game settings with complexity and number of players
+    /**
+     * Game Settings Setter
+     * @param complexity - enum type defining game complexity (EASY, MEDIUM, HARD).
+     * @param noPlayers - positive integer, defining the number of players in the game.
+     */
     public void setGameSettings(Complexity complexity, int noPlayers) {
         this.gameSettings = new GameSettings();
         this.gameSettings.setComplexity(complexity);
         this.gameSettings.setAmountOfPlayers(noPlayers);
     }
-    //Set up the complexity level and the amount of players in game and go to BoardSetupView
+
+    /**
+     * Handle the selection of complexity and number of players and pass on to board setup.
+     * @param complexity - enum type defining game complexity (EASY, MEDIUM, HARD).
+     * @param noPlayers - positive integer, defining the number of players in the game.
+     */
     public void setupGame(Complexity complexity, int noPlayers) {
         System.out.println("Game Started!");
         this.setGameSettings(complexity, noPlayers);
@@ -46,7 +65,11 @@ public class GameSettingsFacadeController {
         BoardSetupController boardSetupController = new BoardSetupController(this);
         boardSetupController.display();
     }
-    //Set up the board that generates the cardDock and goes to the PlayerSetupView
+
+    /**
+     * Handle the selection of the board on which the game would be played.
+     * @param board - Board object, initialized with the contents of the selected board.
+     */
     public void setupBoard(Board board){
         System.out.println("Board has been selected");
         this.boardController = new BoardController(board, Set.of());
@@ -56,7 +79,10 @@ public class GameSettingsFacadeController {
         playerSetupController.display();
     }
 
-    //Method that goes to StartPositionView
+    /**
+     * Handle the selection of unique player names and creating the players, being a client of PLayerFactory
+     * @param names - Set of unique player names, used for generating players from factory
+     */
     public void setupPlayers(Set<String> names) {
         System.out.println("Players have been initialized");
         Set<Player> sps = PlayerFactory.getPlayerSet(gameSettings.getAmountOfPlayers(), names);
@@ -65,13 +91,19 @@ public class GameSettingsFacadeController {
         startPositionController.display();
     }
 
-    //Method for going to gamePlay controller
+    /**
+     * Handle the selection of starting position on the board
+     * @param sps - Set of players registered in the game.
+     * @param boardController - Controller of the board in use.
+     */
     public void selectPositions(Set<Player> sps, BoardController boardController) {
         gameSettings.setPlayers(sps);
         application.game(boardController, gameSettings, cardDeck);
     }
 
-    //Display the view
+    /**
+     * Method to make the corresponding view of the controller visible.
+     */
     public void display() {view.setVisible(true);}
 
 }

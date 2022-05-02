@@ -4,7 +4,7 @@ import springboot.controller.game.BoardController;
 import springboot.model.Direction;
 import springboot.model.players.Player;
 import springboot.controller.setup.StartPositionController;
-import springboot.controller.setup.GameSettingsFacadeController;
+import springboot.controller.setup.GameSettingsController;
 import springboot.model.Position;
 import springboot.utils.GridBagUtils;
 import springboot.model.board.Tile;
@@ -17,10 +17,10 @@ import java.util.ArrayList;
 import java.util.Set;
 
 public class StartPositionView extends JFrame {
-    private GameSettingsFacadeController gameSettingsController;
+    private GameSettingsController gameSettingsController;
     private StartPositionController startPositionController;
 
-    public StartPositionView(GameSettingsFacadeController gameSettingsController, StartPositionController startPositionController,
+    public StartPositionView(GameSettingsController gameSettingsController, StartPositionController startPositionController,
                              BoardController boardController, int noPlayers, Set<Player> sps) {
         this.gameSettingsController = gameSettingsController;
         this.startPositionController = startPositionController;

@@ -1,6 +1,6 @@
 package springboot.view.setupInterfaces;
 
-import springboot.controller.setup.GameSettingsFacadeController;
+import springboot.controller.setup.GameSettingsController;
 import springboot.model.GameSettings;
 import springboot.model.board.Board;
 import springboot.utils.GridBagUtils;
@@ -12,15 +12,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 
 import static java.lang.String.valueOf;
 
 public class BoardSetupView extends JFrame {
-    private final GameSettingsFacadeController gameSettingsController;
+    private final GameSettingsController gameSettingsController;
 
-    public BoardSetupView(GameSettingsFacadeController gameSettingsController){
+    public BoardSetupView(GameSettingsController gameSettingsController){
         this.gameSettingsController = gameSettingsController;
         initGUI();
     }

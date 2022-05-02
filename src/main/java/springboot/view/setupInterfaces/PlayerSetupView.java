@@ -5,16 +5,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-import springboot.controller.setup.GameSettingsFacadeController;
+import springboot.controller.setup.GameSettingsController;
 import springboot.controller.setup.PlayerSetupController;
 import springboot.utils.GridBagUtils;
 
 public class PlayerSetupView extends JFrame {
-    private GameSettingsFacadeController controller;
+    private GameSettingsController controller;
     private PlayerSetupController playerSetupController;
     private Set<String> names = new HashSet<>();
 
-    public PlayerSetupView(GameSettingsFacadeController controller, PlayerSetupController playerSetupController, int noPlayers) {
+    public PlayerSetupView(GameSettingsController controller, PlayerSetupController playerSetupController, int noPlayers) {
         this.controller = controller;
         this.playerSetupController = playerSetupController;
         initGUI(noPlayers);
