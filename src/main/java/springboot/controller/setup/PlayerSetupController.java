@@ -26,6 +26,7 @@ public class PlayerSetupController {
      * @param noPlayers - Positive integer, defining the number of players in the game.
      */
     public boolean validateNames(Set<String> names, int noPlayers){
+        // The set of names is removing duplicates
         return names.size() == noPlayers;
     }
 

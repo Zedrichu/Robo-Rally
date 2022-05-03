@@ -1,49 +1,66 @@
 package springboot.model.board;
 
-
-import java.beans.PropertyChangeListener;
-
 import java.util.*;
-
-import springboot.model.board.TileType;
 import springboot.model.Direction;
 import springboot.model.Position;
 import springboot.model.obstacles.CheckPoint;
 import springboot.model.players.Player;
 
-
+/**
+ * Model class simulating the state of the gaming board in RoboRally.
+ */
 public class Board {
 
-	private Random rnd = new Random();
+	private final Random rnd = new Random();
 	private Tile[][] board;
 	private int rows;
 	private int cols;
 	private Set<Tile> startTiles = new HashSet<>();
 	private Set<CheckPoint> checkPoints = new HashSet<>();
 
-	public Set<CheckPoint> getCheckPoints() {
-		return checkPoints;
-	}
-
+	/**
+	 * Class constructor creating the board with dimensions.
+	 * @param rows - number of rows used in the board
+	 * @param cols - number of columns used in the board
+	 */
 	public Board(int rows, int cols) {
 		this.board = new Tile[rows][cols];
 		this.rows = rows;
 		this.cols = cols;
 	}
 
+	/**
+	 * Getter for the set of check-points
+	 */
+	public Set<CheckPoint> getCheckPoints() {
+		return checkPoints;
+	}
+
+	/**
+	 * Getter for the number of columns
+	 */
 	public int getCols() {
 		return cols;
 	}
 
+	/**
+	 * Getter for the number of rows
+	 */
 	public int getRows() {
 		return rows;
 	}
 
-	//Getter for board
+	/**
+	 * Getter for board as a matrix of Tiles
+	 */
 	public Tile[][] getBoard() {
 		return board;
 	}
 
+	/**
+	 * Method to randomly load a board for the game.
+	 * @param noPlrs - number of players in the game
+	 */
 	public void loadRandomBoard(int noPlrs) {
 		Random rnd = new Random();
 		for (int j = 0; j < rows; j++) {
@@ -56,21 +73,22 @@ public class Board {
 						noPlrs--;}
 				}
 				t.position = new Position(i, j);
-
 				if (t.getType().equals(TileType.STARTING)) {
+					// Add the starting tiles to a set
 					startTiles.add(t);
 				}
-
 				if (t.getType().equals(TileType.CHECKPOINT)) {
+					// Add the checkpoints to the general set
 					checkPoints.add((CheckPoint) t.getType().getObstacle());
 				}
-
 				board[j][i] = t;
 			}
 		}
 	}
 
-	// EASY map for board
+	/**
+	 * Method for loading a pre-defined EASY board.
+	 */
 	public void loadBoard_Easy() {
 		for (int j = 0; j < rows; j++) {
 			for (int i = 0; i < cols; i++) {
@@ -121,7 +139,9 @@ public class Board {
 		}
 	}
 
-	// MEDIUM map for board
+	/**
+	 * Method for loading a pre-defined MEDIUM board.
+	 */
 	public void loadBoard_Medium() {
 		for (int j = 0; j < rows; j++) {
 			for (int i = 0; i < cols; i++) {
@@ -182,7 +202,9 @@ public class Board {
 		}
 	}
 
-	// HARD map for board
+	/**
+	 * Method for loading a pre-defined HARD board.
+	 */
 	public void loadBoard_Hard() {
 		for (int j = 0; j < rows; j++) {
 			for (int i = 0; i < cols; i++) {
@@ -243,6 +265,10 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Method to place all robots corresponding to players on the board.
+	 * @param sps - Set of players registered in the game
+	 */
 	public void placePlayers(Set<Player> sps) {
 		for (Player plr : sps){
 			Position pos = plr.getPosition();
@@ -253,15 +279,25 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Method to add a check-point to the board's set of check-points.
+	 * @param checkPoint - CheckPoint object to be added to the set
+	 */
 	public void addCheckPoint(CheckPoint checkPoint) {
 		this.checkPoints.add(checkPoint);
 	}
 
+	/**
+	 * Getter method for the set of starting tiles.
+	 */
 	public Object[] getStartTiles() {
 		return startTiles.toArray();
 	}
 
-	//Finds a random tile that is a starting tile
+	/**
+	 * Method to obtain a random starting position on the board.
+	 * @return Position object
+	 */
 	public Position getRandomStartPosition() {
 		int val = rnd.nextInt(1, startTiles.size());
 		int i = 1;
@@ -275,12 +311,21 @@ public class Board {
 
 	}
 
+	/**
+	 * Method checking if a certain position is within bounds on the board.
+	 * @param position - Position object to be checked
+	 * @return boolean value, depending on whether the position is within bounds or not
+	 */
 	public boolean checkPositionInBounds(Position position) {
 		return (0 <= position.x && position.x <= cols-1
 				&& 0<=position.y && position.y <=rows-1);
 
 	}
 
+	/**
+	 * Method generating random tile to construct the board matrix.
+	 * @return Tile object requested
+	 */
 	private Tile getRandomTile() {
 		double val = rnd.nextDouble();
 		if (val < 0.05) {
@@ -299,9 +344,13 @@ public class Board {
 			return new Tile(TileType.LIFETOKEN);
 		}
 	}
+
+	/**
+	 * Method to obtain the tile at a certain position in the board.
+	 * @param pos - tuple of coordinates (x and y), denoting position
+	 * @return Tile object requested
+	 */
 	public Tile getTile(int[] pos) {
 		return board[pos[1]][pos[0]];
 	}
-
-
 }

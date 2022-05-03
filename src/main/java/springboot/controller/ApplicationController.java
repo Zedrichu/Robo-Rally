@@ -36,6 +36,7 @@ public class ApplicationController {
 
     public static void main(String[] args) {
         ApplicationController app = new ApplicationController();
+        // Start the game with the settings interface
         app.settings();
     }
 

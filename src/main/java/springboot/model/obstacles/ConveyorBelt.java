@@ -7,11 +7,17 @@ import springboot.model.cards.Card;
 import springboot.model.cards.CardFactory;
 import springboot.model.cards.CardType;
 
+/**
+ * Inheriting model class denoting the ConveyorBelt obstacle
+ */
 public class ConveyorBelt extends Obstacle{
 
     Card card = CardFactory.getCard(CardType.MOVE, 2);
 
-
+    /**
+     * Implementation of the abstract method of obstacle
+     * @param player - Player object to get moved on conveyor
+     */
     @Override
     public void applyDamage(Player player, int integer) {
         Direction dir = player.getDirection();
@@ -20,6 +26,5 @@ public class ConveyorBelt extends Obstacle{
         Position position = (Position) newPosDir[0];
 
         player.setPosition(position);
-
     }
 }

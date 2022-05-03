@@ -39,8 +39,6 @@ public class CardTableView extends JPanel implements PropertyChangeListener, Act
         setBackground(Color.DARK_GRAY);
         setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.decode("#DC47DA")), BorderFactory.createRaisedBevelBorder()));
 
-
-
         this.cardButtons = new ArrayList<>();
         this.selections = new ArrayList<>(this.player.getHandSize());
 
@@ -48,12 +46,16 @@ public class CardTableView extends JPanel implements PropertyChangeListener, Act
         int i=0;
         this.choiceNo = 0;
         for (Card card : cardHand.getHand()){
-            CardView cardView = new CardView(card);
-            cardButtons.add(cardView);
-            cardView.addActionListener(this);
-            // Add all the cardViews to the common panel
-            add(cardView, GridBagUtils.constraint(i%3,i/3,3));
-            i++;
+            if (card != null) {
+                CardView cardView = new CardView(card);
+                cardButtons.add(cardView);
+                cardView.addActionListener(this);
+                // Add all the cardViews to the common panel
+                add(cardView, GridBagUtils.constraint(i%3,i/3,3));
+                i++;
+            } else {
+                add(new JLabel("Missing Card"), GridBagUtils.constraint(i%3, i/3, 3));
+            }
         }
         submit = new JButton("Submit card selection");
         submit.addActionListener(new ActionListener() {

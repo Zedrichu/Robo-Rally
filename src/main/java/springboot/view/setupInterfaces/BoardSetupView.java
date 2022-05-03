@@ -8,12 +8,9 @@ import springboot.utils.GridBagUtils;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
-import static java.lang.String.valueOf;
+import java.util.Objects;
 
 public class BoardSetupView extends JFrame {
     private final GameSettingsController gameSettingsController;
@@ -66,16 +63,13 @@ public class BoardSetupView extends JFrame {
 
         //Button and creation of a random board
         JButton randomBtn = new JButton("RANDOM Board");
-        randomBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int[] sizes = gameSettings.getBoardSize();
-                Board board = new Board(sizes[0], sizes[1]);
-                board.loadRandomBoard(gameSettings.getAmountOfPlayers());
-                System.out.println(board.getCheckPoints());
-                gameSettingsController.setupBoard(board);
-                dispose();
-            }
+        randomBtn.addActionListener(e -> {
+            int[] sizes = gameSettings.getBoardSize();
+            Board board = new Board(sizes[0], sizes[1]);
+            board.loadRandomBoard(gameSettings.getAmountOfPlayers());
+            System.out.println(board.getCheckPoints());
+            gameSettingsController.setupBoard(board);
+            dispose();
         });
         randomBtn.setBackground(Color.decode("#DC47DA"));
         randomBtn.setForeground(Color.BLACK);
@@ -86,7 +80,7 @@ public class BoardSetupView extends JFrame {
         //Image loader for random map
         BufferedImage imageR;
         try {
-            imageR = ImageIO.read(this.getClass().getClassLoader().getResourceAsStream("maps/mapRANDOM.png"));
+            imageR = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResourceAsStream("maps/mapRANDOM.png")));
         } catch (IOException e) {
             imageR = new BufferedImage(1,1,BufferedImage.TYPE_INT_RGB);
         }
@@ -99,16 +93,13 @@ public class BoardSetupView extends JFrame {
 
         // Button for EASY board
         JButton easyBtn = new JButton("EASY board");
-        easyBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int[] sizes = gameSettings.getBoardSize();
-                Board board = new Board(sizes[0], sizes[1]);
-                board.loadBoard_Easy();
+        easyBtn.addActionListener(e -> {
+            int[] sizes = gameSettings.getBoardSize();
+            Board board = new Board(sizes[0], sizes[1]);
+            board.loadBoard_Easy();
 
-                gameSettingsController.setupBoard(board);
-                dispose();
-            }
+            gameSettingsController.setupBoard(board);
+            dispose();
         });
         easyBtn.setBackground(Color.decode("#DC47DA"));
         easyBtn.setForeground(Color.BLACK);
@@ -119,7 +110,7 @@ public class BoardSetupView extends JFrame {
         //Image loader for the easy map
         BufferedImage image1;
         try {
-            image1 = ImageIO.read(this.getClass().getClassLoader().getResourceAsStream("maps/mapEASY.png"));
+            image1 = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResourceAsStream("maps/mapEASY.png")));
         } catch (IOException e) {
             image1 = new BufferedImage(1,1,BufferedImage.TYPE_INT_RGB);
         }
@@ -132,15 +123,12 @@ public class BoardSetupView extends JFrame {
 
         // Button for MEDIUM board
         JButton mediumBtn = new JButton("MEDIUM board");
-        mediumBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int[] sizes = gameSettings.getBoardSize();
-                Board board = new Board(sizes[0], sizes[1]);
-                board.loadBoard_Medium();
-                gameSettingsController.setupBoard(board);
-                dispose();
-            }
+        mediumBtn.addActionListener(e -> {
+            int[] sizes = gameSettings.getBoardSize();
+            Board board = new Board(sizes[0], sizes[1]);
+            board.loadBoard_Medium();
+            gameSettingsController.setupBoard(board);
+            dispose();
         });
         mediumBtn.setBackground(Color.decode("#DC47DA"));
         mediumBtn.setForeground(Color.BLACK);
@@ -151,7 +139,7 @@ public class BoardSetupView extends JFrame {
         //Image loader for the medium map
         BufferedImage image2;
         try {
-            image2 = ImageIO.read(this.getClass().getClassLoader().getResourceAsStream("maps/mapMEDIUM.png"));
+            image2 = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResourceAsStream("maps/mapMEDIUM.png")));
         } catch (IOException e) {
             image2 = new BufferedImage(1,1,BufferedImage.TYPE_INT_RGB);
         }
@@ -164,15 +152,12 @@ public class BoardSetupView extends JFrame {
 
         // Button for HARD board
         JButton hardBtn = new JButton("HARD board");
-        hardBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int[] sizes = gameSettings.getBoardSize();
-                Board board = new Board(sizes[0], sizes[1]);
-                board.loadBoard_Hard();
-                gameSettingsController.setupBoard(board);
-                dispose();
-            }
+        hardBtn.addActionListener(e -> {
+            int[] sizes = gameSettings.getBoardSize();
+            Board board = new Board(sizes[0], sizes[1]);
+            board.loadBoard_Hard();
+            gameSettingsController.setupBoard(board);
+            dispose();
         });
         hardBtn.setBackground(Color.decode("#DC47DA"));
         hardBtn.setForeground(Color.BLACK);
@@ -183,7 +168,7 @@ public class BoardSetupView extends JFrame {
         //Image loader for the hard map
         BufferedImage image3;
         try {
-            image3 = ImageIO.read(this.getClass().getClassLoader().getResourceAsStream("maps/mapHARD.png"));
+            image3 = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResourceAsStream("maps/mapHARD.png")));
         } catch (IOException e) {
             image3 = new BufferedImage(1,1,BufferedImage.TYPE_INT_RGB);
         }

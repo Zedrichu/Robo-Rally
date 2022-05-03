@@ -4,23 +4,41 @@ import springboot.model.Direction;
 
 import java.util.Objects;
 
+/**
+ * Abstract model class denoting the cards used in the gameplay.
+ */
 abstract public class Card {
     private static long counter=0;
     long ID;
     private String name;
 
+    /**
+     * Card constructor
+     */
     protected Card() {
         this.ID = counter++;
     }
 
+    /**
+     * Card name Setter
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Card name Getter
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Abstract method enforcing a card to be able to apply action on given position and direction.
+     * @param position - Position object
+     * @param direction - Direction object
+     * @return tuple of new position and direction
+     */
     abstract public Object[] applyAction(Position position, Direction direction);
 
     @Override
@@ -37,10 +55,16 @@ abstract public class Card {
     }
 }
 
+/**
+ * Inheriting model class denoting cards that are able to move.
+ */
 class MovingCard extends Card {
     final private int multiplier;
 
-    // Constructor for MovingCard
+    /**
+     * Class constructor
+     * @param multiplier - intensity of the movement
+     */
     protected MovingCard(int multiplier) {
         super();
         this.setName( multiplier<0? "Move"+Math.abs(multiplier)+"Backward"
@@ -48,8 +72,9 @@ class MovingCard extends Card {
         this.multiplier = multiplier;
     }
 
-
-    // Function to apply an action based on a moving card
+    /**
+     * Method implementing the abstract method in the parent class
+     */
     @Override
     public Object[] applyAction(Position position, Direction direction) {
         int angle = direction.getAngle();
@@ -68,9 +93,16 @@ class MovingCard extends Card {
 
 }
 
+/**
+ * Inheriting model class denoting cards that are able to rotate.
+ */
 class RotatingCard extends Card {
     final private int angle; //clockwise
 
+    /**
+     * Class constructor
+     * @param angle - integer angle for rotation
+     */
     protected RotatingCard(int angle) {
         super();
         String name = "Rotate";
@@ -81,6 +113,9 @@ class RotatingCard extends Card {
         this.angle = angle;
     }
 
+    /**
+     * Method implementing the abstract method in the parent class
+     */
     @Override
     public Object[] applyAction(Position position, Direction direction) {
         try {

@@ -5,6 +5,9 @@ import springboot.model.obstacles.CheckPoint;
 import springboot.model.obstacles.*;
 import springboot.model.obstacles.Obstacle;
 
+/**
+ * Enumeration of possible types of tiles.
+ */
 public enum TileType {
 	
 	EMPTY("tiles/floor.png", null),
@@ -19,17 +22,30 @@ public enum TileType {
 	final private String pictureFile;
 	private Obstacle obstacle;
 
-	
+	/**
+	 * Enum constructor
+	 * @param pictureFile - path to picture of the tile
+	 * @param obstacle - obstacle corresponding to the type of tile
+	 */
 	TileType(String pictureFile, Obstacle obstacle) {
 		this.pictureFile = pictureFile;
 		this.obstacle = obstacle;
 	}
 
+	/**
+	 * Obstacle Setter
+	 */
 	public void setObstacle(Obstacle obstacle) {this.obstacle = obstacle;}
 
+	/**
+	 * Picture file Getter
+	 */
 	public String getPictureFile() {
 		return pictureFile;
 	}
 
+	/**
+	 * Obstacle Getter
+	 */
 	public Obstacle getObstacle() { return obstacle;}
 }

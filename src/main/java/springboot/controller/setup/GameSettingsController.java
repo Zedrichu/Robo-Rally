@@ -73,6 +73,7 @@ public class GameSettingsController {
     public void setupBoard(Board board){
         System.out.println("Board has been selected");
         this.boardController = new BoardController(board, Set.of());
+        // Create the card deck to be used in the game.
         this.cardDeck = new CardDeck();
 
         PlayerSetupController playerSetupController = new PlayerSetupController(this, gameSettings.getAmountOfPlayers());
@@ -85,6 +86,7 @@ public class GameSettingsController {
      */
     public void setupPlayers(Set<String> names) {
         System.out.println("Players have been initialized");
+        // Request PlayerFactory a set of players based on the set of names provided.
         Set<Player> sps = PlayerFactory.getPlayerSet(gameSettings.getAmountOfPlayers(), names);
 
         StartPositionController startPositionController = new StartPositionController(this, boardController, gameSettings.getAmountOfPlayers(), sps);

@@ -36,7 +36,7 @@ public class StartPositionController {
         for (Player player : sps){
             toValidate.add(player.getPosition());
         }
-
+        // Check that all positions selected are unique in the number of players.
         return toValidate.size() == sps.size();
     }
 

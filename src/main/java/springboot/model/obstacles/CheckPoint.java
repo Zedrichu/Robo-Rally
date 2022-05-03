@@ -1,10 +1,11 @@
 package springboot.model.obstacles;
-import springboot.model.obstacles.Obstacle;
-import springboot.model.players.Player;
 
+import springboot.model.players.Player;
 import java.util.Objects;
 
-// individual checkpoints (objects)
+/**
+ * Inheriting model class denoting the CheckPoint obstacle
+ */
 public class CheckPoint extends Obstacle {
 
     private int ID;
@@ -14,11 +15,18 @@ public class CheckPoint extends Obstacle {
         return this.ID;
     }
 
+    /**
+     * Class constructor
+     */
     public CheckPoint(){
         IDs++;
         this.ID = IDs;
     }
 
+    /**
+     * Implementation of the abstract method of obstacle
+     * @param player - Player object to collect check-point
+     */
     @Override
     public void applyDamage(Player player, int damage) {
         player.addCheckPoint(this);
