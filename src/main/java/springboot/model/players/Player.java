@@ -271,10 +271,9 @@ public class Player {
         Obstacle obstacle = board.getTile(this.getCoordinates()).getType().getObstacle();
         board.getTile(this.getCoordinates()).setRobotOnTop(false,this.direction);
         board.getTile(this.getCoordinates()).setRobotIcon(null);
-        // obstacle.applyDamage(this, number);
+        obstacle.applyDamage(this, number);
         board.getTile(this.getCoordinates()).setRobotOnTop(true,this.direction);
         board.getTile(this.getCoordinates()).setRobotIcon(this.robot);
-        obstacle.applyDamage(this, number);
     }
 
     /**

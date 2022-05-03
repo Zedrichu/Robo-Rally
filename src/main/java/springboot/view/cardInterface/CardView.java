@@ -30,6 +30,7 @@ public class CardView extends JButton {
         }
         Image img = image.getScaledInstance(60,100,4);
         ImageIcon icon = new ImageIcon(img);
+        setOpaque(true);
         setSelected(false);
         setText(card.getName());
         setIcon(icon);

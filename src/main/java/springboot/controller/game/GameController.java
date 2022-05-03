@@ -49,9 +49,9 @@ public class GameController {
 
     /**
      * Class constructor setting up the board, deck, round, observer support.
-     * @param gameSettings - current game settings
-     * @param board - current board to be played
-     * @param deck - the card deck used for card drawing
+     * @param gameSettings - GameSettings entity
+     * @param board - Board object, current board to be played
+     * @param deck - CardDeck used for card drawing
      */
     public GameController(GameSettings gameSettings, Board board, CardDeck deck){
         this.support = new PropertyChangeSupport(this);

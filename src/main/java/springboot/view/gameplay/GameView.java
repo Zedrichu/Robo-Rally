@@ -45,11 +45,16 @@ public class GameView extends JFrame implements PropertyChangeListener {
         setLayout(new GridBagLayout());
         getContentPane().setBackground(Color.DARK_GRAY );
 
-        add(healthView, GridBagUtils.constraint(0,1,10));
-        add(boardView, GridBagUtils.constraint(0,0,10));
-        add(tableView, GridBagUtils.constraint(1,0,10));
+        JPanel sidePanel = new JPanel();
+        sidePanel.setMinimumSize(new Dimension(400,400));
+        sidePanel.setLayout(new GridBagLayout());
+        sidePanel.setBackground(Color.DARK_GRAY);
+        sidePanel.add(healthView, GridBagUtils.constraint(0,0,10));
+        sidePanel.add(tableView, GridBagUtils.constraint(0,1,10));
+        sidePanel.add(logView, GridBagUtils.constraint(0,2,10));
 
-        add(logView, GridBagUtils.constraint(1,1,10));
+        add(boardView, GridBagUtils.constraint(0,0,10));
+        add(sidePanel, GridBagUtils.constraint(1,0,10));
 
         pack();
         setLocationRelativeTo(null);
