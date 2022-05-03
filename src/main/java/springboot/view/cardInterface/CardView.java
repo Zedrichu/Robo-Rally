@@ -8,7 +8,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-
+/**
+ * View class presenting each of the cards on GUI.
+ */
 public class CardView extends JButton {
 
     public int choice;
@@ -38,8 +40,9 @@ public class CardView extends JButton {
         setMinimumSize(new Dimension(90,140));
     }
 
-    //Method to change color and label, based on selection,
-    // triggered by each cardView listener
+    /**
+     * Method to change color and label on selection of a card, triggered by button listeners.
+     */
     public void select(int number) {
         // If selected, make frame around GREEN
         if (number>0) {

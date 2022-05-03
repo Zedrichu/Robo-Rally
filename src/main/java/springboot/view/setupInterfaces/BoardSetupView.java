@@ -4,7 +4,6 @@ import springboot.controller.setup.GameSettingsController;
 import springboot.model.GameSettings;
 import springboot.model.board.Board;
 import springboot.utils.GridBagUtils;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +11,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * View class used in setting up the board used in the game.
+ */
 public class BoardSetupView extends JFrame {
     private final GameSettingsController gameSettingsController;
 

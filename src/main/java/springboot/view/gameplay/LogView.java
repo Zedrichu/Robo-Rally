@@ -14,11 +14,16 @@ import java.util.logging.SimpleFormatter;
 
 import javax.swing.*;
 
+/**
+ * View class presenting the entire gameplay view (including health, board and card selection).
+ *   Implements the Observer design pattern
+ *   Listens to the property changes from GameController
+ */
 public class LogView extends JPanel {
     private JTextArea logArea;
     private JScrollPane scrollPane;
 
-    //No time to implement this
+    //@TODO - Feature yet to be implemented
     public LogView() {
         super();
         initGUI();

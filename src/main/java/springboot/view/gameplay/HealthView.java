@@ -10,7 +10,11 @@ import java.util.Set;
 import javax.swing.*;
 import java.awt.*;
 
-
+/**
+ * View class presenting the view of health bars.
+ *   Implements the Observer design pattern
+ *   Listens to the property changes from GameController
+ */
 public class HealthView extends JPanel implements PropertyChangeListener {
 
     private Round round;

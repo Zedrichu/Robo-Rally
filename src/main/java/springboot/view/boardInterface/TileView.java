@@ -11,13 +11,15 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.util.Objects;
 import javax.swing.JPanel;
 
+/**
+ * View class presenting the tiles of the board on GUI
+ */
 public class TileView extends JPanel {
 
     public static final int PIXEL_SIZE = 66;
-    private Tile tile;
+    private final Tile tile;
     private BufferedImage image;
     private BufferedImage robImage;
 
@@ -44,8 +46,6 @@ public class TileView extends JPanel {
         setMinimumSize(new Dimension(PIXEL_SIZE, PIXEL_SIZE));
         setMaximumSize(getMinimumSize());
         setPreferredSize(getMinimumSize());
-
-
     }
 
     public void paint(Graphics g){

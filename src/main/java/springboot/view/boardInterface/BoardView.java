@@ -4,13 +4,17 @@ import springboot.model.board.Board;
 import springboot.model.players.Player;
 import springboot.model.Round;
 import springboot.utils.GridBagUtils;
-
 import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Set;
 
+/**
+ * View class presenting the entire board on GUI
+ *   Implements the Observer design pattern
+ *   Listens to the property changes from GameController
+ */
 public class BoardView extends JLayeredPane implements PropertyChangeListener {
     private Board board;
     private Set<Player> players;

@@ -12,17 +12,15 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * View class used in setting up the game settings of the game.
+ */
 public class GameSettingsView extends JFrame {
 
     private JButton btnStart;
     private JComboBox comboComplex;
     private JComboBox comboNumber;
     private GameSettingsController controller;
-
-
-    public static void main(String[] args) {
-
-    }
 
     public GameSettingsView(GameSettingsController controller) {
         this.controller = controller;

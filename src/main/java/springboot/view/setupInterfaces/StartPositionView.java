@@ -16,7 +16,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Set;
 
+/**
+ * View class used in setting up the starting positions of each player in the game.
+ */
 public class StartPositionView extends JFrame {
+
     private GameSettingsController gameSettingsController;
     private StartPositionController startPositionController;
 

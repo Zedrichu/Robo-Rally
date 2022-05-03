@@ -12,13 +12,19 @@ import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+
+/**
+ * View class presenting the entire gameplay view (including health, board and card selection).
+ *   Implements the Observer design pattern
+ *   Listens to the property changes from GameController
+ */
 public class GameView extends JFrame implements PropertyChangeListener {
     private final GameController gameController;
-    private LogView logView;
+    private final LogView logView;
     private GameSettings gameSettings;
     private JPanel tableView;
-    private HealthView healthView;
-    private BoardView boardView;
+    private final HealthView healthView;
+    private final BoardView boardView;
     private JButton playCards;
 
 

@@ -12,6 +12,11 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+/**
+ * View class presenting table of cards on GUI.
+ *   Implements the Observer design pattern
+ *   Listener of the property changes and actions in the TableController
+ */
 public class PromptView extends JPanel implements PropertyChangeListener {
 
     JButton ready;

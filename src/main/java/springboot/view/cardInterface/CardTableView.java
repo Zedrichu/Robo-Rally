@@ -14,6 +14,11 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * View class presenting table of cards on GUI.
+ *   Implements the Observer design pattern
+ *   Listener of the property changes and actions in the TableController
+ */
 public class CardTableView extends JPanel implements PropertyChangeListener, ActionListener {
 
     private final TableController tableController;
@@ -74,7 +79,7 @@ public class CardTableView extends JPanel implements PropertyChangeListener, Act
         add(submit, GridBagUtils.constraint(1,i/3,3));
     }
 
-    // OBSERVER pattern implemented here
+    // OBSERVER pattern implementation
     // Method to update/reload view if a certain property change is observed
     @Override
     public void propertyChange(PropertyChangeEvent evt) {

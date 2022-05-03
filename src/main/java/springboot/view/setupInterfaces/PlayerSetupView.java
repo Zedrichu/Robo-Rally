@@ -9,7 +9,11 @@ import springboot.controller.setup.GameSettingsController;
 import springboot.controller.setup.PlayerSetupController;
 import springboot.utils.GridBagUtils;
 
+/**
+ * View class used in setting up the players to be registered in the game.
+ */
 public class PlayerSetupView extends JFrame {
+
     private GameSettingsController controller;
     private PlayerSetupController playerSetupController;
     private Set<String> names = new HashSet<>();
