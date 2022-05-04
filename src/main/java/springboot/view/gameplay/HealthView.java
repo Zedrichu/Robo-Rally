@@ -45,12 +45,15 @@ public class HealthView extends JPanel implements PropertyChangeListener {
             healthBar.setValue(player.getLives());
             if (player.getLives() < 4) {
                 healthBar.setForeground(Color.RED);
+                healthBar.setOpaque(true);
             }
             else if (player.getLives() < 8) {
                 healthBar.setForeground(Color.ORANGE);
+                healthBar.setOpaque(true);
             }
             else if (player.getLives() >= 8) {
                 healthBar.setForeground(Color.GREEN);
+                healthBar.setOpaque(true);
             }
             add(healthBar, GridBagUtils.constraint(1, i, 10));
             i++;

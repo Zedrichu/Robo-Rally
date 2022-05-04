@@ -46,7 +46,7 @@ public class BoardSetupView extends JFrame {
         //Panel for text
         JPanel panelText = new JPanel();
         panelText.setBackground(Color.DARK_GRAY);
-        JLabel textLabel = new JLabel("!!!ATTENTION!!! When choosing board below, please choose the board corresponding to the level of difficulty set on the previous view for correct shown board OR choose RANDOM board.");
+        JLabel textLabel = new JLabel("!!!ATTENTION!!! When choosing board above, please choose the board corresponding to the level of difficulty set on the previous view for correct shown board OR choose RANDOM board.");
         textLabel.setForeground(Color.RED);
         panelText.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(),BorderFactory.createRaisedBevelBorder()));
         panelText.setBackground(Color.DARK_GRAY);
