@@ -148,15 +148,8 @@ public class Player {
 
             // Check that the position given is within board bounds
             if (board.checkPositionInBounds((Position) res[0])) {
-                // Remove the robot from previous position
-                board.getTile(this.getCoordinates()).setRobotOnTop(false,this.direction);
-                board.getTile(this.getCoordinates()).setRobotIcon(null);
                 this.setPosition((Position) res[0]);
-                int[] temp = new int[]{((Position) res[0]).x, ((Position) res[0]).y};
                 this.setDirection((Direction) res[1]);
-                // Place the robot on the new position
-                board.getTile(temp).setRobotOnTop(true, this.direction);
-                board.getTile(temp).setRobotIcon(this.robot);
             }
         }
     }
@@ -269,11 +262,6 @@ public class Player {
      */
     public void hitObstacle(Board board, int number) {
         Obstacle obstacle = board.getTile(this.getCoordinates()).getType().getObstacle();
-        board.getTile(this.getCoordinates()).setRobotOnTop(false,this.direction);
-        board.getTile(this.getCoordinates()).setRobotIcon(null);
-        // obstacle.applyDamage(this, number);
-        board.getTile(this.getCoordinates()).setRobotOnTop(true,this.direction);
-        board.getTile(this.getCoordinates()).setRobotIcon(this.robot);
         obstacle.applyDamage(this, number);
     }
 

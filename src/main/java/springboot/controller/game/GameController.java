@@ -49,9 +49,9 @@ public class GameController {
 
     /**
      * Class constructor setting up the board, deck, round, observer support.
-     * @param gameSettings - current game settings
-     * @param board - current board to be played
-     * @param deck - the card deck used for card drawing
+     * @param gameSettings - GameSettings entity
+     * @param board - Board object, current board to be played
+     * @param deck - CardDeck used for card drawing
      */
     public GameController(GameSettings gameSettings, Board board, CardDeck deck){
         this.support = new PropertyChangeSupport(this);
@@ -69,6 +69,9 @@ public class GameController {
         //Play cards for each player in set of players
         for (Player player : this.round.getPlayers()) {
             for (int i = 0; i < player.getHand().size(); i++) {
+                // Remove the robot from previous position
+                board.getTile(player.getCoordinates()).setRobotOnTop(false,player.getDirection());
+                board.getTile(player.getCoordinates()).setRobotIcon(null);
                 // Obtain the next card to be played
                 Card card = player.getHand().get(i);
                 // Card may be null if player touches the pit and loses the next card
@@ -92,9 +95,11 @@ public class GameController {
                         this.gameView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                         JOptionPane.showMessageDialog(gameView, "Winner is "+player.getPlayerName()+"!");
                         //this.gameView.dispose();
-
                     }
                 }
+                // Place the robot on the new position
+                board.getTile(player.getCoordinates()).setRobotOnTop(true, player.getDirection());
+                board.getTile(player.getCoordinates()).setRobotIcon(player.getRobot());
             }
             // After using the cards, restore the hand back to the deck and shuffle the cards.
             this.deck.restoreCards(player.hand.getHand());
@@ -119,14 +124,6 @@ public class GameController {
         this.support.addPropertyChangeListener(gameView);
         this.gameView.setVisible(true);
         support.firePropertyChange("nextRound", round.getRoundNumber()-1, round.getRoundNumber());
-    }
-
-    /**
-     * GameView Getter
-     * @return currently used GameView
-     */
-    public GameView getGameView() {
-        return gameView;
     }
 
     /**

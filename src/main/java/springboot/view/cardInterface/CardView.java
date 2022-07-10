@@ -30,6 +30,7 @@ public class CardView extends JButton {
         }
         Image img = image.getScaledInstance(60,100,4);
         ImageIcon icon = new ImageIcon(img);
+        setOpaque(true);
         setSelected(false);
         setText(card.getName());
         setIcon(icon);
@@ -50,6 +51,7 @@ public class CardView extends JButton {
             setBackground(Color.GREEN);
             this.choice = number;
             setText(getText()+"✅"+number);
+            setOpaque(true);
             // Else make the frame back RED
         } else {
             setSelected(false);
@@ -57,6 +59,7 @@ public class CardView extends JButton {
             this.choice = 0;
             String[] str = getText().split("✅");
             setText(str[0]);
+            setOpaque(true);
         }
     }
 

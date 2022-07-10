@@ -35,7 +35,7 @@ public class PromptView extends JPanel implements PropertyChangeListener {
         setMinimumSize(new Dimension(400,300));
         setPreferredSize(getMinimumSize());
         setBorder(new BevelBorder(BevelBorder.LOWERED,new Color(255,230,100), new Color(3,1,77)));
-        this.textField = new JLabel("Round: "+round.getRoundNumber()+"| Player "+this.player.getPlayerName()
+        this.textField = new JLabel("Round: "+"| Player "+this.player.getPlayerName()
                 + " has to select cards in order!");
         this.textField.setVerticalTextPosition(SwingConstants.CENTER);
         this.textField.setMinimumSize(new Dimension(100,100));
